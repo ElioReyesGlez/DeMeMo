@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/tableLayout_score"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="@dimen/regular_window_margin"
+    android:background="@drawable/background_gray_light"
+    android:padding="@dimen/regular_window_padding">
+
+    <TextView
+        android:id="@+id/tv_evaluator_name"
+        style="@style/default_textView_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginBottom="2dp"
+        android:background="@drawable/background_red"
+        android:padding="@dimen/regular_item_padding"
+        android:text="@string/writer_evaluator"
+        android:textAlignment="center"
+        android:textSize="14sp"
+        android:textStyle="bold" />
+
+    <TableRow
+        android:id="@+id/table_row_headers"
+        android:background="@drawable/background_gray"
+        android:padding="@dimen/regular_item_padding"
+        android:weightSum="2">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_column="0"
+            android:layout_weight="1"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:text="@string/fields"
+            android:textSize="14sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_column="1"
+            android:layout_weight="1"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:text="@string/amount"
+            android:textAlignment="center"
+            android:textSize="14sp"
+            android:textStyle="bold" />
+
+    </TableRow>
+
+    <TableRow
+        android:id="@+id/hits_values"
+        android:padding="@dimen/regular_item_padding"
+        android:weightSum="2">
+
+        <TextView
+            android:id="@+id/tv_hits_head_row"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_column="0"
+            android:layout_weight="1"
+            android:text="@string/hits"
+            android:textSize="12sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/tv_hits_sum"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_column="1"
+            android:layout_weight="1"
+            android:text="@string/blank"
+            android:textAlignment="center"
+            android:textSize="12sp" />
+    </TableRow>
+
+    <TableRow
+        android:id="@+id/table_row_almost"
+        android:padding="@dimen/regular_item_padding"
+        android:visibility="gone"
+        android:weightSum="2">
+
+        <TextView
+            android:id="@+id/tv_almost_head_row"
+            android:layout_width="wrap_content"
+            android:layout_column="0"
+            android:layout_weight="1"
+            android:text="@string/almost_hit"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/tv_almost_sum"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_column="1"
+            android:layout_weight="1"
+            android:text="@string/blank"
+            android:textAlignment="center"
+            android:textSize="12sp" />
+    </TableRow>
+
+    <TableRow
+        android:padding="@dimen/regular_item_padding"
+        android:weightSum="2">
+
+        <TextView
+            android:id="@+id/tv_miss_head_row"
+            android:layout_width="wrap_content"
+            android:layout_column="0"
+            android:layout_weight="1"
+            android:text="@string/miss"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/tv_miss_sum"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_column="1"
+            android:layout_weight="1"
+            android:text="@string/blank"
+            android:textAlignment="center"
+            android:textSize="12sp" />
+
+    </TableRow>
+
+    <TextView
+        android:id="@+id/tv_total_score_row"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/regular_item_padding"
+        android:text="Score: 100"
+        android:textAlignment="center"
+        android:textColor="@color/text_default_dark_gray"
+        android:textSize="14sp"
+        android:textStyle="bold" />
+
+</TableLayout>

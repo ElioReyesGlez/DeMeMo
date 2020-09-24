@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:background="@drawable/background_gray">
+
+    <DatePicker
+        android:id="@+id/until_date_picker"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:datePickerMode="spinner"
+        android:calendarViewShown="false"/>
+
+    <Button
+        android:id="@+id/until_date_button"
+        android:layout_width="match_parent"
+        style="@style/ok_button"
+        android:layout_gravity="center|bottom"
+        android:text="@string/save"
+        android:layout_margin="@dimen/regular_window_margin"
+        android:layout_weight="1"/>
+
+</LinearLayout>

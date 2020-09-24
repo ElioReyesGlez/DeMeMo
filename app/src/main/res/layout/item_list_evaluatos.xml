@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/main_parent"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/background_gray"
+    android:padding="@dimen/regular_item_padding"
+    android:elevation="2dp"
+    android:orientation="horizontal">
+
+    <ImageView
+        android:id="@+id/iv_section"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_gravity="center_vertical"
+        android:layout_margin="@dimen/regular_window_margin"
+        android:contentDescription="@string/icon"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_gravity="center_vertical">
+
+        <TextView
+            android:id="@+id/tv_evaluator_name"
+            style="@style/default_textView_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:textAlignment="center"
+            android:padding="@dimen/regular_window_padding"
+            android:layout_margin="@dimen/regular_window_margin"
+            android:text="@string/evaluator_name"
+            android:background="@drawable/background_red"/>
+
+        <TextView
+            android:id="@+id/tv_info_section"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/example_text"
+            android:layout_gravity="center_vertical"
+            android:layout_margin="@dimen/regular_window_margin"/>
+
+    </LinearLayout>
+
+</LinearLayout>

@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "27197323955",
+    "firebase_url": "https://memorized-930601.firebaseio.com",
+    "project_id": "memorized-930601",
+    "storage_bucket": "memorized-930601.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:27197323955:android:98f00a2f7f8fbaf49a4ec6",
+        "android_client_info": {
+          "package_name": "com.erg.memorized"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "27197323955-5b6bkneerv9ftc1irmr3p0ckognrd6lv.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.erg.memorized",
+            "certificate_hash": "7562807c061af9bbb9158a9bef0465a2b8b7b269"
+          }
+        },
+        {
+          "client_id": "27197323955-vlfpoks9spa479sl83fg291og3r2aj4h.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDjZU0J0wGVtk4COTL3VhSnB1rGqdpgYCs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "27197323955-vlfpoks9spa479sl83fg291og3r2aj4h.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

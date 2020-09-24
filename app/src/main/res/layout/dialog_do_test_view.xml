@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/background_gray"
+    android:orientation="vertical"
+    android:padding="@dimen/regular_item_padding">
+
+    <com.airbnb.lottie.LottieAnimationView
+        android:id="@+id/lottie_anim"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_marginTop="2dp"
+        android:layout_gravity="center_horizontal"
+        android:scaleType="centerCrop"
+        android:adjustViewBounds="true"
+        android:cropToPadding="true"
+        android:contentDescription="@string/animated_img"
+        app:lottie_autoPlay="true"
+        app:lottie_loop="true"
+        app:lottie_fileName="exam.json"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/regular_item_padding"
+            android:orientation="vertical">
+
+            <TextView
+                style="@style/default_textView_title"
+                android:id="@+id/tv_msg_dialog"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="4dp"
+                android:layout_marginRight="4dp"
+                android:layout_marginBottom="8dp"
+                android:padding="@dimen/regular_window_padding"
+                android:background="@drawable/background_gray_light"
+                android:text="@string/memorizing_finish"
+                android:textAlignment="center"
+                android:layout_gravity="center_horizontal"
+                android:textColor="@color/dark_gray_btn_bg_color"/>
+
+            <HorizontalScrollView
+                android:id="@+id/horizontal_scroll_btn_container"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_margin="@dimen/regular_item_padding"
+                android:fillViewport="true"
+                android:scrollbars="horizontal">
+                <LinearLayout
+                    android:id="@+id/lineal_l_buttons_container"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:weightSum="2">
+
+                    <Button
+                        android:id="@+id/do_test_dialog_no"
+                        style="@style/ok_button"
+                        android:layout_margin="@dimen/regular_item_padding"
+                        android:layout_weight="1"
+                        android:paddingStart="@dimen/regular_window_padding"
+                        android:paddingEnd="@dimen/regular_window_padding"
+                        android:background="@drawable/selector_gray"
+                        android:text="@string/premium_dialog_no" />
+
+                    <Button
+                        android:id="@+id/do_test_dialog_ok"
+                        style="@style/ok_button"
+                        android:layout_margin="@dimen/regular_item_padding"
+                        android:layout_weight="1"
+                        android:paddingStart="@dimen/regular_window_padding"
+                        android:paddingEnd="@dimen/regular_window_padding"
+                        android:background="@drawable/selector_light_green"
+                        android:text="@string/premium_dialog_ok" />
+
+                </LinearLayout>
+            </HorizontalScrollView>
+        </LinearLayout>
+</LinearLayout>

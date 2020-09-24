@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/root_add_new_verse_view"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_marginBottom="@dimen/margin_bottom"
+    android:animateLayoutChanges="true"
+    android:padding="@dimen/regular_window_padding"
+    tools:context=".fragments.NewVerseFragment"
+    android:scrollbars="vertical">
+
+    <RelativeLayout
+        android:id="@+id/root_child_new_verse_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="center|top">
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/til_tile"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_centerInParent="true"
+            android:layout_margin="@dimen/regular_window_padding"
+            android:hint="@string/tile"
+            app:boxStrokeColor="@color/colorAccent"
+            app:endIconMode="clear_text"
+            app:startIconContentDescription="@string/tile"
+            app:startIconDrawable="@drawable/ic_holy_bible">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/ti_edit_text_title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:scrollbars="vertical"
+                android:textColor="@color/md_black_1000"
+                android:textStyle="bold"
+                android:textSize="16sp" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/til_verse"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@+id/til_tile"
+            android:layout_above="@+id/rl_show_pickers"
+            android:layout_centerInParent="true"
+            android:layout_margin="@dimen/regular_window_padding"
+            android:hint="@string/verse"
+            app:boxStrokeColor="@color/colorAccent"
+            app:counterEnabled="true"
+            app:endIconMode="clear_text"
+            app:startIconContentDescription="@string/verse"
+            app:startIconDrawable="@drawable/ic_bible">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/ti_edit_text_verse"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_above="@+id/lineal_l_buttons_container"
+                android:layout_marginBottom="@dimen/regular_window_margin"
+                android:gravity="top|start"
+                android:inputType="textMultiLine"
+                android:scrollbars="vertical"
+                android:singleLine="false"
+                android:textColor="@color/md_black_1000"
+                android:textSize="15sp" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <RelativeLayout
+            android:id="@+id/rl_show_pickers"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/selector_gray_light"
+            android:clickable="true"
+            android:focusable="true"
+            android:padding="@dimen/regular_item_padding"
+            android:layout_centerInParent="true"
+            android:layout_marginStart="@dimen/regular_window_margin"
+            android:layout_marginEnd="@dimen/regular_window_margin"
+            android:layout_marginBottom="8dp"
+            android:layout_above="@id/lineal_l_buttons_container">
+
+            <ImageView
+                android:id="@+id/icon_date_and_time_symbol"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:layout_centerVertical="true"
+                android:layout_marginTop="3dp"
+                android:layout_marginStart="2dp"
+                android:src="@drawable/ic_event_date_and_time_symbol"
+                android:contentDescription="@string/date_and_time_symbol">
+
+            </ImageView>
+
+            <TextView
+                android:id="@+id/tv_date"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginStart="16dp"
+                android:layout_toEndOf="@id/icon_date_and_time_symbol"
+                android:text="@string/notification_setup"
+                android:textColor="#202020"
+                android:textSize="18sp"
+                android:layout_toStartOf="@+id/arrow_point_to_right"/>
+
+            <ImageView
+                android:id="@+id/arrow_point_to_right"
+                android:layout_width="16dp"
+                android:layout_height="16dp"
+                android:layout_alignParentEnd="true"
+                android:layout_centerVertical="true"
+                android:contentDescription="@string/description_icon_right_arrow"
+                android:src="@drawable/ic_arrow_point_to_right" />
+
+        </RelativeLayout>
+
+        <LinearLayout
+            android:id="@+id/lineal_l_buttons_container"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_centerInParent="true"
+            android:orientation="horizontal"
+            android:weightSum="2">
+
+            <Button
+                android:id="@+id/save_button"
+                style="@style/ok_button"
+                android:layout_marginStart="@dimen/cancel_button_margin_left"
+                android:layout_marginLeft="@dimen/cancel_button_margin_left"
+                android:layout_marginTop="@dimen/regular_item_padding"
+                android:layout_marginEnd="2dp"
+                android:layout_marginRight="2dp"
+                android:layout_marginBottom="@dimen/regular_window_margin"
+                android:layout_weight="1"
+                android:background="@drawable/selector_blue"
+                android:text="@string/dialog_save"
+                android:visibility="gone" />
+
+            <Button
+                android:id="@+id/save_button_start"
+                style="@style/ok_button"
+                android:layout_marginStart="3dp"
+                android:layout_marginLeft="3dp"
+                android:layout_marginTop="@dimen/regular_item_padding"
+                android:layout_marginEnd="@dimen/save_button_margin_right"
+                android:layout_marginRight="@dimen/regular_window_margin"
+                android:layout_marginBottom="@dimen/regular_window_margin"
+                android:layout_weight="1"
+                android:text="@string/dialog_save_start"
+                android:visibility="gone" />
+
+        </LinearLayout>
+    </RelativeLayout>
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

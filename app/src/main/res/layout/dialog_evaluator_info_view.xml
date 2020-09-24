@@ -1,0 +1,59 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/root_dialog_view"
+    style="@style/Theme.MaterialComponents.Dialog"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/background_gray"
+    android:padding="10dp">
+
+    <ImageView
+        android:id="@+id/iv_ic_dialog"
+        android:layout_width="53dp"
+        android:layout_height="53dp"
+        android:layout_alignParentTop="true"
+        android:layout_centerInParent="true"
+        android:layout_marginTop="@dimen/margin_top"
+        android:contentDescription="@string/info_icon"
+        android:scaleType="fitCenter"
+        android:src="@drawable/ic_square" />
+
+    <TextView
+        android:id="@+id/text_dialog"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/iv_ic_dialog"
+        android:layout_centerInParent="true"
+        android:layout_marginLeft="4dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginRight="4dp"
+        android:layout_marginBottom="20dp"
+        android:gravity="center_horizontal"
+        android:text="@string/dialog_message_description"
+        android:textAlignment="center"
+        android:textColor="@color/dark_gray_btn_bg_color"
+        android:textSize="18sp"
+        android:textStyle="bold" />
+
+
+    <Switch
+        android:id="@+id/switch_do_not_show_again"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/text_dialog"
+        android:layout_margin="@dimen/regular_window_margin"
+        android:text="@string/don_t_show_again"
+        android:layout_centerHorizontal="true"
+        android:background="@drawable/background_gray_light"
+        />
+
+    <Button
+        android:id="@+id/btn_ok"
+        style="@style/ok_button"
+        android:layout_width="match_parent"
+        android:layout_below="@+id/switch_do_not_show_again"
+        android:layout_margin="@dimen/regular_item_padding"
+        android:background="@drawable/selector_light_green"
+        android:text="@string/got_it" />
+
+
+</RelativeLayout>

@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    tools:context=".fragments.scorer.ResultFragment">
+
+    <TextView
+        android:id="@+id/tv_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="2dp"
+        android:layout_gravity="center_horizontal|top"
+        android:padding="@dimen/regular_window_padding"
+        android:text="@string/title"
+        android:textAlignment="center"
+        android:textColor="@color/text_default_dark_gray"
+        android:textSize="14sp"
+        android:textStyle="bold" />
+
+    <LinearLayout
+        android:id="@+id/linear_layout_empty_container"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_gravity="center"
+        android:clickable="true"
+        android:focusable="true"
+        android:visibility="gone">
+
+        <com.airbnb.lottie.LottieAnimationView
+            android:id="@+id/lottie_anim_empty"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_margin="@dimen/regular_item_padding"
+            android:adjustViewBounds="true"
+            android:cropToPadding="true"
+            android:scaleType="centerInside"
+            android:contentDescription="@string/empty"
+            android:clickable="true"
+            android:focusable="true"
+            app:lottie_autoPlay="true"
+            app:lottie_fileName="empty_box.json"
+            app:lottie_loop="true"/>
+
+        <TextView
+            android:id="@+id/tv_empty_list_message"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:text="@string/sorry_you_did_not_make_it"
+            android:textAlignment="center"
+            android:textStyle="bold"
+            android:textSize="15sp"/>
+        <TextView
+            android:id="@+id/tv_empty_list_second_message"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:text="@string/please_try_again"
+            android:textAlignment="center"
+            android:textSize="13sp"/>
+
+    </LinearLayout>
+
+        <ScrollView
+            android:id="@+id/scroll_view_scorers_container"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center|top"
+            android:background="@drawable/background_gray_light"
+            android:minHeight="120dp">
+
+            <LinearLayout
+                android:id="@+id/ll_scorer_container"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_margin="@dimen/regular_window_margin"
+                android:orientation="vertical"
+                android:padding="@dimen/regular_window_padding">
+            <!--Programmatically filled-->
+            </LinearLayout>
+        </ScrollView>
+
+    <TextView
+        android:id="@+id/tv_total_user_score"
+        style="@style/default_textView_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_margin="@dimen/regular_window_margin"
+        android:background="@drawable/background_green_light"
+        android:padding="@dimen/regular_window_padding"
+        android:text="Total: 100"
+        android:textStyle="bold"
+        android:textSize="16sp"
+        android:textAlignment="center" />
+
+
+</LinearLayout>

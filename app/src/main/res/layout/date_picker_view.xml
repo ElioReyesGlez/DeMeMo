@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:isScrollContainer="true"
+    android:background="@drawable/background_gray">
+
+    <DatePicker
+        android:id="@+id/date_picker"
+        android:layout_width="match_parent"
+        android:layout_height="390dp"
+        android:layout_gravity="center"/>
+
+    <RelativeLayout
+        android:id="@+id/rl_until"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="1dp"
+        android:padding="2dp"
+        android:background="@drawable/selector_yellow"
+        android:clickable="true"
+        android:focusable="true"
+        android:visibility="gone">
+
+        <ImageView
+            android:id="@+id/icon_date_and_time_symbol"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:layout_centerVertical="true"
+            android:layout_margin="4dp"
+            android:src="@drawable/ic_event_date_and_time_symbol"
+            android:contentDescription="@string/date_and_time_symbol">
+
+        </ImageView>
+
+        <TextView
+            android:id="@+id/tv_until_date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="2dp"
+            android:layout_centerVertical="true"
+            android:layout_toEndOf="@id/icon_date_and_time_symbol"
+            android:text="@string/end_date"
+            android:textSize="14sp"
+            android:textColor="#202020"
+            android:textStyle="bold"
+            android:layout_toStartOf="@+id/arrow_point_to_right"/>
+
+        <ImageView
+            android:id="@+id/arrow_point_to_right"
+            android:layout_width="12dp"
+            android:layout_height="12dp"
+            android:layout_marginEnd="2dp"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"
+            android:contentDescription="@string/description_icon_right_arrow"
+            android:src="@drawable/ic_arrow_point_to_right" />
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="2dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/daily_notification"
+            android:textSize="14sp"
+            android:textStyle="bold"
+            android:textColor="@color/text_default_dark_gray"
+            android:layout_centerInParent="true"
+            android:layout_alignParentStart="true"
+            android:layout_toStartOf="@+id/switch_daily"
+            android:layout_marginStart="4dp"/>
+
+        <Switch
+            android:id="@+id/switch_daily"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_marginEnd="10dp"/>
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="2dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/weekly_notification"
+            android:textSize="14sp"
+            android:textStyle="bold"
+            android:textColor="@color/text_default_dark_gray"
+            android:layout_centerInParent="true"
+            android:layout_alignParentStart="true"
+            android:layout_toStartOf="@+id/switch_weekly"
+            android:layout_marginStart="4dp"/>
+
+        <Switch
+            android:id="@+id/switch_weekly"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_marginEnd="10dp"/>
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="2dp">
+
+        <TextView
+            android:id="@+id/tv_monthly"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/monthly_notification"
+            android:textSize="14sp"
+            android:textStyle="bold"
+            android:textColor="@color/text_default_dark_gray"
+            android:layout_centerInParent="true"
+            android:layout_alignParentStart="true"
+            android:layout_toStartOf="@+id/switch_monthly"
+            android:layout_marginStart="4dp"/>
+
+        <Switch
+            android:id="@+id/switch_monthly"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_marginEnd="10dp"/>
+
+    </RelativeLayout>
+
+</LinearLayout>

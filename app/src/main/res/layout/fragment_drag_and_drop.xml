@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="@dimen/regular_window_padding"
+    tools:context=".fragments.scorer.DragAndDropFragment">
+
+    <TextView
+        android:id="@+id/tv_evaluator_name"
+        style="@style/default_textView_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_alignParentTop="true"
+        android:padding="@dimen/regular_window_padding"
+        android:layout_margin="@dimen/regular_window_margin"
+        android:text="@string/drag_and_drop_evaluator"
+        android:background="@drawable/background_red"/>
+
+    <TextView
+        android:id="@+id/tv_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/title"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@+id/tv_evaluator_name"
+        android:textColor="@color/text_default_dark_gray"
+        android:textSize="16sp"
+        android:textStyle="bold"/>
+
+    <ScrollView
+        android:id="@+id/scroll_view_boxes_container"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:minHeight="40dp"
+        android:layout_centerInParent="true"
+        android:layout_below="@+id/tv_title"
+        android:layout_above="@id/btn_done_drag_and_drop_fragment"
+        android:background="@drawable/background_gray"
+        android:padding="@dimen/regular_window_padding">
+        <LinearLayout
+            android:id="@+id/ll_boxes_container"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="vertical">
+
+        </LinearLayout>
+
+    </ScrollView>
+
+    <Button
+        android:id="@+id/btn_done_drag_and_drop_fragment"
+        style="@style/ok_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:layout_marginBottom="30dp"
+        android:textSize="16sp"
+        android:text="@string/done"
+        android:layout_centerHorizontal="true"
+        android:layout_alignParentBottom="true"/>
+
+</RelativeLayout>

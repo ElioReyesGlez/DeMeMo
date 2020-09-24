@@ -1,0 +1,74 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    style="@style/Theme.MaterialComponents.Dialog"
+    android:id="@+id/root_dialog_login"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/background_gray"
+    android:padding="@dimen/regular_window_padding">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:orientation="vertical"
+        android:paddingLeft="@dimen/regular_item_padding"
+        android:paddingRight="@dimen/regular_item_padding"
+        android:paddingTop="10dp">
+
+        <com.airbnb.lottie.LottieAnimationView
+            android:id="@+id/lottie_anim"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:layout_marginBottom="@dimen/margin_bottom"
+            android:layout_gravity="center_horizontal"
+            android:adjustViewBounds="true"
+            android:contentDescription="@string/empty"
+            android:cropToPadding="true"
+            android:scaleType="centerInside"
+            app:lottie_autoPlay="true"
+            app:lottie_fileName="edit_to_save.json"
+            app:lottie_loop="true" />
+
+        <!--  Email Label -->
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/til_dialog_field"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            android:elevation="2dp"
+            android:hint="@string/mobile_number_user_info"
+            app:boxStrokeColor="@color/colorAccent"
+            app:endIconMode="clear_text"
+            app:startIconContentDescription="@string/name"
+            app:startIconDrawable="@drawable/ic_telephone">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/dialog_input_field"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="number"  />
+        </com.google.android.material.textfield.TextInputLayout>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:weightSum="1">
+
+            <Button
+                android:id="@+id/save_dialog_button"
+                style="@style/ok_button"
+                android:layout_margin="@dimen/regular_item_padding"
+                android:layout_weight="1"
+                android:text="@string/save" />
+
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</RelativeLayout>

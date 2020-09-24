@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="@dimen/regular_item_padding"
+    tools:context=".fragments.GeneralSettingsFragment">
+
+    <TextView
+        style="@style/default_textView_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:text="@string/general_settings"
+        android:textColor="@color/text_default_dark_gray"
+        android:textSize="18sp"/>
+
+
+    <LinearLayout
+        android:id="@+id/ll_language_container"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/margin_top"
+        android:background="@drawable/background_gray"
+        android:elevation="@dimen/default_elevation"
+        android:orientation="vertical"
+        android:focusable="true"
+        android:clickable="true"
+        android:padding="@dimen/regular_window_padding">
+
+        <RelativeLayout
+            android:id="@+id/rl_language"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:focusable="false"
+            android:focusableInTouchMode="false"
+            android:layout_margin="4dp">
+
+            <ImageView
+                android:id="@+id/iv_head_flag"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_alignParentStart="true"
+                android:layout_marginStart="3dp"
+                android:contentDescription="@string/icon_leader_board"
+                android:src="@drawable/ic_languages"
+                android:visibility="invisible">
+
+            </ImageView>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:text="@string/language"
+                android:textColor="@color/text_default_dark_gray"
+                android:textSize="16sp"
+                android:textStyle="bold" />
+
+        </RelativeLayout>
+
+       <!-- <include layout="@layout/item_language" /> -->
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/ll_bible_version_container"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/margin_top"
+        android:background="@drawable/background_gray"
+        android:elevation="@dimen/default_elevation"
+        android:orientation="vertical"
+        android:clickable="true"
+        android:focusable="true"
+        android:padding="@dimen/regular_window_padding">
+
+        <RelativeLayout
+            android:id="@+id/rl_bibles"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_margin="4dp"
+            android:focusable="false"
+            android:focusableInTouchMode="false">
+
+            <ImageView
+                android:id="@+id/iv_head_bible"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_alignParentStart="true"
+                android:layout_marginStart="3dp"
+                android:contentDescription="@string/bibleRoot"
+                android:src="@drawable/ic_open_bible"
+                android:visibility="invisible">
+
+            </ImageView>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:text="@string/bible_version"
+                android:textColor="@color/text_default_dark_gray"
+                android:textSize="16sp"
+                android:textStyle="bold" />
+
+        </RelativeLayout>
+
+    </LinearLayout>
+
+</LinearLayout>

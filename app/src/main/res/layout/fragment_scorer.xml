@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".fragments.ScorerFragment">
+
+    <LinearLayout
+        android:id="@+id/ll_countdown_container"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_centerInParent="true"
+        android:layout_alignParentTop="true"
+        android:layout_margin="@dimen/regular_window_margin"
+        android:padding="@dimen/regular_item_padding"
+        android:background="@drawable/background_accent"
+        android:weightSum="2"
+        android:visibility="gone">
+
+        <com.airbnb.lottie.LottieAnimationView
+            android:id="@+id/lottie_anim_empty"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_marginTop="1.5dp"
+            android:layout_gravity="center"
+            android:adjustViewBounds="true"
+            android:contentDescription="@string/empty"
+            android:cropToPadding="true"
+            android:scaleType="centerInside"
+            app:lottie_autoPlay="true"
+            app:lottie_fileName="hourglass.json"
+            app:lottie_loop="true"
+            android:layout_weight="1"/>
+
+        <TextView
+            android:id="@+id/tv_countdown"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="2dp"
+            android:layout_marginEnd="@dimen/regular_window_margin"
+            android:layout_marginBottom="1dp"
+            android:text="10"
+            android:textStyle="bold"
+            android:textColor="@color/text_default_dark_gray"
+            android:textSize="12sp"
+            android:layout_gravity="center"
+            android:layout_weight="1"/>
+
+
+    </LinearLayout>
+
+    <ImageButton
+        android:id="@+id/ib_undo"
+        android:layout_height="32dp"
+        android:layout_width="32dp"
+        android:background="@drawable/selector_light_green"
+        android:src="@drawable/ic_undo_arrow"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_margin="5dp"
+        android:padding="5dp"
+        android:scaleType="centerInside"
+        android:contentDescription="@string/undo"
+        android:visibility="gone"/>
+
+    <ImageButton
+        android:id="@+id/ib_next"
+        android:layout_height="30dp"
+        android:layout_width="30dp"
+        android:background="@drawable/selector_light_green"
+        android:src="@drawable/ic_arrow_right"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentTop="true"
+        android:layout_margin="5dp"
+        android:padding="5dp"
+        android:scaleType="centerInside"
+        android:contentDescription="@string/right_arrow"/>
+
+
+    <com.erg.memorized.views.CustomViewPager
+        android:id="@+id/score_viewpager"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/ib_next"
+        android:layout_above="@+id/tv_evaluator_cont"
+        android:padding="@dimen/regular_window_margin"/>
+
+    <Button
+        android:id="@+id/btn_finish"
+        style="@style/ok_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@id/tv_evaluator_cont"
+        android:layout_marginBottom="10dp"
+        android:textSize="16sp"
+        android:text="@string/finish"
+        android:layout_gravity="center_horizontal"
+        android:layout_centerHorizontal="true"
+        android:visibility="gone"/>
+
+    <TextView
+        android:id="@+id/tv_evaluator_cont"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:layout_alignParentBottom="true"
+        android:padding="@dimen/regular_window_padding"
+        android:layout_marginBottom="@dimen/margin_bottom"
+        android:background="@drawable/background_accent"
+        android:textColor="@color/text_default_dark_gray"
+        android:textStyle="bold"
+        android:textSize="16sp"
+        android:text="0/3"/>
+
+
+</RelativeLayout>

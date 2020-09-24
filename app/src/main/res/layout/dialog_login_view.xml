@@ -1,0 +1,170 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    style="@style/Theme.MaterialComponents.Dialog"
+    android:id="@+id/root_dialog_login"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/background_gray"
+    android:padding="@dimen/regular_window_padding">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:orientation="vertical"
+        android:paddingLeft="@dimen/regular_item_padding"
+        android:paddingRight="@dimen/regular_item_padding"
+        android:paddingTop="10dp">
+
+        <com.airbnb.lottie.LottieAnimationView
+            android:id="@+id/lottie_anim_empty"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_marginBottom="@dimen/margin_bottom"
+            android:layout_gravity="center_horizontal"
+            android:adjustViewBounds="true"
+            android:contentDescription="@string/empty"
+            android:cropToPadding="true"
+            android:scaleType="centerInside"
+            app:lottie_autoPlay="true"
+            app:lottie_fileName="avatar_login.json"
+            app:lottie_loop="true"
+            android:background="@drawable/background_accent"/>
+
+        <!--  Email Label -->
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/til_dialog_email"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            android:hint="@string/email"
+            app:boxStrokeColor="@color/colorAccent"
+            app:endIconMode="clear_text"
+            app:startIconContentDescription="@string/name"
+            app:startIconDrawable="@drawable/ic_email">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/dialog_input_email"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="textEmailAddress" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <!--  Password Label -->
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/til_dialog_pass"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp"
+            android:hint="@string/pass"
+            app:boxStrokeColor="@color/colorAccent"
+            app:endIconMode="password_toggle"
+            app:startIconContentDescription="@string/pass"
+            app:startIconDrawable="@drawable/ic_pass">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/dialog_input_password"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="textPassword" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:weightSum="2">
+
+            <Button
+                android:id="@+id/cancel_dialog_button"
+                style="@style/ok_button"
+                android:layout_margin="@dimen/regular_item_padding"
+                android:layout_weight="1"
+                android:background="@drawable/selector_gray"
+                android:text="@string/dialog_cancel" />
+
+            <Button
+                android:id="@+id/btn_login"
+                style="@style/ok_button"
+                android:layout_gravity="center"
+                android:layout_margin="@dimen/regular_item_padding"
+                android:layout_marginTop="24dp"
+                android:layout_marginBottom="24dp"
+                android:layout_weight="1"
+                android:background="@drawable/selector_light_green"
+                android:text="@string/login" />
+
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/regular_window_margin"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <TextView
+                style="@style/default_textView_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="1dp"
+                android:layout_marginEnd="1dp"
+                android:text="@string/no_account_yet_create_one"
+                android:textColor="@color/dark_gray_btn_bg_color"
+                android:textSize="16sp" />
+
+            <TextView
+                android:id="@+id/link_sign_up"
+                style="@style/default_textView_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="2dp"
+                android:layout_marginLeft="2dp"
+                android:clickable="true"
+                android:focusable="true"
+                android:text="@string/crete_one"
+                android:textColor="#42a5f5"
+                android:textSize="16sp" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/ll_forgot_pass"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/regular_item_padding"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <TextView
+                style="@style/default_textView_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="1dp"
+                android:text="@string/forgot_password"
+                android:textColor="@color/dark_gray_btn_bg_color"
+                android:textSize="16sp" />
+
+            <TextView
+                android:id="@+id/link_restore"
+                style="@style/default_textView_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="2dp"
+                android:clickable="true"
+                android:focusable="true"
+                android:text="@string/restore"
+                android:textColor="#42a5f5"
+                android:textSize="16sp" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</RelativeLayout>

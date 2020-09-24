@@ -1,0 +1,65 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/root_dialog_view"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    style="@style/Theme.MaterialComponents.Dialog"
+    android:background="@drawable/background_yellow"
+    android:padding="10dp">
+
+    <ImageView
+        android:id="@+id/iv_ic_dialog"
+        android:layout_width="53dp"
+        android:layout_height="53dp"
+        android:layout_marginTop="@dimen/margin_top"
+        android:layout_alignParentTop="true"
+        android:layout_centerInParent="true"
+        android:scaleType="fitCenter"
+        android:src="@drawable/ic_square"
+        android:contentDescription="@string/icon" />
+
+    <TextView
+        android:id="@+id/text_dialog"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:layout_below="@+id/iv_ic_dialog"
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="4dp"
+        android:layout_marginRight="4dp"
+        android:layout_marginBottom="20dp"
+        android:text="@string/leaving_alert"
+        android:textAlignment="center"
+        android:gravity="center_horizontal"
+        android:textColor="@color/dark_gray_btn_bg_color"
+        android:textSize="16sp"
+        android:textStyle="bold"/>
+
+    <LinearLayout
+        android:id="@+id/lineal_l_buttons_container"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:layout_below="@id/text_dialog"
+        android:orientation="horizontal"
+        android:weightSum="2">
+
+        <Button
+            android:id="@+id/cancel_dialog_button"
+            style="@style/ok_button"
+            android:layout_margin="@dimen/regular_item_padding"
+            android:layout_weight="1"
+            android:background="@drawable/selector_gray"
+            android:text="@string/dialog_cancel" />
+
+
+        <Button
+            android:id="@+id/leave_dialog_button"
+            style="@style/ok_button"
+            android:layout_margin="@dimen/regular_item_padding"
+            android:layout_weight="1"
+            android:background="@drawable/selector_gray"
+            android:text="@string/leave" />
+
+    </LinearLayout>
+
+</RelativeLayout>

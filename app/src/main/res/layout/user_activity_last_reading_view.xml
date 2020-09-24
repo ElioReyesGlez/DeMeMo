@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/ll_user_activity_container"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/selector_white"
+    android:elevation="@dimen/default_elevation"
+    android:orientation="vertical"
+    android:padding="@dimen/regular_window_padding"
+    android:layout_margin="@dimen/regular_window_margin"
+    android:clickable="true"
+    android:focusable="true"
+    tools:ignore="MissingDefaultResource">
+
+    <RelativeLayout
+        android:id="@+id/rl_head_container"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/regular_window_margin"
+        android:elevation="@dimen/default_elevation"
+        android:focusable="false"
+        android:focusableInTouchMode="false"
+        android:gravity="center_horizontal">
+
+        <ImageView
+            android:id="@+id/ic_daily_verse"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_centerVertical="true"
+            android:contentDescription="@string/daily_verse"
+            android:layout_margin="@dimen/regular_window_margin"
+            android:src="@drawable/ic_bible">
+
+        </ImageView>
+
+        <TextView
+            android:id="@+id/title_user_activity_head"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:layout_marginEnd="30dp"
+            android:layout_toEndOf="@id/ic_daily_verse"
+            android:text="@string/last_reading"
+            android:textAlignment="center"
+            android:textColor="@color/text_default_dark_gray"
+            android:textSize="16sp"/>
+
+    </RelativeLayout>
+
+    <ProgressBar
+        android:id="@+id/daily_progress_circular"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:visibility="gone" />
+
+    <RelativeLayout
+        android:id="@+id/rl_daily_verse"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/tv_user_last_reading_date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:layout_margin="1dp"
+            android:padding="@dimen/regular_window_padding"
+            android:ellipsize="end"
+            android:gravity="center"
+            android:maxLines="1"
+            android:text="01/06/1993"
+            android:textAlignment="center"
+            android:textColor="@color/gray_btn_bg_darker_color"
+            android:background="@drawable/background_gray"
+            android:textStyle="bold" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tv_user_last_reading_date"
+            android:layout_centerHorizontal="true"
+            android:focusable="false"
+            android:focusableInTouchMode="false"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/tv_last_reading_verse_title"
+                style="@style/default_textView_title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="1dp"
+                android:ellipsize="end"
+                android:gravity="center_horizontal"
+                android:maxLines="1"
+                android:text="@string/lorem"
+                android:textAlignment="center"
+                android:textColor="@color/md_grey_700"
+                android:textSize="15sp"/>
+
+            <TextView
+                android:id="@+id/tv_last_reading_verse_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="2dp"
+                android:ellipsize="end"
+                android:gravity="center_horizontal"
+                android:maxLines="1"
+                android:padding="@dimen/regular_window_padding"
+                android:text="@string/aux_memory_text"
+                android:textAlignment="center"
+                android:textColor="@color/md_grey_500"
+                android:textSize="13sp" />
+        </LinearLayout>
+    </RelativeLayout>
+
+    <com.airbnb.lottie.LottieAnimationView
+        android:id="@+id/lottie_anim_empty"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
+        android:layout_gravity="center"
+        android:layout_margin="@dimen/regular_item_padding"
+        android:adjustViewBounds="true"
+        android:clickable="true"
+        android:contentDescription="@string/empty"
+        android:cropToPadding="true"
+        android:focusable="true"
+        android:scaleType="centerInside"
+        android:visibility="gone"
+        app:lottie_autoPlay="true"
+        app:lottie_fileName="empty_box.json"
+        app:lottie_loop="true" />
+
+</LinearLayout>

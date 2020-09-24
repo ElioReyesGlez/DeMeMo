@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="@dimen/regular_window_padding"
+    tools:context=".fragments.LeaderBoardFragment">
+
+    <com.airbnb.lottie.LottieAnimationView
+        android:id="@+id/lottie_anim_podium"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_alignParentTop="true"
+        android:layout_centerInParent="true"
+        android:layout_marginTop="@dimen/margin_top"
+        android:adjustViewBounds="true"
+        android:contentDescription="@string/animated_img"
+        android:cropToPadding="true"
+        android:scaleType="centerCrop"
+        app:lottie_autoPlay="true"
+        app:lottie_fileName="podium.json"
+        app:lottie_loop="true"
+        android:background="@drawable/background_accent"/>
+
+    <androidx.appcompat.widget.SearchView
+        android:id="@+id/searcher_leader_board"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/lottie_anim_podium"
+        android:background="@drawable/background_accent"
+        app:searchIcon="@drawable/ic_loupe"
+        app:searchHintIcon="@drawable/ic_loupe_gray"
+        app:defaultQueryHint="@string/search"
+        android:layout_margin="@dimen/regular_window_margin"
+        android:visibility="gone"/>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recycler_view_leader_board"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="2dp"
+        android:scrollbars="vertical"
+        android:layout_below="@+id/searcher_leader_board"
+        android:layout_centerInParent="true"/>
+
+</RelativeLayout>

@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".fragments.scorer.InfoFragment">
+
+    <ImageView
+        android:id="@+id/iv_intro_logo"
+        android:layout_width="140dp"
+        android:layout_height="100dp"
+        android:layout_margin="@dimen/regular_window_margin"
+        android:padding="@dimen/regular_window_padding"
+        android:src="@drawable/ic_exam_main"
+        android:background="@drawable/background_green_light"
+        android:contentDescription="@string/icon"
+        android:layout_centerHorizontal="true"
+        android:layout_alignParentTop="true"/>
+
+    <TextView
+        android:id="@+id/tv_intro_info"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        android:text="@string/memory_evaluator"
+        android:layout_below="@+id/iv_intro_logo"
+        android:layout_centerHorizontal="true"
+        android:layout_margin="@dimen/regular_window_margin"/>
+
+    <ListView
+        android:id="@+id/list_view_evaluators"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@+id/btn_get_started"
+        android:layout_below="@+id/tv_intro_info"
+        android:clickable="false"
+        android:focusable="false"
+        android:layout_gravity="center"
+        android:divider="@android:color/transparent"
+        android:dividerHeight="7dp"
+        android:layout_margin="@dimen/regular_item_padding"
+        android:padding="@dimen/regular_window_padding"
+        android:background="@color/transparent"/>
+
+    <Button
+        android:id="@+id/btn_get_started"
+        style="@style/ok_button"
+        android:layout_width="132dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:background="@drawable/selector_light_green"
+        android:textSize="16sp"
+        android:text="@string/get_started"
+        android:textStyle="bold"
+        android:layout_centerHorizontal="true"
+        android:layout_alignParentBottom="true"/>
+
+</RelativeLayout>

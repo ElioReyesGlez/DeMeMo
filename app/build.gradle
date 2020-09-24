@@ -1,0 +1,91 @@
+apply plugin: 'com.android.application'
+apply plugin: 'realm-android'
+apply plugin: 'com.google.gms.google-services'
+
+android {
+    compileSdkVersion 29
+    buildToolsVersion "29.0.3"
+
+    defaultConfig {
+        applicationId "com.erg.memorized"
+        minSdkVersion 23
+        targetSdkVersion 29
+        versionCode 8
+        versionName "8.0"
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    compileOptions {
+        sourceCompatibility = 1.8
+        targetCompatibility = 1.8
+    }
+
+}
+
+dependencies {
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
+
+    implementation 'androidx.appcompat:appcompat:1.1.0'
+    implementation 'androidx.constraintlayout:constraintlayout:1.1.3'
+    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
+    implementation 'com.google.android.gms:play-services-ads:18.3.0'
+    testImplementation 'junit:junit:4.12'
+    androidTestImplementation 'androidx.test.ext:junit:1.1.1'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
+    //---------------------------Meow_Bottom_Bar-------------------
+    implementation 'com.etebarian:meow-bottom-navigation:1.2.0'
+    //---------------------------kotlin----------------------------
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:1.3.71"
+    //---------------------------recyclerview----------------------------
+    implementation 'androidx.recyclerview:recyclerview:1.1.0'
+    //---------------------------CardView----------------------------
+    implementation 'androidx.cardview:cardview:1.0.0'
+    //---------------------------Material--------------------------
+    implementation 'com.google.android.material:material:1.1.0'
+    //---------------------------TodoList------------------------
+    //implementation 'com.github.yalantis:todolist:v1.0.1'
+    //---------------------------Fab--------------------------
+    implementation 'com.github.clans:fab:1.6.2'
+    //----------------------lottie---------------------------------
+    implementation 'com.airbnb.android:lottie:3.4.0'
+    //----------------------FireBase---------------------------------
+    implementation 'com.google.firebase:firebase-analytics:17.4.1'
+    //----------------------FireBase Messaging---------------------------------
+    implementation 'com.google.firebase:firebase-messaging:20.2.4'
+    //----------------------FireBaseAuth---------------------------------
+    implementation 'com.google.firebase:firebase-auth:19.3.1'
+    //----------------------FireBaseDatabase---------------------------------
+    implementation 'com.google.firebase:firebase-database:19.3.0'
+    //----------------------FireBaseStorage---------------------------------
+    implementation 'com.google.firebase:firebase-storage:19.1.1'
+    implementation 'com.google.firebase:firebase-firestore:21.4.3'
+    //----------------------cropper---------------------------------
+    api 'com.theartofdev.edmodo:android-image-cropper:2.8.0'
+    //----------------------Picasso---------------------------------
+    implementation 'com.squareup.picasso:picasso:2.71828'
+    //----------------------Material Intro Screen---------------------------------
+    implementation 'agency.tango.android:material-intro-screen:0.0.5'
+    //----------------------ViewPager Indicator---------------------------------
+    implementation 'com.inkapplications.viewpageindicator:library:2.4.3'
+    //----------------------Auto Scroll View---------------------------------
+    implementation('cn.trinea.android.view.autoscrollviewpager:android-auto-scroll-view-pager:1.1.2') {
+        exclude module: 'support-v4'
+    }
+    //-----------------------------Retrofit---------------------------------------
+    implementation 'com.squareup.retrofit2:retrofit:2.5.0'
+    implementation 'com.squareup.retrofit2:converter-gson:2.5.0'
+    //-----------------------------Google Billing----------------------------------
+    implementation 'com.android.billingclient:billing:3.0.0'
+    //-----------------------------Chart Graphic------------------------------------
+    implementation 'im.dacer:AndroidCharts:1.0.4'
+    //-----------------------------Joda Time------------------------------------
+    implementation 'joda-time:joda-time:2.10.6'
+
+}

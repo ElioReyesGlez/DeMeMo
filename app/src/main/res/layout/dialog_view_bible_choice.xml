@@ -1,0 +1,45 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/root_dialog_view"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    style="@style/Theme.MaterialComponents.Dialog"
+    android:background="@drawable/background_gray"
+    android:orientation="vertical"
+    android:padding="@dimen/regular_window_padding">
+
+    <TextView
+        android:id="@+id/text_dialog"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center|top"
+        android:layout_marginTop="4dp"
+        android:layout_marginBottom="8dp"
+        android:text="@string/bible_selector"
+        android:textAlignment="center"
+        android:gravity="center_horizontal"
+        android:textColor="@color/dark_gray_btn_bg_color"
+        android:textSize="16sp"
+        android:textStyle="bold" />
+
+    <androidx.appcompat.widget.SearchView
+        android:id="@+id/searcher"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/background_accent"
+        app:searchIcon="@drawable/ic_loupe"
+        app:searchHintIcon="@drawable/ic_loupe_gray"
+        app:defaultQueryHint="@string/search"
+        android:layout_margin="2dp"/>
+
+    <ListView
+        android:id="@+id/list_view_bibles"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:clickable="true"
+        android:focusable="true"
+        android:layout_gravity="center"
+        android:divider="@android:color/transparent"
+        android:dividerHeight="2sp"/>
+
+</LinearLayout>

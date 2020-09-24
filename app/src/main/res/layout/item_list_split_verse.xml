@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/main_parent"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:tag="cards main container">
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/card_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        card_view:cardCornerRadius="10dp"
+        card_view:cardBackgroundColor="@color/md_white_1000"
+        card_view:cardElevation="@dimen/default_elevation"
+        card_view:cardUseCompatPadding="true" >
+
+        <RelativeLayout
+            android:id="@+id/relative_layout_item_list"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <CheckBox
+                android:id="@+id/check_box"
+                android:layout_width="31dp"
+                android:layout_height="30dp"
+                android:layout_alignParentStart="true"
+                android:layout_centerInParent="true" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:layout_toEndOf="@+id/check_box"
+                android:layout_toRightOf="@+id/check_box"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/tv_verse_title"
+                    style="@style/default_textView_title"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="1dp"
+                    android:gravity="center_horizontal"
+                    android:text="@string/title"
+                    android:textAlignment="center"
+                    android:textColor="@color/md_black_1000"
+                    android:textSize="14sp"
+                    android:ellipsize="end"
+                    android:maxLines="2"/>
+
+                <TextView
+                    android:id="@+id/tv_verse_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/regular_window_margin"
+                    android:padding="@dimen/regular_item_padding"
+                    android:ellipsize="end"
+                    android:maxLines="2"
+                    android:text="@string/aux_memory_text"
+                    android:textAlignment="center"
+                    android:gravity="center_horizontal"
+                    android:textColor="@color/md_grey_600"
+                    android:textSize="12sp" />
+            </LinearLayout>
+        </RelativeLayout>
+
+    </androidx.cardview.widget.CardView>
+
+</LinearLayout>

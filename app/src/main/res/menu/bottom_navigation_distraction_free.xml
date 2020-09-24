@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/action_free_distraction"
+        android:enabled="true"
+        android:icon="@drawable/ic_four_expand_arrows"
+        android:title="@string/empty" />
+
+    <item
+        android:id="@+id/action_speak"
+        android:enabled="true"
+        android:icon="@drawable/ic_high_volume"
+        android:title="@string/empty"/>
+
+    <item
+        android:id="@+id/action_change_text_size"
+        android:enabled="true"
+        android:icon="@drawable/ic_scale_text"
+        android:title="@string/empty"/>
+
+</menu>

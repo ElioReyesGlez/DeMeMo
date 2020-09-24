@@ -1,0 +1,380 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    tools:context=".fragments.UserInfoFragment"
+    android:padding="@dimen/regular_item_padding">
+
+    <RelativeLayout
+        android:id="@+id/rl_second_root"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="@dimen/regular_item_padding">
+
+        <TextView
+            android:id="@+id/tv_save"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_marginTop="@dimen/regular_window_margin"
+            android:layout_marginEnd="10dp"
+            android:clickable="true"
+            android:focusable="true"
+            android:fontFamily="@font/abhaya_libre_medium"
+            android:text="@string/save"
+            android:textColor="@color/md_grey_900"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:visibility="gone" />
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/card_view_avatar"
+            android:layout_width="135dp"
+            android:layout_height="135dp"
+            android:layout_alignParentTop="true"
+            android:layout_centerInParent="true"
+            android:layout_marginTop="10dp"
+            app:cardBackgroundColor="@color/md_text_white"
+            app:cardCornerRadius="250dp">
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="130dp"
+                android:layout_height="130dp"
+                android:layout_gravity="center"
+                app:cardCornerRadius="250dp">
+
+                <ImageView
+                    android:id="@+id/iv_profile"
+                    android:layout_width="130dp"
+                    android:layout_height="130dp"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginBottom="24dp"
+                    android:clickable="true"
+                    android:contentDescription="@string/description_add_image"
+                    android:focusable="true"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/ic_user_profile" />
+            </androidx.cardview.widget.CardView>
+
+        </androidx.cardview.widget.CardView>
+
+        <RelativeLayout
+            android:id="@+id/rl_op_container"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/background_gray_light"
+            android:padding="@dimen/regular_item_padding"
+            android:layout_marginTop="84dp">
+
+            <RelativeLayout
+                android:id="@+id/rl_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:layout_marginTop="70dp"
+                android:background="@drawable/selector_gray_light"
+                android:clickable="true"
+                android:elevation="@dimen/default_elevation"
+                android:focusable="true"
+                android:padding="@dimen/regular_window_padding">
+
+                <ImageView
+                    android:id="@+id/icon_name"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:layout_centerVertical="true"
+                    android:layout_marginTop="3dp"
+                    android:contentDescription="@string/name"
+                    android:src="@drawable/ic_user_name" />
+
+                <TextView
+                    android:id="@+id/tv_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginStart="16dp"
+                    android:layout_toEndOf="@id/icon_name"
+                    android:layout_toStartOf="@+id/iv_edit_icon_name"
+                    android:fontFamily="@font/abhaya_libre_medium"
+                    android:text="@string/name"
+                    android:textColor="@color/text_default_dark_gray"
+                    android:ellipsize="end"
+                    android:maxLines="1"
+                    android:textSize="16sp" />
+
+                <ImageView
+                    android:id="@+id/iv_edit_icon_name"
+                    android:layout_width="16dp"
+                    android:layout_height="16dp"
+                    android:layout_alignParentEnd="true"
+                    android:layout_centerVertical="true"
+                    android:contentDescription="@string/dialog_edit"
+                    android:src="@drawable/ic_edit" />
+            </RelativeLayout>
+
+
+            <RelativeLayout
+                android:id="@+id/rl_email"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/rl_name"
+                android:layout_centerInParent="true"
+                android:layout_marginTop="@dimen/settings_item_margin_dividing_section"
+                android:background="@drawable/selector_gray_light"
+                android:clickable="true"
+                android:elevation="@dimen/default_elevation"
+                android:focusable="true"
+                android:padding="@dimen/regular_window_padding">
+
+                <RelativeLayout
+                    android:id="@+id/rl_msg_not_verified"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentTop="true"
+                    android:layout_margin="2dp"
+                    android:background="@drawable/selector_verify_email_button"
+                    android:clickable="true"
+                    android:elevation="@dimen/default_elevation"
+                    android:focusable="true"
+                    android:padding="@dimen/regular_window_padding"
+                    android:visibility="gone">
+
+                    <TextView
+                        android:id="@+id/tv_msg_not_verified_email"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/abhaya_libre_medium"
+                        android:text="@string/email_is_not_verified"
+                        android:textAlignment="center"
+                        android:textColor="@color/red_btn_bg_color"
+                        android:textSize="13sp"
+                        android:textStyle="bold" />
+
+                </RelativeLayout>
+
+                <ImageView
+                    android:id="@+id/icon_mail"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:layout_below="@+id/rl_msg_not_verified"
+                    android:layout_centerVertical="true"
+                    android:layout_marginTop="3dp"
+                    android:src="@drawable/ic_email" />
+
+                <TextView
+                    android:id="@+id/tv_email"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/rl_msg_not_verified"
+                    android:layout_centerVertical="true"
+                    android:layout_marginStart="16dp"
+                    android:layout_toEndOf="@id/icon_mail"
+                    android:layout_toStartOf="@+id/iv_edit_icon_email"
+                    android:fontFamily="@font/abhaya_libre_medium"
+                    android:text="@string/email"
+                    android:textColor="@color/text_default_dark_gray"
+                    android:ellipsize="end"
+                    android:maxLines="1"
+                    android:textSize="16sp"/>
+
+                <ImageView
+                    android:id="@+id/iv_edit_icon_email"
+                    android:layout_width="16dp"
+                    android:layout_height="16dp"
+                    android:layout_below="@+id/rl_msg_not_verified"
+                    android:layout_alignParentEnd="true"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:contentDescription="@string/dialog_edit"
+                    android:src="@drawable/ic_edit" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/rl_mobile"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/rl_email"
+                android:layout_centerInParent="true"
+                android:layout_marginTop="@dimen/settings_item_margin_dividing_section"
+                android:background="@drawable/selector_gray_light"
+                android:clickable="true"
+                android:elevation="@dimen/default_elevation"
+                android:focusable="true"
+                android:padding="@dimen/regular_window_padding">
+
+                <ImageView
+                    android:id="@+id/icon_mobile"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:layout_centerVertical="true"
+                    android:layout_marginTop="3dp"
+                    android:src="@drawable/ic_telephone" />
+
+                <TextView
+                    android:id="@+id/tv_mobile"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginStart="16dp"
+                    android:layout_toEndOf="@id/icon_mobile"
+                    android:layout_toStartOf="@+id/iv_edit_icon_mobile"
+                    android:fontFamily="@font/abhaya_libre_medium"
+                    android:text="@string/mobile_number_user_info"
+                    android:textColor="@color/text_default_dark_gray"
+                    android:ellipsize="end"
+                    android:maxLines="1"
+                    android:textSize="16sp" />
+
+                <ImageView
+                    android:id="@+id/iv_edit_icon_mobile"
+                    android:layout_width="16dp"
+                    android:layout_height="16dp"
+                    android:layout_alignParentEnd="true"
+                    android:layout_centerVertical="true"
+                    android:contentDescription="@string/dialog_edit"
+                    android:src="@drawable/ic_edit" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/rl_pass"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/rl_mobile"
+                android:layout_centerInParent="true"
+                android:layout_marginTop="@dimen/settings_item_margin_dividing_section"
+                android:background="@drawable/selector_gray_light"
+                android:elevation="@dimen/default_elevation"
+                android:focusable="true"
+                android:clickable="true"
+                android:padding="@dimen/regular_window_padding">
+
+                <ImageView
+                    android:id="@+id/icon_pass"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:layout_centerVertical="true"
+                    android:layout_marginTop="3dp"
+                    android:src="@drawable/ic_pass">
+
+                </ImageView>
+
+                <TextView
+                    android:id="@+id/tv_pass"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginStart="16dp"
+                    android:layout_toEndOf="@id/icon_pass"
+                    android:layout_toStartOf="@+id/iv_edit_icon_pass"
+                    android:inputType="textPassword"
+                    android:text="@string/pass"
+                    android:textColor="@color/text_default_dark_gray"
+                    android:ellipsize="end"
+                    android:maxLines="1"
+                    android:textSize="16sp"
+                    android:focusableInTouchMode="false"
+                    android:longClickable="false"
+                    android:clickable="false"
+                    android:enabled="false"/>
+
+                <ImageView
+                    android:id="@+id/iv_edit_icon_pass"
+                    android:layout_width="16dp"
+                    android:layout_height="16dp"
+                    android:layout_alignParentEnd="true"
+                    android:layout_centerVertical="true"
+                    android:contentDescription="@string/dialog_edit"
+                    android:src="@drawable/ic_edit" />
+            </RelativeLayout>
+
+            <LinearLayout
+                android:id="@+id/rl_cru_account_container"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/rl_pass"
+                android:layout_centerInParent="true"
+                android:layout_margin="@dimen/regular_window_margin"
+                android:orientation="horizontal"
+                android:weightSum="2"
+                android:padding="@dimen/regular_window_padding">
+
+                <LinearLayout
+                    android:id="@+id/ll_remove_account"
+                    android:layout_width="70dp"
+                    android:layout_height="70dp"
+                    android:background="@drawable/selector_red"
+                    android:orientation="vertical"
+                    android:layout_margin="@dimen/regular_window_margin"
+                    android:padding="3dp"
+                    android:layout_weight="1">
+
+                    <ImageView
+                        android:id="@+id/iv_remove_account"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginStart="2dp"
+                        android:layout_marginTop="13dp"
+                        android:background="@drawable/ic_remove_account"
+                        android:contentDescription="@string/log_out" />
+
+                    <TextView
+                        android:id="@+id/tv_remove_account"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/abhaya_libre_medium"
+                        android:gravity="center"
+                        android:text="@string/remove_account"
+                        android:textAlignment="center"
+                        android:textColor="@color/dark_gray_btn_bg_color"
+                        android:textSize="12sp"
+                        android:textStyle="bold" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/ll_log_out"
+                    android:layout_width="70dp"
+                    android:layout_height="70dp"
+                    android:background="@drawable/selector_gray_light"
+                    android:gravity="center_vertical"
+                    android:orientation="vertical"
+                    android:layout_margin="@dimen/regular_window_margin"
+                    android:padding="3dp"
+                    android:layout_weight="1">
+
+                    <ImageView
+                        android:id="@+id/iv_logout"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginStart="4dp"
+                        android:layout_marginTop="13dp"
+                        android:layout_marginEnd="1dp"
+                        android:background="@drawable/ic_logout"
+                        android:contentDescription="@string/log_out" />
+
+                    <TextView
+                        android:id="@+id/tv_logout"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/abhaya_libre_medium"
+                        android:gravity="center"
+                        android:text="@string/log_out"
+                        android:textAlignment="center"
+                        android:textColor="@color/dark_gray_btn_bg_color"
+                        android:textSize="12sp"
+                        android:textStyle="bold" />
+
+                </LinearLayout>
+
+
+            </LinearLayout>
+
+        </RelativeLayout>
+    </RelativeLayout>
+</ScrollView>

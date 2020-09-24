@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".fragments.scorer.WriterFragment">
+
+    <TextView
+        android:id="@+id/tv_evaluator_name"
+        style="@style/default_textView_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_alignParentTop="true"
+        android:padding="@dimen/regular_window_padding"
+        android:layout_margin="@dimen/regular_window_margin"
+        android:text="@string/writer_evaluator"
+        android:background="@drawable/background_red"/>
+
+    <TextView
+        android:id="@+id/tv_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/title"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@+id/tv_evaluator_name"
+        android:textColor="@color/text_default_dark_gray"
+        android:textSize="16sp"
+        android:textStyle="bold"/>
+
+    <ScrollView
+        android:id="@+id/scroll_view_boxes_container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:minHeight="40dp"
+        android:layout_centerInParent="true"
+        android:layout_below="@+id/tv_title"
+        android:background="@drawable/background_gray"
+        android:padding="@dimen/regular_window_padding">
+
+        <LinearLayout
+            android:id="@+id/ll_boxes_container"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="vertical">
+        </LinearLayout>
+
+    </ScrollView>
+
+</RelativeLayout>
