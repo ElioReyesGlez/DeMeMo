@@ -102,30 +102,29 @@
             </LinearLayout>
 
             <ImageView
-                android:id="@+id/iv_premium_badge"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-                android:layout_below="@+id/tv_rank"
-                android:layout_centerInParent="true"
-                android:layout_marginTop="17dp"
-                android:layout_marginEnd="6dp"
-                android:layout_toStartOf="@+id/iv_badge"
-                android:contentDescription="@string/img_description"
-                android:src="@drawable/ic_badge_blue"
-                android:visibility="gone"/>
-
-            <ImageView
                 android:id="@+id/iv_badge"
                 android:layout_width="30dp"
                 android:layout_height="30dp"
                 android:layout_below="@+id/tv_rank"
-                android:layout_alignParentEnd="true"
-                android:layout_centerInParent="true"
                 android:layout_marginTop="17dp"
                 android:layout_marginEnd="3dp"
+                android:layout_centerVertical="true"
+                android:layout_toStartOf="@+id/iv_premium_badge"
                 android:contentDescription="@string/img_description"
                 android:src="@drawable/ic_badge_yellow"
-                android:visibility="gone"/>
+                android:visibility="invisible"/>
+
+            <ImageView
+                android:id="@+id/iv_premium_badge"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_below="@+id/tv_rank"
+                android:layout_marginTop="17dp"
+                android:layout_marginEnd="6dp"
+                android:contentDescription="@string/img_description"
+                android:layout_alignParentEnd="true"
+                android:src="@drawable/ic_badge_blue"
+                android:visibility="invisible"/>
 
         </RelativeLayout>
     </androidx.cardview.widget.CardView>
