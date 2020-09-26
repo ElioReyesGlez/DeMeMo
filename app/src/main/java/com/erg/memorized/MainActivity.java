@@ -394,10 +394,4 @@ public class MainActivity extends FragmentActivity {
         spHelper.saveLastUsage(System.currentTimeMillis());
         Log.d(TAG, "onStop: LastUsage Saved: " + System.currentTimeMillis());
     }
-
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-        SuperUtil.signOutUser();
-    }
 }

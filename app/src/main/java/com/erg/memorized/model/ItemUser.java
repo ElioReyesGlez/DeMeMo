@@ -34,7 +34,7 @@ public class ItemUser extends RealmObject implements Serializable {
 
     private RealmList<String> verses;
     private float score;
-    private boolean isPremium = true; // every vary is premium!
+    private boolean isPremium = true; // every vary is premium for testing! //ToDo
 
     public ItemUser() {}
 
