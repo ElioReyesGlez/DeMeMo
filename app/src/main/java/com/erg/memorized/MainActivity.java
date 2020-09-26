@@ -43,6 +43,7 @@ import com.erg.memorized.util.Constants;
 import com.erg.memorized.util.SuperUtil;
 import com.etebarian.meowbottomnavigation.MeowBottomNavigation;
 
+import static com.erg.memorized.util.Constants.MENU_HOME;
 import static com.erg.memorized.util.Constants.MIN_DAYS_UNTIL_PROMPT;
 import static com.erg.memorized.util.Constants.MIN_LAUNCHES_UNTIL_PROMPT;
 
@@ -159,6 +160,10 @@ public class MainActivity extends FragmentActivity {
 
         bottomNavigation.setBackgroundBottomColor(getColor(R.color.custom_white_text_color));
 
+        //* Default item for bottomNavigation // Jose
+        bottomNavigation.show(MENU_HOME, true);
+        actualFragment = HomeFragment.newInstance();
+        new AsyncTaskViewLoader(actualFragment, HomeFragment.TAG, false).execute();
     }
 
     public class AsyncTaskViewLoader extends AsyncTask<Void, Void, Void> {
