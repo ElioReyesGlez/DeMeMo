@@ -160,7 +160,7 @@ public class MainActivity extends FragmentActivity {
 
         bottomNavigation.setBackgroundBottomColor(getColor(R.color.custom_white_text_color));
 
-        //* Default item for bottomNavigation // Jose
+        // Default item for bottomNavigation
         bottomNavigation.show(MENU_HOME, true);
         actualFragment = HomeFragment.newInstance();
         new AsyncTaskViewLoader(actualFragment, HomeFragment.TAG, false).execute();
