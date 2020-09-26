@@ -376,8 +376,13 @@
 
 <!--    <string name="interstitial_ad_unit_id">YOUR_INTERSTITIAL_AD_UNIT_ID</string>-->
 <!--    <string name="interstitial_ad_unit_id">ca-app-pub-5375894039512920~3186666509</string>-->
-    <string name="interstitial_ad_unit_id">ca-app-pub-5375894039512920/4596144610</string>
-    <string name="testing_interstitial_ad_unit_id">ca-app-pub-3940256099942544/1033173712</string>
+
+    //Real id adMob
+    <string name="interstitial_ad_unit_id">ca-app-pub-4525078240939294/7529642711</string>
+
+
+<!--    <string name="interstitial_ad_unit_id">ca-app-pub-5375894039512920/4596144610</string>-->
+<!--    <string name="testing_interstitial_ad_unit_id">ca-app-pub-3940256099942544/1033173712</string>-->
 
     <string name="ad_explication">The following Ad help fund:</string>
     <string name="mission">DeMeMo\'s Mission</string>

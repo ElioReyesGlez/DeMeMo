@@ -3,6 +3,7 @@ package com.erg.memorized.fragments;
 import android.content.Context;
 import android.os.Bundle;
 import android.os.CountDownTimer;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -117,7 +118,7 @@ public class AdMobFragment extends Fragment {
 
     private InterstitialAd newInterstitialAd(final Context context) {
         InterstitialAd interstitialAd = new InterstitialAd(context);
-        interstitialAd.setAdUnitId(getString(R.string.testing_interstitial_ad_unit_id));
+        interstitialAd.setAdUnitId(getString(R.string.interstitial_ad_unit_id));
         interstitialAd.setAdListener(new AdListener() {
             @Override
             public void onAdLoaded() {
@@ -125,16 +126,17 @@ public class AdMobFragment extends Fragment {
 
             @Override
             public void onAdFailedToLoad(int errorCode) {
-                SuperUtil.removeViewByTag(requireActivity(),TAG, false);
+                SuperUtil.removeViewByTag(requireActivity(),TAG, true);
                 SuperUtil.loadView(requireActivity(),
                     LeaderBoardFragment.newInstance(),
                     LeaderBoardFragment.TAG, true);
                 cancelTimer();
+                Log.d(TAG, "onAdFailedToLoad: ErrorCode : " + errorCode);
             }
 
             @Override
             public void onAdClosed() {
-                SuperUtil.removeViewByTag(requireActivity(),TAG, true);
+//                SuperUtil.removeViewByTag(requireActivity(),TAG, true);
                 SuperUtil.loadView(requireActivity(),
                     LeaderBoardFragment.newInstance(),
                     LeaderBoardFragment.TAG, true);
@@ -155,9 +157,7 @@ public class AdMobFragment extends Fragment {
     }
 
     private void loadInterstitial() {
-        AdRequest adRequest = new AdRequest.Builder()
-                .setRequestAgent("android_studio:ad_template").build();
-        mInterstitialAd.loadAd(adRequest);
+        mInterstitialAd.loadAd(new AdRequest.Builder().build());
     }
 
     @Override
