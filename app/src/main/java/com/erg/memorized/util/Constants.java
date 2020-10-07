@@ -150,6 +150,7 @@ public class Constants {
     public static final char EXCLAMATION_MARK_CHAR_DOWN = '!';
     public static final char QUESTION_MARK_CHAR_UP = '¿';
     public static final char QUESTION_MARK_CHAR_DOWN = '?';
+    public static final char DOUBLE_QUOTE = '"';
     public static final String REGEX_SPACE = "\\s+";
     public static final int SENTENCE_IDEAL_LENGTH = 7;
     public static final int SECTION_SENTENCE_IDEAL_LENGTH = 10;

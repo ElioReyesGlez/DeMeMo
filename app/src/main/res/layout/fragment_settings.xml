@@ -15,32 +15,14 @@
         android:orientation="vertical"
         android:padding="@dimen/regular_item_padding">
 
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
             <TextView
                 style="@style/default_textView_title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignParentStart="true"
                 android:text="@string/settings"
                 android:textColor="@color/text_default_dark_gray"
-                android:layout_toStartOf="@+id/iv_general_settings"
+                android:layout_gravity="center_horizontal"
                 android:textSize="18sp" />
-
-            <ImageView
-                android:id="@+id/iv_general_settings"
-                android:layout_width="28dp"
-                android:layout_height="28dp"
-                android:layout_alignParentEnd="true"
-                android:layout_centerVertical="true"
-                android:layout_margin="@dimen/regular_window_padding"
-                android:clickable="true"
-                android:contentDescription="@string/description_menu_icon"
-                android:focusable="true"
-                android:src="@drawable/selector_config" />
-        </RelativeLayout>
 
         <RelativeLayout
             android:id="@+id/rl_user_settings"
@@ -61,7 +43,7 @@
                 android:background="@color/float_transparent"
                 android:visibility="gone"/>
 
-            <androidx.cardview.widget.CardView
+            <com.google.android.material.card.MaterialCardView
                 android:id="@+id/card_view_avatar"
                 android:layout_width="70dp"
                 android:layout_height="70dp"
@@ -72,7 +54,7 @@
                 android:visibility="gone"
                 app:cardCornerRadius="180dp">
 
-                <androidx.cardview.widget.CardView
+                <com.google.android.material.card.MaterialCardView
                     android:layout_width="66dp"
                     android:layout_height="66dp"
                     android:layout_gravity="center"
@@ -88,9 +70,9 @@
                         android:contentDescription="@string/description_add_image"
                         android:focusable="true"
                         android:scaleType="centerCrop"
-                        android:src="@drawable/ic_add_image" />
-                </androidx.cardview.widget.CardView>
-            </androidx.cardview.widget.CardView>
+                        android:src="@drawable/ic_user_profile" />
+                </com.google.android.material.card.MaterialCardView>
+            </com.google.android.material.card.MaterialCardView>
 
             <TextView
                 android:id="@+id/tv_username"
@@ -268,6 +250,17 @@
 
                 </ImageView>
 
+                <TextView
+                    android:id="@+id/tv_sync"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginStart="12dp"
+                    android:text="@string/sync"
+                    android:textStyle="bold"
+                    android:textColor="@color/dark_gray_btn_bg_color"
+                    android:textSize="12sp" />
+
                 <ImageView
                     android:id="@+id/download_needed"
                     android:layout_width="wrap_content"
@@ -413,7 +406,7 @@
         </RelativeLayout>
 
         <RelativeLayout
-            android:id="@+id/rl_support"
+            android:id="@+id/rl_general_settings"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/settings_item_margin_horizontal"
@@ -430,7 +423,7 @@
                 android:layout_height="25dp"
                 android:layout_centerVertical="true"
                 android:layout_marginTop="3dp"
-                android:src="@drawable/ic_cooperation"
+                android:src="@drawable/ic_black_settings"
                 android:contentDescription="@string/icon">
 
             </ImageView>
@@ -442,7 +435,7 @@
                 android:layout_marginStart="16dp"
                 android:layout_toEndOf="@+id/icon_support"
                 android:layout_toStartOf="@+id/iv_arrow_support"
-                android:text="@string/support"
+                android:text="@string/general_settings"
                 android:textColor="#202020"
                 android:textSize="18sp" />
 

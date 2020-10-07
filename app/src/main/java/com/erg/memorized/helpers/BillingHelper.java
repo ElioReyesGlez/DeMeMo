@@ -41,6 +41,8 @@ public class BillingHelper {
 
     public void init() {
 
+        Log.d(TAG, " billingClient init: On");
+
         billingClient = BillingClient.newBuilder(context)
                 .enablePendingPurchases()
                 .setListener(purchaseUpdateListener).build();
@@ -65,6 +67,7 @@ public class BillingHelper {
 
     private void loadAllSkus() {
         if (billingClient.isReady()) {
+            Log.d(TAG, "loadAllSkus started: billingClient isReady");
 
             List<String> skuList = new ArrayList<>();
             skuList.add(SKU_PREMIUM);

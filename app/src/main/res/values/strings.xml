@@ -291,6 +291,7 @@
     <string name="premium">Premium</string>
     <string name="get_premium">Get Premium!</string>
     <string name="get_premium_ad_free">Get PREMIUM in order to get an AD FREE DeMeMo</string>
+    <string name="get_premium_upload_score">Get PREMIUM in order to Upload your Score</string>
     <string name="full_access_to_the_verse_memory_evaluator">Full access to the verse memory evaluator</string>
     <string name="worldwide_participation_on_dememo_leaderboard">Worldwide participation on DeMeMo Leaderboard</string>
     <string name="already_premium">You are already a premium member</string>
@@ -378,7 +379,7 @@
 <!--    <string name="interstitial_ad_unit_id">ca-app-pub-5375894039512920~3186666509</string>-->
 
     //Real id adMob
-    <string name="interstitial_ad_unit_id">ca-app-pub-4525078240939294/7529642711</string>
+    <string name="interstitial_ad_unit_id">ca-app-pub-5375894039512920~3186666509</string>
 
 
 <!--    <string name="interstitial_ad_unit_id">ca-app-pub-5375894039512920/4596144610</string>-->
@@ -389,5 +390,27 @@
     <string name="ad_not_load">Ad did not load</string>
     <string name="you_are_premium_now">You are Premium Now!</string>
     <string name="seven">7</string>
+
+    <!--    All strings used in about page Fragment*-->
+    <string name="description_about_page">This application was created not only with the intention
+        of expanding the gospel of God but also reaffirming what is known about it in an interactive,
+        competitive and healthy way, displaying a series of simple games to promote
+         learning and memorizing the bible. DeMeMo is part of a developing project which aims to position
+        the word of God in a more current world where new technologies and the beatitudes of God go hand
+        in hand in a transparent way.</string>
+    <string name="email_about_page">dememoteam@gmail.com</string>
+    <string name="copy_right_about_page" translatable="false">Copyrights © %1$d</string>
+    <string name="app_version_about_page">Version: 1.0.0</string>
+    <string name="play_store_about_page">Rate us on Play Store</string>
+    <string name="instagram_about_page">Fallow us on Instagram</string>
+    <string name="contact_us_about_page">Contact us</string>
+    <string name="title1_about_page">Connect with us</string>
+    <string name="title2_about_page">Developed by</string>
+    <string name="developer1_about_page">Elioenai Reyes</string>
+    <string name="developer2_about_page">José Ernesto Cortes</string>
+    <string name="url_developer1_about_page">https://www.linkedin.com/in/elioenai-reyes-gonzález</string>
+    <string name="url_developer2_about_page">https://www.linkedin.com/in/josé-ernesto-cortes-7bb8671b6</string>
+    <string name="default_app_versio">1.0.0</string>
+    <string name="version">Version:</string>
 
 </resources>

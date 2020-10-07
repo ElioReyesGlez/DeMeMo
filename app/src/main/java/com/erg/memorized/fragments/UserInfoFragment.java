@@ -93,7 +93,7 @@ public class UserInfoFragment extends Fragment implements View.OnClickListener {
 
     private String name, email, mobile, password;
 
-    private Animation animScaleUp, animScaleDown, animSlideInFromLeft;
+    private Animation animScaleUp, animScaleDown, animSlideInFromRight;
 
 
     public UserInfoFragment() {
@@ -126,8 +126,8 @@ public class UserInfoFragment extends Fragment implements View.OnClickListener {
 
         animScaleUp = AnimationUtils.loadAnimation(getContext(), R.anim.scale_up);
         animScaleDown = AnimationUtils.loadAnimation(getContext(), R.anim.scale_down);
-        animSlideInFromLeft = AnimationUtils.loadAnimation(getContext(),
-                R.anim.fab_slide_in_from_left);
+        animSlideInFromRight = AnimationUtils.loadAnimation(getContext(),
+                R.anim.fab_slide_in_from_right);
     }
 
     private void checkIfEmailIsVerified() {
@@ -883,7 +883,7 @@ public class UserInfoFragment extends Fragment implements View.OnClickListener {
     @Override
     public void onStart() {
         super.onStart();
-        rootView.startAnimation(animSlideInFromLeft);
+        rootView.startAnimation(animSlideInFromRight);
     }
 
     @Override

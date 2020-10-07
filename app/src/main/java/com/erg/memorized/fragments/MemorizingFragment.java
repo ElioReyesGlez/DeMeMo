@@ -78,7 +78,7 @@ public class MemorizingFragment extends Fragment {
     private AudioManager audioManager;
     private AudioManager.OnAudioFocusChangeListener focusChangeListener;
 
-    private Animation animScaleUp, animScaleDown, animSlideInFromLeft;
+    private Animation animScaleUp, animScaleDown, animSlideInFromRight;
     private ViewGroup container;
     private SharedPreferencesHelper spHelper;
     private RealmHelper realmHelper;
@@ -130,7 +130,8 @@ public class MemorizingFragment extends Fragment {
 
         animScaleUp = AnimationUtils.loadAnimation(getContext(), R.anim.less_scale_up);
         animScaleDown = AnimationUtils.loadAnimation(getContext(), R.anim.scale_down);
-        animSlideInFromLeft = AnimationUtils.loadAnimation(getContext(), R.anim.fab_slide_in_from_left);
+        animSlideInFromRight = AnimationUtils.loadAnimation(getContext(),
+                R.anim.fab_slide_in_from_right);
 
 
     }
@@ -469,7 +470,7 @@ public class MemorizingFragment extends Fragment {
     @Override
     public void onStart() {
         super.onStart();
-        rootView.startAnimation(animSlideInFromLeft);
+        rootView.startAnimation(animSlideInFromRight);
         if (isDailyVerse) {
             boolean verseExistByTitle = realmHelper.findItemVerseByTitle(verse.getTitle()) != null;
             boolean verseExistByVerseText = realmHelper.findItemVerseByText(verse.getVerseText()) != null;

@@ -58,7 +58,7 @@ public class GeneralSettingsFragment extends Fragment implements View.OnClickLis
     private ViewGroup container;
     private RelativeLayout rlLanguage, rlBibles;
     private LinearLayout linealLanguageContainer, linealBibleVersionContainer;
-    private Animation animScaleUp, animScaleDown, animSlideInFromLeft;
+    private Animation animScaleUp, animScaleDown, animSlideInFromRight;
 
     private SharedPreferencesHelper spHelper;
     private RealmHelper realmHelper;
@@ -83,8 +83,8 @@ public class GeneralSettingsFragment extends Fragment implements View.OnClickLis
         super.onCreate(savedInstanceState);
         animScaleUp = AnimationUtils.loadAnimation(requireContext(), R.anim.scale_up);
         animScaleDown = AnimationUtils.loadAnimation(requireContext(), R.anim.scale_down);
-        animSlideInFromLeft = AnimationUtils.loadAnimation(requireContext(),
-                R.anim.fab_slide_in_from_left);
+        animSlideInFromRight = AnimationUtils.loadAnimation(requireContext(),
+                R.anim.fab_slide_in_from_right);
 
         fAuth = FirebaseAuth.getInstance();
         spHelper = new SharedPreferencesHelper(requireContext());
@@ -362,7 +362,7 @@ public class GeneralSettingsFragment extends Fragment implements View.OnClickLis
     @Override
     public void onStart() {
         super.onStart();
-        rootView.startAnimation(animSlideInFromLeft);
+        rootView.startAnimation(animSlideInFromRight);
     }
 
 }

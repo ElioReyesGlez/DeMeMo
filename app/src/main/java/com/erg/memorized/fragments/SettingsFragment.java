@@ -69,7 +69,6 @@ public class SettingsFragment extends Fragment implements View.OnClickListener {
     public static final String TAG = "SettingsFragment";
     private View rootView;
     private ViewGroup container;
-    private ImageView ivGeneralSettingsButton;
     private ImageView ivImageProfile;
     private CardView cardViewAvatar;
     private ImageView ivRightArrowUser;
@@ -81,7 +80,7 @@ public class SettingsFragment extends Fragment implements View.OnClickListener {
     private TextView tvUserScore;
     private TextView tvLastUploadDate;
     private Button btnSignUp;
-    private RelativeLayout rlUserSettings, rlLeaderBoard, rlAbout, rlSupport;
+    private RelativeLayout rlUserSettings, rlLeaderBoard, rlAbout, rlGeneralSettings;
     private LinearLayout llSync, llUpload;
     private ProgressBar progressBar;
 
@@ -149,7 +148,6 @@ public class SettingsFragment extends Fragment implements View.OnClickListener {
 
     private void setUpView() {
 
-        ivGeneralSettingsButton = rootView.findViewById(R.id.iv_general_settings);
         ivImageProfile = rootView.findViewById(R.id.iv_profile);
         cardViewAvatar = rootView.findViewById(R.id.card_view_avatar);
         ivRightArrowUser = rootView.findViewById(R.id.iv_right_arrow_user);
@@ -159,7 +157,7 @@ public class SettingsFragment extends Fragment implements View.OnClickListener {
         rlUserSettings = rootView.findViewById(R.id.rl_user_settings);
         rlLeaderBoard = rootView.findViewById(R.id.rl_leader_board);
         rlAbout = rootView.findViewById(R.id.rl_about);
-        rlSupport = rootView.findViewById(R.id.rl_support);
+        rlGeneralSettings = rootView.findViewById(R.id.rl_general_settings);
         progressBar = rootView.findViewById(R.id.progressBar);
         tvVerseCont = rootView.findViewById(R.id.tv_verses_cont);
         tvUserScore = rootView.findViewById(R.id.tv_user_score);
@@ -169,14 +167,13 @@ public class SettingsFragment extends Fragment implements View.OnClickListener {
         ivUploadNeeded = rootView.findViewById(R.id.upload_needed);
         ivDownloadNeeded = rootView.findViewById(R.id.download_needed);
 
-        ivGeneralSettingsButton.setOnClickListener(this);
         llSync.setOnClickListener(this);
         llUpload.setOnClickListener(this);
         ivUploadNeeded.setOnClickListener(this);
         ivDownloadNeeded.setOnClickListener(this);
         rlLeaderBoard.setOnClickListener(this);
         rlAbout.setOnClickListener(this);
-        rlSupport.setOnClickListener(this);
+        rlGeneralSettings.setOnClickListener(this);
 
         if (spHelper.getUserLoginStatus()) {
             currentUser = realmHelper.getUser();
@@ -264,11 +261,6 @@ public class SettingsFragment extends Fragment implements View.OnClickListener {
             case R.id.bt_login:
                 showLoginDialog();
                 break;
-            case R.id.iv_general_settings:
-                SuperUtil.loadView(requireActivity(),
-                        GeneralSettingsFragment.newInstance(),
-                        GeneralSettingsFragment.TAG, true);
-                break;
             case R.id.ll_sync:
                 if (spHelper.getUserLoginStatus()) {
                     if (spHelper.getEmailVerifiedStatus()) {
@@ -325,11 +317,15 @@ public class SettingsFragment extends Fragment implements View.OnClickListener {
                             SuperUtil.loadView(requireActivity(),
                                     LeaderBoardFragment.newInstance(),
                                     LeaderBoardFragment.TAG, true);
+
                         } else {
                             SuperUtil.loadView(requireActivity(),
                                     AdMobFragment.newInstance(currentUser),
                                     AdMobFragment.TAG, true);
+
                         }
+                        Log.d(TAG, "onClick: leader_board: " + "Premium: "
+                                + currentUser.isPremium());
                     } else {
                         if (isVisible())
                             MessagesHelper.showInfoMessageWarning(requireActivity(),
@@ -346,9 +342,10 @@ public class SettingsFragment extends Fragment implements View.OnClickListener {
                 SuperUtil.loadView(requireActivity(), AboutFragment.newInstance(),
                         AboutFragment.TAG, true);
                 break;
-            case R.id.rl_support:
-                SuperUtil.loadView(requireActivity(), SupportFragment.newInstance(),
-                        SupportFragment.TAG, true);
+            case R.id.rl_general_settings:
+                SuperUtil.loadView(requireActivity(),
+                        GeneralSettingsFragment.newInstance(),
+                        GeneralSettingsFragment.TAG, true);
                 break;
         }
     }
@@ -449,6 +446,12 @@ public class SettingsFragment extends Fragment implements View.OnClickListener {
 
                                         if (currentUser.isPremium()) {
                                             uploadScore(pgsDialog);
+                                        } else {
+                                            if (isVisible()) {
+                                                MessagesHelper.showInfoMessage(
+                                                        requireActivity(),
+                                                        getString(R.string.get_premium_upload_score));
+                                            }
                                         }
                                     }
                                 });
@@ -795,12 +798,14 @@ public class SettingsFragment extends Fragment implements View.OnClickListener {
 
     private void loadUserDashBoard() {
         tvVerseCont.setText(String.valueOf(realmHelper.getSavedVerses().size()));
-        tvUserScore.setText(String.valueOf(getMemorizedVerses()));
+
         long lastUploadDate = spHelper.getLastUploadDate(LAST_UPLOAD + currentUser.getId());
         if (lastUploadDate != 0)
             tvLastUploadDate.setText(TimeHelper.dateFormatterShort(lastUploadDate));
 
-        tvUserScore.setText(String.valueOf(ScoreHelper.getUserScoreByVersesList(localVerses)));
+        float score = ScoreHelper.getUserScoreByVersesList(localVerses);
+        tvUserScore.setText(String.valueOf(score));
+        currentUser.setScore(score);
 
         //Uploader
         isUploadNeeded = !SuperUtil.containsAll(localVerses, cloudVerses);

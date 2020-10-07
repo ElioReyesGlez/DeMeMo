@@ -31,7 +31,7 @@
             android:textStyle="bold"
             android:visibility="gone" />
 
-        <androidx.cardview.widget.CardView
+        <com.google.android.material.card.MaterialCardView
             android:id="@+id/card_view_avatar"
             android:layout_width="135dp"
             android:layout_height="135dp"
@@ -41,7 +41,7 @@
             app:cardBackgroundColor="@color/md_text_white"
             app:cardCornerRadius="250dp">
 
-            <androidx.cardview.widget.CardView
+            <com.google.android.material.card.MaterialCardView
                 android:layout_width="130dp"
                 android:layout_height="130dp"
                 android:layout_gravity="center"
@@ -58,9 +58,9 @@
                     android:focusable="true"
                     android:scaleType="centerCrop"
                     android:src="@drawable/ic_user_profile" />
-            </androidx.cardview.widget.CardView>
+            </com.google.android.material.card.MaterialCardView>
 
-        </androidx.cardview.widget.CardView>
+        </com.google.android.material.card.MaterialCardView>
 
         <RelativeLayout
             android:id="@+id/rl_op_container"

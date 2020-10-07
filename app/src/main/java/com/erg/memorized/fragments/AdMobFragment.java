@@ -96,6 +96,7 @@ public class AdMobFragment extends Fragment {
                 long auxVar = millisUntilFinished / countDownInterval;
                 tvCountdown.setText(String.valueOf((int) auxVar));
                 isOnTick = true;
+                Log.d(TAG, "onTick: isOnTick");
             }
 
             public void onFinish() {
@@ -104,6 +105,7 @@ public class AdMobFragment extends Fragment {
                     SuperUtil.hideView(null, llCountdownContainer);
                     isOnTick = false;
                     showInterstitial(appContext);
+                    Log.d(TAG, "onFinish: countDownTimer Finished");
                 }
             }
         };
@@ -113,6 +115,7 @@ public class AdMobFragment extends Fragment {
     private void cancelTimer() {
         if (countDownTimer != null) {
             countDownTimer.cancel();
+            Log.d(TAG, "cancelTimer: countDownTimer Canceled");
         }
     }
 
@@ -122,6 +125,7 @@ public class AdMobFragment extends Fragment {
         interstitialAd.setAdListener(new AdListener() {
             @Override
             public void onAdLoaded() {
+                Log.d(TAG, "onAdLoaded: done!");
             }
 
             @Override
@@ -137,10 +141,9 @@ public class AdMobFragment extends Fragment {
             @Override
             public void onAdClosed() {
 //                SuperUtil.removeViewByTag(requireActivity(),TAG, true);
-                SuperUtil.loadView(requireActivity(),
-                    LeaderBoardFragment.newInstance(),
-                    LeaderBoardFragment.TAG, true);
-                cancelTimer();
+                loadLeaderBoardView();
+
+                Log.d(TAG, "onAdClosed: Load: " + LeaderBoardFragment.TAG);
             }
         });
         return interstitialAd;
@@ -150,14 +153,17 @@ public class AdMobFragment extends Fragment {
         // Show the ad if it"s ready. Otherwise toast and reload the ad.
         if (mInterstitialAd != null && mInterstitialAd.isLoaded()) {
             mInterstitialAd.show();
+            Log.d(TAG, "showInterstitial: Showing Ad ready!");
         } else {
             Toast.makeText(context, R.string.ad_not_load, Toast.LENGTH_SHORT).show();
             SuperUtil.removeViewByTag(requireActivity(), TAG, true);
+            Log.d(TAG, "showInterstitial: Ad dit not load, is not ready");
         }
     }
 
     private void loadInterstitial() {
         mInterstitialAd.loadAd(new AdRequest.Builder().build());
+        Log.d(TAG, "loadInterstitial: Loading Ad...");
     }
 
     @Override
@@ -173,6 +179,16 @@ public class AdMobFragment extends Fragment {
             Context appContext = getAppContext();
             if (appContext == null) return;
             startCountdown(getAppContext());
+        } else {
+            loadLeaderBoardView();
         }
     }
+
+    private void loadLeaderBoardView() {
+        SuperUtil.loadView(requireActivity(),
+                LeaderBoardFragment.newInstance(),
+                LeaderBoardFragment.TAG, true);
+        cancelTimer();
+    }
+
 }

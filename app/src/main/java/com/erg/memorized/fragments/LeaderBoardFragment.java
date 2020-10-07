@@ -61,7 +61,7 @@ public class LeaderBoardFragment extends Fragment implements SearchView.OnQueryT
     private ItemUser currentUser;
     private FirebaseAuth fAuth;
 
-    private Animation animScaleUp, animScaleDown;
+    private Animation animScaleUp, animScaleDown, animSlideInFromRight;
     private ArrayList<ItemUser> leaderBoardUsers;
     private ArrayList<ItemUser> filteredLeaderBoardUsers;
 
@@ -84,6 +84,8 @@ public class LeaderBoardFragment extends Fragment implements SearchView.OnQueryT
 
         animScaleUp = AnimationUtils.loadAnimation(getContext(), R.anim.less_scale_up);
         animScaleDown = AnimationUtils.loadAnimation(getContext(), R.anim.scale_down);
+        animSlideInFromRight = AnimationUtils.loadAnimation(getContext(),
+                R.anim.fab_slide_in_from_right);
     }
 
     @Override
@@ -158,7 +160,7 @@ public class LeaderBoardFragment extends Fragment implements SearchView.OnQueryT
                                         }
 
                                         if (!leaderBoardUsers.containsAll(auxList)) {
-                                            leaderBoardUsers = auxList;
+                                            leaderBoardUsers = new ArrayList<>(auxList);
                                             if (isVisible())
                                                 showLeaderBoard(leaderBoardUsers);
                                         }
@@ -194,16 +196,13 @@ public class LeaderBoardFragment extends Fragment implements SearchView.OnQueryT
 
     private void showLeaderBoard(ArrayList<ItemUser> users) {
         Collections.sort(users, SuperUtil.userComparator);
-        adapter = new AdapterRecyclerViewForLeaderBoardList(users, requireActivity());
+        adapter = new AdapterRecyclerViewForLeaderBoardList(users, users, requireActivity());
         recycler.setAdapter(adapter);
         adapter.notifyDataSetChanged();
-        recycler.startAnimation(animScaleUp);
-    }
-
-    @Override
-    public void onStart() {
-        super.onStart();
-        SuperUtil.showView(animScaleUp, rootView);
+        recycler.startAnimation(animSlideInFromRight);
+        if (leaderBoardUsers.size() >= 4) {
+            SuperUtil.showView(animScaleUp, searcher);
+        }
     }
 
     @Override
@@ -226,14 +225,14 @@ public class LeaderBoardFragment extends Fragment implements SearchView.OnQueryT
     @Override
     public boolean onQueryTextChange(String newText) {
         filter(newText);
-        return false;
+        return true;
     }
 
     private void filter(@NotNull String query) {
         final String lowerCaseQuery = query.toLowerCase();
         filteredLeaderBoardUsers = new ArrayList<>();
         for (ItemUser user : leaderBoardUsers) {
-            final String name = user.getName();
+            final String name = user.getName().toLowerCase();
             if (name.contains(lowerCaseQuery)) {
                 filteredLeaderBoardUsers.add(user);
             }

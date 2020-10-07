@@ -6,7 +6,7 @@
     android:layout_height="wrap_content"
     android:layout_margin="@dimen/regular_window_margin"
     android:layout_marginTop="@dimen/margin_top"
-    android:background="@drawable/selector_white"
+    android:background="@drawable/background_white"
     android:elevation="@dimen/default_elevation"
     android:clickable="true"
     android:focusable="true"

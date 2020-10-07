@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/background_green_light"
     android:padding="@dimen/regular_item_padding"
     tools:context=".fragments.AboutFragment">
 
@@ -16,38 +16,347 @@
         <ImageView
             android:layout_width="100dp"
             android:layout_height="100dp"
-            android:src="@drawable/ic_learning_launcher_2"
             android:layout_gravity="center"
-            android:layout_margin="@dimen/regular_window_margin"/>
+            android:layout_margin="@dimen/regular_window_margin"
+            android:src="@drawable/ic_learning_launcher" />
 
         <TextView
             android:id="@+id/tv_app_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textStyle="bold"
-            android:textSize="17sp"
             android:layout_gravity="center"
-            android:background="@drawable/background_gray"
             android:layout_margin="@dimen/regular_window_margin"
+            android:background="@drawable/background_white"
             android:padding="@dimen/regular_window_padding"
+            android:text="@string/app_name"
             android:textColor="@color/text_default_dark_gray"
-            android:text="@string/app_name"/>
+            android:textSize="17sp"
+            android:textStyle="bold" />
 
-        <TextView
-            android:id="@+id/tv_support_description"
+        <RelativeLayout
+            android:id="@+id/app_description"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textStyle="bold"
-            android:textSize="17sp"
-            android:textAlignment="center"
-            android:layout_gravity="center"
-            android:background="@drawable/background_gray_light"
-            android:padding="@dimen/regular_window_padding"
             android:layout_margin="@dimen/regular_window_margin"
-            android:text="@string/app_name"/>
+            android:background="@drawable/background_white"
+            android:clickable="false"
+            android:focusable="true"
+            android:padding="@dimen/regular_window_padding">
 
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_margin="@dimen/regular_window_margin"
+                android:padding="@dimen/regular_window_padding"
+                android:text="@string/description_about_page"
+                android:textAlignment="center"
+                android:textColor="@color/md_black_1000"
+                android:textSize="16sp" />
+        </RelativeLayout>
+
+
+        <LinearLayout
+            android:id="@+id/app_version"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/regular_window_margin"
+            android:background="@drawable/background_green_light"
+            android:layout_gravity="center"
+            android:orientation="horizontal"
+            android:padding="@dimen/regular_window_padding">
+
+            <ImageView
+                android:id="@+id/iv_app_launcher"
+                android:layout_width="22dp"
+                android:layout_height="22dp"
+                android:layout_gravity="center_vertical"
+                android:layout_marginEnd="3dp"
+                android:src="@drawable/ic_learning_launcher_2" />
+
+            <TextView
+                android:id="@+id/tv_app_version"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:ellipsize="end"
+                android:fontFamily="@font/abhaya_libre_medium"
+                android:maxLines="1"
+                android:text="@string/app_version_about_page"
+                android:textColor="@color/text_default_dark_gray"
+                android:textStyle="italic"
+                android:textSize="16sp" />
+
+
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/banner_connect_with_us"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_margin="@dimen/regular_window_margin"
+            android:layout_marginStart="@dimen/regular_window_margin"
+            android:layout_marginTop="@dimen/regular_window_margin"
+            android:layout_marginEnd="@dimen/regular_window_margin"
+            android:layout_marginBottom="@dimen/regular_window_margin"
+            android:padding="@dimen/regular_window_padding"
+            android:text="@string/title1_about_page"
+            android:textColor="@color/text_default_dark_gray"
+            android:textSize="17sp"
+            android:textStyle="bold" />
+
+
+        <RelativeLayout
+            android:id="@+id/rate_on_play_store"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/selector_gray_light"
+            android:clickable="true"
+            android:elevation="@dimen/default_elevation"
+            android:focusable="true"
+            android:padding="@dimen/regular_window_padding">
+
+            <ImageView
+                android:id="@+id/play_store"
+                android:layout_width="23dp"
+                android:layout_height="23dp"
+                android:layout_centerVertical="true"
+                android:layout_marginTop="3dp"
+                android:src="@drawable/about_icon_google_play" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginStart="16dp"
+                android:layout_toEndOf="@id/play_store"
+                android:layout_toStartOf="@+id/icon_arrow_play_store"
+                android:ellipsize="end"
+                android:fontFamily="@font/abhaya_libre_medium"
+                android:maxLines="1"
+                android:text="@string/play_store_about_page"
+                android:textColor="@color/text_default_dark_gray"
+                android:textSize="17sp" />
+
+            <ImageView
+                android:id="@+id/icon_arrow_play_store"
+                android:layout_width="16dp"
+                android:layout_height="16dp"
+                android:layout_alignParentEnd="true"
+                android:layout_centerVertical="true"
+                android:contentDescription="@string/description_icon_right_arrow"
+                android:src="@drawable/ic_arrow_point_to_right" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/fallow_instagram"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_top"
+            android:background="@drawable/selector_gray_light"
+            android:clickable="true"
+            android:elevation="@dimen/default_elevation"
+            android:focusable="true"
+            android:padding="@dimen/regular_window_padding">
+
+            <ImageView
+                android:id="@+id/instagram"
+                android:layout_width="23dp"
+                android:layout_height="23dp"
+                android:layout_centerVertical="true"
+                android:layout_marginTop="3dp"
+                android:src="@drawable/about_icon_instagram" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginStart="16dp"
+                android:layout_toEndOf="@id/instagram"
+                android:layout_toStartOf="@+id/icon_arrow_instagram"
+                android:ellipsize="end"
+                android:fontFamily="@font/abhaya_libre_medium"
+                android:maxLines="1"
+                android:text="@string/instagram_about_page"
+                android:textColor="@color/text_default_dark_gray"
+                android:textSize="17sp" />
+
+            <ImageView
+                android:id="@+id/icon_arrow_instagram"
+                android:layout_width="16dp"
+                android:layout_height="16dp"
+                android:layout_alignParentEnd="true"
+                android:layout_centerVertical="true"
+                android:contentDescription="@string/description_icon_right_arrow"
+                android:src="@drawable/ic_arrow_point_to_right" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/contact_us"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_top"
+            android:layout_marginBottom="15dp"
+            android:background="@drawable/selector_gray_light"
+            android:clickable="true"
+            android:elevation="@dimen/default_elevation"
+            android:focusable="true"
+            android:padding="@dimen/regular_window_padding">
+
+            <ImageView
+                android:id="@+id/contact"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:layout_centerVertical="true"
+                android:layout_marginTop="3dp"
+                android:src="@drawable/ic_email" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginStart="16dp"
+                android:layout_toEndOf="@id/contact"
+                android:layout_toStartOf="@+id/icon_arrow_email"
+                android:ellipsize="end"
+                android:fontFamily="@font/abhaya_libre_medium"
+                android:maxLines="1"
+                android:text="@string/contact_us_about_page"
+                android:textColor="@color/text_default_dark_gray"
+                android:textSize="17sp" />
+
+            <ImageView
+                android:id="@+id/icon_arrow_email"
+                android:layout_width="16dp"
+                android:layout_height="16dp"
+                android:layout_alignParentEnd="true"
+                android:layout_centerVertical="true"
+                android:contentDescription="@string/description_icon_right_arrow"
+                android:src="@drawable/ic_arrow_point_to_right" />
+
+        </RelativeLayout>
+
+        <TextView
+            android:id="@+id/banner_developers"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_margin="@dimen/regular_window_margin"
+            android:layout_marginStart="@dimen/regular_window_margin"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="@dimen/regular_window_margin"
+            android:layout_marginBottom="@dimen/regular_window_margin"
+            android:padding="@dimen/regular_window_padding"
+            android:text="@string/title2_about_page"
+            android:textColor="@color/text_default_dark_gray"
+            android:textSize="17sp"
+            android:textStyle="bold" />
+
+        <RelativeLayout
+            android:id="@+id/developer1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/margin_bottom"
+            android:background="@drawable/selector_gray_light"
+            android:clickable="true"
+            android:elevation="@dimen/default_elevation"
+            android:focusable="true"
+            android:padding="@dimen/regular_window_padding">
+
+            <ImageView
+                android:id="@+id/developer_image1"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:layout_centerVertical="true"
+                android:layout_marginTop="3dp"
+                android:src="@drawable/about_icon_linkedin" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginStart="16dp"
+                android:layout_toEndOf="@id/developer_image1"
+                android:layout_toStartOf="@+id/icon_arrow_developer1"
+                android:ellipsize="end"
+                android:fontFamily="@font/abhaya_libre_medium"
+                android:maxLines="1"
+                android:text="@string/developer1_about_page"
+                android:textColor="@color/md_black_1000"
+                android:textSize="17sp" />
+
+            <ImageView
+                android:id="@+id/icon_arrow_developer1"
+                android:layout_width="16dp"
+                android:layout_height="16dp"
+                android:layout_alignParentEnd="true"
+                android:layout_centerVertical="true"
+                android:contentDescription="@string/description_icon_right_arrow"
+                android:src="@drawable/ic_arrow_point_to_right" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/developer2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/margin_bottom"
+            android:background="@drawable/selector_gray_light"
+            android:clickable="true"
+            android:elevation="@dimen/default_elevation"
+            android:focusable="true"
+            android:padding="@dimen/regular_window_padding">
+
+            <ImageView
+                android:id="@+id/developer_image2"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:layout_centerVertical="true"
+                android:layout_marginTop="3dp"
+                android:src="@drawable/about_icon_linkedin" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginStart="16dp"
+                android:layout_toEndOf="@id/developer_image2"
+                android:layout_toStartOf="@+id/icon_arrow_developer2"
+                android:ellipsize="end"
+                android:fontFamily="@font/abhaya_libre_medium"
+                android:maxLines="1"
+                android:text="@string/developer2_about_page"
+                android:textColor="@color/md_black_1000"
+                android:textSize="17sp" />
+
+            <ImageView
+                android:id="@+id/icon_arrow_developer2"
+                android:layout_width="16dp"
+                android:layout_height="16dp"
+                android:layout_alignParentEnd="true"
+                android:layout_centerVertical="true"
+                android:contentDescription="@string/description_icon_right_arrow"
+                android:src="@drawable/ic_arrow_point_to_right" />
+        </RelativeLayout>
+
+        <TextView
+            android:id="@+id/copy_right"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_margin="@dimen/regular_window_margin"
+            android:layout_marginStart="@dimen/regular_window_margin"
+            android:layout_marginEnd="@dimen/regular_window_margin"
+            android:layout_marginBottom="@dimen/regular_window_margin"
+            android:padding="@dimen/regular_window_padding"
+            android:text="@string/copy_right_about_page"
+            android:textColor="@color/text_default_dark_gray"
+            android:textSize="15sp" />
 
 
     </LinearLayout>
+
 
 </ScrollView>

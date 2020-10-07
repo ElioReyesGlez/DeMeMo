@@ -28,11 +28,15 @@ public class AdapterRecyclerViewForLeaderBoardList extends
         RecyclerView.Adapter<AdapterRecyclerViewForLeaderBoardList.VerseHolder> {
 
     private ArrayList<ItemUser> users;
+    private ArrayList<ItemUser> rankUsers;
     private Context context;
     private int selectedPos = RecyclerView.NO_POSITION;
 
-    public AdapterRecyclerViewForLeaderBoardList(ArrayList<ItemUser> users, Context context) {
+    public AdapterRecyclerViewForLeaderBoardList(ArrayList<ItemUser> users,
+                                                 ArrayList<ItemUser> finalUserList,
+                                                 Context context) {
         this.users = users;
+        this.rankUsers = finalUserList;
         this.context = context;
     }
 
@@ -49,8 +53,10 @@ public class AdapterRecyclerViewForLeaderBoardList extends
     public void onBindViewHolder(@NonNull VerseHolder holder, int position) {
         ItemUser user = users.get(position);
         setUserAvatar(user, holder);
-        int rank = position + 1;
+
+        int rank = rankUsers.indexOf(user) + 1;
         holder.setRank(String.valueOf(rank));
+
         holder.setUserName(user.getName());
         holder.setScore(context.getString(R.string.score) +
                 DOUBLE_DOT  + SPACE + user.getScore());
@@ -66,6 +72,9 @@ public class AdapterRecyclerViewForLeaderBoardList extends
             if (user.getId().equals(currentUser.getId())) {
                 holder.setBackground(holder.getRootView(), R.drawable.background_yellow);
                 holder.setBackground(holder.getRank(), R.drawable.background_yellow);
+            } else {
+                holder.setBackground(holder.getRootView(), R.color.transparent);
+                holder.setBackground(holder.getRank(), R.drawable.background_accent);
             }
         }
     }
@@ -110,12 +119,12 @@ public class AdapterRecyclerViewForLeaderBoardList extends
 
     public void filterList(ArrayList<ItemUser> filteredList) {
         users = filteredList;
-        notifyDataSetChanged();
+        this.notifyDataSetChanged();
     }
 
     public void refreshAdapter(ArrayList<ItemUser> users) {
         this.users = users;
-        notifyDataSetChanged();
+        this.notifyDataSetChanged();
     }
 
     public ArrayList<ItemUser> getUsers() {

@@ -96,7 +96,9 @@ public class MainActivity extends FragmentActivity {
 
             if (spHelper.getRateLaunchesTimes() > MIN_LAUNCHES_UNTIL_PROMPT
                     || daySinceLastLaunch > MIN_DAYS_UNTIL_PROMPT) {
-                handleToShowRateDialog();
+                if (!spHelper.isAlreadyRated()) {
+                    handleToShowRateDialog();
+                }
             }
 
         }
