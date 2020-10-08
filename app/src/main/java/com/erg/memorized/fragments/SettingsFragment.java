@@ -320,7 +320,7 @@ public class SettingsFragment extends Fragment implements View.OnClickListener {
 
                         } else {
                             SuperUtil.loadView(requireActivity(),
-                                    AdMobFragment.newInstance(currentUser),
+                                    AdMobFragment.newInstance(currentUser, true),
                                     AdMobFragment.TAG, true);
 
                         }
@@ -444,15 +444,7 @@ public class SettingsFragment extends Fragment implements View.OnClickListener {
                                         isLoginAction = false;
                                         new AsyncTaskViewLoader(currentUser).execute();
 
-                                        if (currentUser.isPremium()) {
-                                            uploadScore(pgsDialog);
-                                        } else {
-                                            if (isVisible()) {
-                                                MessagesHelper.showInfoMessage(
-                                                        requireActivity(),
-                                                        getString(R.string.get_premium_upload_score));
-                                            }
-                                        }
+                                        uploadScore(pgsDialog);
                                     }
                                 });
                     } else {
@@ -827,7 +819,6 @@ public class SettingsFragment extends Fragment implements View.OnClickListener {
             SuperUtil.hideView(animScaleDown, ivDownloadNeeded);
             llSync.setBackgroundResource(R.drawable.selector_gray);
         }
-
 
     }
 

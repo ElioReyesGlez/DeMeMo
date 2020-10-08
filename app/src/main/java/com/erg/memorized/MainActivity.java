@@ -227,7 +227,7 @@ public class MainActivity extends FragmentActivity {
         Fragment resultFragment = manager.findFragmentByTag(ResultFragment.TAG);
         Fragment aboutFragment = manager.findFragmentByTag(AboutFragment.TAG);
         Fragment supportFragment = manager.findFragmentByTag(SupportFragment.TAG);
-        Fragment adMobFragment = manager.findFragmentByTag(AdMobFragment.TAG);
+        AdMobFragment adMobFragment = (AdMobFragment) manager.findFragmentByTag(AdMobFragment.TAG);
 
 
         boolean isNewVerseFragmentOn = false;
@@ -289,13 +289,16 @@ public class MainActivity extends FragmentActivity {
         if (adMobFragment != null)
             isAdMobFragmentOn = adMobFragment.isVisible();
 
+        if (isAdMobFragmentOn) {
+            adMobFragment.onBackPressed();
+            return;
+        }
 
         if (isNewVerseFragmentOn || isMemorizingFragmentOn
                 || isSignUpFragmentOn || isSplitTextFragmentOn
                 || isUserInfoFragmentOn || isLeaderBoardFragmentOn
                 || isGeneralSettingsFragmentOn || isResultFragmentOn
                 || isAboutFragmentOn || isSupportFragmentOn
-                || isAdMobFragmentOn
                 || maybeWantToLeaveScoreSection) {
             super.onBackPressed();
             maybeWantToLeaveScoreSection = false;

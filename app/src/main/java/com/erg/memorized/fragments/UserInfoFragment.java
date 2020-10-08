@@ -616,9 +616,6 @@ public class UserInfoFragment extends Fragment implements View.OnClickListener {
     }
 
     private void showUpdateDataDialog(int resLayout) {
-
-        // R.layout.dialog_update_email_view
-
         Dialog dialogUpdateData = new Dialog(requireActivity(), R.style.alert_dialog);
         LayoutInflater inflater = getLayoutInflater();
         View dialogView = inflater.inflate(resLayout, container, false);
@@ -781,8 +778,6 @@ public class UserInfoFragment extends Fragment implements View.OnClickListener {
         snackBar.show();
     }
 
-
-
     private boolean validateMobile(String auxStrMobile, TextInputLayout tilField) {
         boolean valid = true;
 
@@ -824,29 +819,6 @@ public class UserInfoFragment extends Fragment implements View.OnClickListener {
         return valid;
     }
 
-    private boolean validatePassword(String maybeOldPass, String newPass,
-                                     TextInputLayout tilPass, TextInputLayout tilRePass) {
-        boolean valid = true;
-
-        if (maybeOldPass.isEmpty() || !(maybeOldPass.equals(password))) {
-            tilPass.setError(getString(R.string.old_pass));
-            valid = false;
-        } else {
-            tilPass.setError(null);
-        }
-
-        if (newPass.isEmpty() || newPass.length() < 4
-                || newPass.length() > 10 || newPass.equals(password)) {
-            tilRePass.setError(getString(R.string.same_pass));
-            valid = false;
-        } else {
-            tilRePass.setError(null);
-        }
-
-        return valid;
-    }
-
-
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (requestCode == CropImage.CROP_IMAGE_ACTIVITY_REQUEST_CODE) {
@@ -873,12 +845,6 @@ public class UserInfoFragment extends Fragment implements View.OnClickListener {
     private void showSaveOp() {
         SuperUtil.showView(null, tvSave);
     }
-
-/*    private void uploadFile(String fileName) {
-        StorageReference riversRef = stoReference
-                .child(fileName + DOT + SuperUtil.getExtensionFromUri(imgUri));
-        riversRef.putFile(imgUri);
-    }*/
 
     @Override
     public void onStart() {

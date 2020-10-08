@@ -5,6 +5,8 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
+    android:isScrollContainer="true"
+    android:scrollbars="vertical"
     tools:context=".fragments.scorer.ResultFragment">
 
     <TextView
@@ -92,7 +94,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
-        android:layout_margin="@dimen/regular_window_margin"
+        android:layout_marginTop="@dimen/margin_bottom_button_save"
         android:background="@drawable/background_green_light"
         android:padding="@dimen/regular_window_padding"
         android:text="Total: 100"
@@ -100,5 +102,17 @@
         android:textSize="16sp"
         android:textAlignment="center" />
 
+
+    <Button
+        android:id="@+id/save_score"
+        style="@style/ok_button"
+        android:layout_width="132dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/margin_bottom_button_save"
+        android:background="@drawable/selector_light_green"
+        android:textSize="16sp"
+        android:text="@string/save"
+        android:textStyle="bold"
+        android:layout_gravity="center_horizontal"/>
 
 </LinearLayout>

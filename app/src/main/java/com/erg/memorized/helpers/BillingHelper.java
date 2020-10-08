@@ -16,9 +16,17 @@ import com.android.billingclient.api.SkuDetails;
 import com.android.billingclient.api.SkuDetailsParams;
 import com.erg.memorized.R;
 import com.erg.memorized.model.ItemUser;
+import com.google.firebase.FirebaseNetworkException;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import static com.erg.memorized.util.Constants.LEADER_BOARD_FIRE_BASE_REFERENCE;
+import static com.erg.memorized.util.Constants.PREMIUM_USER_FIRE_BASE_REFERENCE;
+import static com.erg.memorized.util.Constants.USER_COLUMN_PREMIUM_STATUS;
+import static com.erg.memorized.util.Constants.USER_FIRE_BASE_REFERENCE;
 
 public class BillingHelper {
 
@@ -115,11 +123,14 @@ public class BillingHelper {
                         currentUser.setPremium(true);
                         RealmHelper realmHelper = new RealmHelper(context);
                         realmHelper.addUserToDB(currentUser);
+
+                        updateUserPremiumStatus();
+                        updateUserPremiumStatusOnLeaderBoard();
                     }
                 }
 
                 if (!context.isFinishing())
-                    MessagesHelper.showInfoMessageError(context,
+                    MessagesHelper.showInfoMessage(context,
                         context.getString(R.string.already_premium));
             }
         }
@@ -135,11 +146,68 @@ public class BillingHelper {
                     RealmHelper realmHelper = new RealmHelper(context);
                     realmHelper.addUserToDB(currentUser);
 
-                    Log.d(TAG, "onPurchasesUpdated: Purchase: " + purchases.toString());
+                    updateUserPremiumStatus();
+                    updateUserPremiumStatusOnLeaderBoard();
+
                     Toast.makeText(context,context.getString(R.string.you_are_premium_now),
                             Toast.LENGTH_SHORT).show();
+                    Log.d(TAG, "onPurchasesUpdated: Purchase: " + purchases.toString());
                 }
             }
         }
     };
+
+    private void updateUserPremiumStatus() {
+        DatabaseReference fReferenceUser = FirebaseDatabase.getInstance()
+                .getReference(USER_FIRE_BASE_REFERENCE)
+                .child(currentUser.getId())
+                .child(USER_COLUMN_PREMIUM_STATUS);
+
+        fReferenceUser.setValue(String.valueOf(currentUser.isPremium()))
+                .addOnCompleteListener(task -> {
+                    if (task.isSuccessful()) {
+                        Log.d(TAG, "User Premium Status Uploaded : Success : "
+                                + currentUser.isPremium());
+                    } else {
+
+                        if (task.getException() instanceof FirebaseNetworkException) {
+                            Toast.makeText(context,context.getString(R.string.network_error),
+                                    Toast.LENGTH_LONG).show();
+                            Log.d(TAG, "upload: " + task.getException().getMessage());
+                        } else {
+                            Toast.makeText(context,context.getString(R.string.failed_uploading),
+                                    Toast.LENGTH_LONG).show();
+                        }
+
+                        Log.e(TAG, "Failed uploading User Premium Status Error: "
+                                + task.getException().getMessage());
+                    }
+                });
+    }
+
+    private void updateUserPremiumStatusOnLeaderBoard() {
+        DatabaseReference fReferenceLeaderBoard = FirebaseDatabase.getInstance()
+                .getReference(LEADER_BOARD_FIRE_BASE_REFERENCE)
+                .child(currentUser.getId())
+                .child(PREMIUM_USER_FIRE_BASE_REFERENCE);
+        fReferenceLeaderBoard.setValue(currentUser.isPremium())
+                .addOnCompleteListener(task -> {
+                    if (task.isSuccessful()) {
+                        Log.d(TAG, "Leader board upload Premium Status: Success:  "
+                        + currentUser.isPremium());
+                    } else {
+                        if (task.getException() instanceof FirebaseNetworkException) {
+                            Toast.makeText(context,context.getString(R.string.network_error),
+                                    Toast.LENGTH_LONG).show();
+                            Log.d(TAG, "upload: " + task.getException().getMessage());
+                        } else {
+                            Toast.makeText(context,context.getString(R.string.failed_uploading),
+                                    Toast.LENGTH_LONG).show();
+                        }
+
+                        Log.e(TAG, "Failed uploading on Leader board Premium Status Error: "
+                                + task.getException().getMessage());
+                    }
+                });
+    }
 }

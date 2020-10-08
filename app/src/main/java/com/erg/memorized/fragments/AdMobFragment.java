@@ -18,6 +18,7 @@ import androidx.fragment.app.Fragment;
 
 import com.erg.memorized.R;
 import com.erg.memorized.helpers.BillingHelper;
+import com.erg.memorized.helpers.MessagesHelper;
 import com.erg.memorized.model.ItemUser;
 import com.erg.memorized.util.SuperUtil;
 import com.google.android.gms.ads.AdListener;
@@ -37,14 +38,16 @@ public class AdMobFragment extends Fragment {
     private LinearLayout llCountdownContainer;
     private ItemUser currentUser;
     private BillingHelper billingHelper;
+    private boolean jumpFlag;
 
 
-    public AdMobFragment(ItemUser currentUser) {
+    public AdMobFragment(ItemUser currentUser, boolean jumpFlag) {
         this.currentUser = currentUser;
+        this.jumpFlag = jumpFlag;
     }
 
-    public static AdMobFragment newInstance(ItemUser user) {
-        return new AdMobFragment(user);
+    public static AdMobFragment newInstance(ItemUser user , boolean jumpFlag) {
+        return new AdMobFragment(user, jumpFlag);
     }
 
     @Nullable
@@ -121,7 +124,7 @@ public class AdMobFragment extends Fragment {
 
     private InterstitialAd newInterstitialAd(final Context context) {
         InterstitialAd interstitialAd = new InterstitialAd(context);
-        interstitialAd.setAdUnitId(getString(R.string.interstitial_ad_unit_id));
+        interstitialAd.setAdUnitId(getString(R.string.testing_interstitial_ad_unit_id));
         interstitialAd.setAdListener(new AdListener() {
             @Override
             public void onAdLoaded() {
@@ -130,18 +133,23 @@ public class AdMobFragment extends Fragment {
 
             @Override
             public void onAdFailedToLoad(int errorCode) {
-                SuperUtil.removeViewByTag(requireActivity(),TAG, true);
-                SuperUtil.loadView(requireActivity(),
-                    LeaderBoardFragment.newInstance(),
-                    LeaderBoardFragment.TAG, true);
+                if (jumpFlag) {
+                    loadLeaderBoardView();
+                } else {
+                    SuperUtil.removeViewByTag(requireActivity(), TAG, true);
+                }
                 cancelTimer();
                 Log.d(TAG, "onAdFailedToLoad: ErrorCode : " + errorCode);
             }
 
             @Override
             public void onAdClosed() {
-//                SuperUtil.removeViewByTag(requireActivity(),TAG, true);
-                loadLeaderBoardView();
+                if (jumpFlag) {
+                    loadLeaderBoardView();
+                } else {
+                    SuperUtil.removeViewByTag(requireActivity(), TAG, true);
+
+                }
 
                 Log.d(TAG, "onAdClosed: Load: " + LeaderBoardFragment.TAG);
             }
@@ -180,15 +188,26 @@ public class AdMobFragment extends Fragment {
             if (appContext == null) return;
             startCountdown(getAppContext());
         } else {
-            loadLeaderBoardView();
+            if (jumpFlag) {
+                loadLeaderBoardView();
+            } else {
+                SuperUtil.removeViewByTag(requireActivity(), TAG, true);
+            }
         }
     }
 
     private void loadLeaderBoardView() {
+        SuperUtil.removeViewByTag(requireActivity(), TAG, true);
         SuperUtil.loadView(requireActivity(),
                 LeaderBoardFragment.newInstance(),
                 LeaderBoardFragment.TAG, true);
         cancelTimer();
     }
 
+    public void onBackPressed() {
+        if (isVisible()) {
+            MessagesHelper.showInfoMessage(
+                    requireActivity(), getString(R.string.function_temporarily_disabled));
+        }
+    }
 }

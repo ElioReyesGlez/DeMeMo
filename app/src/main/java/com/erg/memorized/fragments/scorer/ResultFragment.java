@@ -9,6 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
+import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.ScrollView;
 import android.widget.TableLayout;
@@ -37,9 +38,10 @@ import java.util.ArrayList;
 import static com.erg.memorized.util.Constants.DECIMAL_PLACE;
 import static com.erg.memorized.util.Constants.LEADER_BOARD_FIRE_BASE_REFERENCE;
 import static com.erg.memorized.util.Constants.SPACE;
+import static com.erg.memorized.util.Constants.USER_COLUMN_VERSES_SCORE;
 import static com.erg.memorized.util.Constants.USER_FIRE_BASE_REFERENCE;
 
-public class ResultFragment extends Fragment {
+public class ResultFragment extends Fragment implements View.OnClickListener {
 
     public static final String TAG = "ResultFragment";
     private View rootView;
@@ -52,6 +54,8 @@ public class ResultFragment extends Fragment {
     private FirebaseAuth fAuth;
     private SharedPreferencesHelper spHelper;
     private Animation animScaleUp, animScaleDown;
+    private float totalScore;
+    private boolean isAlreadyAdShowed = false;
 
     public ResultFragment() {
         // Required empty public constructor
@@ -96,6 +100,9 @@ public class ResultFragment extends Fragment {
     private void setUpView() {
 
         LinearLayout scorerContainer = rootView.findViewById(R.id.ll_scorer_container);
+        Button saveScore = rootView.findViewById(R.id.save_score);
+        saveScore.setOnClickListener(this);
+
         ScrollView scrollViewScorerContainer = rootView
                 .findViewById(R.id.scroll_view_scorers_container);
         emptyContainerSignal = rootView.findViewById(R.id.linear_layout_empty_container);
@@ -124,7 +131,6 @@ public class ResultFragment extends Fragment {
                 writerEvaluatorTable
         };
 
-
         TextView tvTitle = rootView.findViewById(R.id.tv_title);
         TextView tvTotal = rootView.findViewById(R.id.tv_total_user_score);
         tvTitle.setText(verse.getTitle());
@@ -151,22 +157,31 @@ public class ResultFragment extends Fragment {
             tvTotalScore.setText(stringBuilder);
 
             scorerContainer.addView(table);
-
         }
-        float totalScore = ScoreHelper.getTotalScore(scores);
+
+        totalScore = ScoreHelper.getTotalScore(scores);
         String stringBuilder = getString(R.string.score_total) + SPACE +
                 ScoreHelper.round(totalScore, DECIMAL_PLACE);
         tvTotal.setText(stringBuilder);
 
         TableRow tableRowAlmost = tableLayouts[2].findViewById(R.id.table_row_almost);
         SuperUtil.showView(null, tableRowAlmost);
+    }
 
+    @Override
+    public void onClick(View v) {
+        if (v.getId() == R.id.save_score) {
+            SuperUtil.vibrate(requireActivity());
+            saveScoreOnLocalDB();
+            uploadScore();
+        }
+    }
+
+    private void saveScoreOnLocalDB() {
         verse.setVerseScore(totalScore);
         realmHelper.addVerseToDB(verse);
         currentUser.setScore(ScoreHelper.getUserScoreByVersesList(realmHelper.getSavedVerses()));
         realmHelper.addUserToDB(currentUser);
-
-        uploadScore();
     }
 
     private void uploadScore() {
@@ -184,8 +199,6 @@ public class ResultFragment extends Fragment {
                             if (isVisible())
                                 MessagesHelper.showInfoMessage(requireActivity(),
                                         getString(R.string.upload_success));
-                            if (!currentUser.isPremium())
-                                handleAdd();
                         } else {
                             Log.e(TAG, "uploadScore: " + task.getException().getMessage());
                             if (task.getException() instanceof FirebaseNetworkException) {
@@ -213,18 +226,20 @@ public class ResultFragment extends Fragment {
             if (isVisible()){
                 SuperUtil.loadView(
                         requireActivity(),
-                        AdMobFragment.newInstance(currentUser),
+                        AdMobFragment.newInstance(currentUser, false),
                         AdMobFragment.TAG, true);
+                isAlreadyAdShowed = true;
             }
-        }, 2000);
+        }, 490);
     }
 
     private void updateUserOnFireBase(Dialog pgsDialog) {
         DatabaseReference fReferenceUser = FirebaseDatabase.getInstance()
                 .getReference(USER_FIRE_BASE_REFERENCE)
-                .child(currentUser.getId());
+                .child(currentUser.getId())
+                .child(USER_COLUMN_VERSES_SCORE);
 
-        fReferenceUser.setValue(currentUser.getUserIntoHasMap())
+        fReferenceUser.setValue(currentUser.getScore())
                 .addOnCompleteListener(task -> {
                     if (task.isSuccessful()) {
                         Log.d(TAG, "User Score uploadScore: Success ");
@@ -236,11 +251,13 @@ public class ResultFragment extends Fragment {
                 });
     }
 
-    private void handleToShowRateDialog() {
-        new Handler().postDelayed(() -> {
-            if (isVisible())
-                MessagesHelper.showRateDialog(requireActivity(), animScaleUp);
-        }, 2000);
+    @Override
+    public void onStart() {
+        super.onStart();
+        if (!currentUser.isPremium()) {
+            if (!isAlreadyAdShowed) {
+                handleAdd();
+            }
+        }
     }
-
 }

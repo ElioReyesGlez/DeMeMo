@@ -203,6 +203,7 @@ public class Constants {
     public static final String PREF_ALREADY_RATED_KEY = "already_rated_flag";
     public static final String PREF_SHOW_DIALOG_FLAG_KEY = "rate_show_dialog_flag";
     public static final String PREF_REMIND_INTERVAL_KEY = "rate_remind_interval";
+    public static final String PREF_ALREADY_AD_SHOWED_KEY = "already_ad_showed_flag";
 
     public static final String PREF_APP_FIRST_LAUNCH_KEY = "app_first_launch_date";
 

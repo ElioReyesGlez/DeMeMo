@@ -48,8 +48,8 @@ import static com.erg.memorized.util.Constants.PREF_APP_FIRST_LAUNCH_KEY;
 import static com.erg.memorized.util.Constants.PREF_LAST_LAUNCH_PREMIUM_DIALOG_DATE_KEY;
 import static com.erg.memorized.util.Constants.PREF_LAST_LAUNCH_RATE_DIALOG_DATE_KEY;
 import static com.erg.memorized.util.Constants.PREF_PREMIUM_LAUNCH_TIMES_KEY;
-import static com.erg.memorized.util.Constants.PREF_RATE_LAUNCH_TIMES_KEY;
 import static com.erg.memorized.util.Constants.PREF_PREMIUM_SHOW_DIALOG_FLAG_KEY;
+import static com.erg.memorized.util.Constants.PREF_RATE_LAUNCH_TIMES_KEY;
 import static com.erg.memorized.util.Constants.PREF_SHOW_DIALOG_FLAG_KEY;
 import static com.erg.memorized.util.Constants.SECTION_STATUS_KEY;
 import static com.erg.memorized.util.Constants.STATUS_BAR_MSG_KEY;
@@ -512,5 +512,4 @@ public class SharedPreferencesHelper {
         editor.remove(PREF_PREMIUM_LAUNCH_TIMES_KEY);
         editor.apply();
     }
-
 }

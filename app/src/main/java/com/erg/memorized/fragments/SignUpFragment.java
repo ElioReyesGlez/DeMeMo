@@ -450,31 +450,6 @@ public class SignUpFragment extends Fragment implements View.OnClickListener {
         }
     }
 
-/*
-    private void imagePicker() {
-        Intent intent = new Intent();
-        intent.setType("image/*");
-        intent.setAction(Intent.ACTION_GET_CONTENT);
-        startActivityForResult(Intent.createChooser(intent, getString(R.string.select_img)),
-                Constants.IMG_REQ_CODE);
-    }
-   */
-
-/*
-
-    @Override
-    public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        if (requestCode == Constants.IMG_REQ_CODE && data != null
-                && resultCode == RESULT_OK && data.getData() != null) {
-                imgUri = data.getData();
-                ivAvatar.setImageURI(imgUri);
-        } else {
-            GlobalUtil.showInfoMessageWarning(getActivity(), getString(R.string.failed_picking_img));
-        }
-    }
-*/
-
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (requestCode == CropImage.CROP_IMAGE_ACTIVITY_REQUEST_CODE) {

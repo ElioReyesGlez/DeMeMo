@@ -55,51 +55,12 @@
                 android:textSize="16sp" />
         </RelativeLayout>
 
-
-        <LinearLayout
-            android:id="@+id/app_version"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="@dimen/regular_window_margin"
-            android:background="@drawable/background_green_light"
-            android:layout_gravity="center"
-            android:orientation="horizontal"
-            android:padding="@dimen/regular_window_padding">
-
-            <ImageView
-                android:id="@+id/iv_app_launcher"
-                android:layout_width="22dp"
-                android:layout_height="22dp"
-                android:layout_gravity="center_vertical"
-                android:layout_marginEnd="3dp"
-                android:src="@drawable/ic_learning_launcher_2" />
-
-            <TextView
-                android:id="@+id/tv_app_version"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical"
-                android:ellipsize="end"
-                android:fontFamily="@font/abhaya_libre_medium"
-                android:maxLines="1"
-                android:text="@string/app_version_about_page"
-                android:textColor="@color/text_default_dark_gray"
-                android:textStyle="italic"
-                android:textSize="16sp" />
-
-
-        </LinearLayout>
-
         <TextView
             android:id="@+id/banner_connect_with_us"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:layout_margin="@dimen/regular_window_margin"
-            android:layout_marginStart="@dimen/regular_window_margin"
-            android:layout_marginTop="@dimen/regular_window_margin"
-            android:layout_marginEnd="@dimen/regular_window_margin"
-            android:layout_marginBottom="@dimen/regular_window_margin"
+            android:layout_margin="@dimen/margin_top"
             android:padding="@dimen/regular_window_padding"
             android:text="@string/title1_about_page"
             android:textColor="@color/text_default_dark_gray"
@@ -341,22 +302,38 @@
                 android:src="@drawable/ic_arrow_point_to_right" />
         </RelativeLayout>
 
-        <TextView
-            android:id="@+id/copy_right"
+
+        <LinearLayout
+            android:id="@+id/app_version"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_margin="@dimen/activity_padding_horizontal"
+            android:background="@drawable/background_white"
             android:layout_gravity="center"
-            android:layout_margin="@dimen/regular_window_margin"
-            android:layout_marginStart="@dimen/regular_window_margin"
-            android:layout_marginEnd="@dimen/regular_window_margin"
-            android:layout_marginBottom="@dimen/regular_window_margin"
-            android:padding="@dimen/regular_window_padding"
-            android:text="@string/copy_right_about_page"
-            android:textColor="@color/text_default_dark_gray"
-            android:textSize="15sp" />
+            android:orientation="horizontal"
+            android:padding="@dimen/regular_window_padding">
 
+            <ImageView
+                android:id="@+id/iv_app_launcher"
+                android:layout_width="22dp"
+                android:layout_height="22dp"
+                android:layout_gravity="center_vertical"
+                android:layout_marginEnd="3dp"
+                android:src="@drawable/ic_learning_launcher_2" />
 
+            <TextView
+                android:id="@+id/tv_app_version"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:ellipsize="end"
+                android:fontFamily="@font/abhaya_libre_medium"
+                android:maxLines="1"
+                android:text="@string/app_version_about_page"
+                android:textColor="@color/text_default_dark_gray"
+                android:textStyle="italic"
+                android:textSize="16sp" />
+        </LinearLayout>
     </LinearLayout>
-
 
 </ScrollView>

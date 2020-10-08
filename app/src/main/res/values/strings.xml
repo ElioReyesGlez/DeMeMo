@@ -286,7 +286,7 @@
 
 
     <string name="premium_dialog_cancel">Remind Me Later</string>
-    <string name="premium_dialog_ok">Heck yeah!</string>
+    <string name="premium_dialog_ok">Yes, sure!</string>
     <string name="premium_dialog_no">No, Thanks</string>
     <string name="premium">Premium</string>
     <string name="get_premium">Get Premium!</string>
@@ -300,6 +300,7 @@
     <string name="about">About</string>
     <string name="support">Support</string>
     <string name="forgot_password">Forgot password?</string>
+    <string name="function_temporarily_disabled">Function temporarily disabled</string>
 
     <string-array name="evaluator_names">
         <item>Fill Missing - Evaluator</item>
@@ -379,11 +380,11 @@
 <!--    <string name="interstitial_ad_unit_id">ca-app-pub-5375894039512920~3186666509</string>-->
 
     //Real id adMob
-    <string name="interstitial_ad_unit_id">ca-app-pub-5375894039512920~3186666509</string>
+<!--    <string name="interstitial_ad_unit_id">ca-app-pub-5375894039512920~3186666509</string>-->
 
 
 <!--    <string name="interstitial_ad_unit_id">ca-app-pub-5375894039512920/4596144610</string>-->
-<!--    <string name="testing_interstitial_ad_unit_id">ca-app-pub-3940256099942544/1033173712</string>-->
+    <string name="testing_interstitial_ad_unit_id">ca-app-pub-3940256099942544/1033173712</string>
 
     <string name="ad_explication">The following Ad help fund:</string>
     <string name="mission">DeMeMo\'s Mission</string>
@@ -412,5 +413,10 @@
     <string name="url_developer2_about_page">https://www.linkedin.com/in/josé-ernesto-cortes-7bb8671b6</string>
     <string name="default_app_versio">1.0.0</string>
     <string name="version">Version:</string>
+
+    <!-- Urls -->
+    <string name="instagram_app_url">http://instagram.com/</string>
+    <string name="play_store_app_url">https://play.google.com/store/apps/details?id=DeMeMo</string>
+
 
 </resources>
