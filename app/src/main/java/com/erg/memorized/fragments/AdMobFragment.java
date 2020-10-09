@@ -25,7 +25,7 @@ import com.google.android.gms.ads.AdListener;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.InterstitialAd;
 
-public class AdMobFragment extends Fragment {
+public class AdMobFragment extends Fragment implements View.OnClickListener {
 
     public static final String TAG = "AdMobFragment";
 
@@ -64,6 +64,8 @@ public class AdMobFragment extends Fragment {
         btnGetPremium = view.findViewById(R.id.btn_get_premium);
         tvCountdown = view.findViewById(R.id.tv_countdown);
         llCountdownContainer = view.findViewById(R.id.ll_countdown_container);
+
+        btnGetPremium.setOnClickListener(this);
     }
 
     @Override
@@ -74,21 +76,27 @@ public class AdMobFragment extends Fragment {
         if (appContext == null)
             return;
 
-        billingHelper = new BillingHelper(requireActivity(), currentUser);
-
-        btnGetPremium.setOnClickListener(view -> {
-            SuperUtil.vibrate(requireContext());
-            billingHelper.init();
-        });
-
         mInterstitialAd = newInterstitialAd(appContext);
         loadInterstitial();
+
+        billingHelper = new BillingHelper(requireActivity(), currentUser);
+        billingHelper.init();
     }
 
     private Context getAppContext() {
         if (getActivity() == null || getActivity().getApplicationContext() == null)
             return null;
         return getActivity().getApplicationContext();
+    }
+
+
+
+    @Override
+    public void onClick(View v) {
+        SuperUtil.vibrate(requireContext());
+        if (v.getId() == R.id.btn_get_premium) {
+            billingHelper.loadAllSkusAndStartBillingFlow();
+        }
     }
 
     private void startCountdown(Context appContext) {

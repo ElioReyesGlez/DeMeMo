@@ -238,7 +238,7 @@
         You must swap words until the text it is in the right order.</string>
     <string name="writer_evaluator">Writer - Evaluator</string>
     <string name="writer_evaluator_info">
-        This evaluator removes some randomly words. You have to write the missing words.
+        This evaluator removes some randomly words. You have to write the missing words.\n
         (Orthography is important)
     </string>
     <string name="drag_and_drop_evaluator_message">Swap the words until the text is in the
@@ -295,7 +295,7 @@
     <string name="full_access_to_the_verse_memory_evaluator">Full access to the verse memory evaluator</string>
     <string name="worldwide_participation_on_dememo_leaderboard">Worldwide participation on DeMeMo Leaderboard</string>
     <string name="already_premium">You are already a premium member</string>
-    <string name="memorizing_finish">Done, good job! n\ Are you ready to test your memory?</string>
+    <string name="memorizing_finish">Done, good job!\n Are you ready to test your memory?</string>
     <string name="memorizing_done_msg">Done, good job!</string>
     <string name="about">About</string>
     <string name="support">Support</string>
@@ -375,16 +375,12 @@
     <string name="next_level">Next Level</string>
     <string name="level_text">Level %1$d</string>
 
-
-<!--    <string name="interstitial_ad_unit_id">YOUR_INTERSTITIAL_AD_UNIT_ID</string>-->
-<!--    <string name="interstitial_ad_unit_id">ca-app-pub-5375894039512920~3186666509</string>-->
-
-    //Real id adMob
-<!--    <string name="interstitial_ad_unit_id">ca-app-pub-5375894039512920~3186666509</string>-->
-
-
+    // DeMeMo adMob id
 <!--    <string name="interstitial_ad_unit_id">ca-app-pub-5375894039512920/4596144610</string>-->
-    <string name="testing_interstitial_ad_unit_id">ca-app-pub-3940256099942544/1033173712</string>
+
+    // Interstitial Ad Unit Id
+<!--    <string name="interstitial_ad_unit_id">ca-app-pub-5375894039512920/4596144610</string>-->
+    <string name="testing_interstitial_ad_unit_id">ca-app-pub-3940256099942544/8691691433</string>
 
     <string name="ad_explication">The following Ad help fund:</string>
     <string name="mission">DeMeMo\'s Mission</string>
@@ -404,19 +400,25 @@
     <string name="app_version_about_page">Version: 1.0.0</string>
     <string name="play_store_about_page">Rate us on Play Store</string>
     <string name="instagram_about_page">Fallow us on Instagram</string>
-    <string name="contact_us_about_page">Contact us</string>
+    <string name="contact_us_about_page">Contact us by E-mail</string>
     <string name="title1_about_page">Connect with us</string>
     <string name="title2_about_page">Developed by</string>
     <string name="developer1_about_page">Elioenai Reyes</string>
     <string name="developer2_about_page">José Ernesto Cortes</string>
-    <string name="url_developer1_about_page">https://www.linkedin.com/in/elioenai-reyes-gonzález</string>
-    <string name="url_developer2_about_page">https://www.linkedin.com/in/josé-ernesto-cortes-7bb8671b6</string>
+    <string name="url_developer1_about_page">
+        https://www.linkedin.com/in/elioenai-reyes-gonzález
+    </string>
+    <string name="url_developer2_about_page">
+        https://www.linkedin.com/in/josé-ernesto-cortes-7bb8671b6
+    </string>
     <string name="default_app_versio">1.0.0</string>
     <string name="version">Version:</string>
 
     <!-- Urls -->
     <string name="instagram_app_url">http://instagram.com/</string>
     <string name="play_store_app_url">https://play.google.com/store/apps/details?id=DeMeMo</string>
+    <string name="faild_billing_connection">Fail billing connection!</string>
+    <string name="cant_not_query_product">Error cant not query product</string>
 
 
 </resources>

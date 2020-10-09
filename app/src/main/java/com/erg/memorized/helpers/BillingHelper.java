@@ -53,16 +53,20 @@ public class BillingHelper {
 
         billingClient = BillingClient.newBuilder(context)
                 .enablePendingPurchases()
-                .setListener(purchaseUpdateListener).build();
+                .setListener(purchaseUpdateListener)
+                .build();
 
         billingClient.startConnection(new BillingClientStateListener() {
             @Override
             public void onBillingSetupFinished(@NonNull BillingResult billingResult) {
                 if (billingResult.getResponseCode() == BillingClient.BillingResponseCode.OK) {
                     Log.d(TAG, "onBillingSetupFinished: Success Billing Connection");
-                    loadAllSkus();
                 } else {
                     Log.d(TAG, "onBillingSetupFinished: Fail Billing Connection");
+                    if (!context.isFinishing()) {
+                        MessagesHelper.showInfoMessageWarning(context,
+                                context.getString(R.string.faild_billing_connection));
+                    }
                 }
             }
 
@@ -73,7 +77,7 @@ public class BillingHelper {
         });
     }
 
-    private void loadAllSkus() {
+    public void loadAllSkusAndStartBillingFlow() {
         if (billingClient.isReady()) {
             Log.d(TAG, "loadAllSkus started: billingClient isReady");
 
@@ -98,8 +102,10 @@ public class BillingHelper {
                                 }
                             }
                         } else {
-                            MessagesHelper.showInfoMessageError(context,
-                                    "Error cant not query product");
+                            if (!context.isFinishing()) {
+                                MessagesHelper.showInfoMessageError(context,
+                                        context.getString(R.string.cant_not_query_product));
+                            }
                         }
                     });
         }

@@ -25,7 +25,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:layout_margin="@dimen/regular_window_margin"
+            android:layout_margin="@dimen/regular_window_padding"
             android:background="@drawable/background_white"
             android:padding="@dimen/regular_window_padding"
             android:text="@string/app_name"
@@ -37,10 +37,7 @@
             android:id="@+id/app_description"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="@dimen/regular_window_margin"
             android:background="@drawable/background_white"
-            android:clickable="false"
-            android:focusable="true"
             android:padding="@dimen/regular_window_padding">
 
             <TextView
@@ -91,8 +88,8 @@
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
                 android:layout_marginStart="16dp"
-                android:layout_toEndOf="@id/play_store"
                 android:layout_toStartOf="@+id/icon_arrow_play_store"
+                android:layout_toEndOf="@id/play_store"
                 android:ellipsize="end"
                 android:fontFamily="@font/abhaya_libre_medium"
                 android:maxLines="1"
@@ -135,8 +132,8 @@
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
                 android:layout_marginStart="16dp"
-                android:layout_toEndOf="@id/instagram"
                 android:layout_toStartOf="@+id/icon_arrow_instagram"
+                android:layout_toEndOf="@id/instagram"
                 android:ellipsize="end"
                 android:fontFamily="@font/abhaya_libre_medium"
                 android:maxLines="1"
@@ -180,8 +177,8 @@
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
                 android:layout_marginStart="16dp"
-                android:layout_toEndOf="@id/contact"
                 android:layout_toStartOf="@+id/icon_arrow_email"
+                android:layout_toEndOf="@id/contact"
                 android:ellipsize="end"
                 android:fontFamily="@font/abhaya_libre_medium"
                 android:maxLines="1"
@@ -240,8 +237,8 @@
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
                 android:layout_marginStart="16dp"
-                android:layout_toEndOf="@id/developer_image1"
                 android:layout_toStartOf="@+id/icon_arrow_developer1"
+                android:layout_toEndOf="@id/developer_image1"
                 android:ellipsize="end"
                 android:fontFamily="@font/abhaya_libre_medium"
                 android:maxLines="1"
@@ -283,8 +280,8 @@
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
                 android:layout_marginStart="16dp"
-                android:layout_toEndOf="@id/developer_image2"
                 android:layout_toStartOf="@+id/icon_arrow_developer2"
+                android:layout_toEndOf="@id/developer_image2"
                 android:ellipsize="end"
                 android:fontFamily="@font/abhaya_libre_medium"
                 android:maxLines="1"
@@ -307,9 +304,9 @@
             android:id="@+id/app_version"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_gravity="center"
             android:layout_margin="@dimen/activity_padding_horizontal"
             android:background="@drawable/background_white"
-            android:layout_gravity="center"
             android:orientation="horizontal"
             android:padding="@dimen/regular_window_padding">
 
@@ -331,8 +328,8 @@
                 android:maxLines="1"
                 android:text="@string/app_version_about_page"
                 android:textColor="@color/text_default_dark_gray"
-                android:textStyle="italic"
-                android:textSize="16sp" />
+                android:textSize="16sp"
+                android:textStyle="italic" />
         </LinearLayout>
     </LinearLayout>
 

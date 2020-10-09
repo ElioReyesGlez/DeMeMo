@@ -81,7 +81,7 @@ public class SuperUtil {
             v.vibrate(VibrationEffect.createOneShot(MIN_VIBRATE_TIME,
                     VibrationEffect.DEFAULT_AMPLITUDE));
         } else {
-            v.vibrate(VIBRATE_TIME);
+            v.vibrate(MIN_VIBRATE_TIME);
         }
     }
 

@@ -18,7 +18,6 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.erg.memorized.R;
 import com.erg.memorized.adapters.AdapterRecyclerViewForSplitVerse;
-import com.erg.memorized.helpers.BillingHelper;
 import com.erg.memorized.helpers.MessagesHelper;
 import com.erg.memorized.helpers.ReaderHelper;
 import com.erg.memorized.helpers.RealmHelper;
@@ -53,7 +52,7 @@ public class SplitTextFragment extends Fragment implements OnSectionListener {
 
     private MeowBottomNavigation meoBottomBar;
 //    public boolean isSectionText = false;
-    
+
     private boolean maybeWantToExit = false;
 
     public static SplitTextFragment newInstance(ItemVerse verse) {
@@ -130,34 +129,16 @@ public class SplitTextFragment extends Fragment implements OnSectionListener {
             if (currentUser.isPremium()) {
                 showTestDialog();
             } else {
-                if (spHelper.getIsAgreeShowPremiumDialog()) {
-                    handleSowingPremiumDialog();
-                } else {
-                    handleSimpleMsg();
-                }
+                handleSimpleMsg();
             }
         }
     }
 
     private void handleSimpleMsg() {
-        new Handler().postDelayed(()-> {
+        new Handler().postDelayed(() -> {
             if (isVisible()) {
                 MessagesHelper.showInfoMessage(requireActivity(),
-                                getString(R.string.memorizing_done_msg));
-            }
-
-        }, 1000);
-    }
-
-    private void handleSowingPremiumDialog() {
-        BillingHelper billingHelper = new BillingHelper(requireActivity(), currentUser);
-        new Handler().postDelayed(()-> {
-            if (isVisible()) {
-                MessagesHelper.showPremiumDialog(
-                        requireActivity(),
-                        billingHelper,
-                        false
-                );
+                        getString(R.string.memorizing_done_msg));
             }
 
         }, 1000);
