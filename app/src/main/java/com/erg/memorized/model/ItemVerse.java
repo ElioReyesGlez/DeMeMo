@@ -170,10 +170,4 @@ public class ItemVerse extends RealmObject {
             return false;
         }
     }
-
-    /*
-    *  private boolean repeatingAlarmStatus;
-    private long dateAlarm = -1;
-    private long untilAlarm = -1;
-    * */
 }

@@ -810,7 +810,9 @@ public class SettingsFragment extends Fragment implements View.OnClickListener {
         }
 
         //Sync
-        isSyncNeeded = !SuperUtil.containsAll(cloudVerses, localVerses) && !cloudVerses.isEmpty();
+        isSyncNeeded = !SuperUtil.containsAll(cloudVerses, localVerses)
+                && localVerses.isEmpty()
+                && !cloudVerses.isEmpty();
 
         if (isSyncNeeded) {
             SuperUtil.showView(animScaleUp, ivDownloadNeeded);
@@ -819,7 +821,6 @@ public class SettingsFragment extends Fragment implements View.OnClickListener {
             SuperUtil.hideView(animScaleDown, ivDownloadNeeded);
             llSync.setBackgroundResource(R.drawable.selector_gray);
         }
-
     }
 
     private void startDataListener() {
