@@ -29,15 +29,14 @@
     <string name="loading">Loading…</string>
     <string name="tile">Quote</string>
     <string name="verse">Verse</string>
-    <string name="dialog_save">just save it</string>
+    <string name="dialog_save">just save</string>
     <string name="dialog_save_start">Save and start</string>
-    <string name="failed_saving">Something bad happened, verse without saving</string>
-    <string name="required_field">Required field</string>
+    <string name="failed_saving">Something bad happened, verse without saving!</string>
+    <string name="required_field">Required field!</string>
     <string name="saved">Saved successfully! </string>
     <string name="successfully_deleted">Successfully removed!</string>
     <string name="cloud_successfully_deleted">Cloud: successfully removed!</string>
-    <string name="failed_removing">Something bad happened, cloud verse was not removed,
-        check your network connection</string>
+    <string name="failed_removing">Something bad happened, cloud verse was not removed, check your network connection</string>
     <string name="account_successfully_deleted">User account deleted!</string>
     <string name="exit">Please press BACK again to EXIT</string>
 
@@ -51,7 +50,8 @@
     <string name="pause">pause</string>
     <string name="play">play</string>
 
-    <string name="empty" />
+    <string name="empty"/>
+    <string name="empty_word" >empty</string>
     <string name="not_found">Not found</string>
     <string name="hide_fam">Press again for hide Control Audio Menu</string>
     <string name="hide_status_text_size_bar">Press again for hide the Text Size Status Bar</string>
@@ -85,7 +85,7 @@
     <string name="already_a_member_login">Already a member?</string>
     <string name="unfilled_field">Unfilled field</string>
     <string name="login_underline"><u>Login</u></string>
-    <string name="create_account">Create Account</string>
+    <string name="create_account">Create account</string>
     <string name="pass_again">Re-enter Password</string>
     <string name="description_add_image">Add Image</string>
     <string name="login">Login</string>
@@ -107,7 +107,7 @@
     <string name="data_collision">Data collision.</string>
     <string name="invalid_user">There is no user record corresponding to this identifier</string>
     <string name="select_img">Select image</string>
-    <string name="failed_picking_img">Failed chosen image!</string>
+    <string name="failed_picking_img">Failed choosing image!</string>
     <string name="use">Use</string>
     <string name="use_question">Do you want to use image?</string>
     <string name="network_error">Network error! Please check your internet connection</string>
@@ -117,7 +117,7 @@
     <string name="skip">Skip</string>
     <string name="todo">TODO</string>
     <string name="next">Next</string>
-    <string name="get_started">Get Started</string>
+    <string name="get_started">Get Started!</string>
     <string name="section">Section</string>
     <string name="got_it">Got it</string>
     <string name="animated_img">Animated image</string>
@@ -135,12 +135,12 @@
     <string name="new_name">New name</string>
     <string name="new_email">New email</string>
     <string name="new_mobile">New mobile</string>
-    <string name="send">Send</string>
+    <string name="send">Send!</string>
     <string name="dialog_message_verification_email">A verification link will be sent to this email:</string>
     <string name="dialog_message_restore_email_was_sent">A restore link was sent to this email:</string>
     <string name="dialog_message_restore_email">A restore link will be sent to this email:</string>
     <string name="test_email">elioworkemail@gmail.com</string>
-    <string name="email_sent">Email sent</string>
+    <string name="email_sent">Email sent!</string>
     <string name="failed_updating">Failed updating data</string>
     <string name="failed_updating_pass">Failed updating password</string>
     <string name="data_updated">Data updated successfully!</string>
@@ -177,7 +177,6 @@
     <string name="upload_success">Uploading success!</string>
     <string name="failed_uploading">Failed uploading, try later!</string>
     <string name="failed_deleting">Failed removing account, try later!</string>
-    <string name="refresh">Refresh</string>
     <string name="refresh_icon">refresh icon</string>
     <string name="upload">Upload</string>
     <string name="general_settings">General Settings</string>
@@ -216,7 +215,7 @@
     <string name="days_ago">\ days ago</string>
     <string name="undo">Undo</string>
     <string name="icon">Icon</string>
-    <string name="finish_first">"Test unfinish! "</string>
+    <string name="finish_first">Test unfinished!</string>
     <string name="done">Done!</string>
     <string name="hits">Hits</string>
     <string name="almost_hit">Almost</string>
@@ -229,20 +228,12 @@
     <string name="blank">---</string>
     <string name="leave">Yes, leave</string>
     <string name="fill_missing_evaluator">Fill Missing - Evaluator</string>
-    <string name="fill_missing_evaluator_info">
-        This evaluator makes randomly words missing. You must fill correctly.
-    </string>
+    <string name="fill_missing_evaluator_info">"This evaluator makes randomly words missing. You must fill correctly.\n    "</string>
     <string name="drag_and_drop_evaluator">Drag and Drop - Evaluator</string>
-    <string name="drag_and_drop_evaluator_info">
-        This evaluator mess up the right order of the original verse.
-        You must swap words until the text it is in the right order.</string>
-    <string name="writer_evaluator">Writer - Evaluator</string>
-    <string name="writer_evaluator_info">
-        This evaluator removes some randomly words. You have to write the missing words.\n
-        (Orthography is important)
-    </string>
-    <string name="drag_and_drop_evaluator_message">Swap the words until the text is in the
-        right order </string>
+    <string name="drag_and_drop_evaluator_info">" This evaluator mess up the right order of the original verse. You must swap words until the text it is in the right order."</string>
+    <string name="writer_evaluator">Escritor - Evaluador</string>
+    <string name="writer_evaluator_info">"This evaluator removes some randomly words. You have to write the missing words.          (Orthography is important)     "</string>
+    <string name="drag_and_drop_evaluator_message">"Swap the words until the text is in the right order "</string>
     <string name="fill">fill</string>
     <string name="finish">Finish!</string>
     <string name="result">Result</string>
@@ -278,8 +269,7 @@
 
 
     <string name="rate_dialog_cancel">Remind Me Later</string>
-    <string name="rate_dialog_message">If you enjoy DeMeMo, would you mind taking a
-        moment to rate it? It really helps! Thanks for your support!</string>
+    <string name="rate_dialog_message">If you enjoy DeMeMo. Would you mind taking a\n        moment to rate it? It really helps! Thanks for your support!</string>
     <string name="rate_dialog_no">No, Thanks</string>
     <string name="rate_dialog_ok">Rate It Now</string>
     <string name="rate_dialog_title">Rate this app</string>
@@ -382,19 +372,20 @@
 <!--    <string name="interstitial_ad_unit_id">ca-app-pub-5375894039512920/4596144610</string>-->
     <string name="testing_interstitial_ad_unit_id">ca-app-pub-3940256099942544/8691691433</string>
 
-    <string name="ad_explication">The following Ad help fund:</string>
+    <string name="ad_explication">The following Ad helps us to develop:</string>
     <string name="mission">DeMeMo\'s Mission</string>
     <string name="ad_not_load">Ad did not load</string>
     <string name="you_are_premium_now">You are Premium Now!</string>
     <string name="seven">7</string>
 
     <!--    All strings used in about page Fragment*-->
-    <string name="description_about_page">This application was created not only with the intention
-        of expanding the gospel of God but also reaffirming what is known about it in an interactive,
-        competitive and healthy way, displaying a series of simple games to promote
-         learning and memorizing the bible. DeMeMo is part of a developing project which aims to position
-        the word of God in a more current world where new technologies and the beatitudes of God go hand
-        in hand in a transparent way.</string>
+    <string name="description_about_page">
+        DeMeMo is the result of the desire to create some kind of help when it comes to memorizing
+        biblical quotes, then it became a project where an interactive and healthy competitive way
+        to promote, learn and memorize the Bible coexists.
+        DeMeMo is part of a project under development that aims to position the word of God in
+        a more current world where new technologies and the beatitudes of God go hand in hand
+        transparently.</string>
     <string name="email_about_page">dememoteam@gmail.com</string>
     <string name="copy_right_about_page" translatable="false">Copyrights © %1$d</string>
     <string name="app_version_about_page">Version: 1.0.0</string>
@@ -418,7 +409,8 @@
     <string name="instagram_app_url">http://instagram.com/</string>
     <string name="play_store_app_url">https://play.google.com/store/apps/details?id=DeMeMo</string>
     <string name="faild_billing_connection">Fail billing connection!</string>
-    <string name="cant_not_query_product">Error cant not query product</string>
+    <string name="cant_not_query_product">Error can not query product</string>
+    <string name="refresh">Refresh</string>
 
 
 </resources>
