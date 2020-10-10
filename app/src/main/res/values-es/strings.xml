@@ -1,0 +1,412 @@
+<resources>
+    <string name="app_name">DeMeMo</string>
+
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <string name="str_add_goal">Adicionar nuevo versículo</string>
+    <string name="str_add">Adicionar</string>
+    <string name="aux_memory_text">
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+        Nulla at nibh ac erat sagittis rutrum. Vivamus id facilisis lorem, vitae varius turpis.
+        Pellentesque ipsum sapien, bibendum viverra tortor in, malesuada suscipit arcu.
+        Nunc magna erat, egestas ut suscipit ac, euismod pulvinar mi.
+        Aenean vitae sodales enim. Duis quis ultricies purus. In at bibendum lectus, et lacinia eros.
+        Cras lectus tellus, consequat eget sapien ac, porttitor luctus massa.
+        Vestibulum dignissim magna at tortor finibus tempor.
+        Donec efficitur augue eros, nec placerat nunc iaculis at.
+        Mauris pulvinar blandit aliquet. Quisque eu ligula justo.
+        Curabitur sagittis velit, ut facilisis purus hendrerit eu.
+        Sed cursus mauris eget orci rhoncus, at feugiat magna ullamcorper. </string>
+
+    <string name="example_text">
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+        Nulla at nibh ac erat sagittis rutrum. Vivamus id facilisis lorem, vitae varius turpis.
+        Pellentesque ipsum sapien, bibendum viverra tortor in, malesuada suscipit arcu.
+        Nunc magna erat, egestas ut suscipit ac, euismod pulvinar mi. </string>
+
+    <string name="img_description">Img</string>
+    <string name="img_add_button">Img Botón adiconar</string>
+    <string name="loading">Cargando…</string>
+    <string name="tile">Cita</string>
+    <string name="verse">Verso</string>
+    <string name="dialog_save">Solo guardar</string>
+    <string name="dialog_save_start">Guardar y empezar</string>
+    <string name="failed_saving">¡Algo malo pasó, versículo sin salvar!</string>
+    <string name="required_field">¡Campo requerido!</string>
+    <string name="saved">¡Guardado exitosamente!</string>
+    <string name="successfully_deleted">¡Eliminado con éxito!</string>
+    <string name="cloud_successfully_deleted">Nube: ¡eliminado con éxito!</string>
+    <string name="failed_removing">Algo malo sucedió, no se eliminó el versículo de la nube, verifique su conexión de red</string>
+    <string name="account_successfully_deleted">¡Cuenta de usuario eliminada</string>
+    <string name="exit">Please press BACK again to EXIT</string>
+
+    <string name="failed_creating_user">Algo malo sucedió, el usuario no se ha creado</string>
+    <string name="failed_saving_user">Algo malo sucedió, usuario no guardado</string>
+    <string name="failed_loading_user_data">Algo malo sucedió, los datos del usuario no se cargan</string>
+    <string name="failed_loading_your_version_data">Algo malo sucedió, los datos no se cargan</string>
+
+    <string name="fam_title">Control de Audio</string>
+    <string name="stop">detener</string>
+    <string name="pause">pausa</string>
+    <string name="play">reproducir</string>
+
+    <string name="empty" />
+    <string name="empty_word">vacío</string>
+    <string name="not_found">No encontrado</string>
+    <string name="hide_fam">Presione nuevamente para ocultar el Control de Audio</string>
+    <string name="hide_status_text_size_bar">Presione nuevamente para ocultar la barra de estado del tamaño del texto</string>
+    <string name="dismiss">Descartar</string>
+    <string name="msg_long_click_option">Que le gustaría hacer?</string>
+    <string name="dialog_message_description">Pon un mensaje aquí</string>
+    <string name="leaving_alert">¡Todo será descartado! ¿Estás seguro?</string>
+    <string name="test_stop">¡El examen ha sido descartado!</string>
+    <string name="dialog_delete">Eliminar</string>
+    <string name="dialog_edit">Editar</string>
+    <string name="dialog_cancel">Cancelar</string>
+    <string name="empty_list">¡Lista vacía!</string>
+    <string name="empty_list_please_add">… por favor adicione un nuevo versículo.</string>
+    <string name="title_exists">¡Este título ya existe!\n¿Sobrescribir?</string>
+    <string name="title_and_verse_exists">¡Este título y este versículo ya existen! \n¿Sobrescribir?</string>
+    <string name="verse_exists">¡Estos versículos ya existen!  ¿Sobrescribir?</string>
+    <string name="delete_confirmation_msg">Estás a punto de eliminar tu cuenta. ¿Está seguro?</string>
+    <string name="ok">¡Vale!</string>
+    <string name="agree">De acuerdo</string>
+    <string name="title">Título</string>
+    <string name="description_menu_icon">Icono de menú</string>
+    <string name="description_icon_right_arrow">Icono de flecha derecha</string>
+    <string name="settings">Configuraciones</string>
+    <string name="sign_up">Regístrese</string>
+    <string name="name">Nombre</string>
+    <string name="email">Correo electrónico</string>
+    <string name="email_low_case">correo electrónico</string>
+    <string name="mobile_number">Número de móvil (opcional)</string>
+    <string name="mobile_number_user_info">Móvil</string>
+    <string name="pass">Contraseña</string>
+    <string name="already_a_member_login">¿Ya es miembro?</string>
+    <string name="unfilled_field">Campo sin llenar</string>
+    <string name="login_underline"><u>Iniciar sesión</u></string>
+    <string name="create_account">Crear cuenta</string>
+    <string name="pass_again">Escriba la contraseña otra vez</string>
+    <string name="description_add_image">Adiconar imagen</string>
+    <string name="login">Iniciar sesión</string>
+    <string name="login_needed">¡Inicie sesión o regístrese primero!</string>
+    <string name="no_account_yet_create_one">¿No tiene cuenta aún?</string>
+    <string name="crete_one"><u>Cree una</u></string>
+    <string name="restore"><u>Restaurar</u></string>
+    <string name="login_failed">Error de inicio de sesion</string>
+    <string name="error_name">al menos 3 caracteres</string>
+    <string name="error_email">Introduzca una dirección de correo electrónico válida</string>
+    <string name="error_pass">entre 4 y 10 caracteres alfanuméricos</string>
+    <string name="error_old_pass">no coincide con la contraseña anterior</string>
+    <string name="error_re_pass">la contraseña no coincide</string>
+    <string name="error_mobile">ingrese una dirección de número de teléfono móvil válida</string>
+    <string name="same_pass">introduzca nueva contraseña</string>
+    <string name="welcome">Bienvenido</string>
+    <string name="successfully_user_created">. ¡Cuenta creada!</string>
+    <string name="user_collision">La dirección de correo electrónico ya está siendo utilizada por otra cuenta.</string>
+    <string name="data_collision">Colisión de datos.</string>
+    <string name="invalid_user">No hay registro de usuario correspondiente a este identificador</string>
+    <string name="select_img">Seleccionar imagen</string>
+    <string name="failed_picking_img">¡Fallo eligiendo imagen!</string>
+    <string name="use">Use</string>
+    <string name="use_question">¿Quiere usar la imagen?</string>
+    <string name="network_error">¡Error de red! Por favor revise su conexion a internet</string>
+    <string name="used_email">dirección de correo electrónico ya está en uso</string>
+    <string name="invalid_credentials">Credenciales inválidas, rectifique usuario o contraseña</string>
+    <string name="too_many_requests">Demasiados intentos de inicio de sesión fallidos. Por favor, inténtelo de nuevo más tarde.</string>
+    <string name="skip">Omitir</string>
+    <string name="todo">POR HACER</string>
+    <string name="next">Siguiente</string>
+    <string name="get_started">¡Empezar!</string>
+    <string name="section">Sección</string>
+    <string name="got_it">Entendido</string>
+    <string name="animated_img">Imagen animada</string>
+    <string name="split_msg_dialog">Dividir el texto en secciones le ayudará a memorizar más rápidamente.</string>
+    <string name="go_here">Puede hacerlo en la barra superior.</string>
+    <string name="right_arrow">Flecha derecha</string>
+    <string name="left_arrow">Flecha izquierda</string>
+    <string name="section_image">sección de laimagen</string>
+    <string name="log_out">Cerrar sesión</string>
+    <string name="save">Salvar</string>
+    <string name="email_is_not_verified">presione aquí para verificar el correo electrónico</string>
+    <string name="email_is_not_verified_msg">Primero verifique el correo electrónico</string>
+    <string name="old_pass">Contraseña anterior</string>
+    <string name="new_pass">Nueva contraseña</string>
+    <string name="new_name">Nuevo nombre</string>
+    <string name="new_email">Nuevo correo electrónico</string>
+    <string name="new_mobile">Nuevo móvil</string>
+    <string name="send">¡Enviar!</string>
+    <string name="dialog_message_verification_email">Se enviará un enlace de verificación a este correo electrónico:</string>
+    <string name="dialog_message_restore_email_was_sent">Se envió un enlace de restauración a este correo electrónico:</string>
+    <string name="dialog_message_restore_email">Se enviará un enlace de restauración a este correo electrónico:</string>
+    <string name="test_email">elioworkemail@gmail.com</string>
+    <string name="email_sent">¡Correo electrónico enviado!</string>
+    <string name="failed_updating">Error al actualizar los datos</string>
+    <string name="failed_updating_pass">Error al actualizar la contraseña</string>
+    <string name="data_updated">¡Datos actualizados con éxito!</string>
+    <string name="remove_account">Eliminar</string>
+    <string name="change">Cambiar</string>
+    <string name="info_icon">Icono de información</string>
+    <string name="daily_notification">Notificación diaria</string>
+    <string name="weekly_notification">Notificación semanal</string>
+    <string name="monthly_notification">Notificación mensual</string>
+    <string name="notification_setup">Configuración de notificaciones</string>
+    <string name="date_and_time_symbol">Símbolo de fecha y hora</string>
+    <string name="calendar_permissions">¡Necesitamos permisos para crear eventos de calendario con éxito! ¡Gracias!</string>
+    <string name="please_calendar_grant_permissions">Otorgue los permisos necesarios</string>
+    <string name="remainder_msg">Recordatorio</string>
+    <string name="ready_msg">Listo para memorizar:</string>
+    <string name="calender_ids">Calendario</string>
+    <string name="calendar_ops">Selector de calendario</string>
+    <string name="channel_description">Canal para</string>
+    <string name="pick_calendar_needed">Primero elija uno de los suyos.</string>
+    <string name="selected">seleccionado</string>
+    <string name="end_date">Fecha fin</string>
+    <string name="pick_until_date_first">Elija una fecha fin primero</string>
+    <string name="language_not_supported">Lo sentimos, su idioma actual no es compatible</string>
+    <string name="copy">Copiar</string>
+    <string name="text">texto</string>
+    <string name="invalid_until_date">¡Fecha fin no es válida!</string>
+    <string name="verses">Versículos</string>
+    <string name="frequency">Frecuencia</string>
+    <string name="last_upload">Última subida</string>
+    <!--    <string name="memorized">Memorized</string>-->
+    <!--    <string name="verses_memorized">Memorized:\ </string>-->
+    <string name="zero">0</string>
+    <string name="empty_date">esperando</string>
+    <string name="upload_success">¡Éxito Subiendo!</string>
+    <string name="failed_uploading">Error al cargar, inténtalo más tarde.</string>
+    <string name="failed_deleting">Error al eliminar la cuenta, inténtalo más tarde.</string>
+    <string name="refresh">Actualizar</string>
+    <string name="refresh_icon">" icono actualizar"</string>
+    <string name="upload">Subir</string>
+    <string name="general_settings">Configuración General</string>
+    <string name="upload_needed">Carga necesaria</string>
+    <string name="changes_to_be_uploaded">Alerta de subida: ¡Nuevos datos para ser subidos!</string>
+    <string name="changes_to_be_downloaded">Alerta de sincronización: ¡Datos para descargar!</string>
+    <string name="search">buscar…</string>
+    <string name="leader_board">Tabla de Clasificación</string>
+    <string name="icon_leader_board">Icono de tabla de clasificación</string>
+    <string name="user">Nombre de usuario</string>
+    <string name="evaluate">Evaluar</string>
+    <string name="check_button">Botón de verificación</string>
+    <string name="ic_black_shield">ic escudo negro</string>
+    <string name="sync">Sincronizar</string>
+    <string name="sync_not_needed">¡No se necesita sincronización!</string>
+    <string name="upload_not_needed">¡Subir no es necesario!</string>
+    <string name="language">Idioma</string>
+    <string name="bible_language">Idioma:</string>
+    <string name="language_selector">Selector de idioma</string>
+    <string name="bibleRoot">Biblia</string>
+    <string name="bible_version">Versión de la Biblia</string>
+    <string name="bible_selector">Versión de la Biblia</string>
+    <string name="name_local">Nombre local</string>
+    <string name="local_abbreviation">Abreviatura local</string>
+    <string name="spanish">Español</string>
+    <string name="son_icon">Son Icon</string>
+    <string name="daily_verse">Versículo diario</string>
+    <string name="msg_edit_to_save">Este versículo aún no se ha guardado. \n¿Quiere guardar?</string>
+    <string name="response_404">¡No encontrado! Por favor, compruebe si\n Versión actual de la Biblia si es correcta o Inténtelo más tarde.</string>
+    <string name="a_minute_ago">hace un minuto</string>
+    <string name="an_hour_ago">hace una hora</string>
+    <string name="hours_ago">horas atras</string>
+    <string name="yesterday">ayer</string>
+    <string name="days_ago">hace días</string>
+    <string name="undo">Deshacer</string>
+    <string name="icon">Icono</string>
+    <string name="finish_first">Prueba sin terminar!</string>
+    <string name="done">¡Hecho!</string>
+    <string name="hits">Aciertos</string>
+    <string name="almost_hit">Casi aciertos</string>
+    <string name="sum">Suma</string>
+    <string name="fields">Campos</string>
+    <string name="score_partial">P.Score</string>
+    <string name="score_total_partial">Puntuación:</string>
+    <string name="score_total">Puntuación total:</string>
+    <string name="blank">---</string>
+    <string name="leave">Si, salir</string>
+    <string name="fill_missing_evaluator">Rellenar faltante - Evaluador</string>
+    <string name="fill_missing_evaluator_info">Este evaluador retira palabras al azar. Debe llenar correctamente.</string>
+    <string name="drag_and_drop_evaluator">Arrastrar y Soltar - Evaluador</string>
+    <string name="drag_and_drop_evaluator_info">Este evaluador cambia el orden correcto del versículo original. Debes intercambiar palabras hasta que el texto esté en el orden correcto.</string>
+    <string name="writer_evaluator">Writer - Evaluator</string>
+    <string name="writer_evaluator_info">"Este evaluador elimina palabras al azar. Tiene que escribir las palabras que faltan.\n (La ortografía es importante)\n    "</string>
+    <string name="drag_and_drop_evaluator_message">Intercambie las palabras hasta que el texto esté en el orden correcto</string>
+    <string name="fill">llenar</string>
+    <string name="finish">¡Terminar!</string>
+    <string name="result">Resultado</string>
+    <string name="amount">Cantidad</string>
+    <string name="memory_evaluator">Evaluador de Memoria</string>
+    <string name="evaluator_name">Nombre del evaluador</string>
+    <string name="don_t_show_again">No volver a mostrar</string>
+    <string name="writer_message">¡Escriba la palabra que falta!</string>
+    <string name="ups_time_is_over">¡Ups, se acabó el tiempo!</string>
+    <string name="see_score">¡Vale!, ver puntuación</string>
+    <string name="sorry_you_did_not_make_it">¡Lo siento! No lo logró</string>
+    <string name="please_try_again">¡Inténtelo de nuevo!</string>
+    <string name="set_missing_word">¡Establecer palabra faltante!</string>
+    <string name="remove_cloud_backup">Eliminar la copia de seguridad en la nube para</string>
+    <string name="descriptionLocal">Descripción local</string>
+    <string name="score">Puntuación</string>
+    <string name="default_notification_channel_id">930601</string>
+    <string name="activity">Actividad</string>
+    <string name="last_reading">Última lectura</string>
+    <string name="statistics">Gráfica de uso</string>
+    <string name="lorem">Lorem</string>
+    <string name="minutes_ago">hace minutos</string>
+    <string name="one_second_ago">hace un segundo</string>
+    <string name="seconds_ago">hace segundos</string>
+
+    <!--
+    <string name="rate_dialog_title">Are you enjoying</string>
+    <string name="rate_dialog_message">Please rate it on Google Play - it really helps!</string>
+    <string name="rate_dialog_ok">Heck yeah!</string>
+    <string name="rate_dialog_cancel">Not now</string>
+    <string name="rate_dialog_no">Uhm…no</string>
+-->
+
+
+    <string name="rate_dialog_cancel">Recuérdame más tarde</string>
+    <string name="rate_dialog_message">Si te gusta DeMeMo, ¿Le importaría tomar un  momento para calificarlo? ¡Realmente ayuda! ¡Gracias por su apoyo!</string>
+    <string name="rate_dialog_no">No, Thanks</string>
+    <string name="rate_dialog_ok">Califícalo ahora</string>
+    <string name="rate_dialog_title">Califica esta aplicación</string>
+
+
+    <string name="premium_dialog_cancel">Recuérdame más tarde</string>
+    <string name="premium_dialog_ok">¡Si seguro!</string>
+    <string name="premium_dialog_no">No, gracias</string>
+    <string name="premium">Premium</string>
+    <string name="get_premium">¡Hazte premium!</string>
+    <string name="get_premium_ad_free">Hazte PREMIUM para obtener una DeMeMo SIN ANUNCIOS</string>
+    <string name="get_premium_upload_score">Hazte PREMIUM para subir su puntuación</string>
+    <string name="full_access_to_the_verse_memory_evaluator">Acceso completo al evaluador de memoria de versículos</string>
+    <string name="worldwide_participation_on_dememo_leaderboard">Participación mundial en la clasificación de DeMeMo</string>
+    <string name="already_premium">Ya es miembro premium</string>
+    <string name="memorizing_finish">¡Buen trabajo!\n  ¿Desea poner a prueba su memoria?</string>
+    <string name="memorizing_done_msg">¡Buen trabajo!</string>
+    <string name="about">Acerca de</string>
+    <string name="support">Apoyo</string>
+    <string name="forgot_password">¿Olvidó su contraseña?</string>
+    <string name="function_temporarily_disabled">Función temporalmente deshabilitada</string>
+
+    <string-array name="evaluator_names">
+        <item>Fill Missing - Evaluator</item>
+        <item>Drag and Drop - Evaluator</item>
+        <item>Writer - Evaluator</item>
+    </string-array>
+
+    <string-array name="evaluators_descriptions">
+        <item>@string/fill_missing_evaluator_info</item>
+        <item>@string/drag_and_drop_evaluator_info</item>
+        <item>@string/writer_evaluator_info</item>
+    </string-array>
+
+    <string-array name="variables_evaluator_tables_names">
+        <item>fillMissingEvaluatorTable</item>
+        <item>dragAndDropEvaluatorTable</item>
+        <item>writerEvaluatorTable</item>
+    </string-array>
+
+    <string-array name="tabs_titles">
+        <item>Date Picker</item>
+        <item>Time Picker</item>
+    </string-array>
+
+    <string-array name="tabs_titles_test">
+        <item>Premium</item>
+        <item>Score</item>
+        <item>Leaderboard</item>
+    </string-array>
+
+
+    <string-array name="languages">
+        <item>English</item>
+        <item>Español</item>
+        <item>Português</item>
+        <item>繁體中文</item>
+        <item>Română</item>
+    </string-array>
+
+    <string-array name="languages_codes">
+        <item>en</item>
+        <item>es</item>
+        <item>pt</item>
+        <item>zh</item>
+        <item>ro</item>
+    </string-array>
+
+    <string-array name="marks">
+        <item>"."</item>
+        <item>";"</item>
+        <item>":"</item>
+        <item>","</item>
+        <item>"¡"</item>
+        <item>"!"</item>
+        <item>"¿"</item>
+        <item>"?"</item>
+    </string-array>
+
+
+    <string-array name="day_codes">
+        <item>mon_</item>
+        <item>tue_</item>
+        <item>wed_</item>
+        <item>thu_</item>
+        <item>fri_</item>
+        <item>sat_</item>
+        <item>sun_</item>
+    </string-array>
+    <string name="action_settings">Configuraciones</string>
+    <string name="interstitial_ad_sample">Muestra de anuncio intersticial</string>
+    <string name="start_level">Nivel 1</string>
+    <string name="next_level">Siguiente nivel</string>
+    <string name="level_text">Nivel% 1 $ d</string>
+
+    // DeMeMo adMob id
+    <!--    <string name="interstitial_ad_unit_id">ca-app-pub-5375894039512920/4596144610</string>-->
+
+    // Interstitial Ad Unit Id
+    <!--    <string name="interstitial_ad_unit_id">ca-app-pub-5375894039512920/4596144610</string>-->
+    <string name="testing_interstitial_ad_unit_id">ca-app-pub-3940256099942544/8691691433</string>
+
+    <string name="ad_explication">El siguiente anuncio nos ayuda a desarrollar:</string>
+    <string name="mission">Misión de DeMeMo</string>
+    <string name="ad_not_load">El anuncio no se cargó</string>
+    <string name="you_are_premium_now">¡Ya es Premium!</string>
+    <string name="seven">7</string>
+
+    <!--    All strings used in about page Fragment*-->
+    <string name="description_about_page">
+        DeMeMo es el resultado del interés en desarollar apoyo sistemático a la hora de memorizar
+        citas bíblicas, luego paso a ser un proyecto donde coexiste una forma interactiva y
+        saludablemente competitiva para promover, aprender y memorizar la Biblia.
+        DeMeMo es parte de un proyecto en desarrollo que tiene como objetivo posicionar
+        la palabra de Dios en un mundo más actual donde las nuevas tecnologías
+        y las bienaventuranzas de Dios vallan de la mano forma transparente.</string>
+    <string name="email_about_page">dememoteam@gmail.com</string>
+    <string name="copy_right_about_page" translatable="false">Copyrights © %1$d</string>
+    <string name="app_version_about_page">Version: 1.0.0</string>
+    <string name="play_store_about_page">Califícanos en Play Store</string>
+    <string name="instagram_about_page">Síguenos en Instagram</string>
+    <string name="contact_us_about_page">Contáctenos vía E-mail</string>
+    <string name="title1_about_page">Conecta con nosotros</string>
+    <string name="title2_about_page">Desarrollado por</string>
+    <string name="developer1_about_page">Elioenai Reyes</string>
+    <string name="developer2_about_page">José Ernesto Cortes</string>
+    <string name="url_developer1_about_page">
+        https://www.linkedin.com/in/elioenai-reyes-gonzález
+    </string>
+    <string name="url_developer2_about_page">
+        https://www.linkedin.com/in/josé-ernesto-cortes-7bb8671b6
+    </string>
+    <string name="default_app_versio">1.0.0</string>
+    <string name="version">Versión:</string>
+
+    <!-- Urls -->
+    <string name="instagram_app_url">http://instagram.com/</string>
+    <string name="play_store_app_url">https://play.google.com/store/apps/details?id=DeMeMo</string>
+    <string name="faild_billing_connection">Error en la conexión de facturación.</string>
+    <string name="cant_not_query_product">Error no puede consultar el producto</string>
+    <string name="miss">Fallos</string>
+</resources>

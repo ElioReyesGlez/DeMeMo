@@ -15,7 +15,7 @@
         Vestibulum dignissim magna at tortor finibus tempor.
         Donec efficitur augue eros, nec placerat nunc iaculis at.
         Mauris pulvinar blandit aliquet. Quisque eu ligula justo.
-        Curabitur sagittis sagittis velit, ut facilisis purus hendrerit eu.
+        Curabitur sagittis velit, ut facilisis purus hendrerit eu.
         Sed cursus mauris eget orci rhoncus, at feugiat magna ullamcorper. </string>
 
     <string name="example_text">
@@ -50,8 +50,8 @@
     <string name="pause">pause</string>
     <string name="play">play</string>
 
-    <string name="empty"/>
-    <string name="empty_word" >empty</string>
+    <string name="empty" />
+    <string name="empty_word">empty</string>
     <string name="not_found">Not found</string>
     <string name="hide_fam">Press again for hide Control Audio Menu</string>
     <string name="hide_status_text_size_bar">Press again for hide the Text Size Status Bar</string>
@@ -366,10 +366,10 @@
     <string name="level_text">Level %1$d</string>
 
     // DeMeMo adMob id
-<!--    <string name="interstitial_ad_unit_id">ca-app-pub-5375894039512920/4596144610</string>-->
+    <!--    <string name="interstitial_ad_unit_id">ca-app-pub-5375894039512920/4596144610</string>-->
 
     // Interstitial Ad Unit Id
-<!--    <string name="interstitial_ad_unit_id">ca-app-pub-5375894039512920/4596144610</string>-->
+    <!--    <string name="interstitial_ad_unit_id">ca-app-pub-5375894039512920/4596144610</string>-->
     <string name="testing_interstitial_ad_unit_id">ca-app-pub-3940256099942544/8691691433</string>
 
     <string name="ad_explication">The following Ad helps us to develop:</string>
@@ -380,12 +380,13 @@
 
     <!--    All strings used in about page Fragment*-->
     <string name="description_about_page">
-        DeMeMo is the result of the desire to create some kind of help when it comes to memorizing
-        biblical quotes, then it became a project where an interactive and healthy competitive way
-        to promote, learn and memorize the Bible coexists.
-        DeMeMo is part of a project under development that aims to position the word of God in
-        a more current world where new technologies and the beatitudes of God go hand in hand
-        transparently.</string>
+        DeMeMo is the result of the interest in developing systematic
+        support when it comes to memorizing Biblical quotes,
+        then it became a project where an interactive and
+        healthy competitive to promote, learn and memorize the Bible.
+        DeMeMo is part of a project in development that aims to position
+        the word of God in a more current world where new technologies
+        and the beatitudes of God go hand in hand transparently.</string>
     <string name="email_about_page">dememoteam@gmail.com</string>
     <string name="copy_right_about_page" translatable="false">Copyrights © %1$d</string>
     <string name="app_version_about_page">Version: 1.0.0</string>
