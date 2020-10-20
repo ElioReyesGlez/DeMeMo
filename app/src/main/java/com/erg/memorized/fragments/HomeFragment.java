@@ -61,7 +61,7 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
     private ProgressBar pgrView, refreshPgrView;
     private LottieAnimationView lottieNotFound;
 
-    LinearLayout lastReading, staticsGraph;
+    private LinearLayout lastReading, staticsGraph;
 
     private SharedPreferencesHelper spHelper;
     private RealmHelper realmHelper;

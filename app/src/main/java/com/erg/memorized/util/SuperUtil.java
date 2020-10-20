@@ -47,6 +47,7 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Comparator;
 import java.util.HashMap;
+import java.util.Objects;
 
 import io.realm.RealmList;
 
@@ -295,8 +296,15 @@ public class SuperUtil {
                         .addOnCompleteListener(task -> {
                             if (task.isSuccessful()) {
                                 spHelper.setUserLoginState(true);
-                                boolean isVerified = fAuth.getCurrentUser().isEmailVerified();
-                                spHelper.setEmailVerifiedStatus(isVerified);
+
+                                try {
+                                    boolean isVerified = Objects
+                                            .requireNonNull(fAuth.getCurrentUser()).isEmailVerified();
+                                    spHelper.setEmailVerifiedStatus(isVerified);
+                                } catch (NullPointerException e) {
+                                    Log.e(TAG, "logInUser NullPointerException :" +
+                                            e.getMessage());
+                                }
 
                                 Log.d(TAG, "logInUser: User is Logged!!");
                             } else {

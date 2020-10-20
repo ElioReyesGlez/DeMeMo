@@ -45,7 +45,6 @@ import com.github.clans.fab.FloatingActionMenu;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import java.util.Calendar;
-import java.util.Date;
 import java.util.Locale;
 import java.util.Objects;
 
@@ -403,20 +402,23 @@ public class MemorizingFragment extends Fragment {
         editBtn.setOnClickListener(v -> {
             SuperUtil.vibrate(requireContext());
             ItemVerse currentItemVerse = new ItemVerse(verse.getTitle(), verse.getVerseText());
-            long idVerse = new Date().getTime();
+            long idVerse = System.currentTimeMillis();
             currentItemVerse.setId(idVerse);
-            realmHelper.addVerseToDB(currentItemVerse);
+
+            SuperUtil.loadView(
+                    requireActivity(),
+                    NewVerseFragment.newInstance(currentItemVerse, true),
+                    NewVerseFragment.TAG,
+                    true
+            );
+
             if (dialog.isShowing())
                 dialog.dismiss();
 
-            if (isVisible())
-                MessagesHelper.showInfoMessageFragment(rootView, requireActivity(),
-                        getString(R.string.saved));
         });
         dialog.show();
         dialogView.startAnimation(animScaleUp);
     }
-
 
     private void saveUsageScoreByWeekDay() {
 

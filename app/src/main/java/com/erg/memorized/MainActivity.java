@@ -349,6 +349,7 @@ public class MainActivity extends FragmentActivity {
     protected void onResume() {
         super.onResume();
         adminUsage();
+        setUpAppLanguage();
     }
 
     private void adminUsage() {

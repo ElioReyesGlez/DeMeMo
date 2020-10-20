@@ -32,26 +32,6 @@
                 android:textAlignment="center"
                 android:gravity="center"
                 android:layout_alignParentTop="true"/>
-
-            <!--<ImageView
-                android:id="@+id/iv_item_list_default"
-                android:layout_width="60dp"
-                android:layout_height="60dp"
-                android:layout_alignParentStart="true"
-                android:layout_alignParentLeft="true"
-                android:layout_centerInParent="true"
-                android:layout_marginTop="5dp"
-                android:layout_marginLeft="@dimen/regular_item_padding"
-                android:layout_marginStart="@dimen/regular_item_padding"
-                android:layout_marginBottom="@dimen/regular_window_margin"
-                android:contentDescription="@string/img_description"
-                android:src="@drawable/ic_learning_launcher"
-                android:layout_below="@+id/tv_date"/>-->
-
-            <!--
-                android:layout_toEndOf="@+id/iv_item_list_default"
-                android:layout_toRightOf="@+id/iv_item_list_default"
-                -->
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

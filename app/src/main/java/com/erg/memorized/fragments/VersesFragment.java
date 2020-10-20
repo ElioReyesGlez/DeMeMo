@@ -12,6 +12,7 @@ import android.view.Window;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.Button;
+import android.widget.HorizontalScrollView;
 import android.widget.LinearLayout;
 import android.widget.Switch;
 import android.widget.TextView;
@@ -220,6 +221,10 @@ public class VersesFragment extends Fragment implements View.OnClickListener, On
         View dialogView = inflater.inflate(R.layout.dialog_info_long_click_opt_view, null, false);
         TextView msg = dialogView.findViewById(R.id.text_dialog);
         Switch switchRemoveCloud = dialogView.findViewById(R.id.switch_remove_cloud_backup);
+
+        HorizontalScrollView horizontalScrollView = dialogView
+                .findViewById(R.id.horizontal_scroll_btn_container);
+
         if (spHelper.getUserLoginStatus()) {
             SuperUtil.showView(null, switchRemoveCloud);
         } else {
@@ -242,7 +247,7 @@ public class VersesFragment extends Fragment implements View.OnClickListener, On
         editBtn.setOnClickListener(v -> {
             SuperUtil.vibrate(requireContext());
             NewVerseFragment newVerseFragment = NewVerseFragment
-                    .newInstance(currentItemVerse.getId(), true);
+                    .newInstance(currentItemVerse, true);
             SuperUtil.loadView(requireActivity(), newVerseFragment,
                     NewVerseFragment.TAG, true);
             if (dialog.isShowing())
@@ -272,8 +277,16 @@ public class VersesFragment extends Fragment implements View.OnClickListener, On
             if (dialog.isShowing())
                 dialog.dismiss();
         });
+        
         dialog.show();
         dialogView.startAnimation(animScaleUp);
+
+        new Handler().postDelayed(() -> {
+            if (dialog.isShowing()) {
+                horizontalScrollView.fullScroll(HorizontalScrollView.FOCUS_RIGHT);
+            }
+        }, 1000);
+
     }
 
     private void removeFromCloud() {
@@ -330,7 +343,7 @@ public class VersesFragment extends Fragment implements View.OnClickListener, On
         SuperUtil.vibrate(requireContext());
         int id = v.getId();
         if (id == R.id.linear_layout_empty_container || id == R.id.fab_add_verse) {
-            NewVerseFragment frag = new NewVerseFragment();
+            NewVerseFragment frag = new NewVerseFragment(null, false);
             SuperUtil.loadView(requireActivity(), frag,
                     NewVerseFragment.TAG, true);
         }

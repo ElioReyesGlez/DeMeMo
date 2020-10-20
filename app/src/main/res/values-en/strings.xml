@@ -199,9 +199,9 @@
     <string name="spanish">Spanish</string>
     <string name="son_icon">Son Icon</string>
     <string name="daily_verse">Daily Verse</string>
-    <string name="msg_edit_to_save">This verse is not saved yet.          Do you want to?</string>
+    <string name="msg_edit_to_save">This verse is not saved yet. Do you want to?</string>
     <string name="msg_set_notification">Set reminder?</string>
-    <string name="response_404">Not found! Please check if         current Bible Version if right or Try later.</string>
+    <string name="response_404">Not found! Please check if current Bible Version if right or Try later.</string>
     <string name="a_minute_ago">\ a minute ago</string>
     <string name="an_hour_ago">\ an hour ago</string>
     <string name="hours_ago">\ hours ago</string>
@@ -262,7 +262,8 @@
 
 
     <string name="rate_dialog_cancel">Remind Me Later</string>
-    <string name="rate_dialog_message">If you enjoy DeMeMo. Would you mind taking a         moment to rate it? It really helps! Thanks for your support!</string>
+    <string name="rate_dialog_message">If you enjoy DeMeMo. Would you mind taking a
+        moment to rate it? It really helps! Thanks for your support!</string>
     <string name="rate_dialog_no">No, Thanks</string>
     <string name="rate_dialog_ok">Rate now</string>
     <string name="rate_dialog_title">Rate this app</string>
@@ -372,11 +373,11 @@
 
     <!--    All strings used in about page Fragment*-->
     <string name="description_about_page">
-        DeMeMo is the result of the interest in developing systematic support in the process of
-         memorize biblical quotes, soon became a project where there is an interactive and
-         competitive way to promote, learn and memorize the Bible. DeMeMo is part of a project in
-         development that aims to position the word of God in a more current world where the new
-         technologies and the beatitudes of God go together transparently.</string>
+        DeMeMo is the result of the interest in developing systematic support when it comes
+        to memorizing Biblical quotes, then it became a project where an interactive and healthy
+        competitive to promote, learn and memorize the Bible. DeMeMo is part of a project in
+        development that aims to position the word of God in a more current world where new
+        technologies and the beatitudes of God go hand in hand transparently.</string>
     <string name="email_about_page">dememoteam@gmail.com</string>
     <string name="app_version_about_page">Version: 1.0.0</string>
     <string name="play_store_about_page">Rate us on Play Store</string>
@@ -389,7 +390,6 @@
     <string name="default_app_versio">1.0.0</string>
     <string name="version">Version:</string>
 
-    <!-- Urls -->
     <string name="faild_billing_connection">Falha na conexão de faturamento!</string>
     <string name="cant_not_query_product">Error can not query product</string>
     <string name="refresh">Refresh</string>

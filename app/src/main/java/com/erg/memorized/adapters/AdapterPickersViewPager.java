@@ -79,7 +79,7 @@ public class AdapterPickersViewPager extends PagerAdapter {
             Switch weeklySwitch = container.findViewById(R.id.switch_weekly);
             Switch monthlySwitch = container.findViewById(R.id.switch_monthly);
             RelativeLayout rlUntil = container.findViewById(R.id.rl_until);
-            TextView tvUntilDate = container.findViewById(R.id.tv_until_date);
+            TextView tvEndDate = container.findViewById(R.id.tv_end_date);
 
             if (itemVerse != null && itemVerse.getTitle() != null) {
                 dailySwitch.setChecked(spHelper.getRepeatingNotifyStatus(Constants.DAILY_KEY
@@ -95,7 +95,7 @@ public class AdapterPickersViewPager extends PagerAdapter {
             }
 
             if (itemVerse != null && itemVerse.getUntilAlarm() != -1) {
-                tvUntilDate.setText(TimeHelper.dateFormatterMedium(itemVerse.getUntilAlarm()));
+                tvEndDate.setText(TimeHelper.dateFormatterMedium(itemVerse.getUntilAlarm()));
             }
 
             datePicker.init(calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH),
@@ -130,7 +130,7 @@ public class AdapterPickersViewPager extends PagerAdapter {
             });
 
             rlUntil.setOnClickListener(v -> {
-                pickersListener.OnUntilViewListener(rlUntil, tvUntilDate);
+                pickersListener.OnUntilViewListener(rlUntil, tvEndDate);
             });
 
         }

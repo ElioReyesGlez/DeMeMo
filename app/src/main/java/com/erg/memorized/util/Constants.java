@@ -121,7 +121,7 @@ public class Constants {
     /*Firebase*/
     public static final String USER_FIRE_BASE_REFERENCE = "users";
     public static final String LEADER_BOARD_FIRE_BASE_REFERENCE = "leader_board";
-    public static final String PREMIUM_USER_FIRE_BASE_REFERENCE = "premium_user";
+    public static final String PREMIUM_USER_FIRE_BASE_REFERENCE = "isPremium";
     public static final String IMG_FIRE_BASE_REFERENCE = "img_profile";
 
     /*User Rows*/
@@ -219,9 +219,15 @@ public class Constants {
     public static final CharSequence CHANNEL_NAME = APP_NAME + "_Reminder_Channel";
 
 
-    /*Google Urls*/
+    /*Urls*/
     public static final String GOOGLE_APP_DETAILS_URL = "http://play.google.com/store/apps/details?id=";
+    public static final String INSTAGRAM_APP_ACCOUNT_URL = "http://instagram.com/";
+    public static final String INSTAGRAM_PACKAGE = "com.instagram.android";
+    public static final String LINKEDIN_PACKAGE = "com.linkedin.android";
     public static final String MARKET_APP_DETAILS_URL = "market://details?id=";
+
+    public static final String URL_DEVELOPER_1 = "https://www.linkedin.com/in/elioenai-reyes-gonzález";
+    public static final String URL_DEVELOPER_2 = "https://www.linkedin.com/in/josé-ernesto-cortes-7bb8671b6";
 
 
     public static ArrayList<String> getMarks(FragmentActivity context) {

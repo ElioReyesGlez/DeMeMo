@@ -66,7 +66,7 @@
             android:id="@+id/rl_op_container"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@drawable/background_gray_light"
+            android:background="@drawable/background_white"
             android:padding="@dimen/regular_item_padding"
             android:layout_marginTop="84dp">
 
@@ -300,25 +300,25 @@
                 android:layout_margin="@dimen/regular_window_margin"
                 android:orientation="horizontal"
                 android:weightSum="2"
-                android:padding="@dimen/regular_window_padding">
+                android:padding="@dimen/regular_window_padding"
+                android:baselineAligned="false">
 
                 <LinearLayout
                     android:id="@+id/ll_remove_account"
-                    android:layout_width="70dp"
+                    android:layout_width="80dp"
                     android:layout_height="70dp"
                     android:background="@drawable/selector_red"
                     android:orientation="vertical"
+                    android:gravity="center"
                     android:layout_margin="@dimen/regular_window_margin"
-                    android:padding="3dp"
-                    android:layout_weight="1">
+                    android:layout_weight="1"
+                    android:padding="@dimen/regular_item_padding">
 
                     <ImageView
                         android:id="@+id/iv_remove_account"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
-                        android:layout_marginStart="2dp"
-                        android:layout_marginTop="13dp"
                         android:background="@drawable/ic_remove_account"
                         android:contentDescription="@string/log_out" />
 
@@ -327,34 +327,32 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/abhaya_libre_medium"
-                        android:gravity="center"
                         android:text="@string/remove_account"
                         android:textAlignment="center"
                         android:textColor="@color/dark_gray_btn_bg_color"
                         android:textSize="12sp"
-                        android:textStyle="bold" />
+                        android:textStyle="bold"
+                        android:maxLines="1"
+                        android:ellipsize="end"/>
 
                 </LinearLayout>
 
                 <LinearLayout
                     android:id="@+id/ll_log_out"
-                    android:layout_width="70dp"
+                    android:layout_width="80dp"
                     android:layout_height="70dp"
                     android:background="@drawable/selector_gray_light"
-                    android:gravity="center_vertical"
+                    android:gravity="center"
                     android:orientation="vertical"
                     android:layout_margin="@dimen/regular_window_margin"
-                    android:padding="3dp"
-                    android:layout_weight="1">
+                    android:layout_weight="1"
+                    android:padding="@dimen/regular_item_padding">
 
                     <ImageView
                         android:id="@+id/iv_logout"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
-                        android:layout_marginStart="4dp"
-                        android:layout_marginTop="13dp"
-                        android:layout_marginEnd="1dp"
                         android:background="@drawable/ic_logout"
                         android:contentDescription="@string/log_out" />
 
@@ -362,19 +360,17 @@
                         android:id="@+id/tv_logout"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:fontFamily="@font/abhaya_libre_medium"
                         android:gravity="center"
                         android:text="@string/log_out"
                         android:textAlignment="center"
                         android:textColor="@color/dark_gray_btn_bg_color"
                         android:textSize="12sp"
-                        android:textStyle="bold" />
+                        android:textStyle="bold"
+                        android:maxLines="2"
+                        android:ellipsize="end"/>
 
                 </LinearLayout>
-
-
             </LinearLayout>
-
         </RelativeLayout>
     </RelativeLayout>
 </ScrollView>

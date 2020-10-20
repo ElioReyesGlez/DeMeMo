@@ -109,6 +109,8 @@
                 android:text="@string/notification_setup"
                 android:textColor="#202020"
                 android:textSize="18sp"
+                android:maxLines="1"
+                android:ellipsize="end"
                 android:layout_toStartOf="@+id/arrow_point_to_right"/>
 
             <ImageView
@@ -135,28 +137,22 @@
                 android:id="@+id/save_button"
                 style="@style/ok_button"
                 android:layout_marginStart="@dimen/cancel_button_margin_left"
-                android:layout_marginLeft="@dimen/cancel_button_margin_left"
                 android:layout_marginTop="@dimen/regular_item_padding"
                 android:layout_marginEnd="2dp"
-                android:layout_marginRight="2dp"
                 android:layout_marginBottom="@dimen/regular_window_margin"
                 android:layout_weight="1"
                 android:background="@drawable/selector_blue"
-                android:text="@string/dialog_save"
-                android:visibility="gone" />
+                android:text="@string/dialog_save"/>
 
             <Button
                 android:id="@+id/save_button_start"
                 style="@style/ok_button"
                 android:layout_marginStart="3dp"
-                android:layout_marginLeft="3dp"
                 android:layout_marginTop="@dimen/regular_item_padding"
                 android:layout_marginEnd="@dimen/save_button_margin_right"
-                android:layout_marginRight="@dimen/regular_window_margin"
                 android:layout_marginBottom="@dimen/regular_window_margin"
                 android:layout_weight="1"
-                android:text="@string/dialog_save_start"
-                android:visibility="gone" />
+                android:text="@string/dialog_save_start"/>
 
         </LinearLayout>
     </RelativeLayout>

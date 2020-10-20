@@ -4,8 +4,6 @@ import android.app.Dialog;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.text.Editable;
-import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -49,22 +47,19 @@ import java.util.Objects;
 
 import static com.erg.memorized.helpers.CalendarHelper.CALENDAR_HELPER_PERMISSION_REQUEST_CODE;
 import static com.erg.memorized.util.Constants.DEFAULT_SELECTED_REMAINDER;
-import static com.erg.memorized.util.Constants.EDIT_KEY;
 import static com.erg.memorized.util.Constants.ONE_HOUR;
 import static com.erg.memorized.util.Constants.SPACE;
-import static com.erg.memorized.util.Constants.VERSE_COLUMN_ID;
 
-public class NewVerseFragment extends Fragment implements View.OnClickListener, OnPickersDateTimeChangeListener {
+public class NewVerseFragment extends Fragment implements View.OnClickListener,
+        OnPickersDateTimeChangeListener {
 
     public static String TAG = "NewVerseFragment";
 
     private View rootView;
 
-    private boolean flagEditing = false;
+    private boolean isEditingAction;
     private boolean flagStartMemorizing = false;
-    private boolean flagSomeTitleChange = false;
-    private boolean flagSomeVerseChange = false;
-    private long itemId = -1;
+
     private long notifyDate = -1;
     private TextInputLayout tilTitle, tilVerse;
     private TextInputEditText tiEditTextTitle, tiEditTextVerse;
@@ -72,7 +67,6 @@ public class NewVerseFragment extends Fragment implements View.OnClickListener, 
     private TextView tvDate;
     private Button justSave;
     private Button saveStart;
-    private boolean flagTitle, flagVerse;
     private ViewGroup container;
 
     private FixedViewPager fixedViewPager;
@@ -85,7 +79,7 @@ public class NewVerseFragment extends Fragment implements View.OnClickListener, 
     private String calendarName = "";
     private int calendarID = -1;
     private boolean datePicked = false;
-    private boolean untilDatePicked = false;
+    private boolean endDatePicked = false;
     private boolean daily = false;
     private boolean weekly = false;
     private boolean monthly = false;
@@ -99,37 +93,28 @@ public class NewVerseFragment extends Fragment implements View.OnClickListener, 
 
     private Animation animScaleUp, animScaleDown;
 
-    public NewVerseFragment() {
+    public NewVerseFragment(ItemVerse verse, boolean isEditingAction) {
+        this.isEditingAction = isEditingAction;
+        if (isEditingAction && verse != null)
+            this.currentItemVerse = verse;
+        else
+            currentItemVerse = new ItemVerse();
     }
 
-    public static NewVerseFragment newInstance(long itemId, boolean isEditingAction) {
-        Bundle args = new Bundle();
-        NewVerseFragment fragment = new NewVerseFragment();
-        args.putLong(VERSE_COLUMN_ID, itemId);
-        args.putBoolean(EDIT_KEY, isEditingAction);
-        fragment.setArguments(args);
-        return fragment;
+    public static NewVerseFragment newInstance(ItemVerse verse, boolean isEditingAction) {
+        return new NewVerseFragment(verse, isEditingAction);
     }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        Bundle args = getArguments();
 
         animScaleUp = AnimationUtils.loadAnimation(getContext(), R.anim.less_scale_up);
         animScaleDown = AnimationUtils.loadAnimation(getContext(), R.anim.scale_down);
 
-        realmHelper = new RealmHelper(getContext());
-        spHelper = new SharedPreferencesHelper(getContext());
+        realmHelper = new RealmHelper(requireContext());
+        spHelper = new SharedPreferencesHelper(requireContext());
         untilDate = new Date();
-
-        flagEditing = args != null && args.getBoolean(Constants.EDIT_KEY);
-        itemId = args != null ? args.getLong(VERSE_COLUMN_ID) : -1;
-
-        if (flagEditing && itemId != -1)
-            currentItemVerse = realmHelper.findItemVerseById(itemId);
-        else
-            currentItemVerse = new ItemVerse();
 
         meoBottomBar = requireActivity().findViewById(R.id.meow_bottom_navigation);
 
@@ -167,7 +152,7 @@ public class NewVerseFragment extends Fragment implements View.OnClickListener, 
         saveStart.setOnClickListener(this);
         rlShowPickers.setOnClickListener(this);
 
-        if (flagEditing) {
+        if (isEditingAction) {
             tiEditTextTitle.setText(currentItemVerse.getTitle());
             tiEditTextVerse.setText(currentItemVerse.getVerseText());
             if (currentItemVerse.getDateAlarm() != -1) {
@@ -182,90 +167,14 @@ public class NewVerseFragment extends Fragment implements View.OnClickListener, 
 
             }
 
-            untilDatePicked = currentItemVerse.getUntilAlarm() != -1;
-            if (untilDatePicked) {
+            endDatePicked = currentItemVerse.getUntilAlarm() != -1;
+            if (endDatePicked) {
                 untilDate.setTime(currentItemVerse.getUntilAlarm());
             }
-        }
-        setUpTextListener(tiEditTextTitle, tiEditTextVerse);
-    }
 
-    private void setUpTextListener(TextInputEditText title, TextInputEditText verse) {
-
-        title.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-                flagTitle = s.length() > 0;
-                if (flagEditing)
-                    flagSomeTitleChange = !currentItemVerse.getTitle().contentEquals(s.toString());
-
-                if (!flagEditing) showButtonsOnOF();
-                else showButtonsOnOFEditing();
-            }
-
-            @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-                flagTitle = s.length() > 0;
-                if (flagEditing)
-                    flagSomeTitleChange = !currentItemVerse.getTitle().contentEquals(s.toString());
-
-                if (!flagEditing) showButtonsOnOF();
-                else showButtonsOnOFEditing();
-            }
-
-            @Override
-            public void afterTextChanged(Editable s) {
-            }
-        });
-
-        verse.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-                flagVerse = s.length() > 0;
-                if (flagEditing)
-                    flagSomeVerseChange = !currentItemVerse.getVerseText().contentEquals(s.toString());
-
-                if (!flagEditing) showButtonsOnOF();
-                else showButtonsOnOFEditing();
-            }
-
-            @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-                flagVerse = s.length() > 0;
-                if (flagEditing)
-                    flagSomeVerseChange = !currentItemVerse.getVerseText().contentEquals(s.toString());
-
-                if (!flagEditing) showButtonsOnOF();
-                else showButtonsOnOFEditing();
-            }
-
-            @Override
-            public void afterTextChanged(Editable s) {
-            }
-        });
-    }
-
-    private void showButtonsOnOF() {
-        if (flagTitle && flagVerse) {
-            justSave.setVisibility(View.VISIBLE);
-            saveStart.setVisibility(View.VISIBLE);
-        } else {
-            justSave.setVisibility(View.GONE);
-            saveStart.setVisibility(View.GONE);
         }
     }
 
-    private void showButtonsOnOFEditing() {
-        if (flagTitle && flagVerse) {
-            if (flagSomeTitleChange || flagSomeVerseChange) {
-                justSave.setVisibility(View.VISIBLE);
-                saveStart.setVisibility(View.VISIBLE);
-            } else {
-                justSave.setVisibility(View.GONE);
-                saveStart.setVisibility(View.GONE);
-            }
-        }
-    }
 
     @Override
     public void onClick(View v) {
@@ -313,8 +222,7 @@ public class NewVerseFragment extends Fragment implements View.OnClickListener, 
         fixedViewPager.setAdapter(pickersAdapter);
         tabLayout.setupWithViewPager(fixedViewPager);
 
-        Animation anim = AnimationUtils.loadAnimation(getContext(), R.anim.less_scale_up);
-        dialogView.setAnimation(anim);
+        dialogView.setAnimation(animScaleUp);
         dialog.setContentView(dialogView);
 
         Button btnSaveDateTime = dialogView.findViewById(R.id.save_date_time_button);
@@ -322,11 +230,10 @@ public class NewVerseFragment extends Fragment implements View.OnClickListener, 
             SuperUtil.vibrate(getContext());
 
             if (daily || weekly || monthly) {
-                if (untilDatePicked) {
+                if (endDatePicked) {
                     if (isUntilDateValid()) {
                         notifyDate = calendar.getTimeInMillis();
                         tvDate.setText(TimeHelper.dateFormatterMedium(notifyDate));
-                        Animation animScaleDown = AnimationUtils.loadAnimation(getContext(), R.anim.less_scale_up);
                         tvDate.startAnimation(animScaleDown);
 
                         datePicked = true;
@@ -349,7 +256,6 @@ public class NewVerseFragment extends Fragment implements View.OnClickListener, 
                 notifyDate = calendar.getTimeInMillis();
 
                 tvDate.setText(TimeHelper.dateFormatterMedium(notifyDate));
-                Animation animScaleDown = AnimationUtils.loadAnimation(getContext(), R.anim.less_scale_up);
                 tvDate.startAnimation(animScaleDown);
 
                 datePicked = true;
@@ -372,7 +278,7 @@ public class NewVerseFragment extends Fragment implements View.OnClickListener, 
 
         if (!srtTitle.isEmpty() && !srtVerse.isEmpty()) {
 
-            if (!flagEditing) {
+            if (!isEditingAction) {
                 currentItemVerse.setId(System.currentTimeMillis());
             }
             currentItemVerse.setTitle(srtTitle);
@@ -384,7 +290,7 @@ public class NewVerseFragment extends Fragment implements View.OnClickListener, 
 
             if (daily || weekly || monthly) {
                 if (untilDate != null) {
-                    if (untilDatePicked) {
+                    if (endDatePicked) {
                         if (isUntilDateValid()) {
                             currentItemVerse.setUntilAlarm(untilDate.getTime());
                         } else {
@@ -424,7 +330,7 @@ public class NewVerseFragment extends Fragment implements View.OnClickListener, 
     public void onStart() {
         super.onStart();
         if (meoBottomBar != null) {
-            meoBottomBar.setAnimation(AnimationUtils.loadAnimation(getContext(), R.anim.scale_down));
+            meoBottomBar.setAnimation(animScaleDown);
             if (meoBottomBar.getVisibility() == View.VISIBLE)
                 meoBottomBar.setVisibility(View.GONE);
         }
@@ -434,13 +340,14 @@ public class NewVerseFragment extends Fragment implements View.OnClickListener, 
     public void onPause() {
         super.onPause();
         if (meoBottomBar != null) {
-            meoBottomBar.setAnimation(AnimationUtils.loadAnimation(getContext(), R.anim.scale_up));
+            meoBottomBar.setAnimation(animScaleUp);
             if (meoBottomBar.getVisibility() == View.GONE)
                 meoBottomBar.setVisibility(View.VISIBLE);
         }
     }
 
     private void loadMemorizingView() {
+        SuperUtil.removeViewByTag(requireActivity(), MemorizingFragment.TAG, true);
         SuperUtil.loadView(requireActivity(),
                 MemorizingFragment.newInstance(currentItemVerse, false),
                 MemorizingFragment.TAG, true);
@@ -505,7 +412,7 @@ public class NewVerseFragment extends Fragment implements View.OnClickListener, 
         return false;
     }
 
-    private void showUntilDatePickerDialog(TextView tvUntilDate) {
+    private void showUntilDatePickerDialog(TextView tvEndDate) {
         final Dialog dialog = new Dialog(Objects.requireNonNull(getContext()), R.style.alert_dialog);
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
         LayoutInflater inflater = getLayoutInflater();
@@ -526,12 +433,12 @@ public class NewVerseFragment extends Fragment implements View.OnClickListener, 
                     untilDate = auxCal.getTime();
                 });
 
-        Button btSaveUntilDate = dialogView.findViewById(R.id.until_date_button);
-        btSaveUntilDate.setOnClickListener(v -> {
+        Button btSaveEndDate = dialogView.findViewById(R.id.until_date_button);
+        btSaveEndDate.setOnClickListener(v -> {
             SuperUtil.vibrate(getContext());
             if (isUntilDateValid()) {
-                tvUntilDate.setText(TimeHelper.dateFormatterMedium(untilDate.getTime()));
-                untilDatePicked = true;
+                tvEndDate.setText(TimeHelper.dateFormatterMedium(untilDate.getTime()));
+                endDatePicked = true;
                 if (dialog.isShowing())
                     dialog.dismiss();
             } else {

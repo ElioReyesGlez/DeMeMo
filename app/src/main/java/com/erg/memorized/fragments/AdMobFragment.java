@@ -40,6 +40,8 @@ public class AdMobFragment extends Fragment implements View.OnClickListener {
     private BillingHelper billingHelper;
     private boolean jumpFlag;
 
+    private long timerMilliseconds =  7000;
+
 
     public AdMobFragment(ItemUser currentUser, boolean jumpFlag) {
         this.currentUser = currentUser;
@@ -76,6 +78,8 @@ public class AdMobFragment extends Fragment implements View.OnClickListener {
         if (appContext == null)
             return;
 
+
+
         mInterstitialAd = newInterstitialAd(appContext);
         loadInterstitial();
 
@@ -99,11 +103,11 @@ public class AdMobFragment extends Fragment implements View.OnClickListener {
         }
     }
 
-    private void startCountdown(Context appContext) {
+    private void startCountdown(Context appContext, long countDown) {
         final int countDownInterval = 1000;
-        final int countDown = 7000;
         countDownTimer = new CountDownTimer(countDown, countDownInterval) {
             public void onTick(long millisUntilFinished) {
+                timerMilliseconds = millisUntilFinished;
                 long auxVar = millisUntilFinished / countDownInterval;
                 tvCountdown.setText(String.valueOf((int) auxVar));
                 isOnTick = true;
@@ -131,6 +135,7 @@ public class AdMobFragment extends Fragment implements View.OnClickListener {
     }
 
     private InterstitialAd newInterstitialAd(final Context context) {
+
         InterstitialAd interstitialAd = new InterstitialAd(context);
         interstitialAd.setAdUnitId(getString(R.string.testing_interstitial_ad_unit_id));
         interstitialAd.setAdListener(new AdListener() {
@@ -184,8 +189,8 @@ public class AdMobFragment extends Fragment implements View.OnClickListener {
 
     @Override
     public void onPause() {
-        super.onPause();
         cancelTimer();
+        super.onPause();
     }
 
     @Override
@@ -194,7 +199,8 @@ public class AdMobFragment extends Fragment implements View.OnClickListener {
         if (!currentUser.isPremium()) {
             Context appContext = getAppContext();
             if (appContext == null) return;
-            startCountdown(getAppContext());
+
+            startCountdown(getAppContext(), timerMilliseconds);
         } else {
             if (jumpFlag) {
                 loadLeaderBoardView();

@@ -110,18 +110,18 @@
             android:orientation="horizontal">
 
             <TextView
-                style="@style/default_textView_title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginRight="1dp"
                 android:layout_marginEnd="1dp"
                 android:text="@string/no_account_yet_create_one"
                 android:textColor="@color/dark_gray_btn_bg_color"
-                android:textSize="16sp" />
+                android:textSize="16sp"
+                android:ellipsize="end"
+                android:maxLines="1" />
 
             <TextView
                 android:id="@+id/link_sign_up"
-                style="@style/default_textView_title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="2dp"
@@ -130,7 +130,10 @@
                 android:focusable="true"
                 android:text="@string/crete_one"
                 android:textColor="#42a5f5"
-                android:textSize="16sp" />
+                android:textSize="16sp"
+                android:textStyle="bold"
+                android:ellipsize="end"
+                android:maxLines="1"  />
 
         </LinearLayout>
 
@@ -143,25 +146,28 @@
             android:orientation="horizontal">
 
             <TextView
-                style="@style/default_textView_title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="1dp"
                 android:text="@string/forgot_password"
                 android:textColor="@color/dark_gray_btn_bg_color"
-                android:textSize="16sp" />
+                android:textSize="16sp"
+                android:ellipsize="end"
+                android:maxLines="1"  />
 
             <TextView
                 android:id="@+id/link_restore"
-                style="@style/default_textView_title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="2dp"
                 android:clickable="true"
                 android:focusable="true"
                 android:text="@string/restore"
+                android:textStyle="bold"
                 android:textColor="#42a5f5"
-                android:textSize="16sp" />
+                android:textSize="16sp"
+                android:ellipsize="end"
+                android:maxLines="1" />
 
         </LinearLayout>
 

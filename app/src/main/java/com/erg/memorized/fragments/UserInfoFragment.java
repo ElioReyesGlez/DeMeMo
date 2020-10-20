@@ -22,6 +22,7 @@ import android.widget.TextView;
 import androidx.fragment.app.Fragment;
 
 import com.erg.memorized.R;
+import com.erg.memorized.helpers.CircleTransform;
 import com.erg.memorized.helpers.MessagesHelper;
 import com.erg.memorized.helpers.RealmHelper;
 import com.erg.memorized.helpers.SharedPreferencesHelper;
@@ -96,6 +97,8 @@ public class UserInfoFragment extends Fragment implements View.OnClickListener {
     private Animation animScaleUp, animScaleDown, animSlideInFromRight;
 
 
+    private RealmHelper realmHelper;
+
     public UserInfoFragment() {
         // Required empty public constructor
     }
@@ -104,8 +107,8 @@ public class UserInfoFragment extends Fragment implements View.OnClickListener {
         currentUser = itemUser;
     }
 
-    public static UserInfoFragment newInstance() {
-        return new UserInfoFragment();
+    public static UserInfoFragment newInstance(ItemUser user) {
+        return new UserInfoFragment(user);
     }
 
     @Override
@@ -113,6 +116,7 @@ public class UserInfoFragment extends Fragment implements View.OnClickListener {
         super.onCreate(savedInstanceState);
 
         spHelper = new SharedPreferencesHelper(requireContext());
+        realmHelper =  new RealmHelper(requireContext());
 
         fAuth = FirebaseAuth.getInstance();
         stoReference = FirebaseStorage.getInstance()
@@ -227,6 +231,8 @@ public class UserInfoFragment extends Fragment implements View.OnClickListener {
                 updatedCurrentUser.setMobile(mobile);
                 updatedCurrentUser.setPass(password);
                 updatedCurrentUser.setImg(base64Image);
+                updatedCurrentUser.setVerses(currentUser.getVerses());
+                updatedCurrentUser.setPremium(currentUser.isPremium());
                 saveOnFirebaseDB(getIfCurrentUserUpdated());
                 break;
         }
@@ -458,6 +464,7 @@ public class UserInfoFragment extends Fragment implements View.OnClickListener {
             if (imgUri != null && isImgPickingAction && croppedBitmapImg != null) {
                 base64Image = superUtil.encodeBase64ToString(croppedBitmapImg,
                         SuperUtil.getExtensionFromUri(imgUri));
+                Log.d(TAG, "doInBackground: base64Image: SELECTED");
             } else {
                 if (currentUser.getImg() != null && !currentUser.getImg().equals(DEFAULT))
                     bitmapFromBase64 = SuperUtil.decodeBase64ToBitmap(currentUser.getImg());
@@ -475,6 +482,7 @@ public class UserInfoFragment extends Fragment implements View.OnClickListener {
             if (isImgPickingAction) {
                 Picasso.get()
                         .load(cropImageView.getImageUri())
+                        .transform(new CircleTransform())
                         .resize(ivAvatar.getWidth(), ivAvatar.getHeight())
                         .centerCrop()
                         .placeholder(R.drawable.ic_refresh)
@@ -483,9 +491,9 @@ public class UserInfoFragment extends Fragment implements View.OnClickListener {
                 isImgPickingAction = false;
                 isImgPicked = true;
             } else {
-
-                if (!isDefaultImg && !isImgPicked)
+                if (!isDefaultImg && !isImgPicked) {
                     ivAvatar.setImageBitmap(bitmapFromBase64);
+                }
                 tvName.setText(name);
                 tvEmail.setText(email);
                 tvMobile.setText(mobile);
@@ -498,17 +506,17 @@ public class UserInfoFragment extends Fragment implements View.OnClickListener {
         }
     }
 
-    private void saveOnFirebaseDB(ItemUser user) {
-        if (user != null) {
+    private void saveOnFirebaseDB(ItemUser updatedCurrentUser) {
+        if (updatedCurrentUser != null) {
             Dialog pgsDialog = SuperUtil.showProgressDialog(getActivity(), container);
             fReference = FirebaseDatabase.getInstance()
                     .getReference(USER_FIRE_BASE_REFERENCE)
-                    .child(user.getId());
-            fReference.setValue(user.getUserIntoHasMap()) // Saving On FireBase
+                    .child(updatedCurrentUser.getId());
+            fReference.setValue(updatedCurrentUser.getUserIntoHasMap()) // Saving On FireBase
                     .addOnCompleteListener(task -> {
                         if (task.isSuccessful()) {
-                            RealmHelper realmHelper = new RealmHelper(getContext());
-                            realmHelper.addUserToDB(user); // Saving On Realm
+                            realmHelper.addUserToDB(updatedCurrentUser); // Saving On Realm
+                            currentUser = updatedCurrentUser;
                             if (imgUri != null && isImgPicked) {
                                 uploadFile(SuperUtil.getUserFromEmail(currentUser.getEmail())); // Uploading File To FireBase
                             }
@@ -516,21 +524,10 @@ public class UserInfoFragment extends Fragment implements View.OnClickListener {
                             if (realmHelper.getSavedVerses() != null
                                     && !realmHelper.getSavedVerses().isEmpty()) {
 
-                                fReference = FirebaseDatabase.getInstance()
-                                        .getReference(USER_FIRE_BASE_REFERENCE)
-                                        .child(user.getId())
-                                        .child(USER_COLUMN_VERSES);
-                                fReference.setValue(
-                                        SuperUtil.getVersesIntoHasMapList(
-                                                realmHelper.getSavedVerses()));
+                                uploadVerses(updatedCurrentUser);
                             }
 
-                            if (user.isPremium()) {
-                                fReference = FirebaseDatabase.getInstance()
-                                        .getReference(LEADER_BOARD_FIRE_BASE_REFERENCE)
-                                        .child(user.getId());
-                                fReference.setValue(user.getScoreInfoIntoHasMap());
-                            }
+                            uploadScore(pgsDialog, updatedCurrentUser);
 
                             if (pgsDialog.isShowing())
                                 pgsDialog.dismiss();
@@ -563,6 +560,32 @@ public class UserInfoFragment extends Fragment implements View.OnClickListener {
                         }
                     });
         }
+    }
+
+    private void uploadVerses(ItemUser updatedCurrentUser) {
+        fReference = FirebaseDatabase.getInstance()
+                .getReference(USER_FIRE_BASE_REFERENCE)
+                .child(updatedCurrentUser.getId())
+                .child(USER_COLUMN_VERSES);
+        fReference.setValue(
+                SuperUtil.getVersesIntoHasMapList(
+                        realmHelper.getSavedVerses()));
+    }
+
+    private void uploadScore(Dialog pgsDialog, ItemUser updatedCurrentUser) {
+        DatabaseReference fReferenceLeaderBoard = FirebaseDatabase.getInstance()
+                .getReference(LEADER_BOARD_FIRE_BASE_REFERENCE)
+                .child(updatedCurrentUser.getId());
+        fReferenceLeaderBoard.setValue(updatedCurrentUser.getScoreInfoIntoHasMap())
+                .addOnCompleteListener(task -> {
+                    if (task.isSuccessful()) {
+                        Log.d(TAG, "Leader board uploadScore:Success ");
+                    } else {
+                        Log.e(TAG, "uploadScore: " + task.getException().getMessage());
+                    }
+                    if (pgsDialog.isShowing())
+                        pgsDialog.dismiss();
+                });
     }
 
     private void deleteUserInfoOnFirebaseDB(Dialog dialog, View dialogView) {

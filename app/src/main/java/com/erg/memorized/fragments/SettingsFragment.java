@@ -13,7 +13,6 @@ import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -81,7 +80,7 @@ public class SettingsFragment extends Fragment implements View.OnClickListener {
     private TextView tvLastUploadDate;
     private Button btnSignUp;
     private RelativeLayout rlUserSettings, rlLeaderBoard, rlAbout, rlGeneralSettings;
-    private LinearLayout llSync, llUpload;
+    private RelativeLayout rlSync, rlUpload;
     private ProgressBar progressBar;
 
     private SharedPreferencesHelper spHelper;
@@ -162,13 +161,13 @@ public class SettingsFragment extends Fragment implements View.OnClickListener {
         tvVerseCont = rootView.findViewById(R.id.tv_verses_cont);
         tvUserScore = rootView.findViewById(R.id.tv_user_score);
         tvLastUploadDate = rootView.findViewById(R.id.tv_upload_date);
-        llSync = rootView.findViewById(R.id.ll_sync);
-        llUpload = rootView.findViewById(R.id.ll_upload);
+        rlSync = rootView.findViewById(R.id.rl_sync);
+        rlUpload = rootView.findViewById(R.id.rl_upload);
         ivUploadNeeded = rootView.findViewById(R.id.upload_needed);
         ivDownloadNeeded = rootView.findViewById(R.id.download_needed);
 
-        llSync.setOnClickListener(this);
-        llUpload.setOnClickListener(this);
+        rlSync.setOnClickListener(this);
+        rlUpload.setOnClickListener(this);
         ivUploadNeeded.setOnClickListener(this);
         ivDownloadNeeded.setOnClickListener(this);
         rlLeaderBoard.setOnClickListener(this);
@@ -252,16 +251,15 @@ public class SettingsFragment extends Fragment implements View.OnClickListener {
         switch (v.getId()) {
             case R.id.rl_user_settings:
                 if (spHelper.getUserLoginStatus()) {
-                    UserInfoFragment userInfoFragment = new UserInfoFragment(currentUser);
                     SuperUtil.loadView(requireActivity(),
-                            userInfoFragment,
+                            UserInfoFragment.newInstance(currentUser),
                             UserInfoFragment.TAG, true);
                 }
                 break;
             case R.id.bt_login:
                 showLoginDialog();
                 break;
-            case R.id.ll_sync:
+            case R.id.rl_sync:
                 if (spHelper.getUserLoginStatus()) {
                     if (spHelper.getEmailVerifiedStatus()) {
                         if (isSyncNeeded) {
@@ -279,7 +277,7 @@ public class SettingsFragment extends Fragment implements View.OnClickListener {
                             getString(R.string.login_needed));
                 }
                 break;
-            case R.id.ll_upload:
+            case R.id.rl_upload:
                 if (spHelper.getUserLoginStatus()) {
                     if (spHelper.getEmailVerifiedStatus()) {
                         if (isUploadNeeded) {
@@ -801,25 +799,24 @@ public class SettingsFragment extends Fragment implements View.OnClickListener {
 
         //Uploader
         isUploadNeeded = !SuperUtil.containsAll(localVerses, cloudVerses);
+
         if (isUploadNeeded) {
             SuperUtil.showView(animScaleUp, ivUploadNeeded);
-            llUpload.setBackgroundResource(R.drawable.selector_light_green);
+            rlUpload.setBackgroundResource(R.drawable.selector_light_green);
         } else {
-            SuperUtil.hideView(animScaleDown, ivUploadNeeded);
-            llUpload.setBackgroundResource(R.drawable.selector_gray);
+            SuperUtil.hideViewInvisibleWay(animScaleDown, ivUploadNeeded);
+            rlUpload.setBackgroundResource(R.drawable.selector_gray);
         }
 
         //Sync
-        isSyncNeeded = !SuperUtil.containsAll(cloudVerses, localVerses)
-                && localVerses.isEmpty()
-                && !cloudVerses.isEmpty();
+        isSyncNeeded = !SuperUtil.containsAll(cloudVerses, localVerses) && !cloudVerses.isEmpty();
 
         if (isSyncNeeded) {
             SuperUtil.showView(animScaleUp, ivDownloadNeeded);
-            llSync.setBackgroundResource(R.drawable.selector_light_green);
+            rlSync.setBackgroundResource(R.drawable.selector_light_green);
         } else {
-            SuperUtil.hideView(animScaleDown, ivDownloadNeeded);
-            llSync.setBackgroundResource(R.drawable.selector_gray);
+            SuperUtil.hideViewInvisibleWay(animScaleDown, ivDownloadNeeded);
+            rlSync.setBackgroundResource(R.drawable.selector_gray);
         }
     }
 
@@ -860,16 +857,11 @@ public class SettingsFragment extends Fragment implements View.OnClickListener {
 
     private void showUserInfo(ItemUser itemUser, Bitmap bitmapFromBase64) {
 
-        if (btnSignUp.getVisibility() == View.VISIBLE)
-            btnSignUp.setVisibility(View.GONE);
-        if (cardViewAvatar.getVisibility() == View.GONE)
-            cardViewAvatar.setVisibility(View.VISIBLE);
-        if (tvUserName.getVisibility() == View.GONE)
-            tvUserName.setVisibility(View.VISIBLE);
-        if (tvUser.getVisibility() == View.GONE)
-            tvUser.setVisibility(View.VISIBLE);
-        if (ivRightArrowUser.getVisibility() == View.GONE)
-            ivRightArrowUser.setVisibility(View.VISIBLE);
+        SuperUtil.hideView(null, btnSignUp);
+        SuperUtil.showView(null, cardViewAvatar);
+        SuperUtil.showView(null, tvUserName);
+        SuperUtil.showView(null, tvUser);
+        SuperUtil.showView(null, ivRightArrowUser);
 
         if (itemUser.getImg() != null && itemUser.getImg().equals(Constants.DEFAULT)) {
             ivImageProfile.setImageResource(R.drawable.ic_user_profile);
