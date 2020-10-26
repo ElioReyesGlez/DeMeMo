@@ -158,6 +158,11 @@ public class RealmHelper {
         });
     }
 
+    public void deleteAllVerseFromRealmDataBase() {
+        Realm mRealm = getVerseRealmInstance();
+        mRealm.executeTransaction(realm -> realm.delete(ItemVerse.class));
+    }
+
     public void deleteUserFromRealmDataBase(ItemUser itemUser) {
         Realm mRealm = getUserRealmInstance();
         mRealm.executeTransaction(realm -> {
@@ -169,9 +174,7 @@ public class RealmHelper {
     }
     public void deleteAllUserFromRealmDataBase() {
         Realm mRealm = getUserRealmInstance();
-        mRealm.executeTransaction(realm -> {
-            realm.delete(ItemUser.class);
-        });
+        mRealm.executeTransaction(realm -> realm.delete(ItemUser.class));
     }
 
     public void setTitleVerseToItemInDataBase(ItemVerse itemVerse) {

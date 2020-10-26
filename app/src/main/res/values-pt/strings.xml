@@ -205,7 +205,7 @@
     <string name="daily_verse">Verso diário</string>
     <string name="msg_edit_to_save">Este versículo ainda não foi salvo. Quer salvar?</string>
     <string name="msg_set_notification">Definir lembrete?</string>
-    <string name="response_404">Não encontrado! Verifique se a versão atual da Bíblia está correta ou tente mais tarde.</string>
+    <string name="response_404">Verso não encontrado! Verifique se a versão atual da Bíblia está correta ou tente mais tarde.</string>
     <string name="minutes_ago">" minutos atrás"</string>
     <string name="one_second_ago">um segundo atrás</string>
     <string name="seconds_ago">" segundos atrás"</string>
@@ -282,7 +282,7 @@
     <string name="full_access_to_the_verse_memory_evaluator">Acesso total ao avaliador de memória do verso</string>
     <string name="worldwide_participation_on_dememo_leaderboard">Participação mundial no ranking DeMeMo</string>
     <string name="already_premium">Já é um membro premium</string>
-    <string name="memorizing_finish">Pronto, bom trabalho! \n Está pronto para testar sua memória?</string>
+    <string name="memorizing_finish">Pronto, bom trabalho! \n Está pronto para testar a sua memória?</string>
     <string name="memorizing_done_msg">Pronto, bom trabalho!</string>
     <string name="about">Sobre</string>
     <string name="support">Apoio, suporte</string>
@@ -323,16 +323,16 @@
         <item>English</item>
         <item>Español</item>
         <item>Português</item>
-<!--        <item>繁體中文</item>-->
-<!--        <item>Română</item>-->
+        <!--        <item>繁體中文</item>-->
+        <!--        <item>Română</item>-->
     </string-array>
 
     <string-array name="languages_codes">
         <item>en</item>
         <item>es</item>
         <item>pt</item>
-<!--        <item>zh</item>-->
-<!--        <item>ro</item>-->
+        <!--        <item>zh</item>-->
+        <!--        <item>ro</item>-->
     </string-array>
 
     <string-array name="marks">
@@ -360,7 +360,6 @@
     <string name="interstitial_ad_sample">Amostra de anúncio intersticial</string>
     <string name="start_level">Nível 1</string>
     <string name="next_level">Próximo nível</string>
-    <string name="level_text">Nivel% 1 $ d</string>
 
     // DeMeMo adMob id
     <!--    <string name="interstitial_ad_unit_id">ca-app-pub-5375894039512920/4596144610</string>-->
@@ -377,11 +376,11 @@
 
     <!--    All strings used in about page Fragment*-->
     <string name="description_about_page">
-        DeMeMo is the result of the interest in developing systematic support in the process of
-         memorize biblical quotes, soon became a project where there is an interactive and
-         competitive way to promote, learn and memorize the Bible. DeMeMo is part of a project in
-         development that aims to position the word of God in a more current world where the new
-         technologies and the beatitudes of God go together transparently.</string>
+        DeMeMo é o resultado da ideia de desenvolver um suporte sistemático no processo de
+        memorização de citações bíblicas, então tornou-se num projeto onde coexiste uma forma
+        interativa e competitiva de promover, aprender e memorizar a Bíblia. DeMeMo é parte de um
+        projeto em desenvolvimento que visa posicionar a palavra de Deus num mundo mais atual,
+        onde as novas tecnologias e a bem-aventurança de Deus andem juntas de forma transparente.</string>
     <string name="email_about_page">dememoteam@gmail.com</string>
     <string name="app_version_about_page">Version: 1.0.0</string>
     <string name="play_store_about_page">Avalie-nos na Play Store</string>
@@ -400,4 +399,14 @@
     <string name="miss">Falhas</string>
     <string name="title_and_verse_exists">Este título e versículo já existem! Substituir?</string>
     <string name="select_img">Selecionar imagem</string>
+    <string name="dememo_intro_description">DeMeMo é o aplicativo que irá ajudá-lo a memorizar as
+        suas citações bíblicas de uma forma eficaz e interativa</string>
+    <string name="evaluator_intro_description">Deixe DeMeMo testar a sua memória,
+        então pode saber com certeza o quão bem dominou as suas citações da Bíblia.</string>
+    <string name="leader_board_intro_description">Junte-se à tabela de classificação DeMeMo.
+        Compare sua pontuação e compita de forma saudável para alcançar as melhores posições.</string>
+    <string name="cloud_backup">Cópia de Segurança</string>
+    <string name="cloud_backup_intro_description">Sincronize todo o seu progresso na nuvem,
+        então pode recuperar tudo no caso de precisar.</string>
+    <string name="null_pointer">Exceção de campo nula!</string>
 </resources>

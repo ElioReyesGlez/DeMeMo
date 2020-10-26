@@ -38,6 +38,12 @@ public class Constants {
     public static final String VERSE_COLUMN_DAYS_ON = "daysOn";
     public static final String VERSE_COLUMN_SCORE = "verse_score";
 
+    /*LeaderBoa Rows*/
+    public static final String LEADER_BOARD_COLUMN_IMG = "img";
+    public static final String LEADER_BOARD_COLUMN_IS_PREMIUM = "isPremium";
+    public static final String LEADER_BOARD_COLUMN_NAME = "name";
+    public static final String LEADER_BOARD_COLUMN_SCORE = "score";
+
     //    public static final int OPT_HOME = 0;
 //    public static final int OPT__ADD_TEXT = 1;
 //    public static final String TEXTS = "texts";
@@ -246,11 +252,11 @@ public class Constants {
      **/
 
     public static int[] FlagResIds = new int[] {
-            R.drawable.ic_flag_england,
+            R.drawable.ic_flag_uk,
             R.drawable.ic_flag_spain,
-            R.drawable.ic_flag_portugal,
-            R.drawable.ic_flag_china,
-            R.drawable.ic_flag_romania
+            R.drawable.ic_flag_portugal
+//            R.drawable.ic_flag_china,
+//            R.drawable.ic_flag_romania
     };
 
     public static Bible King_James_Version() {

@@ -27,7 +27,6 @@ import com.erg.memorized.helpers.MessagesHelper;
 import com.erg.memorized.helpers.RealmHelper;
 import com.erg.memorized.helpers.SharedPreferencesHelper;
 import com.erg.memorized.model.ItemUser;
-import com.erg.memorized.util.Constants;
 import com.erg.memorized.util.SuperUtil;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.textfield.TextInputEditText;
@@ -40,8 +39,6 @@ import com.google.firebase.auth.FirebaseAuthUserCollisionException;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.storage.FirebaseStorage;
-import com.google.firebase.storage.StorageReference;
 import com.squareup.picasso.Picasso;
 import com.theartofdev.edmodo.cropper.CropImage;
 import com.theartofdev.edmodo.cropper.CropImageView;
@@ -50,7 +47,6 @@ import java.util.Objects;
 
 import static android.app.Activity.RESULT_OK;
 import static com.erg.memorized.util.Constants.DEFAULT;
-import static com.erg.memorized.util.Constants.DOT;
 import static com.erg.memorized.util.Constants.LEADER_BOARD_FIRE_BASE_REFERENCE;
 import static com.erg.memorized.util.Constants.USER_COLUMN_VERSES;
 import static com.erg.memorized.util.Constants.USER_FIRE_BASE_REFERENCE;
@@ -61,8 +57,6 @@ public class UserInfoFragment extends Fragment implements View.OnClickListener {
 
     private SharedPreferencesHelper spHelper;
 
-    private LinearLayout llLogOut;
-    private LinearLayout llRemoveAccount;
     private ImageView ivAvatar;
     private TextView tvEmail;
     private TextView tvName;
@@ -70,12 +64,7 @@ public class UserInfoFragment extends Fragment implements View.OnClickListener {
     private TextView tvPass;
     private TextView tvSave;
 
-    private RelativeLayout rlName;
-    private RelativeLayout rlEmail;
-    private RelativeLayout rlPass;
-    private RelativeLayout rlMobile;
     private RelativeLayout rlMsgEmailNotVerified;
-
     private View rootView;
     private ViewGroup container;
 
@@ -90,7 +79,6 @@ public class UserInfoFragment extends Fragment implements View.OnClickListener {
 
     private FirebaseAuth fAuth;
     private DatabaseReference fReference;
-    private StorageReference stoReference;
 
     private String name, email, mobile, password;
 
@@ -119,8 +107,6 @@ public class UserInfoFragment extends Fragment implements View.OnClickListener {
         realmHelper =  new RealmHelper(requireContext());
 
         fAuth = FirebaseAuth.getInstance();
-        stoReference = FirebaseStorage.getInstance()
-                .getReference(Constants.IMG_FIRE_BASE_REFERENCE);
 
         name = currentUser.getName();
         email = currentUser.getEmail();
@@ -165,14 +151,14 @@ public class UserInfoFragment extends Fragment implements View.OnClickListener {
         tvEmail = rootView.findViewById(R.id.tv_email);
         tvMobile = rootView.findViewById(R.id.tv_mobile);
         tvPass = rootView.findViewById(R.id.tv_pass);
-        llLogOut = rootView.findViewById(R.id.ll_log_out);
-        llRemoveAccount = rootView.findViewById(R.id.ll_remove_account);
+        LinearLayout llLogOut = rootView.findViewById(R.id.ll_log_out);
+        LinearLayout llRemoveAccount = rootView.findViewById(R.id.ll_remove_account);
         tvSave = rootView.findViewById(R.id.tv_save);
 
-        rlName = rootView.findViewById(R.id.rl_name);
-        rlEmail = rootView.findViewById(R.id.rl_email);
-        rlPass = rootView.findViewById(R.id.rl_pass);
-        rlMobile = rootView.findViewById(R.id.rl_mobile);
+        RelativeLayout rlName = rootView.findViewById(R.id.rl_name);
+        RelativeLayout rlEmail = rootView.findViewById(R.id.rl_email);
+        RelativeLayout rlPass = rootView.findViewById(R.id.rl_pass);
+        RelativeLayout rlMobile = rootView.findViewById(R.id.rl_mobile);
         rlMsgEmailNotVerified = rootView.findViewById(R.id.rl_msg_not_verified);
 
 
@@ -251,6 +237,7 @@ public class UserInfoFragment extends Fragment implements View.OnClickListener {
         fAuth.signInWithEmailAndPassword(email, password)
                 .addOnCompleteListener(task -> {
                     if (task.isSuccessful()) {
+                        deleteUserFromLeaderBoard();
                         deleteUserInfoOnFirebaseDB(dialog, dialogView);
                     } else {
                         if (task.getException() instanceof FirebaseNetworkException) {
@@ -267,6 +254,21 @@ public class UserInfoFragment extends Fragment implements View.OnClickListener {
                         }
                     }
                 });
+    }
+
+    private void deleteUserFromLeaderBoard() {
+        fReference = FirebaseDatabase.getInstance()
+                .getReference(LEADER_BOARD_FIRE_BASE_REFERENCE)
+                .child(currentUser.getId());
+        fReference.removeValue().addOnCompleteListener(task -> {
+            if (task.isSuccessful()) {
+                Log.d(TAG, "deleteUserFromLeaderBoard: " + "Success deleting");
+            } else {
+                Log.d(TAG, "deleteUserFromLeaderBoard: FAILED DELETING ERROR: "
+                        + task.getException());
+            }
+        });
+
     }
 
     private void showDeleteConfirmationDialog() {
@@ -517,9 +519,6 @@ public class UserInfoFragment extends Fragment implements View.OnClickListener {
                         if (task.isSuccessful()) {
                             realmHelper.addUserToDB(updatedCurrentUser); // Saving On Realm
                             currentUser = updatedCurrentUser;
-                            if (imgUri != null && isImgPicked) {
-                                uploadFile(SuperUtil.getUserFromEmail(currentUser.getEmail())); // Uploading File To FireBase
-                            }
 
                             if (realmHelper.getSavedVerses() != null
                                     && !realmHelper.getSavedVerses().isEmpty()) {
@@ -614,12 +613,12 @@ public class UserInfoFragment extends Fragment implements View.OnClickListener {
 
                             RealmHelper realmHelper = new RealmHelper(getContext());
                             realmHelper.deleteUserFromRealmDataBase(currentUser);
-
+                            realmHelper.deleteAllVerseFromRealmDataBase();
                             showSuccessDeleteMsgOnDialog(dialog, dialogView);
 
                             Log.d(TAG, "User account deleted.");
                         } else {
-                            Log.d(TAG, "deleteUser: " + task.getException().getMessage());
+                            Log.d(TAG, "deleteUser: " + task.getException());
                             if (pgsDialog.isShowing())
                                 pgsDialog.dismiss();
 
@@ -630,12 +629,6 @@ public class UserInfoFragment extends Fragment implements View.OnClickListener {
                             }
                         }
                     });
-    }
-
-    private void uploadFile(String fileName) {
-        StorageReference riversRef = stoReference
-                .child(fileName + DOT + SuperUtil.getExtensionFromUri(imgUri));
-        riversRef.putFile(imgUri);
     }
 
     private void showUpdateDataDialog(int resLayout) {

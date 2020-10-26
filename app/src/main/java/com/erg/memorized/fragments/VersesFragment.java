@@ -64,7 +64,7 @@ public class VersesFragment extends Fragment implements View.OnClickListener, On
 
     private ItemVerse currentItemVerse;
     private ItemUser currentUser;
-    private Animation animScaleUp, animScaleDown;
+    private Animation animScaleUp;
     private RealmHelper realmHelper;
     private SharedPreferencesHelper spHelper;
     private FirebaseAuth fAuth;
@@ -82,9 +82,7 @@ public class VersesFragment extends Fragment implements View.OnClickListener, On
         super.onCreate(savedInstanceState);
 
         realmHelper = new RealmHelper(requireContext());
-
         animScaleUp = AnimationUtils.loadAnimation(requireContext(), R.anim.scale_up);
-        animScaleDown = AnimationUtils.loadAnimation(requireContext(), R.anim.scale_down);
 
         verses = new ArrayList<>(realmHelper.getSavedVerses());
         spHelper = new SharedPreferencesHelper(requireContext());
@@ -102,7 +100,6 @@ public class VersesFragment extends Fragment implements View.OnClickListener, On
     }
 
     private void setUpView() {
-
         emptyContainerSignal = rootView.findViewById(R.id.linear_layout_empty_container);
         emptyContainerSignal.setOnClickListener(this);
 
@@ -277,7 +274,7 @@ public class VersesFragment extends Fragment implements View.OnClickListener, On
             if (dialog.isShowing())
                 dialog.dismiss();
         });
-        
+
         dialog.show();
         dialogView.startAnimation(animScaleUp);
 
@@ -290,7 +287,6 @@ public class VersesFragment extends Fragment implements View.OnClickListener, On
     }
 
     private void removeFromCloud() {
-
         verses = new ArrayList<>(realmHelper.getSavedVerses());
 
         DatabaseReference fReference = FirebaseDatabase.getInstance()
@@ -334,7 +330,6 @@ public class VersesFragment extends Fragment implements View.OnClickListener, On
                         }
                     }
                 });
-
     }
 
     /*onClick on Fab Button and empty view indicator*/

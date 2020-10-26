@@ -63,11 +63,6 @@
             android:name="com.theartofdev.edmodo.cropper.CropImageActivity"
             android:theme="@style/Base.Theme.AppCompat" />
 
-        <receiver
-            android:name=".RemainderReceiver"
-            android:enabled="true"
-            android:exported="true" />
-
         <service
             android:name=".services.MessageService"
             android:exported="false">

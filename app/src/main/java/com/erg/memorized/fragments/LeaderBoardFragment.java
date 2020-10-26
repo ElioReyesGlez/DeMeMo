@@ -52,7 +52,6 @@ public class LeaderBoardFragment extends Fragment implements SearchView.OnQueryT
     private RecyclerView recycler;
     private SearchView searcher;
     private AdapterRecyclerViewForLeaderBoardList adapter;
-
     private View rootView;
     private ViewGroup container;
 
@@ -105,7 +104,6 @@ public class LeaderBoardFragment extends Fragment implements SearchView.OnQueryT
     }
 
     private void setUpView() {
-
         recycler = rootView.findViewById(R.id.recycler_view_leader_board);
         LinearLayoutManager layoutManager = new LinearLayoutManager(requireContext());
         recycler.setLayoutManager(layoutManager);

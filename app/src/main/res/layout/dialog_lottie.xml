@@ -63,7 +63,7 @@
             android:layout_width="16dp"
             android:layout_height="16dp"
             android:layout_marginStart="1dp"
-            android:src="@drawable/ic_arrow_point_to_right"
+            android:src="@drawable/ic_arrow_right"
             android:layout_gravity="center_horizontal"
             android:contentDescription="@string/right_arrow" />
 
@@ -94,7 +94,8 @@
         android:layout_margin="@dimen/regular_item_padding"
         android:layout_weight="1"
         android:background="@drawable/selector_edit_button"
-        android:text="@string/got_it" />
+        android:text="@string/got_it"
+        android:layout_width="0dp" />
     </LinearLayout>
 
 </RelativeLayout>

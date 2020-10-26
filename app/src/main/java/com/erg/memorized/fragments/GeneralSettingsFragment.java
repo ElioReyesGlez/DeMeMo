@@ -112,7 +112,6 @@ public class GeneralSettingsFragment extends Fragment implements View.OnClickLis
         rlBibles = rootView.findViewById(R.id.rl_bibles);
         linealBibleVersionContainer = rootView.findViewById(R.id.ll_bible_version_container);
 
-
         setSavedLanguage();
         setSavedBible();
 
@@ -342,27 +341,9 @@ public class GeneralSettingsFragment extends Fragment implements View.OnClickLis
         }
     }
 
-    /*private ArrayList<Bible> filterByLanguage() {
-        ArrayList<Bible> filteredBibleList = new ArrayList<>();
-        String[] arrayLanguages = getResources().getStringArray(R.array.languages);
-        ArrayList<String> languages = new ArrayList<>(Arrays.asList(arrayLanguages));
-        if (!bibles.isEmpty()) {
-            for (Bible bible : bibles) {
-                final String language = bible.getLanguage().getNameLocal().toLowerCase();
-                for (String lang : languages) {
-                    if (language.contains(lang.toLowerCase())) {
-                        filteredBibleList.add(bible);
-                    }
-                }
-            }
-        }
-        return filteredBibleList;
-    }*/
-
     @Override
     public void onStart() {
         super.onStart();
         rootView.startAnimation(animSlideInFromRight);
     }
-
 }

@@ -32,6 +32,7 @@ import com.erg.memorized.util.SuperUtil;
 import com.erg.memorized.views.FixedViewPager;
 import com.google.android.material.snackbar.Snackbar;
 
+import java.util.Objects;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -321,7 +322,7 @@ public class MessagesHelper {
                 .findViewById(R.id.horizontal_scroll_btn_container);
 
         dialog.setContentView(dialogView);
-        dialog.getWindow().setLayout(
+        Objects.requireNonNull(dialog.getWindow()).setLayout(
                 ViewGroup.LayoutParams.MATCH_PARENT,
                 ViewGroup.LayoutParams.WRAP_CONTENT
         );

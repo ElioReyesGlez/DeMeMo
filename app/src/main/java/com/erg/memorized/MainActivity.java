@@ -30,7 +30,6 @@ import com.erg.memorized.fragments.ScorerFragment;
 import com.erg.memorized.fragments.SettingsFragment;
 import com.erg.memorized.fragments.SignUpFragment;
 import com.erg.memorized.fragments.SplitTextFragment;
-import com.erg.memorized.fragments.SupportFragment;
 import com.erg.memorized.fragments.UserInfoFragment;
 import com.erg.memorized.fragments.VersesFragment;
 import com.erg.memorized.fragments.scorer.ResultFragment;
@@ -130,7 +129,7 @@ public class MainActivity extends FragmentActivity {
         }
     }
 
-    void setUpMeowBottomBar() {
+    private void setUpMeowBottomBar() {
         bottomNavigation.add(new MeowBottomNavigation.Model(Constants.MENU_HOME, R.drawable.ic_people_home));
         bottomNavigation.add(new MeowBottomNavigation.Model(Constants.MENU_VERSES, R.drawable.ic_holy_bible));
         bottomNavigation.add(new MeowBottomNavigation.Model(Constants.MENU_CONFIG, R.drawable.ic_black_settings));
@@ -226,7 +225,6 @@ public class MainActivity extends FragmentActivity {
         Fragment generalSettingsFragment = manager.findFragmentByTag(GeneralSettingsFragment.TAG);
         Fragment resultFragment = manager.findFragmentByTag(ResultFragment.TAG);
         Fragment aboutFragment = manager.findFragmentByTag(AboutFragment.TAG);
-        Fragment supportFragment = manager.findFragmentByTag(SupportFragment.TAG);
         AdMobFragment adMobFragment = (AdMobFragment) manager.findFragmentByTag(AdMobFragment.TAG);
 
 
@@ -281,10 +279,6 @@ public class MainActivity extends FragmentActivity {
         if (aboutFragment != null)
             isAboutFragmentOn = aboutFragment.isVisible();
 
-        boolean isSupportFragmentOn = false;
-        if (supportFragment != null)
-            isSupportFragmentOn = supportFragment.isVisible();
-
         boolean isAdMobFragmentOn = false;
         if (adMobFragment != null)
             isAdMobFragmentOn = adMobFragment.isVisible();
@@ -298,8 +292,7 @@ public class MainActivity extends FragmentActivity {
                 || isSignUpFragmentOn || isSplitTextFragmentOn
                 || isUserInfoFragmentOn || isLeaderBoardFragmentOn
                 || isGeneralSettingsFragmentOn || isResultFragmentOn
-                || isAboutFragmentOn || isSupportFragmentOn
-                || maybeWantToLeaveScoreSection) {
+                || isAboutFragmentOn || maybeWantToLeaveScoreSection) {
             super.onBackPressed();
             maybeWantToLeaveScoreSection = false;
             return;

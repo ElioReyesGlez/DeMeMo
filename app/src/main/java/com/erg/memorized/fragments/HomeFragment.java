@@ -18,7 +18,6 @@ import androidx.fragment.app.Fragment;
 import com.airbnb.lottie.LottieAnimationView;
 import com.erg.memorized.R;
 import com.erg.memorized.helpers.MessagesHelper;
-import com.erg.memorized.helpers.RealmHelper;
 import com.erg.memorized.helpers.SharedPreferencesHelper;
 import com.erg.memorized.helpers.TimeHelper;
 import com.erg.memorized.interfaces.BibleApi;
@@ -32,6 +31,8 @@ import com.erg.memorized.model.bible_api_models.Children;
 import com.erg.memorized.model.bible_api_models.Item;
 import com.erg.memorized.util.SuperUtil;
 import com.erg.memorized.views.CustomLineView;
+
+import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -60,11 +61,8 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
     private RelativeLayout rlVDailyVerse;
     private ProgressBar pgrView, refreshPgrView;
     private LottieAnimationView lottieNotFound;
-
     private LinearLayout lastReading, staticsGraph;
-
     private SharedPreferencesHelper spHelper;
-    private RealmHelper realmHelper;
     private Animation animScaleUp, animScaleDown;
     private boolean isDailyVerse = false;
     private boolean isRefreshingAction = false;
@@ -85,7 +83,6 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         spHelper = new SharedPreferencesHelper(requireContext());
-        realmHelper = new RealmHelper(requireContext());
         animScaleUp = AnimationUtils.loadAnimation(requireContext(), R.anim.scale_up);
         animScaleDown = AnimationUtils.loadAnimation(requireContext(), R.anim.scale_down);
         String[] arrayLanguages = getResources().getStringArray(R.array.languages);
@@ -122,16 +119,14 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
         }
 
         currentDate = TimeHelper.dateFormatterShort(System.currentTimeMillis());
-        String currentLanguage = languages.get(spHelper.getLanguagePos()).toLowerCase();
-        String currentBibleVersionLanguage =
-                spHelper.getBibleVersion().getLanguage().getNameLocal().toLowerCase();
 
         Log.d(TAG, "setUpView: CurrentDate: " + currentDate + "\n"
                 + " VerseDate: " + verseDate);
         if (currentDate.equals(verseDate)) {
             setDailyVerse(dailyVerse, false);
         } else {
-            getDailyVerse();
+            int dayOfTheYear = TimeHelper.getDayOfTheYear();
+            getDailyVerse(dayOfTheYear);
         }
 
         addUserActivityViews();
@@ -148,8 +143,6 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
 
         userActivityContainer.addView(lastReading);
         userActivityContainer.addView(staticsGraph);
-
-
     }
 
     private void setLastReading() {
@@ -238,8 +231,10 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
         SuperUtil.hideView(null, rlVDailyVerse);
         SuperUtil.showView(animScaleUp, lottieNotFound);
 
-        MessagesHelper.showInfoMessageWarning(requireActivity(),
-                getString(R.string.response_404));
+        if (isVisible()) {
+            MessagesHelper.showInfoMessageWarning(requireActivity(),
+                    getString(R.string.response_404));
+        }
     }
 
     private void showDailyContentWithOtAnim() {
@@ -260,7 +255,8 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
                 break;
             case R.id.ib_refresh_daily_verse:
                 isRefreshingAction = true;
-                getDailyVerse();
+                int dayOfTheYear = TimeHelper.getDayOfTheYear();
+                getDailyVerse(dayOfTheYear);
                 break;
         }
     }
@@ -275,7 +271,7 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
         SuperUtil.hideView(null, refreshPgrView);
     }
 
-    private void getDailyVerse() {
+    private void getDailyVerse(int dayOfTheYear) {
 
         if (isRefreshingAction) {
             showRefreshingProgress();
@@ -289,8 +285,7 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
                 .build();
 
         YourVersionApi yourVersionApi = retrofit.create(YourVersionApi.class);
-        Call<DailyVerse> call = yourVersionApi.getDailyVerse(TimeHelper.getDayOfTheYear(),
-                DEFAULT_VERSION_ID);
+        Call<DailyVerse> call = yourVersionApi.getDailyVerse(dayOfTheYear, DEFAULT_VERSION_ID);
 
         call.enqueue(new Callback<DailyVerse>() {
             @Override
@@ -347,7 +342,7 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
 
         call.enqueue(new Callback<VerseBible>() {
             @Override
-            public void onResponse(Call<VerseBible> call, Response<VerseBible> response) {
+            public void onResponse(@NotNull Call<VerseBible> call, @NotNull Response<VerseBible> response) {
                 if (!response.isSuccessful()) {
                     Log.d(TAG, "BibleApi onResponse: Not Successful  Code: " + response.code()
                             + "\n" + response.message());
@@ -358,7 +353,9 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
                     return;
                 }
                 VerseBible verseBible = response.body();
+                assert response.body() != null;
                 Log.d(TAG, "onResponse: BODY: " + response.body().toString());
+                assert verseBible != null;
                 Log.d(TAG, " onResponse: VerseBible: " + verseBible.toString());
 
                 setDailyVerse(toItemVerse(verseBible), true);
@@ -378,7 +375,6 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
     }
 
     private ItemVerse toItemVerse(VerseBible verseBible) {
-
         String title = verseBible.getData().getReference();
         String verse = getVerseText(verseBible.getData().getContent());
         long date = System.currentTimeMillis();

@@ -30,12 +30,8 @@ import static com.erg.memorized.util.Constants.URL_DEVELOPER_2;
 public class AboutFragment extends Fragment implements View.OnClickListener {
 
     public static final String TAG = "AboutFragment";
-
-
     private Animation animSlideInFromRight;
-
     private View rootView;
-
 
     public AboutFragment() {
         // Required empty public constructor
@@ -53,16 +49,13 @@ public class AboutFragment extends Fragment implements View.OnClickListener {
                 R.anim.fab_slide_in_from_right);
     }
 
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         rootView = inflater.inflate(R.layout.fragment_about, container, false);
-
         setUpView();
         return rootView;
     }
-
 
     private void setUpView() {
         RelativeLayout rate_on_play_store_layout = rootView.findViewById(R.id.rate_on_play_store);
@@ -113,11 +106,11 @@ public class AboutFragment extends Fragment implements View.OnClickListener {
     private void rateOnPlayStore() {
         try {
             Intent market = new Intent(Intent.ACTION_VIEW, Uri.parse(MARKET_APP_DETAILS_URL
-                            + requireActivity().getPackageName()));
+                    + requireActivity().getPackageName()));
             startActivity(market);
         } catch (android.content.ActivityNotFoundException e) {
             Intent googlePlayStore = new Intent(Intent.ACTION_VIEW, Uri.parse(GOOGLE_APP_DETAILS_URL
-                            + requireActivity().getPackageName()));
+                    + requireActivity().getPackageName()));
             startActivity(googlePlayStore);
         }
     }
@@ -160,5 +153,4 @@ public class AboutFragment extends Fragment implements View.OnClickListener {
         super.onStart();
         rootView.startAnimation(animSlideInFromRight);
     }
-
 }

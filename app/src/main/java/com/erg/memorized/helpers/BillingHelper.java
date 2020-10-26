@@ -62,11 +62,8 @@ public class BillingHelper {
                 if (billingResult.getResponseCode() == BillingClient.BillingResponseCode.OK) {
                     Log.d(TAG, "onBillingSetupFinished: Success Billing Connection");
                 } else {
-                    Log.d(TAG, "onBillingSetupFinished: Fail Billing Connection");
-                    if (!context.isFinishing()) {
-                        MessagesHelper.showInfoMessageWarning(context,
-                                context.getString(R.string.faild_billing_connection));
-                    }
+                    Log.e(TAG, "onBillingSetupFinished: Fail Billing Connection Code: "
+                    + billingResult.getDebugMessage());
                 }
             }
 
@@ -102,9 +99,12 @@ public class BillingHelper {
                                 }
                             }
                         } else {
+                            Log.e(TAG, "loadAllSkusAndStartBillingFlow: " +
+                                    context.getString(R.string.cant_not_query_product));
                             if (!context.isFinishing()) {
                                 MessagesHelper.showInfoMessageError(context,
-                                        context.getString(R.string.cant_not_query_product));
+                                        context.getString(R.string.faild_billing_connection));
+
                             }
                         }
                     });

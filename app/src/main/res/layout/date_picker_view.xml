@@ -56,7 +56,7 @@
             android:layout_alignParentEnd="true"
             android:layout_centerVertical="true"
             android:contentDescription="@string/description_icon_right_arrow"
-            android:src="@drawable/ic_arrow_point_to_right" />
+            android:src="@drawable/ic_arrow_right" />
 
     </RelativeLayout>
 

@@ -206,7 +206,7 @@
     <string name="daily_verse">Versículo diario</string>
     <string name="msg_edit_to_save">Este versículo aún no se ha guardado. \n¿Quiere guardar?</string>
     <string name="msg_set_notification">¿Establecer recordatorio?</string>
-    <string name="response_404">¡No encontrado! Por favor, compruebe si\n
+    <string name="response_404">¡Versículo no encontrado! Por favor, compruebe si\n
         Versión actual de la Biblia si es correcta o Inténtelo más tarde.</string>
     <string name="minutes_ago">\ minutos atrás</string>
     <string name="one_second_ago">un segundo atrás</string>
@@ -278,7 +278,7 @@
     <string name="premium_dialog_ok">¡Si seguro!</string>
     <string name="premium_dialog_no">No, gracias</string>
     <string name="premium">Premium</string>
-    <string name="get_premium">¡Hazte premium!</string>
+    <string name="get_premium">¡Hágase Premium!</string>
     <string name="full_access_to_the_verse_memory_evaluator">Acceso completo al evaluador de memoria de versículos</string>
     <string name="worldwide_participation_on_dememo_leaderboard">Participación mundial en la clasificación de DeMeMo</string>
     <string name="already_premium">Ya es miembro premium</string>
@@ -323,16 +323,16 @@
         <item>English</item>
         <item>Español</item>
         <item>Português</item>
-<!--        <item>繁體中文</item>-->
-<!--        <item>Română</item>-->
+        <!--        <item>繁體中文</item>-->
+        <!--        <item>Română</item>-->
     </string-array>
 
     <string-array name="languages_codes">
         <item>en</item>
         <item>es</item>
         <item>pt</item>
-<!--        <item>zh</item>-->
-<!--        <item>ro</item>-->
+        <!--        <item>zh</item>-->
+        <!--        <item>ro</item>-->
     </string-array>
 
     <string-array name="marks">
@@ -377,12 +377,12 @@
 
     <!--    All strings used in about page Fragment*-->
     <string name="description_about_page">
-        DeMeMo es el resultado del interés en desarollar apoyo sistemático en el proceso de memorizar
-        citas bíblicas, luego paso a ser un proyecto donde coexiste una forma interactiva y
-        competitiva de promover, aprender y memorizar la Biblia. DeMeMo es parte de un proyecto en
-        desarrollo que tiene como objetivo posicionar la palabra de Dios en un mundo más actual
-        donde las nuevas tecnologías y las bienaventuranzas de Dios vallan de la mano de
-        forma transparente.</string>
+        DeMeMo es el resultado de la idea para desarrollar apoyo sistemático en el proceso de
+        memorizar citas bíblicas, luego paso a ser un proyecto donde coexiste una forma interactiva
+        y competitiva de promover, aprender y memorizar la Biblia. DeMeMo es parte de un proyecto
+        en desarrollo que tiene como objetivo posicionar la palabra de Dios en un mundo más actual
+        donde las nuevas tecnologías y las bienaventuranzas de Dios vallan de la mano de forma
+        transparente.</string>
     <string name="email_about_page">dememoteam@gmail.com</string>
     <string name="app_version_about_page">Version: 1.0.0</string>
     <string name="play_store_about_page">Califícanos en Play Store</string>
@@ -402,4 +402,14 @@
     <string name="mobile_number">Número de móvil (opcional)</string>
     <string name="get_premium_ad_free">Hágase PREMIUM para obtener una DeMeMo SIN ANUNCIOS</string>
     <string name="get_premium_upload_score">Hágase PREMIUM para subir su puntuación</string>
+    <string name="dememo_intro_description"><u>DeMeMo</u> es la app que te ayudará a memorizar sus citas
+        bíblicas de manera eficaz e interactiva.</string>
+    <string name="evaluator_intro_description">Deje que DeMeMo evalúe su memoria,
+        entonces podrá saber con seguridad cuanto domina sus citas biblicas.</string>
+    <string name="leader_board_intro_description">Participe en la tabla de clasificación de <u>DeMeMo</u>.
+        Compare su puntuación y compita de manera saludable por llegar a las mejores posiciones.</string>
+    <string name="cloud_backup">Copia de Seguridad</string>
+    <string name="cloud_backup_intro_description">Sincronice todo su progreso en la nube,
+        entonces podrá recuperar todo en caso que lo necesite.</string>
+    <string name="null_pointer">¡Excepción de campo nulo!</string>
 </resources>

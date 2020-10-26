@@ -52,7 +52,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="@dimen/regular_window_margin"
-            android:fontFamily="@font/abhaya_libre_medium"
             android:gravity="center_horizontal"
             android:text="@string/app_name"
             android:textAlignment="center"

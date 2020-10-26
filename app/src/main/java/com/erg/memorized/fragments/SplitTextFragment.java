@@ -26,7 +26,6 @@ import com.erg.memorized.interfaces.OnSectionListener;
 import com.erg.memorized.model.ItemUser;
 import com.erg.memorized.model.ItemVerse;
 import com.erg.memorized.util.SuperUtil;
-import com.etebarian.meowbottomnavigation.MeowBottomNavigation;
 
 import java.util.ArrayList;
 
@@ -41,19 +40,13 @@ public class SplitTextFragment extends Fragment implements OnSectionListener {
     private RecyclerView recycler;
     private ArrayList<String> splitVerseList;
 
-    private Animation animScaleUp, animScaleDown;
+    private Animation animScaleUp;
     private ViewGroup container;
 
     private SharedPreferencesHelper spHelper;
 
     private ItemVerse verse;
     private ItemUser currentUser;
-
-
-    private MeowBottomNavigation meoBottomBar;
-//    public boolean isSectionText = false;
-
-    private boolean maybeWantToExit = false;
 
     public static SplitTextFragment newInstance(ItemVerse verse) {
         return new SplitTextFragment(verse);
@@ -71,10 +64,7 @@ public class SplitTextFragment extends Fragment implements OnSectionListener {
         RealmHelper realmHelper = new RealmHelper(requireContext());
         currentUser = realmHelper.getUser();
 
-        meoBottomBar = requireActivity().findViewById(R.id.meow_bottom_navigation);
-
         animScaleUp = AnimationUtils.loadAnimation(getContext(), R.anim.less_scale_up);
-        animScaleDown = AnimationUtils.loadAnimation(getContext(), R.anim.scale_down);
     }
 
     @Override
@@ -126,29 +116,15 @@ public class SplitTextFragment extends Fragment implements OnSectionListener {
     @Override
     public void isFullyCheckedListener() {
         if (currentUser != null && currentUser.getEmail() != null) {
-            if (currentUser.isPremium()) {
-                showTestDialog();
-            } else {
-                handleSimpleMsg();
-            }
+            showTestDialog();
         }
-    }
-
-    private void handleSimpleMsg() {
-        new Handler().postDelayed(() -> {
-            if (isVisible()) {
-                MessagesHelper.showInfoMessage(requireActivity(),
-                        getString(R.string.memorizing_done_msg));
-            }
-
-        }, 1000);
     }
 
     private void showTestDialog() {
         new Handler().postDelayed(() -> {
             if (isVisible())
                 MessagesHelper.showTestDialog(requireActivity(), verse);
-        }, 1000);
+        }, 8000);
     }
 
     private class AsyncTaskSplit extends AsyncTask<Void, Void, Void> {
@@ -189,7 +165,6 @@ public class SplitTextFragment extends Fragment implements OnSectionListener {
     public void onStart() {
         super.onStart();
         rootView.startAnimation(animScaleUp);
-//        hideMeoBottomBar();
     }
 
     @Override
@@ -200,22 +175,5 @@ public class SplitTextFragment extends Fragment implements OnSectionListener {
     @Override
     public void onPause() {
         super.onPause();
-//        showMeoBottomBar();
     }
-
-/*
-    private void showMeoBottomBar() {
-        if (meoBottomBar != null) {
-            meoBottomBar.setAnimation(animScaleUp);
-            if (meoBottomBar.getVisibility() == View.GONE)
-                meoBottomBar.setVisibility(View.VISIBLE);
-        }
-    }
-    private void hideMeoBottomBar() {
-        if (meoBottomBar != null) {
-            meoBottomBar.setAnimation(animScaleUp);
-            if (meoBottomBar.getVisibility() == View.GONE)
-                meoBottomBar.setVisibility(View.VISIBLE);
-        }
-    }*/
 }

@@ -91,7 +91,6 @@
                 android:layout_toStartOf="@+id/icon_arrow_play_store"
                 android:layout_toEndOf="@id/play_store"
                 android:ellipsize="end"
-                android:fontFamily="@font/abhaya_libre_medium"
                 android:maxLines="1"
                 android:text="@string/play_store_about_page"
                 android:textColor="@color/text_default_dark_gray"
@@ -104,7 +103,7 @@
                 android:layout_alignParentEnd="true"
                 android:layout_centerVertical="true"
                 android:contentDescription="@string/description_icon_right_arrow"
-                android:src="@drawable/ic_arrow_point_to_right" />
+                android:src="@drawable/ic_arrow_right" />
 
         </RelativeLayout>
 
@@ -135,7 +134,6 @@
                 android:layout_toStartOf="@+id/icon_arrow_instagram"
                 android:layout_toEndOf="@id/instagram"
                 android:ellipsize="end"
-                android:fontFamily="@font/abhaya_libre_medium"
                 android:maxLines="1"
                 android:text="@string/instagram_about_page"
                 android:textColor="@color/text_default_dark_gray"
@@ -148,7 +146,7 @@
                 android:layout_alignParentEnd="true"
                 android:layout_centerVertical="true"
                 android:contentDescription="@string/description_icon_right_arrow"
-                android:src="@drawable/ic_arrow_point_to_right" />
+                android:src="@drawable/ic_arrow_right" />
 
         </RelativeLayout>
 
@@ -180,7 +178,6 @@
                 android:layout_toStartOf="@+id/icon_arrow_email"
                 android:layout_toEndOf="@id/contact"
                 android:ellipsize="end"
-                android:fontFamily="@font/abhaya_libre_medium"
                 android:maxLines="1"
                 android:text="@string/contact_us_about_page"
                 android:textColor="@color/text_default_dark_gray"
@@ -193,7 +190,7 @@
                 android:layout_alignParentEnd="true"
                 android:layout_centerVertical="true"
                 android:contentDescription="@string/description_icon_right_arrow"
-                android:src="@drawable/ic_arrow_point_to_right" />
+                android:src="@drawable/ic_arrow_right" />
 
         </RelativeLayout>
 
@@ -240,7 +237,6 @@
                 android:layout_toStartOf="@+id/icon_arrow_developer1"
                 android:layout_toEndOf="@id/developer_image1"
                 android:ellipsize="end"
-                android:fontFamily="@font/abhaya_libre_medium"
                 android:maxLines="1"
                 android:text="@string/developer1_about_page"
                 android:textColor="@color/md_black_1000"
@@ -253,7 +249,7 @@
                 android:layout_alignParentEnd="true"
                 android:layout_centerVertical="true"
                 android:contentDescription="@string/description_icon_right_arrow"
-                android:src="@drawable/ic_arrow_point_to_right" />
+                android:src="@drawable/ic_arrow_right" />
         </RelativeLayout>
 
         <RelativeLayout
@@ -283,7 +279,6 @@
                 android:layout_toStartOf="@+id/icon_arrow_developer2"
                 android:layout_toEndOf="@id/developer_image2"
                 android:ellipsize="end"
-                android:fontFamily="@font/abhaya_libre_medium"
                 android:maxLines="1"
                 android:text="@string/developer2_about_page"
                 android:textColor="@color/md_black_1000"
@@ -296,7 +291,7 @@
                 android:layout_alignParentEnd="true"
                 android:layout_centerVertical="true"
                 android:contentDescription="@string/description_icon_right_arrow"
-                android:src="@drawable/ic_arrow_point_to_right" />
+                android:src="@drawable/ic_arrow_right" />
         </RelativeLayout>
 
 
@@ -324,7 +319,6 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
                 android:ellipsize="end"
-                android:fontFamily="@font/abhaya_libre_medium"
                 android:maxLines="1"
                 android:text="@string/app_version_about_page"
                 android:textColor="@color/text_default_dark_gray"

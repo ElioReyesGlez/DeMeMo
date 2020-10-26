@@ -45,7 +45,6 @@ public class ScorerFragment extends Fragment implements BoxTestListener {
     private ItemVerse verse;
 
     private View rootView;
-    private ViewGroup container;
     public CustomViewPager scorerViewPager;
     public AdapterScorerFragmentPager scoreViewPagerAdapter;
     private TextView tvIndicator, tvCountdown;
@@ -89,7 +88,6 @@ public class ScorerFragment extends Fragment implements BoxTestListener {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         rootView = inflater.inflate(R.layout.fragment_scorer, container, false);
-        this.container = container;
         setUpView();
         return rootView;
     }
@@ -245,7 +243,6 @@ public class ScorerFragment extends Fragment implements BoxTestListener {
         SuperUtil.loadView(requireActivity(),
                 ResultFragment.newInstance(verse, getScores()),
                 ResultFragment.TAG, true);
-
     }
 
     @Override

@@ -114,7 +114,7 @@
                 android:layout_centerVertical="true"
                 android:layout_marginEnd="5dp"
                 android:contentDescription="@string/description_icon_right_arrow"
-                android:src="@drawable/ic_arrow_point_to_right"
+                android:src="@drawable/ic_arrow_right"
                 android:visibility="gone" />
 
             <Button
@@ -377,7 +377,7 @@
                 android:layout_alignParentEnd="true"
                 android:layout_centerVertical="true"
                 android:contentDescription="@string/description_icon_right_arrow"
-                android:src="@drawable/ic_arrow_point_to_right" />
+                android:src="@drawable/ic_arrow_right" />
         </RelativeLayout>
 
         <RelativeLayout
@@ -418,7 +418,7 @@
                 android:layout_alignParentEnd="true"
                 android:layout_centerVertical="true"
                 android:contentDescription="@string/description_icon_right_arrow"
-                android:src="@drawable/ic_arrow_point_to_right" />
+                android:src="@drawable/ic_arrow_right" />
         </RelativeLayout>
 
         <RelativeLayout
@@ -462,7 +462,7 @@
                 android:layout_alignParentEnd="true"
                 android:layout_centerVertical="true"
                 android:contentDescription="@string/description_icon_right_arrow"
-                android:src="@drawable/ic_arrow_point_to_right" />
+                android:src="@drawable/ic_arrow_right" />
 
         </RelativeLayout>
 

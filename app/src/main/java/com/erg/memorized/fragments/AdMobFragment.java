@@ -30,25 +30,21 @@ public class AdMobFragment extends Fragment implements View.OnClickListener {
     public static final String TAG = "AdMobFragment";
 
     private CountDownTimer countDownTimer;
-    private boolean isOnTick = false;
-
     private Button btnGetPremium;
     private InterstitialAd mInterstitialAd;
-    private TextView tvCountdown;
+    private TextView tvCountdown, tvMission;
     private LinearLayout llCountdownContainer;
     private ItemUser currentUser;
     private BillingHelper billingHelper;
     private boolean jumpFlag;
-
-    private long timerMilliseconds =  7000;
-
+    private long timerMilliseconds = 7000;
 
     public AdMobFragment(ItemUser currentUser, boolean jumpFlag) {
         this.currentUser = currentUser;
         this.jumpFlag = jumpFlag;
     }
 
-    public static AdMobFragment newInstance(ItemUser user , boolean jumpFlag) {
+    public static AdMobFragment newInstance(ItemUser user, boolean jumpFlag) {
         return new AdMobFragment(user, jumpFlag);
     }
 
@@ -65,9 +61,11 @@ public class AdMobFragment extends Fragment implements View.OnClickListener {
         super.onViewCreated(view, savedInstanceState);
         btnGetPremium = view.findViewById(R.id.btn_get_premium);
         tvCountdown = view.findViewById(R.id.tv_countdown);
+        tvMission = view.findViewById(R.id.tv_mission_description);
         llCountdownContainer = view.findViewById(R.id.ll_countdown_container);
 
         btnGetPremium.setOnClickListener(this);
+        tvMission.setOnClickListener(this);
     }
 
     @Override
@@ -77,8 +75,6 @@ public class AdMobFragment extends Fragment implements View.OnClickListener {
         final Context appContext = getAppContext();
         if (appContext == null)
             return;
-
-
 
         mInterstitialAd = newInterstitialAd(appContext);
         loadInterstitial();
@@ -93,14 +89,23 @@ public class AdMobFragment extends Fragment implements View.OnClickListener {
         return getActivity().getApplicationContext();
     }
 
-
-
     @Override
     public void onClick(View v) {
         SuperUtil.vibrate(requireContext());
-        if (v.getId() == R.id.btn_get_premium) {
-            billingHelper.loadAllSkusAndStartBillingFlow();
+        switch (v.getId()) {
+            case R.id.btn_get_premium:
+                billingHelper.loadAllSkusAndStartBillingFlow();
+                break;
+            case R.id.tv_mission_description:
+                linkToDeMeMoMission();
+                break;
         }
+    }
+
+    private void linkToDeMeMoMission() {
+        if (isVisible())
+            MessagesHelper.showInfoMessageWarning(requireActivity(),
+                    getString(R.string.todo));
     }
 
     private void startCountdown(Context appContext, long countDown) {
@@ -110,7 +115,6 @@ public class AdMobFragment extends Fragment implements View.OnClickListener {
                 timerMilliseconds = millisUntilFinished;
                 long auxVar = millisUntilFinished / countDownInterval;
                 tvCountdown.setText(String.valueOf((int) auxVar));
-                isOnTick = true;
                 Log.d(TAG, "onTick: isOnTick");
             }
 
@@ -118,7 +122,6 @@ public class AdMobFragment extends Fragment implements View.OnClickListener {
                 if (isVisible()) {
                     tvCountdown.setText("");
                     SuperUtil.hideView(null, llCountdownContainer);
-                    isOnTick = false;
                     showInterstitial(appContext);
                     Log.d(TAG, "onFinish: countDownTimer Finished");
                 }

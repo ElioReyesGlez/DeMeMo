@@ -52,7 +52,7 @@
         android:layout_marginEnd="@dimen/fab_margin_right"
         android:layout_marginRight="@dimen/fab_margin_right"
         android:layout_marginBottom="@dimen/margin_bottom_button_add"
-        android:src="@drawable/ic_add_pressed"
+        android:src="@drawable/ic_single_add"
         app:backgroundTint="@color/md_green_50"
         android:visibility="gone" />
 

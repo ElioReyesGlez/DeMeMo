@@ -43,10 +43,7 @@ import static com.erg.memorized.util.Constants.SPACE;
 public class BoxSelectorFragment extends Fragment implements View.OnClickListener, ScorerListener {
 
     public static final String TAG = "BoxSelectorFragment";
-    public static final int POS = 1;
-
     private ItemVerse verse;
-    private String selectedWord;
     private ArrayList<String> textWithLowLinesAuxList;
     private ArrayList<Integer> posReplacementsWords;
     private ArrayList<Integer> sortedPosReplacementsWords;
@@ -55,7 +52,6 @@ public class BoxSelectorFragment extends Fragment implements View.OnClickListene
     private ArrayList<TextView> boxesList;
 
     private View rootView;
-    private ViewGroup container;
 
     private TextView tvVerse, tvTitle;
     private Button btnDone;
@@ -120,7 +116,6 @@ public class BoxSelectorFragment extends Fragment implements View.OnClickListene
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         rootView = inflater.inflate(R.layout.fragment_box_selecter, container, false);
-        this.container = container;
         setUpView();
         return rootView;
     }
@@ -204,9 +199,7 @@ public class BoxSelectorFragment extends Fragment implements View.OnClickListene
         boxTextView.setOnClickListener(v -> {
             SuperUtil.vibrate(requireContext());
             TextView currentTextView = ((TextView) v);
-            int currentWordPos = v.getId();
             String selectedWord = currentTextView.getText().toString();
-
             String textAfterSetWord = TextHelper
                     .setSelectedWord(textWithLowLinesAuxList, selectedWord,
                             sortedPosReplacementsWords);
@@ -221,7 +214,6 @@ public class BoxSelectorFragment extends Fragment implements View.OnClickListene
             boxTestListener.onBoxClick(boxesList);
 
             if (boxesList.isEmpty()) {
-//                scorerFragment.scorerViewPager.setSwipingEnabled(true);
                 SuperUtil.showView(animScaleUp, btnDone);
             }
         });
@@ -255,7 +247,6 @@ public class BoxSelectorFragment extends Fragment implements View.OnClickListene
                 SuperUtil.hideView(animScaleDown, v);
             } else {
                 SuperUtil.hideView(null, btnDone);
-//                scorerFragment.scorerViewPager.setSwipingEnabled(false);
             }
         }
     }
@@ -291,7 +282,6 @@ public class BoxSelectorFragment extends Fragment implements View.OnClickListene
                 posReplacementsWords, textWithLowLinesAuxList);
         scorerFragment.getScores().add(score);
     }
-
 
     @Override
     public void onResume() {

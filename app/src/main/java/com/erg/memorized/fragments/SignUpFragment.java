@@ -38,8 +38,6 @@ import com.google.firebase.auth.FirebaseAuthUserCollisionException;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.storage.FirebaseStorage;
-import com.google.firebase.storage.StorageReference;
 import com.squareup.picasso.Picasso;
 import com.theartofdev.edmodo.cropper.CropImage;
 import com.theartofdev.edmodo.cropper.CropImageView;
@@ -47,31 +45,29 @@ import com.theartofdev.edmodo.cropper.CropImageView;
 import java.util.Objects;
 
 import static android.app.Activity.RESULT_OK;
-import static com.erg.memorized.util.Constants.AT;
 import static com.erg.memorized.util.Constants.DEFAULT;
-import static com.erg.memorized.util.Constants.DOT;
 import static com.erg.memorized.util.Constants.SPACE;
 
 public class SignUpFragment extends Fragment implements View.OnClickListener {
 
     public static final String TAG = "SingUpFragment";
+
     private View rootView;
     private ViewGroup container;
     private TextInputEditText editTextName, editTextEmail, editTextMobile,
             editTextPassword, editTextReEnterPassword;
     private String name, email, mobile, password;
-    private TextInputLayout tilName, tilEmail, tilMobile, tilPass, tilRePass;
+    private TextInputLayout tilName;
+    private TextInputLayout tilEmail;
+    private TextInputLayout tilPass;
+    private TextInputLayout tilRePass;
     private CropImageView cropImageView;
-    private Button btnCreateAccount;
     private ImageView ivAvatar;
 
     private FirebaseAuth fAuth;
     private DatabaseReference fReference;
-    private StorageReference stoReference;
-
     private Uri imgUri;
     private String base64Image = DEFAULT;
-    private boolean isImgPicked = false;
 
     public SignUpFragment() {
     }
@@ -86,10 +82,7 @@ public class SignUpFragment extends Fragment implements View.OnClickListener {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         fAuth = FirebaseAuth.getInstance();
-        stoReference = FirebaseStorage.getInstance()
-                .getReference(Constants.IMG_FIRE_BASE_REFERENCE);
     }
 
     @Override
@@ -97,7 +90,6 @@ public class SignUpFragment extends Fragment implements View.OnClickListener {
                              Bundle savedInstanceState) {
         rootView = inflater.inflate(R.layout.signup_view, container, false);
         this.container = container;
-
         Animation anim = AnimationUtils.loadAnimation(getContext(), R.anim.fab_slide_in_from_right);
         rootView.setAnimation(anim);
 
@@ -111,7 +103,6 @@ public class SignUpFragment extends Fragment implements View.OnClickListener {
         ivAvatar = rootView.findViewById(R.id.iv_avatar);
         tilName = rootView.findViewById(R.id.til_name);
         tilEmail = rootView.findViewById(R.id.til_email);
-        tilMobile = rootView.findViewById(R.id.til_mobile_number);
         tilPass = rootView.findViewById(R.id.til_pass);
         tilRePass = rootView.findViewById(R.id.til_re_pass);
 
@@ -121,8 +112,7 @@ public class SignUpFragment extends Fragment implements View.OnClickListener {
         editTextPassword = rootView.findViewById(R.id.input_password);
         editTextReEnterPassword = rootView.findViewById(R.id.input_re_password);
 
-        btnCreateAccount = rootView.findViewById(R.id.btn_create_account);
-
+        Button btnCreateAccount = rootView.findViewById(R.id.btn_create_account);
         btnCreateAccount.setOnClickListener(this);
         ivAvatar.setOnClickListener(this);
     }
@@ -131,11 +121,18 @@ public class SignUpFragment extends Fragment implements View.OnClickListener {
 
         boolean valid = true;
 
-        name = editTextName.getText().toString();
-        email = editTextEmail.getText().toString();
-        mobile = editTextMobile.getText().toString();
-        password = editTextPassword.getText().toString();
-        String reEnterPassword = editTextReEnterPassword.getText().toString();
+        String reEnterPassword = "";
+        try {
+            name = Objects.requireNonNull(editTextName.getText()).toString();
+            email = Objects.requireNonNull(editTextEmail.getText()).toString();
+            mobile = Objects.requireNonNull(editTextMobile.getText()).toString();
+            password = Objects.requireNonNull(editTextPassword.getText()).toString();
+            reEnterPassword = Objects.requireNonNull(editTextReEnterPassword.getText()).toString();
+        } catch (NullPointerException e) {
+            if (isVisible())
+                MessagesHelper.showInfoMessageWarning(requireActivity(),
+                        getString(R.string.null_pointer));
+        }
 
         if (name.isEmpty() || name.length() < 3) {
             tilName.setError(getString(R.string.error_name));
@@ -208,14 +205,11 @@ public class SignUpFragment extends Fragment implements View.OnClickListener {
                                     if (dialog.isShowing())
                                         dialog.dismiss();
                                     if (task1.isSuccessful()) {
-                                        RealmHelper realmHelper = new RealmHelper(getContext());
+                                        RealmHelper realmHelper = new RealmHelper(requireContext());
                                         realmHelper.addUserToDB(user); // Saving On Realm
-                                        if (imgUri != null && isImgPicked) {
-                                            uploadFile(getImageName(user.getEmail())); // Uploading File To FireBase
-                                        }
 
                                         SharedPreferencesHelper spHelper =
-                                                new SharedPreferencesHelper(getContext());
+                                                new SharedPreferencesHelper(requireContext());
                                         spHelper.setUserLoginState(true);
 
                                         showValidationEmailDialog(user);
@@ -235,11 +229,18 @@ public class SignUpFragment extends Fragment implements View.OnClickListener {
                             dialog.dismiss();
 
                         if (task.getException() instanceof FirebaseAuthUserCollisionException) {
-                            if (task.getException().getMessage().contains(getString(R.string.email_low_case))) {
+                            try {
+                                if (Objects.requireNonNull(task.getException()
+                                        .getMessage()).contains(getString(R.string.email_low_case))) {
+                                    if (isVisible())
+                                        MessagesHelper.showInfoMessageWarning(requireActivity(),
+                                                getString(R.string.user_collision));
+                                    tilEmail.setError(getString(R.string.used_email));
+                                }
+                            } catch (NullPointerException e) {
                                 if (isVisible())
                                     MessagesHelper.showInfoMessageWarning(requireActivity(),
-                                            getString(R.string.user_collision));
-                                tilEmail.setError(getString(R.string.used_email));
+                                            getString(R.string.null_pointer));
                             }
                         } else if (task.getException() instanceof FirebaseNetworkException) {
                             if (isVisible())
@@ -286,9 +287,7 @@ public class SignUpFragment extends Fragment implements View.OnClickListener {
         editBtn.setOnClickListener(v -> {
             SuperUtil.vibrate(requireContext());
 
-
             sendConfirmationEmail(dialogView, dialog);
-
         });
 
         dialog.show();
@@ -298,6 +297,7 @@ public class SignUpFragment extends Fragment implements View.OnClickListener {
         FirebaseUser firebaseCurrentUser = fAuth.getCurrentUser();
         Dialog pgsDialog = SuperUtil.showProgressDialog(getActivity(), container);
         String msg = getString(R.string.email_sent);
+        assert firebaseCurrentUser != null;
         firebaseCurrentUser.sendEmailVerification()
                 .addOnCompleteListener(task -> {
                     if (task.isSuccessful()) {
@@ -312,16 +312,16 @@ public class SignUpFragment extends Fragment implements View.OnClickListener {
 
                         if (task.getException() instanceof FirebaseAuthInvalidUserException) {
                             if (isVisible())
-                            MessagesHelper.showInfoMessageWarning(requireActivity(),
-                                    getString(R.string.invalid_user));
+                                MessagesHelper.showInfoMessageWarning(requireActivity(),
+                                        getString(R.string.invalid_user));
                         } else if (task.getException() instanceof FirebaseNetworkException) {
                             if (isVisible())
-                            MessagesHelper.showInfoMessageWarning(requireActivity(),
-                                    getString(R.string.network_error));
+                                MessagesHelper.showInfoMessageWarning(requireActivity(),
+                                        getString(R.string.network_error));
                         } else if (task.getException() instanceof FirebaseAuthInvalidCredentialsException) {
                             if (isVisible())
-                            MessagesHelper.showInfoMessageWarning(requireActivity(),
-                                    getString(R.string.invalid_credentials));
+                                MessagesHelper.showInfoMessageWarning(requireActivity(),
+                                        getString(R.string.invalid_credentials));
                         }
                     }
                 });
@@ -353,22 +353,6 @@ public class SignUpFragment extends Fragment implements View.OnClickListener {
         });
 
         snackBar.show();
-    }
-
-    private String getImageName(String userEmail) {
-        String imgName = null;
-        if (userEmail != null && !userEmail.isEmpty())
-            imgName = email.split(AT)[0];
-        if (imgName == null || imgName.isEmpty())
-            imgName = DEFAULT;
-
-        return imgName;
-    }
-
-    private void onSignUpFailed() {
-        if (isVisible())
-            MessagesHelper.showInfoMessageError(requireActivity(),
-                    getString(R.string.login_failed));
     }
 
     private void showCroppingDialog(Uri resultUri) {
@@ -411,8 +395,8 @@ public class SignUpFragment extends Fragment implements View.OnClickListener {
 
     public class AsyncTaskLoader extends AsyncTask<Void, Void, Void> {
 
-        Dialog progressDialog;
-        SuperUtil superUtil;
+        private Dialog progressDialog;
+        private SuperUtil superUtil;
 
         @Override
         protected void onPreExecute() {
@@ -440,13 +424,12 @@ public class SignUpFragment extends Fragment implements View.OnClickListener {
                     .resize(ivAvatar.getWidth(), ivAvatar.getHeight())
                     .centerCrop()
                     .placeholder(R.drawable.ic_refresh)
-                    .error(R.drawable.ic_color_add_image_plus)
+                    .error(R.drawable.ic_user_profile)
                     .into(ivAvatar);
 
             if (progressDialog.isShowing())
                 progressDialog.dismiss();
 
-            isImgPicked = true;
         }
     }
 
@@ -464,11 +447,5 @@ public class SignUpFragment extends Fragment implements View.OnClickListener {
                             getString(R.string.failed_picking_img));
             }
         }
-    }
-
-    private void uploadFile(String fileName) {
-        StorageReference riversRef = stoReference
-                .child(fileName + DOT + SuperUtil.getExtensionFromUri(imgUri));
-        riversRef.putFile(imgUri);
     }
 }

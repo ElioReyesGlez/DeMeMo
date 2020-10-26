@@ -31,6 +31,7 @@ import com.erg.memorized.helpers.SharedPreferencesHelper;
 import com.erg.memorized.helpers.TimeHelper;
 import com.erg.memorized.model.ItemUser;
 import com.erg.memorized.model.ItemVerse;
+import com.erg.memorized.model.LeaderboardItem;
 import com.erg.memorized.util.Constants;
 import com.erg.memorized.util.SuperUtil;
 import com.google.android.material.snackbar.Snackbar;
@@ -57,6 +58,10 @@ import java.util.Objects;
 
 import static com.erg.memorized.util.Constants.EXCLAMATION_MARK_CHAR_DOWN;
 import static com.erg.memorized.util.Constants.LAST_UPLOAD;
+import static com.erg.memorized.util.Constants.LEADER_BOARD_COLUMN_IMG;
+import static com.erg.memorized.util.Constants.LEADER_BOARD_COLUMN_IS_PREMIUM;
+import static com.erg.memorized.util.Constants.LEADER_BOARD_COLUMN_NAME;
+import static com.erg.memorized.util.Constants.LEADER_BOARD_COLUMN_SCORE;
 import static com.erg.memorized.util.Constants.LEADER_BOARD_FIRE_BASE_REFERENCE;
 import static com.erg.memorized.util.Constants.SPACE;
 import static com.erg.memorized.util.Constants.USER_COLUMN_VERSES;
@@ -183,6 +188,7 @@ public class SettingsFragment extends Fragment implements View.OnClickListener {
                 }
                 new AsyncTaskViewLoader(currentUser).execute();
                 startDataListener();
+                startLeaderBoarDataListener();
             } else {
                 spHelper.setUserLoginState(false);
                 activateSignUpButton();
@@ -192,19 +198,6 @@ public class SettingsFragment extends Fragment implements View.OnClickListener {
         }
     }
 
-    private int getMemorizedVerses() {
-        int cont = 0;
-        ArrayList<ItemVerse> verses = realmHelper.getSavedVerses();
-        if (verses != null && !verses.isEmpty()) {
-            for (ItemVerse verse : verses) {
-                if (verse.isMemorized()) {
-                    cont++;
-                }
-            }
-        }
-        return cont;
-    }
-
     private void activateSignUpButton() {
         if (btnSignUp.getVisibility() == View.GONE)
             btnSignUp.setVisibility(View.VISIBLE);
@@ -212,20 +205,6 @@ public class SettingsFragment extends Fragment implements View.OnClickListener {
         rlUserSettings.setFocusable(true);
         rlUserSettings.setClickable(true);
         btnSignUp.setOnClickListener(this);
-    }
-
-    private void activateLeaderBoardSection() {
-        rlLeaderBoard.setFocusable(true);
-        rlLeaderBoard.setClickable(true);
-        rlLeaderBoard.setOnClickListener(this);
-        rlLeaderBoard.setActivated(true);
-    }
-
-    private void deactivateLeaderBoardSection() {
-        rlLeaderBoard.setActivated(false);
-        rlLeaderBoard.setBackgroundResource(R.drawable.background_gray);
-        rlLeaderBoard.setFocusable(false);
-        rlLeaderBoard.setClickable(false);
     }
 
     private void deactivateLoginButton(@NotNull View dialogView) {
@@ -679,11 +658,17 @@ public class SettingsFragment extends Fragment implements View.OnClickListener {
                                     dialog.dismiss();
 
                                 currentUser.setId(dataSnapshot.getKey());
-                                currentUser.setEmail(dataSnapshot.child(Constants.USER_COLUMN_EMAIL).getValue(String.class));
-                                currentUser.setMobile(dataSnapshot.child(Constants.USER_COLUMN_MOBILE).getValue(String.class));
-                                currentUser.setName(dataSnapshot.child(Constants.USER_COLUMN_NAME).getValue(String.class));
-                                currentUser.setImg(dataSnapshot.child(Constants.USER_COLUMN_IMG).getValue(String.class));
-                                currentUser.setPremium(Boolean.parseBoolean(dataSnapshot.child(Constants.USER_COLUMN_PREMIUM_STATUS).getValue(String.class)));
+                                currentUser.setEmail(dataSnapshot.child(Constants.USER_COLUMN_EMAIL)
+                                        .getValue(String.class));
+                                currentUser.setMobile(dataSnapshot.child(Constants.USER_COLUMN_MOBILE)
+                                        .getValue(String.class));
+                                currentUser.setName(dataSnapshot.child(Constants.USER_COLUMN_NAME)
+                                        .getValue(String.class));
+                                currentUser.setImg(dataSnapshot.child(Constants.USER_COLUMN_IMG)
+                                        .getValue(String.class));
+                                currentUser.setPremium(Boolean.parseBoolean(
+                                        dataSnapshot.child(Constants.USER_COLUMN_PREMIUM_STATUS)
+                                                .getValue(String.class)));
 
                                 if (currentUser != null && currentUser.getEmail() != null) {
                                     spHelper.setUserLoginState(true);
@@ -797,8 +782,6 @@ public class SettingsFragment extends Fragment implements View.OnClickListener {
         tvUserScore.setText(String.valueOf(score));
         currentUser.setScore(score);
 
-        //Uploader
-        isUploadNeeded = !SuperUtil.containsAll(localVerses, cloudVerses);
 
         if (isUploadNeeded) {
             SuperUtil.showView(animScaleUp, ivUploadNeeded);
@@ -808,8 +791,6 @@ public class SettingsFragment extends Fragment implements View.OnClickListener {
             rlUpload.setBackgroundResource(R.drawable.selector_gray);
         }
 
-        //Sync
-        isSyncNeeded = !SuperUtil.containsAll(cloudVerses, localVerses) && !cloudVerses.isEmpty();
 
         if (isSyncNeeded) {
             SuperUtil.showView(animScaleUp, ivDownloadNeeded);
@@ -830,8 +811,7 @@ public class SettingsFragment extends Fragment implements View.OnClickListener {
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
 
                 GenericTypeIndicator<HashMap<String, String>> t =
-                        new GenericTypeIndicator<HashMap<String, String>>() {
-                        };
+                        new GenericTypeIndicator<HashMap<String, String>>() {};
                 cloudVerses = new ArrayList<>();
                 for (DataSnapshot snap : dataSnapshot.getChildren()) {
                     cloudVerses.add(ItemVerse.getVerseFromHasMap(
@@ -841,6 +821,8 @@ public class SettingsFragment extends Fragment implements View.OnClickListener {
                 localVerses = realmHelper.getSavedVerses();
                 if (spHelper.getUserLoginStatus()) {
                     checkIfEmailIsVerified();
+                    checkIfSyncIsNeeded();
+                    checkIfUploadIsNeeded();
                     loadUserDashBoard();
                 }
 
@@ -851,6 +833,62 @@ public class SettingsFragment extends Fragment implements View.OnClickListener {
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
                 Log.e(TAG, "startDataListener onCancelled: DatabaseError: " + databaseError.getMessage());
+            }
+        });
+    }
+
+    private void checkIfUploadIsNeeded() {
+        isSyncNeeded = !SuperUtil.containsAll(cloudVerses, localVerses) && !cloudVerses.isEmpty();
+    }
+
+    private void checkIfSyncIsNeeded() {
+        isUploadNeeded = !SuperUtil.containsAll(localVerses, cloudVerses);
+    }
+
+    private void startLeaderBoarDataListener() {
+        DatabaseReference fReference = FirebaseDatabase.getInstance()
+                .getReference(LEADER_BOARD_FIRE_BASE_REFERENCE)
+                .child(currentUser.getId());
+
+        fReference.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+
+                if (dataSnapshot.exists()) {LeaderboardItem leaderboardItem = new LeaderboardItem();
+                    leaderboardItem.setId(dataSnapshot.getKey());
+                    leaderboardItem.setImg(
+                            dataSnapshot.child(LEADER_BOARD_COLUMN_IMG).getValue(String.class));
+                    leaderboardItem.setName(dataSnapshot.child(LEADER_BOARD_COLUMN_NAME)
+                            .getValue(String.class));
+                    leaderboardItem.setPremium(Boolean.parseBoolean(
+                            dataSnapshot.child(LEADER_BOARD_COLUMN_IS_PREMIUM).getValue(String.class)));
+                    leaderboardItem.setScore(Float.parseFloat(
+                            Objects.requireNonNull(dataSnapshot
+                                    .child(LEADER_BOARD_COLUMN_SCORE).getValue(String.class))));
+
+                    if (!leaderboardItem.getName().equals(currentUser.getName())
+                            || !leaderboardItem.getImg().equals(currentUser.getImg())
+                            || leaderboardItem.getScore() != currentUser.getScore()
+                            || leaderboardItem.isPremium() != currentUser.isPremium()) {
+                        isUploadNeeded = true;
+                        loadUserDashBoard();
+                    }
+
+                    Log.d(TAG, "onDataChange: LeaderBoardItem: " + leaderboardItem.toString());
+                } else {
+                    if (currentUser.getScore() != 0) {
+                        isUploadNeeded = true;
+                        loadUserDashBoard();
+                    }
+                    Log.d(TAG, "onDataChange: dataSnapshot DO NOT EXISTS");
+                }
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+                Log.e(TAG, "startLeaderBoarDataListener onCancelled: DatabaseError: "
+                        + databaseError.getMessage());
             }
         });
     }
@@ -875,6 +913,8 @@ public class SettingsFragment extends Fragment implements View.OnClickListener {
 
         if (spHelper.getUserLoginStatus()) {
             checkIfEmailIsVerified();
+            checkIfSyncIsNeeded();
+            checkIfUploadIsNeeded();
             loadUserDashBoard();
         }
 

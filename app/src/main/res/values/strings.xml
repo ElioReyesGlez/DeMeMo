@@ -199,9 +199,9 @@
     <string name="spanish">Spanish</string>
     <string name="son_icon">Son Icon</string>
     <string name="daily_verse">Daily Verse</string>
-    <string name="msg_edit_to_save">This verse is not saved yet.          Do you want to?</string>
+    <string name="msg_edit_to_save">This verse is not saved yet. Do you want to?</string>
     <string name="msg_set_notification">Set reminder?</string>
-    <string name="response_404">Not found! Please check if         current Bible Version if right or Try later.</string>
+    <string name="response_404">Verse do not found! Please check if current Bible Version if right or Try later.</string>
     <string name="a_minute_ago">\ a minute ago</string>
     <string name="an_hour_ago">\ an hour ago</string>
     <string name="hours_ago">\ hours ago</string>
@@ -318,16 +318,16 @@
         <item>English</item>
         <item>Español</item>
         <item>Português</item>
-<!--        <item>繁體中文</item>-->
-<!--        <item>Română</item>-->
+        <!--        <item>繁體中文</item>-->
+        <!--        <item>Română</item>-->
     </string-array>
 
     <string-array name="languages_codes">
         <item>en</item>
         <item>es</item>
         <item>pt</item>
-<!--        <item>zh</item>-->
-<!--        <item>ro</item>-->
+        <!--        <item>zh</item>-->
+        <!--        <item>ro</item>-->
     </string-array>
 
     <string-array name="marks">
@@ -400,6 +400,17 @@
     <string name="calendar_permissions">We need permissions to successfully create calendar events! .Thank you!</string>
     <string name="please_try_again">Please, try again!</string>
     <string name="premium">Premium</string>
+    <string name="dememo_intro_description">DeMeMo is the app that will help you memorize your
+        biblical quotes in an effective and interactive way.</string>
+    <string name="evaluator_intro_description">
+        Let DeMeMo test your memory, then you can know for sure how well you have mastered your
+        Bible quotes.</string>
+    <string name="leader_board_intro_description">Join the DeMeMo leaderboard.
+        Compare your score and compete in a healthy way to reach the best positions.</string>
+    <string name="cloud_backup">Cloud Backup</string>
+    <string name="cloud_backup_intro_description">Synchronize all your progress to the cloud,
+        then you can retrieve everything in case you need it.</string>
+    <string name="null_pointer">Null pointer exception!</string>
 
 
 </resources>

@@ -34,9 +34,10 @@ public class ItemUser extends RealmObject implements Serializable {
 
     private RealmList<String> verses;
     private float score;
-    private boolean isPremium = false; // testing! //ToDo
+    private boolean isPremium = false;
 
-    public ItemUser() {}
+    public ItemUser() {
+    }
 
     public ItemUser(RealmList<String> verses) {
         this.verses = verses;
@@ -117,9 +118,8 @@ public class ItemUser extends RealmObject implements Serializable {
     }
 
     public void addScore(float score) {
-        this.score =+ score;
+        this.score = +score;
     }
-
 
     public boolean isPremium() {
         return isPremium;
@@ -129,8 +129,8 @@ public class ItemUser extends RealmObject implements Serializable {
         isPremium = premium;
     }
 
-    public HashMap< String, String > getUserIntoHasMap() {
-        HashMap <String, String> userHasMap = new HashMap<>();
+    public HashMap<String, String> getUserIntoHasMap() {
+        HashMap<String, String> userHasMap = new HashMap<>();
         userHasMap.put(USER_COLUMN_EMAIL, email);
         userHasMap.put(USER_COLUMN_ID, id);
         userHasMap.put(USER_COLUMN_IMG, img);
@@ -142,8 +142,8 @@ public class ItemUser extends RealmObject implements Serializable {
         return userHasMap;
     }
 
-    public HashMap< String, String > getScoreInfoIntoHasMap() {
-        HashMap <String, String> scoreHasMap = new HashMap<>();
+    public HashMap<String, String> getScoreInfoIntoHasMap() {
+        HashMap<String, String> scoreHasMap = new HashMap<>();
         scoreHasMap.put(USER_COLUMN_NAME, name);
         scoreHasMap.put(USER_COLUMN_IMG, img);
         scoreHasMap.put(USER_COLUMN_VERSES_SCORE, String.valueOf(score));
@@ -151,7 +151,7 @@ public class ItemUser extends RealmObject implements Serializable {
         return scoreHasMap;
     }
 
-    public static ItemUser getUserFromHasMap(HashMap< String, String > hasUser) {
+    public static ItemUser getUserFromHasMap(HashMap<String, String> hasUser) {
         ItemUser user = new ItemUser();
         user.setName(hasUser.get(USER_COLUMN_NAME));
         user.setImg(hasUser.get(USER_COLUMN_IMG));

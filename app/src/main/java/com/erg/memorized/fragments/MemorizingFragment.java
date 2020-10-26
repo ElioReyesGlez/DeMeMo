@@ -29,7 +29,6 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import com.erg.memorized.R;
-import com.erg.memorized.helpers.BillingHelper;
 import com.erg.memorized.helpers.MessagesHelper;
 import com.erg.memorized.helpers.RealmHelper;
 import com.erg.memorized.helpers.ScoreHelper;
@@ -86,8 +85,6 @@ public class MemorizingFragment extends Fragment {
 
     private BottomNavigationView bnv;
 
-    private BillingHelper billingHelper;
-
     public MemorizingFragment() {
         // Required empty public constructor
     }
@@ -112,12 +109,6 @@ public class MemorizingFragment extends Fragment {
         spHelper = new SharedPreferencesHelper(requireActivity());
         realmHelper = new RealmHelper(getContext());
         currentUser = realmHelper.getUser();
-
-        if (currentUser != null && spHelper.getUserLoginStatus()) {
-            if (!currentUser.isPremium()) {
-                billingHelper = new BillingHelper(requireActivity(), currentUser);
-            }
-        }
 
         if (!spHelper.getSectionViewStatus())
             userTextSize = spHelper.getUserTextSizePref(verse.getTitle());
@@ -217,15 +208,6 @@ public class MemorizingFragment extends Fragment {
         });
 
         setUpBottomNavigationBar();
-
-    }
-
-    private void hideBottomNavigationView() {
-        if (bnv != null) {
-            bnv.setAnimation(animScaleDown);
-            if (bnv.getVisibility() == View.VISIBLE)
-                bnv.setVisibility(View.GONE);
-        }
     }
 
     private void showBottomNavigationView() {
@@ -297,7 +279,6 @@ public class MemorizingFragment extends Fragment {
         });
     }
 
-
     private boolean requestAudioFocus() {
         focusChangeListener = focusChange -> {
         };
@@ -354,7 +335,6 @@ public class MemorizingFragment extends Fragment {
     }
 
     private void changeVisibilityOfSeekBar(boolean flag) {
-
         if (flag && seekBar.getVisibility() == View.GONE) {
             seekBar.setVisibility(View.VISIBLE);
             tv_text_size_status.setVisibility(View.VISIBLE);
@@ -547,6 +527,7 @@ public class MemorizingFragment extends Fragment {
         ClipboardManager cm = (ClipboardManager)
                 requireContext().getSystemService(CLIPBOARD_SERVICE);
         ClipData clipData = ClipData.newPlainText(getString(R.string.text), tv.getText());
+        assert cm != null;
         cm.setPrimaryClip(clipData);
     }
 }

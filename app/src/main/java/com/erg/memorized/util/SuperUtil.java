@@ -367,6 +367,13 @@ public class SuperUtil {
             }
         }
     }
+    public static void showViewWhitStartAnimation(Animation anim, View view) {
+        if (view.getVisibility() == View.GONE || view.getVisibility() == View.INVISIBLE) {
+            if (anim != null)
+                view.startAnimation(anim);
+            view.setVisibility(View.VISIBLE);
+        }
+    }
 
     public static void hideView(Animation anim, View view) {
         if (view.getVisibility() == View.VISIBLE) {
