@@ -24,7 +24,7 @@ public class CustomScrollView extends ScrollView {
         onScrollViewListener = listener;
     }
 
-    public static interface OnScrollViewListener {
-        public void onScrollChanged(OnScrollViewListener listener, ScrollView scrollView);
+    public interface OnScrollViewListener {
+        void onScrollChanged(OnScrollViewListener listener, ScrollView scrollView);
     }
 }

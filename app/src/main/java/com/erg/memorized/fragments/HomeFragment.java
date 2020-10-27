@@ -57,19 +57,16 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
     private ViewGroup container;
     private TextView tvDailyVerseTitle, tvDailyVerseText, tvDailyDate;
     private ImageButton ibRefreshDailyVerse;
-    private LinearLayout dailyRootVerseContainer, userActivityContainer;
+    private LinearLayout userActivityContainer;
     private RelativeLayout rlVDailyVerse;
     private ProgressBar pgrView, refreshPgrView;
     private LottieAnimationView lottieNotFound;
     private LinearLayout lastReading, staticsGraph;
     private SharedPreferencesHelper spHelper;
     private Animation animScaleUp, animScaleDown;
-    private boolean isDailyVerse = false;
     private boolean isRefreshingAction = false;
 
     private ItemVerse dailyVerse;
-    private String currentDate;
-    private ArrayList<String> languages;
 
     public HomeFragment() {
         // Required empty public constructor
@@ -86,7 +83,7 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
         animScaleUp = AnimationUtils.loadAnimation(requireContext(), R.anim.scale_up);
         animScaleDown = AnimationUtils.loadAnimation(requireContext(), R.anim.scale_down);
         String[] arrayLanguages = getResources().getStringArray(R.array.languages);
-        languages = new ArrayList<>(Arrays.asList(arrayLanguages));
+        ArrayList<String> languages = new ArrayList<>(Arrays.asList(arrayLanguages));
     }
 
     @Override
@@ -103,7 +100,7 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
         tvDailyVerseText = rootView.findViewById(R.id.tv_daily_verse_text);
         tvDailyDate = rootView.findViewById(R.id.tv_daily_date);
         ibRefreshDailyVerse = rootView.findViewById(R.id.ib_refresh_daily_verse);
-        dailyRootVerseContainer = rootView.findViewById(R.id.ll_daily_verse_container);
+        LinearLayout dailyRootVerseContainer = rootView.findViewById(R.id.ll_daily_verse_container);
         userActivityContainer = rootView.findViewById(R.id.ll_activity_history_container);
         rlVDailyVerse = rootView.findViewById(R.id.rl_daily_verse);
         pgrView = rootView.findViewById(R.id.daily_progress_circular);
@@ -118,7 +115,7 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
             verseDate = TimeHelper.dateFormatterShort(dailyVerse.getId());
         }
 
-        currentDate = TimeHelper.dateFormatterShort(System.currentTimeMillis());
+        String currentDate = TimeHelper.dateFormatterShort(System.currentTimeMillis());
 
         Log.d(TAG, "setUpView: CurrentDate: " + currentDate + "\n"
                 + " VerseDate: " + verseDate);
@@ -247,7 +244,7 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
         SuperUtil.vibrate(requireContext());
         switch (v.getId()) {
             case R.id.ll_daily_verse_container:
-                isDailyVerse = true;
+                boolean isDailyVerse = true;
                 SuperUtil.loadView(requireActivity(),
                         MemorizingFragment.newInstance(dailyVerse,
                                 isDailyVerse),

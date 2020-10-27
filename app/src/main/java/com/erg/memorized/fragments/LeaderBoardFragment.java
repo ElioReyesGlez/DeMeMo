@@ -55,14 +55,12 @@ public class LeaderBoardFragment extends Fragment implements SearchView.OnQueryT
     private View rootView;
     private ViewGroup container;
 
-    private RealmHelper realmHelper;
     private SharedPreferencesHelper spHelper;
     private ItemUser currentUser;
     private FirebaseAuth fAuth;
 
     private Animation animScaleUp, animScaleDown, animSlideInFromRight;
     private ArrayList<ItemUser> leaderBoardUsers;
-    private ArrayList<ItemUser> filteredLeaderBoardUsers;
 
     public LeaderBoardFragment() {
     }
@@ -74,7 +72,7 @@ public class LeaderBoardFragment extends Fragment implements SearchView.OnQueryT
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        realmHelper = new RealmHelper(requireContext());
+        RealmHelper realmHelper = new RealmHelper(requireContext());
         spHelper = new SharedPreferencesHelper(requireContext());
         leaderBoardUsers = new ArrayList<>();
         fAuth = FirebaseAuth.getInstance();
@@ -228,7 +226,7 @@ public class LeaderBoardFragment extends Fragment implements SearchView.OnQueryT
 
     private void filter(@NotNull String query) {
         final String lowerCaseQuery = query.toLowerCase();
-        filteredLeaderBoardUsers = new ArrayList<>();
+        ArrayList<ItemUser> filteredLeaderBoardUsers = new ArrayList<>();
         for (ItemUser user : leaderBoardUsers) {
             final String name = user.getName().toLowerCase();
             if (name.contains(lowerCaseQuery)) {

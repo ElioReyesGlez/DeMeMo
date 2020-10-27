@@ -58,8 +58,8 @@ public class SharedPreferencesHelper {
 
     private static final String TAG = "SharedPreferencesHelper";
 
-    private Context context;
-    private SharedPreferences sharedPref;
+    private final Context context;
+    private final SharedPreferences sharedPref;
     private SharedPreferences.Editor editor;
 
 

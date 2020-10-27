@@ -1,5 +1,6 @@
 package com.erg.memorized;
 
+import android.annotation.SuppressLint;
 import android.app.Dialog;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -49,7 +50,7 @@ import static com.erg.memorized.util.Constants.MIN_LAUNCHES_UNTIL_PROMPT;
 
 public class MainActivity extends FragmentActivity {
 
-    public static String TAG = "MainActivity";
+    public static final String TAG = "MainActivity";
 
     private MeowBottomNavigation bottomNavigation;
     private FrameLayout frameLayoutMain;
@@ -59,9 +60,6 @@ public class MainActivity extends FragmentActivity {
     private boolean maybeWantToLeaveScoreSection = false;
     private Animation animScaleUp, animScaleUpPlus;
     private SharedPreferencesHelper spHelper;
-    private RealmHelper realmHelper;
-    private ItemUser currentUser;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -73,8 +71,8 @@ public class MainActivity extends FragmentActivity {
 
         RealmHelper.startRealm(getApplicationContext());
         spHelper = new SharedPreferencesHelper(this);
-        realmHelper = new RealmHelper(this);
-        currentUser = realmHelper.getUser();
+        RealmHelper realmHelper = new RealmHelper(this);
+        ItemUser currentUser = realmHelper.getUser();
 
         animScaleUp = AnimationUtils.loadAnimation(this, R.anim.scale_up);
         animScaleUpPlus = AnimationUtils.loadAnimation(this, R.anim.less_scale_up);
@@ -83,7 +81,7 @@ public class MainActivity extends FragmentActivity {
             SuperUtil.logInUser(this, currentUser);
         }
 
-        SuperUtil.retrieveCurrentToken();
+//        SuperUtil.retrieveCurrentToken();
 
         spHelper.setRateLaunchTimes(spHelper.getRateLaunchesTimes() + 1);
         spHelper.setPremiumLaunchTimes(spHelper.getPremiumLaunchesTimes() + 1);
@@ -167,14 +165,16 @@ public class MainActivity extends FragmentActivity {
         new AsyncTaskViewLoader(actualFragment, HomeFragment.TAG, false).execute();
     }
 
+    @SuppressLint("StaticFieldLeak")
     public class AsyncTaskViewLoader extends AsyncTask<Void, Void, Void> {
 
-        Fragment fragment;
-        String tag;
-        boolean addToBackStack;
+        final Fragment fragment;
+        final String tag;
+        final boolean addToBackStack;
         Animation anim;
 
-        AsyncTaskViewLoader(Fragment fragment, String tag, boolean addToBackStack) {
+        AsyncTaskViewLoader(Fragment fragment, String tag, @SuppressWarnings("SameParameterValue")
+                boolean addToBackStack) {
             this.fragment = fragment;
             this.tag = tag;
             this.addToBackStack = addToBackStack;
@@ -312,6 +312,7 @@ public class MainActivity extends FragmentActivity {
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
         dialog.setCancelable(false);
         LayoutInflater inflater = getLayoutInflater();
+        @SuppressLint("InflateParams")
         View dialogView = inflater.inflate(R.layout.dialog_leaving_alert_view,
                 null, false);
         dialog.setContentView(dialogView);

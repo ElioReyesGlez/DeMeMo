@@ -1,13 +1,10 @@
 package com.erg.memorized.helpers;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.Dialog;
-import android.app.NotificationChannel;
-import android.app.NotificationManager;
-import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
-import android.os.Build;
 import android.os.Handler;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -19,9 +16,9 @@ import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.HorizontalScrollView;
 import android.widget.ImageView;
-import android.widget.Switch;
 import android.widget.TextView;
 
+import androidx.appcompat.widget.SwitchCompat;
 import androidx.fragment.app.FragmentActivity;
 
 import com.erg.memorized.R;
@@ -29,18 +26,12 @@ import com.erg.memorized.fragments.ScorerFragment;
 import com.erg.memorized.model.ItemVerse;
 import com.erg.memorized.util.Constants;
 import com.erg.memorized.util.SuperUtil;
-import com.erg.memorized.views.FixedViewPager;
 import com.google.android.material.snackbar.Snackbar;
 
 import java.util.Objects;
-import java.util.Timer;
-import java.util.TimerTask;
 
-import static com.erg.memorized.util.Constants.APP_NAME;
-import static com.erg.memorized.util.Constants.CHANNEL_NAME;
 import static com.erg.memorized.util.Constants.GOOGLE_APP_DETAILS_URL;
 import static com.erg.memorized.util.Constants.MARKET_APP_DETAILS_URL;
-import static com.erg.memorized.util.Constants.NOTIFY_CHANNEL_ID;
 
 public class MessagesHelper {
 
@@ -48,11 +39,7 @@ public class MessagesHelper {
         if (!context.isFinishing()) {
             Snackbar snackBar = Snackbar.make(context.findViewById(R.id.placeSnackBar)
                     , msg, Snackbar.LENGTH_SHORT);
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-                snackBar.setBackgroundTint(context.getColor(R.color.colorPrimary));
-            } else {
-                snackBar.setBackgroundTint(context.getResources().getColor(R.color.colorPrimary));
-            }
+            snackBar.setBackgroundTint(context.getColor(R.color.colorPrimary));
             snackBar.show();
         }
     }
@@ -66,12 +53,6 @@ public class MessagesHelper {
         }
     }
 
-    public static void showWarningMessageFragment(View rootView, Context context, String msg) {
-        Snackbar snackBar = Snackbar.make(rootView.findViewById(R.id.placeSnackBar)
-                , msg, Snackbar.LENGTH_SHORT);
-        snackBar.setBackgroundTint(context.getColor(R.color.yellow_bg_color));
-        snackBar.show();
-    }
 
     public static void showInfoMessageError(Activity context, String msg) {
         if (!context.isFinishing()) {
@@ -102,6 +83,7 @@ public class MessagesHelper {
             snackBar.setTextColor(context.getColor(R.color.dark_gray_btn_bg_color));
             snackBar.setDuration(Snackbar.LENGTH_INDEFINITE);
             snackBar.setAction(context.getString(R.string.got_it), v -> {
+                SuperUtil.vibrateMin(context);
                 CalendarHelper.requestCalendarReadWritePermission(context);
                 snackBar.dismiss();
             });
@@ -136,7 +118,8 @@ public class MessagesHelper {
             Snackbar snackBar = Snackbar.make(rootView.findViewById(R.id.placeSnackBar),
                     msg, Snackbar.LENGTH_INDEFINITE);
             snackBar.setBackgroundTint(context.getColor(R.color.colorPrimary));
-            snackBar.setAction(R.string.dismiss, v -> {
+            snackBar.setAction(R.string.ok, v -> {
+                SuperUtil.vibrateMin(context);
                 if (snackBar.isShown()) {
                     snackBar.dismiss();
                     if (key != null) {
@@ -155,22 +138,6 @@ public class MessagesHelper {
         }
     }
 
-    public static void createNotificationChanel(Context context) {
-
-        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
-            int importance = NotificationManager.IMPORTANCE_DEFAULT;
-            String description = context.getString(R.string.channel_description) + APP_NAME;
-            NotificationChannel channel = new NotificationChannel(NOTIFY_CHANNEL_ID, CHANNEL_NAME, importance);
-            channel.setDescription(description);
-
-            NotificationManager notificationManager =
-                    context.getSystemService(NotificationManager.class);
-
-            assert notificationManager != null;
-            notificationManager.createNotificationChannel(channel);
-        }
-    }
-
     public static void showEvaluatorDialogInfoMessage(FragmentActivity context,
                                                       int image,
                                                       String msg,
@@ -180,11 +147,11 @@ public class MessagesHelper {
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
         dialog.setCancelable(false);
         LayoutInflater inflater = context.getLayoutInflater();
-        View dialogView = inflater.inflate(R.layout.dialog_evaluator_info_view,
+        @SuppressLint("InflateParams") View dialogView = inflater.inflate(R.layout.dialog_evaluator_info_view,
                 null, false);
         ImageView ivIcon = dialogView.findViewById(R.id.iv_ic_dialog);
         TextView tvMsg = dialogView.findViewById(R.id.text_dialog);
-        Switch btnSwitch = dialogView.findViewById(R.id.switch_do_not_show_again);
+        SwitchCompat btnSwitch = dialogView.findViewById(R.id.switch_do_not_show_again);
 
         ivIcon.setImageResource(image);
         tvMsg.setText(msg);
@@ -214,7 +181,7 @@ public class MessagesHelper {
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
         dialog.setCancelable(false);
         LayoutInflater inflater = context.getLayoutInflater();
-        View dialogView = inflater.inflate(R.layout.dialog_time_finished_view_lottie,
+        @SuppressLint("InflateParams") View dialogView = inflater.inflate(R.layout.dialog_time_finished_view_lottie,
                 null, false);
         dialog.setContentView(dialogView);
 
@@ -233,13 +200,13 @@ public class MessagesHelper {
         return dialog;
     }
 
-    private static Dialog showRatingDialog(Activity context, Animation anim) {
+    private static void showRatingDialog(Activity context, Animation anim) {
 
         final Dialog dialog = new Dialog(context, R.style.alert_dialog);
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
         dialog.setCancelable(false);
         LayoutInflater inflater = context.getLayoutInflater();
-        View dialogView = inflater.inflate(R.layout.dialog_rating_view,
+        @SuppressLint("InflateParams") View dialogView = inflater.inflate(R.layout.dialog_rating_view,
                 null, false);
         dialog.setContentView(dialogView);
         HorizontalScrollView horizontalScrollView = dialogView
@@ -301,7 +268,6 @@ public class MessagesHelper {
         }, 1000);
 
         spHelper.setLastLaunchRateDialogDate();
-        return dialog;
     }
 
     public static void showRateDialog(Activity activity, Animation anim) {
@@ -315,7 +281,7 @@ public class MessagesHelper {
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
         dialog.setCancelable(false);
         LayoutInflater inflater = context.getLayoutInflater();
-        View dialogView = inflater.inflate(R.layout.dialog_do_test_view,
+        @SuppressLint("InflateParams") View dialogView = inflater.inflate(R.layout.dialog_do_test_view,
                 null, false);
 
         HorizontalScrollView horizontalScrollView = dialogView
@@ -355,24 +321,4 @@ public class MessagesHelper {
             }
         }, 1000);
     }
-
-    private static void setUpAutoSwapViewPage(FixedViewPager fixedViewPager) {
-
-        Timer timer;
-        final long DELAY_MS = 7000;//delay in milliseconds before task is to be executed
-        final long PERIOD_MS = 7000; // time in milliseconds between successive task executions.
-
-        /*After setting the adapter use the timer */
-        final Handler handler = new Handler();
-        final Runnable Update = fixedViewPager::moveNext;
-
-        timer = new Timer(); // This will create a new Thread
-        timer.schedule(new TimerTask() { // task to be scheduled
-            @Override
-            public void run() {
-                handler.post(Update);
-            }
-        }, DELAY_MS, PERIOD_MS);
-    }
-
 }

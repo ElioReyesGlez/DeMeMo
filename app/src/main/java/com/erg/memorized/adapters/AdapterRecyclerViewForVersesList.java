@@ -20,8 +20,8 @@ import java.util.ArrayList;
 public class AdapterRecyclerViewForVersesList extends RecyclerView.Adapter<AdapterRecyclerViewForVersesList.VerseHolder> {
 
     private ArrayList<ItemVerse> verses;
-    private Context context;
-    private OnVerseListener onVerseListener;
+    private final Context context;
+    private final OnVerseListener onVerseListener;
     private int selectedPos = RecyclerView.NO_POSITION;
 
     public AdapterRecyclerViewForVersesList(ArrayList<ItemVerse> verses, Context context,
@@ -57,11 +57,11 @@ public class AdapterRecyclerViewForVersesList extends RecyclerView.Adapter<Adapt
 
     public class VerseHolder extends RecyclerView.ViewHolder implements
             View.OnClickListener, View.OnLongClickListener {
-        private TextView verseTitle;
-        private TextView verseText;
-        private TextView verseDate;
-        private RelativeLayout relativeLayout;
-        private OnVerseListener onVerseListener;
+        private final TextView verseTitle;
+        private final TextView verseText;
+        private final TextView verseDate;
+        private final RelativeLayout relativeLayout;
+        private final OnVerseListener onVerseListener;
 
         VerseHolder(View itemView, OnVerseListener onVerseListener) {
             super(itemView);

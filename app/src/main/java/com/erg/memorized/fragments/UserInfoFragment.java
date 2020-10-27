@@ -1,5 +1,6 @@
 package com.erg.memorized.fragments;
 
+import android.annotation.SuppressLint;
 import android.app.Dialog;
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -277,6 +278,7 @@ public class UserInfoFragment extends Fragment implements View.OnClickListener {
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
         dialog.setCancelable(false);
         LayoutInflater inflater = getLayoutInflater();
+        @SuppressLint("InflateParams")
         View dialogView = inflater.inflate(R.layout.dialog_info_delete_confirmation, null, false);
         TextView msg = dialogView.findViewById(R.id.text_dialog);
         msg.setText(R.string.delete_confirmation_msg);
@@ -338,6 +340,7 @@ public class UserInfoFragment extends Fragment implements View.OnClickListener {
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
         dialog.setCancelable(false);
         LayoutInflater inflater = getLayoutInflater();
+        @SuppressLint("InflateParams")
         View dialogView = inflater.inflate(R.layout.dialog_info_send_email_view, null, false);
         TextView msg = dialogView.findViewById(R.id.text_dialog);
         TextView dialogEmail = dialogView.findViewById(R.id.tv_email);
@@ -443,6 +446,7 @@ public class UserInfoFragment extends Fragment implements View.OnClickListener {
         dialogView.startAnimation(animScaleUp);
     }
 
+    @SuppressLint("StaticFieldLeak")
     public class AsyncTaskLoader extends AsyncTask<Void, Void, Void> {
 
         private Dialog progressDialog;
@@ -747,6 +751,7 @@ public class UserInfoFragment extends Fragment implements View.OnClickListener {
         dialogRestoresEmailSentDialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
         dialogRestoresEmailSentDialog.setCancelable(false);
         LayoutInflater inflater = getLayoutInflater();
+        @SuppressLint("InflateParams")
         View dialogView = inflater.inflate(R.layout.dialog_restor_pass_via_email_view, null, false);
         TextInputEditText editTextEmail = dialogView.findViewById(R.id.dialog_input_email);
         TextInputLayout tilEmail = dialogView.findViewById(R.id.til_dialog_email);

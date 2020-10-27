@@ -39,7 +39,6 @@
         android:layout_below="@+id/tv_title"
         android:weightSum="2">
         <ScrollView
-            android:id="@+id/scroll_view_verse_text"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
@@ -51,7 +50,7 @@
                 android:id="@+id/tv_verse"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/aux_memory_text"
+                android:hint="@string/verse"
                 android:padding="@dimen/regular_item_padding"
                 android:textSize="16sp"
                 android:animateLayoutChanges="true"/>

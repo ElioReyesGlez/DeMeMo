@@ -1,5 +1,6 @@
 package com.erg.memorized.fragments;
 
+import android.annotation.SuppressLint;
 import android.app.Dialog;
 import android.graphics.Bitmap;
 import android.os.AsyncTask;
@@ -84,7 +85,7 @@ public class SettingsFragment extends Fragment implements View.OnClickListener {
     private TextView tvUserScore;
     private TextView tvLastUploadDate;
     private Button btnSignUp;
-    private RelativeLayout rlUserSettings, rlLeaderBoard, rlAbout, rlGeneralSettings;
+    private RelativeLayout rlUserSettings;
     private RelativeLayout rlSync, rlUpload;
     private ProgressBar progressBar;
 
@@ -99,11 +100,7 @@ public class SettingsFragment extends Fragment implements View.OnClickListener {
 
     private ArrayList<ItemVerse> cloudVerses;
     private ArrayList<ItemVerse> localVerses;
-
     private Animation animScaleUp, animScaleDown;
-
-    private BillingHelper billingHelper;
-
 
     public SettingsFragment() {
         // Required empty public constructor
@@ -159,9 +156,9 @@ public class SettingsFragment extends Fragment implements View.OnClickListener {
         tvUser = rootView.findViewById(R.id.tv_user);
         btnSignUp = rootView.findViewById(R.id.bt_login);
         rlUserSettings = rootView.findViewById(R.id.rl_user_settings);
-        rlLeaderBoard = rootView.findViewById(R.id.rl_leader_board);
-        rlAbout = rootView.findViewById(R.id.rl_about);
-        rlGeneralSettings = rootView.findViewById(R.id.rl_general_settings);
+        RelativeLayout rlLeaderBoard = rootView.findViewById(R.id.rl_leader_board);
+        RelativeLayout rlAbout = rootView.findViewById(R.id.rl_about);
+        RelativeLayout rlGeneralSettings = rootView.findViewById(R.id.rl_general_settings);
         progressBar = rootView.findViewById(R.id.progressBar);
         tvVerseCont = rootView.findViewById(R.id.tv_verses_cont);
         tvUserScore = rootView.findViewById(R.id.tv_user_score);
@@ -184,7 +181,7 @@ public class SettingsFragment extends Fragment implements View.OnClickListener {
             isLoginAction = false;
             if (currentUser != null) {
                 if (!currentUser.isPremium()) {
-                    billingHelper = new BillingHelper(requireActivity(), currentUser);
+                    BillingHelper billingHelper = new BillingHelper(requireActivity(), currentUser);
                 }
                 new AsyncTaskViewLoader(currentUser).execute();
                 startDataListener();
@@ -544,6 +541,7 @@ public class SettingsFragment extends Fragment implements View.OnClickListener {
         dialogRestoresEmailSentDialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
         dialogRestoresEmailSentDialog.setCancelable(false);
         LayoutInflater inflater = getLayoutInflater();
+        @SuppressLint("InflateParams")
         View dialogView = inflater.inflate(R.layout.dialog_restor_pass_via_email_view, null, false);
         TextInputEditText editTextEmail = dialogView.findViewById(R.id.dialog_input_email);
         TextInputLayout tilEmail = dialogView.findViewById(R.id.til_dialog_email);
@@ -716,9 +714,10 @@ public class SettingsFragment extends Fragment implements View.OnClickListener {
                 });
     }
 
+    @SuppressLint("StaticFieldLeak")
     public class AsyncTaskViewLoader extends AsyncTask<Void, Void, Void> {
 
-        private ItemUser currentUser;
+        private final ItemUser currentUser;
         private Bitmap bitmapFromBase64;
 
         AsyncTaskViewLoader(ItemUser currentUser) {

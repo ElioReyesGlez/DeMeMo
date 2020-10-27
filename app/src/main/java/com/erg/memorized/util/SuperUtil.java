@@ -29,7 +29,6 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
 import com.airbnb.lottie.LottieAnimationView;
-import com.erg.memorized.MainActivity;
 import com.erg.memorized.R;
 import com.erg.memorized.helpers.MessagesHelper;
 import com.erg.memorized.helpers.SharedPreferencesHelper;
@@ -38,7 +37,6 @@ import com.erg.memorized.model.ItemVerse;
 import com.etebarian.meowbottomnavigation.MeowBottomNavigation;
 import com.google.firebase.FirebaseNetworkException;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.iid.FirebaseInstanceId;
 
 import org.jetbrains.annotations.NotNull;
 
@@ -142,7 +140,7 @@ public class SuperUtil {
     }
 
 
-    public static void retrieveCurrentToken() {
+ /*   public static void retrieveCurrentToken() {
         FirebaseInstanceId.getInstance().getInstanceId()
                 .addOnCompleteListener(task -> {
                     if (!task.isSuccessful()) {
@@ -158,7 +156,7 @@ public class SuperUtil {
 //                        Log.d(MainActivity.TAG, msg);
 //                        Toast.makeText(context, msg, Toast.LENGTH_SHORT).show();
                 });
-    }
+    }*/
 
     public String encodeBase64ToString(Bitmap bitmap, String extension) {
 
@@ -237,9 +235,9 @@ public class SuperUtil {
     }
 
 
-    public static Dialog showDialogWithLottie(Activity context, String lottieAssetName,
-                                              String msg, String btnMsg, ViewGroup container,
-                                              SharedPreferencesHelper spHelper) {
+    public static void showDialogWithLottie(Activity context, String lottieAssetName,
+                                            String msg, String btnMsg, ViewGroup container,
+                                            SharedPreferencesHelper spHelper) {
         Dialog dialog = new Dialog(context, R.style.alert_dialog);
         dialog.setCancelable(false);
         LayoutInflater inflater = context.getLayoutInflater();
@@ -263,7 +261,6 @@ public class SuperUtil {
         dialogView.setAnimation(anim);
         dialog.setContentView(dialogView);
         dialog.show();
-        return dialog;
     }
 
     public static void showMeoBottomBar(Activity context, Animation anim) {
@@ -407,7 +404,7 @@ public class SuperUtil {
         return arrayList;
     }
 
-    public static Comparator<ItemUser> userComparator = (u1, u2) -> {
+    public static final Comparator<ItemUser> userComparator = (u1, u2) -> {
         float u1Score = u1.getScore();
         float u2Score = u2.getScore();
 

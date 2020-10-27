@@ -1,32 +1,7 @@
 <resources>
     <string name="app_name">DeMeMo</string>
 
-    <string name="hello_blank_fragment">Hello blank fragment</string>
-
-    <string name="str_add_goal">Adicionar nuevo versículo</string>
-    <string name="str_add">Adicionar</string>
-    <string name="aux_memory_text">
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-        Nulla at nibh ac erat sagittis rutrum. Vivamus id facilisis lorem, vitae varius turpis.
-        Pellentesque ipsum sapien, bibendum viverra tortor in, malesuada suscipit arcu.
-        Nunc magna erat, egestas ut suscipit ac, euismod pulvinar mi.
-        Aenean vitae sodales enim. Duis quis ultricies purus. In at bibendum lectus, et lacinia eros.
-        Cras lectus tellus, consequat eget sapien ac, porttitor luctus massa.
-        Vestibulum dignissim magna at tortor finibus tempor.
-        Donec efficitur augue eros, nec placerat nunc iaculis at.
-        Mauris pulvinar blandit aliquet. Quisque eu ligula justo.
-        Curabitur sagittis velit, ut facilisis purus hendrerit eu.
-        Sed cursus mauris eget orci rhoncus, at feugiat magna ullamcorper. </string>
-
-    <string name="example_text">
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-        Nulla at nibh ac erat sagittis rutrum. Vivamus id facilisis lorem, vitae varius turpis.
-        Pellentesque ipsum sapien, bibendum viverra tortor in, malesuada suscipit arcu.
-        Nunc magna erat, egestas ut suscipit ac, euismod pulvinar mi. </string>
-
     <string name="img_description">Img</string>
-    <string name="img_add_button">Img Botón adicionar</string>
-    <string name="loading">Cargando…</string>
     <string name="tile">Cita</string>
     <string name="verse">Verso</string>
     <string name="dialog_save">Solo guardar</string>
@@ -43,19 +18,14 @@
     <string name="failed_creating_user">Algo malo sucedió, el usuario no se ha creado</string>
     <string name="failed_saving_user">Algo malo sucedió, usuario no guardado</string>
     <string name="failed_loading_user_data">Algo malo sucedió, los datos del usuario no se cargan</string>
-    <string name="failed_loading_your_version_data">Algo malo sucedió, los datos no se cargan</string>
 
     <string name="fam_title">Control de Audio</string>
     <string name="stop">detener</string>
-    <string name="pause">pausa</string>
     <string name="play">reproducir</string>
 
     <string name="empty" />
-    <string name="empty_word">vacío</string>
-    <string name="not_found">No encontrado</string>
     <string name="hide_fam">Presionar nuevamente para ocultar el Control de Audio</string>
     <string name="hide_status_text_size_bar">Presionar nuevamente para ocultar la barra de estado del tamaño del texto</string>
-    <string name="dismiss">Descartar</string>
     <string name="msg_long_click_option">¿Qué le gustaría hacer?</string>
     <string name="dialog_message_description">Pon un mensaje aquí</string>
     <string name="leaving_alert">¡Todo será descartado! ¿Estás seguro?</string>
@@ -75,15 +45,11 @@
     <string name="description_menu_icon">Icono de menú</string>
     <string name="description_icon_right_arrow">Icono de flecha derecha</string>
     <string name="settings">Configuraciones</string>
-    <string name="sign_up">Registrar</string>
     <string name="name">Nombre</string>
     <string name="email">E-mail</string>
     <string name="email_low_case">e-mail</string>
     <string name="mobile_number_user_info">Móvil</string>
     <string name="pass">Contraseña</string>
-    <string name="already_a_member_login">¿Ya es miembro?</string>
-    <string name="unfilled_field">Campo sin llenar</string>
-    <string name="login_underline"><u>Iniciar sesión</u></string>
     <string name="create_account">Crear cuenta</string>
     <string name="pass_again">Escribir la contraseña otra vez</string>
     <string name="description_add_image">Adiconar imagen</string>
@@ -92,20 +58,16 @@
     <string name="no_account_yet_create_one">¿No tiene cuenta aún?</string>
     <string name="crete_one"><u>Crear</u></string>
     <string name="restore"><u>Restaurar</u></string>
-    <string name="login_failed">Error de inicio de sesion</string>
     <string name="error_name">al menos 3 caracteres</string>
     <string name="error_email">Introduzca una dirección de correo electrónico válida</string>
     <string name="error_pass">entre 4 y 10 caracteres alfanuméricos</string>
-    <string name="error_old_pass">no coincide con la contraseña anterior</string>
     <string name="error_re_pass">la contraseña no coincide</string>
     <string name="error_mobile">ingresar una dirección de número de teléfono móvil válida</string>
-    <string name="same_pass">introducir nueva contraseña</string>
     <string name="welcome">Bienvenido/a</string>
     <string name="successfully_user_created">. ¡Cuenta creada!</string>
     <string name="user_collision">La dirección de correo electrónico ya está siendo utilizada por otra cuenta.</string>
     <string name="data_collision">Colisión de datos.</string>
     <string name="invalid_user">No hay registro de usuario correspondiente a este identificador</string>
-    <string name="select_img">Seleccionar imagen</string>
     <string name="failed_picking_img">¡Fallo eligiendo imagen!</string>
     <string name="use">Use</string>
     <string name="use_question">¿Quiere usar la imagen?</string>
@@ -121,30 +83,24 @@
     <string name="got_it">Entendido</string>
     <string name="animated_img">Imagen animada</string>
     <string name="split_msg_dialog">Dividir el texto en secciones le ayudará a memorizar más rápidamente.</string>
-    <string name="go_here">Puede hacerlo en la barra superior.</string>
+    <string name="go_here">Puede hacerlo en el menú superior.</string>
     <string name="right_arrow">Flecha derecha</string>
-    <string name="left_arrow">Flecha izquierda</string>
     <string name="section_image">sección de laimagen</string>
     <string name="log_out">Cerrar sesión</string>
     <string name="save">Salvar</string>
     <string name="email_is_not_verified">presionar aquí para verificar el correo electrónico</string>
     <string name="email_is_not_verified_msg">Primero verificar el correo electrónico</string>
-    <string name="old_pass">Contraseña anterior</string>
-    <string name="new_pass">Nueva contraseña</string>
     <string name="new_name">Nuevo nombre</string>
     <string name="new_email">Nuevo correo electrónico</string>
     <string name="new_mobile">Nuevo móvil</string>
     <string name="send">¡Enviar!</string>
     <string name="dialog_message_verification_email">Se enviará un enlace de verificación a este correo electrónico:</string>
-    <string name="dialog_message_restore_email_was_sent">Se envió un enlace de restauración a este correo electrónico:</string>
     <string name="dialog_message_restore_email">Se enviará un enlace de restauración a este correo electrónico:</string>
     <string name="test_email">elioworkemail@gmail.com</string>
     <string name="email_sent">¡Correo electrónico enviado!</string>
     <string name="failed_updating">Error al actualizar los datos</string>
-    <string name="failed_updating_pass">Error al actualizar la contraseña</string>
     <string name="data_updated">¡Datos actualizados con éxito!</string>
     <string name="remove_account">Eliminar</string>
-    <string name="change">Cambiar</string>
     <string name="info_icon">Icono de información</string>
     <string name="daily_notification">Notificación diaria</string>
     <string name="weekly_notification">Notificación semanal</string>
@@ -157,7 +113,6 @@
     <string name="ready_msg">Listo para memorizar:</string>
     <string name="calender_ids">Calendario</string>
     <string name="calendar_ops">Selector de calendario</string>
-    <string name="channel_description">Canal para</string>
     <string name="pick_calendar_needed">Primero elija uno de sus calendarios.</string>
     <string name="selected">seleccionado</string>
     <string name="end_date">Fecha fin</string>
@@ -167,18 +122,16 @@
     <string name="text">texto</string>
     <string name="invalid_until_date">¡Fecha fin no es válida!</string>
     <string name="verses">Versículos</string>
-    <string name="frequency">Frecuencia</string>
     <string name="last_upload">Última subida</string>
     <!--    <string name="memorized">Memorized</string>-->
     <!--    <string name="verses_memorized">Memorized:\ </string>-->
     <string name="zero">0</string>
-    <string name="empty_date">esperando</string>
     <string name="upload_success">¡Éxito Subiendo!</string>
     <string name="failed_uploading">Error al cargar, inténtalo más tarde.</string>
     <string name="failed_deleting">Error al eliminar la cuenta, inténtalo más tarde.</string>
     <string name="refresh">Actualizar</string>
     <string name="refresh_icon">" icono actualizar"</string>
-    <string name="upload">Subir</string>
+    <string name="upload">Salvar</string>
     <string name="general_settings">Configuración General</string>
     <string name="upload_needed">Carga necesaria</string>
     <string name="changes_to_be_uploaded">Alerta de subida: ¡Nuevos datos para ser subidos!</string>
@@ -187,8 +140,6 @@
     <string name="leader_board">Tabla de Clasificación</string>
     <string name="icon_leader_board">Icono de tabla de clasificación</string>
     <string name="user">Nombre de usuario</string>
-    <string name="evaluate">Evaluar</string>
-    <string name="check_button">Botón de verificación</string>
     <string name="ic_black_shield">ic escudo negro</string>
     <string name="sync">Sincronizar</string>
     <string name="sync_not_needed">¡No se necesita sincronización!</string>
@@ -202,10 +153,8 @@
     <string name="name_local">Nombre local</string>
     <string name="local_abbreviation">Abreviatura local</string>
     <string name="spanish">Español</string>
-    <string name="son_icon">Son Icon</string>
     <string name="daily_verse">Versículo diario</string>
     <string name="msg_edit_to_save">Este versículo aún no se ha guardado. \n¿Quiere guardar?</string>
-    <string name="msg_set_notification">¿Establecer recordatorio?</string>
     <string name="response_404">¡Versículo no encontrado! Por favor, compruebe si\n
         Versión actual de la Biblia si es correcta o Inténtelo más tarde.</string>
     <string name="minutes_ago">\ minutos atrás</string>
@@ -222,9 +171,7 @@
     <string name="done">¡Hecho!</string>
     <string name="hits">Aciertos</string>
     <string name="almost_hit">Casi aciertos</string>
-    <string name="sum">Suma</string>
     <string name="fields">Campos</string>
-    <string name="score_partial">P.Score</string>
     <string name="score_total_partial">Puntuación:</string>
     <string name="score_total">Puntuación total:</string>
     <string name="blank">---</string>
@@ -236,9 +183,7 @@
     <string name="writer_evaluator">Escritor - Evaluador</string>
     <string name="writer_evaluator_info">"Este evaluador elimina palabras al azar. Tiene que escribir las palabras que faltan.\n (La ortografía es importante)\n    "</string>
     <string name="drag_and_drop_evaluator_message">Intercambie las palabras hasta que el texto esté en el orden correcto</string>
-    <string name="fill">llenar</string>
     <string name="finish">¡Terminar!</string>
-    <string name="result">Resultado</string>
     <string name="amount">Cantidad</string>
     <string name="memory_evaluator">Evaluador de Memoria</string>
     <string name="evaluator_name">Nombre del evaluador</string>
@@ -256,43 +201,27 @@
     <string name="activity">Actividad</string>
     <string name="last_reading">Última lectura</string>
     <string name="statistics">Gráfica de uso</string>
-    <string name="lorem">Lorem</string>
-
-    <!--
-    <string name="rate_dialog_title">Are you enjoying</string>
-    <string name="rate_dialog_message">Please rate it on Google Play - it really helps!</string>
-    <string name="rate_dialog_ok">Heck yeah!</string>
-    <string name="rate_dialog_cancel">Not now</string>
-    <string name="rate_dialog_no">Uhm…no</string>
--->
-
 
     <string name="rate_dialog_cancel">Recordar más tarde</string>
-    <string name="rate_dialog_message">Si te gusta DeMeMo, ¿Le importaría tomar un  momento para calificarlo? ¡Realmente ayuda! ¡Gracias por su apoyo!</string>
+    <string name="rate_dialog_message">Si te gusta DeMeMo, ¿Le importaría tomar un  momento
+        para calificarlo? ¡Realmente ayuda! ¡Gracias por su apoyo!</string>
     <string name="rate_dialog_no">No, gracias</string>
     <string name="rate_dialog_ok">Califícar ahora</string>
-    <string name="rate_dialog_title">Califícanos esta aplicación</string>
 
 
-    <string name="premium_dialog_cancel">Recordar más tarde</string>
-    <string name="premium_dialog_ok">¡Si seguro!</string>
+    <string name="premium_dialog_ok">¡Si, seguro!</string>
     <string name="premium_dialog_no">No, gracias</string>
-    <string name="premium">Premium</string>
     <string name="get_premium">¡Hágase Premium!</string>
-    <string name="full_access_to_the_verse_memory_evaluator">Acceso completo al evaluador de memoria de versículos</string>
-    <string name="worldwide_participation_on_dememo_leaderboard">Participación mundial en la clasificación de DeMeMo</string>
     <string name="already_premium">Ya es miembro premium</string>
     <string name="memorizing_finish">¡Buen trabajo!\n  ¿Desea poner a prueba su memoria?</string>
-    <string name="memorizing_done_msg">¡Buen trabajo!</string>
     <string name="about">Acerca de</string>
-    <string name="support">Apoyo</string>
     <string name="forgot_password">¿Olvidó su contraseña?</string>
     <string name="function_temporarily_disabled">Función temporalmente deshabilitada</string>
 
     <string-array name="evaluator_names">
-        <item>Fill Missing - Evaluator</item>
-        <item>Drag and Drop - Evaluator</item>
-        <item>Writer - Evaluator</item>
+        <item>Rellenar Faltante - Evaluador</item>
+        <item>Arrastrar y Soltar - Evaluador</item>
+        <item>Escritor - Evaluador</item>
     </string-array>
 
     <string-array name="evaluators_descriptions">
@@ -301,21 +230,9 @@
         <item>@string/writer_evaluator_info</item>
     </string-array>
 
-    <string-array name="variables_evaluator_tables_names">
-        <item>fillMissingEvaluatorTable</item>
-        <item>dragAndDropEvaluatorTable</item>
-        <item>writerEvaluatorTable</item>
-    </string-array>
-
     <string-array name="tabs_titles">
-        <item>Date Picker</item>
-        <item>Time Picker</item>
-    </string-array>
-
-    <string-array name="tabs_titles_test">
-        <item>Premium</item>
-        <item>Score</item>
-        <item>Leaderboard</item>
+        <item>Fecha</item>
+        <item>Hora</item>
     </string-array>
 
 
@@ -356,11 +273,6 @@
         <item>sat_</item>
         <item>sun_</item>
     </string-array>
-    <string name="action_settings">Configuraciones</string>
-    <string name="interstitial_ad_sample">Muestra de anuncio intersticial</string>
-    <string name="start_level">Nivel 1</string>
-    <string name="next_level">Siguiente nivel</string>
-    <string name="level_text">Nivel% 1 $ d</string>
 
     // DeMeMo adMob id
     <!--    <string name="interstitial_ad_unit_id">ca-app-pub-5375894039512920/4596144610</string>-->
@@ -377,12 +289,12 @@
 
     <!--    All strings used in about page Fragment*-->
     <string name="description_about_page">
-        DeMeMo es el resultado de la idea para desarrollar apoyo sistemático en el proceso de
-        memorizar citas bíblicas, luego paso a ser un proyecto donde coexiste una forma interactiva
-        y competitiva de promover, aprender y memorizar la Biblia. DeMeMo es parte de un proyecto
-        en desarrollo que tiene como objetivo posicionar la palabra de Dios en un mundo más actual
-        donde las nuevas tecnologías y las bienaventuranzas de Dios vallan de la mano de forma
-        transparente.</string>
+        DeMeMo es el resultado de la idea de desarrollar un soporte sistemático a la hora de
+        memorizar citas bíblicas. DeMeMo se convirtió en un proyecto donde convive una forma
+        interactiva y competitiva, para promover, aprender y memorizar la Biblia.
+        DeMeMo es parte de un proyecto en desarrollo que tiene como objetivo posicionar
+        la palabra de Dios en un mundo más actual donde las nuevas tecnologías y las
+        bienaventuranzas de Dios van de la mano de forma transparente.</string>
     <string name="email_about_page">dememoteam@gmail.com</string>
     <string name="app_version_about_page">Version: 1.0.0</string>
     <string name="play_store_about_page">Califícanos en Play Store</string>
@@ -392,7 +304,6 @@
     <string name="title2_about_page">Desarrollado por</string>
     <string name="developer1_about_page">Elioenai Reyes</string>
     <string name="developer2_about_page">José Ernesto Cortes</string>
-    <string name="default_app_versio">1.0.0</string>
     <string name="version">Versión:</string>
 
     <!-- Urls -->
@@ -401,8 +312,7 @@
     <string name="miss">Fallos</string>
     <string name="mobile_number">Número de móvil (opcional)</string>
     <string name="get_premium_ad_free">Hágase PREMIUM para obtener una DeMeMo SIN ANUNCIOS</string>
-    <string name="get_premium_upload_score">Hágase PREMIUM para subir su puntuación</string>
-    <string name="dememo_intro_description"><u>DeMeMo</u> es la app que te ayudará a memorizar sus citas
+    <string name="dememo_intro_description"><u>DeMeMo</u> es la app que le ayudará a memorizar sus citas
         bíblicas de manera eficaz e interactiva.</string>
     <string name="evaluator_intro_description">Deje que DeMeMo evalúe su memoria,
         entonces podrá saber con seguridad cuanto domina sus citas biblicas.</string>
@@ -412,4 +322,17 @@
     <string name="cloud_backup_intro_description">Sincronice todo su progreso en la nube,
         entonces podrá recuperar todo en caso que lo necesite.</string>
     <string name="null_pointer">¡Excepción de campo nulo!</string>
+
+    <string name="_15">15</string>
+    <string name="example_date">01/06/1993</string>
+    <string name="total_100">Total: 100</string>
+    <string name="_10">10</string>
+    <string name="_0_3">0/3</string>
+    <string name="example_name">Elioenai Reyes</string>
+    <string name="one">1</string>
+    <string name="text_view">TextView</string>
+    <string name="score_100">Score: 100</string>
+    <string name="reminder">Recordatorio</string>
+    <string name="reminder_intro_description">Configure a DeMeMo para que le recuerde cuando
+        es tiempo de memorizar.</string>
 </resources>

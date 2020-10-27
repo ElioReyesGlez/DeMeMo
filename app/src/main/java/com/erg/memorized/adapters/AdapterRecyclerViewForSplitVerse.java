@@ -26,11 +26,11 @@ public class AdapterRecyclerViewForSplitVerse extends
 
     private static final String TAG = "AdapterRecyclerViewForS";
 
-    private ArrayList<String> splitVerseList;
-    private Context context;
-    private String title;
-    private OnSectionListener onSectionListener;
-    private SharedPreferencesHelper spHelper;
+    private final ArrayList<String> splitVerseList;
+    private final Context context;
+    private final String title;
+    private final OnSectionListener onSectionListener;
+    private final SharedPreferencesHelper spHelper;
     public int contChecked = 0;
 
     public AdapterRecyclerViewForSplitVerse(ArrayList<String> splitVerseList,
@@ -69,10 +69,10 @@ public class AdapterRecyclerViewForSplitVerse extends
 
     public class VerseHolder extends RecyclerView.ViewHolder implements
             View.OnClickListener, CompoundButton.OnCheckedChangeListener {
-        private TextView verseTitle;
-        private TextView verseText;
-        private CheckBox checkBox;
-        private OnSectionListener onSectionListener;
+        private final TextView verseTitle;
+        private final TextView verseText;
+        private final CheckBox checkBox;
+        private final OnSectionListener onSectionListener;
 
         VerseHolder(View itemView, OnSectionListener onSectionListener) {
             super(itemView);

@@ -9,7 +9,6 @@
     android:padding="@dimen/regular_item_padding">
 
     <RelativeLayout
-        android:id="@+id/rl_second_root"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
@@ -62,7 +61,6 @@
         </com.google.android.material.card.MaterialCardView>
 
         <RelativeLayout
-            android:id="@+id/rl_op_container"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@drawable/background_white"
@@ -142,7 +140,6 @@
                     android:visibility="gone">
 
                     <TextView
-                        android:id="@+id/tv_msg_not_verified_email"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="@string/email_is_not_verified"
@@ -160,7 +157,8 @@
                     android:layout_below="@+id/rl_msg_not_verified"
                     android:layout_centerVertical="true"
                     android:layout_marginTop="3dp"
-                    android:src="@drawable/ic_email" />
+                    android:src="@drawable/ic_email"
+                    android:contentDescription="@string/icon" />
 
                 <TextView
                     android:id="@+id/tv_email"
@@ -183,7 +181,6 @@
                     android:layout_height="16dp"
                     android:layout_below="@+id/rl_msg_not_verified"
                     android:layout_alignParentEnd="true"
-                    android:layout_alignParentRight="true"
                     android:layout_centerVertical="true"
                     android:contentDescription="@string/dialog_edit"
                     android:src="@drawable/ic_edit" />
@@ -208,7 +205,8 @@
                     android:layout_height="24dp"
                     android:layout_centerVertical="true"
                     android:layout_marginTop="3dp"
-                    android:src="@drawable/ic_telephone" />
+                    android:src="@drawable/ic_telephone"
+                    android:contentDescription="@string/icon" />
 
                 <TextView
                     android:id="@+id/tv_mobile"
@@ -253,7 +251,8 @@
                     android:layout_height="24dp"
                     android:layout_centerVertical="true"
                     android:layout_marginTop="3dp"
-                    android:src="@drawable/ic_pass">
+                    android:src="@drawable/ic_pass"
+                    android:contentDescription="@string/icon">
 
                 </ImageView>
 
@@ -274,7 +273,8 @@
                     android:focusableInTouchMode="false"
                     android:longClickable="false"
                     android:clickable="false"
-                    android:enabled="false"/>
+                    android:enabled="false"
+                    tools:ignore="TextViewEdits" />
 
                 <ImageView
                     android:id="@+id/iv_edit_icon_pass"
@@ -287,7 +287,6 @@
             </RelativeLayout>
 
             <LinearLayout
-                android:id="@+id/rl_cru_account_container"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/rl_pass"
@@ -310,7 +309,6 @@
                     android:padding="@dimen/regular_item_padding">
 
                     <ImageView
-                        android:id="@+id/iv_remove_account"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
@@ -318,7 +316,6 @@
                         android:contentDescription="@string/log_out" />
 
                     <TextView
-                        android:id="@+id/tv_remove_account"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="@string/remove_account"
@@ -343,7 +340,6 @@
                     android:padding="@dimen/regular_item_padding">
 
                     <ImageView
-                        android:id="@+id/iv_logout"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
@@ -351,7 +347,6 @@
                         android:contentDescription="@string/log_out" />
 
                     <TextView
-                        android:id="@+id/tv_logout"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:gravity="center"

@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/root_sign_up_view"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
@@ -88,7 +87,6 @@
 
         <!-- mobile number -->
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/til_mobile_number"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -155,7 +153,7 @@
         <Button
             android:id="@+id/btn_create_account"
             style="@style/ok_button"
-            android:layout_height="25dp"
+            android:layout_height="0dp"
             android:layout_gravity="center"
             android:layout_margin="@dimen/regular_item_padding"
             android:layout_marginTop="24dp"

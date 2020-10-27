@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -8,7 +7,6 @@
     tools:context=".fragments.AboutFragment">
 
     <LinearLayout
-        android:id="@+id/ll_main_container"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical">
@@ -18,10 +16,10 @@
             android:layout_height="100dp"
             android:layout_gravity="center"
             android:layout_margin="@dimen/regular_window_margin"
-            android:src="@drawable/ic_learning_launcher" />
+            android:src="@drawable/ic_learning_launcher"
+            android:contentDescription="@string/icon" />
 
         <TextView
-            android:id="@+id/tv_app_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
@@ -34,7 +32,6 @@
             android:textStyle="bold" />
 
         <RelativeLayout
-            android:id="@+id/app_description"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@drawable/background_white"
@@ -53,7 +50,6 @@
         </RelativeLayout>
 
         <TextView
-            android:id="@+id/banner_connect_with_us"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
@@ -81,7 +77,8 @@
                 android:layout_height="23dp"
                 android:layout_centerVertical="true"
                 android:layout_marginTop="3dp"
-                android:src="@drawable/about_icon_google_play" />
+                android:src="@drawable/about_icon_google_play"
+                android:contentDescription="@string/icon" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -124,7 +121,8 @@
                 android:layout_height="23dp"
                 android:layout_centerVertical="true"
                 android:layout_marginTop="3dp"
-                android:src="@drawable/about_icon_instagram" />
+                android:src="@drawable/about_icon_instagram"
+                android:contentDescription="@string/icon" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -168,7 +166,8 @@
                 android:layout_height="24dp"
                 android:layout_centerVertical="true"
                 android:layout_marginTop="3dp"
-                android:src="@drawable/ic_email" />
+                android:src="@drawable/ic_email"
+                android:contentDescription="@string/icon" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -195,7 +194,6 @@
         </RelativeLayout>
 
         <TextView
-            android:id="@+id/banner_developers"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
@@ -227,7 +225,8 @@
                 android:layout_height="24dp"
                 android:layout_centerVertical="true"
                 android:layout_marginTop="3dp"
-                android:src="@drawable/about_icon_linkedin" />
+                android:src="@drawable/about_icon_linkedin"
+                android:contentDescription="@string/icon" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -269,7 +268,8 @@
                 android:layout_height="24dp"
                 android:layout_centerVertical="true"
                 android:layout_marginTop="3dp"
-                android:src="@drawable/about_icon_linkedin" />
+                android:src="@drawable/about_icon_linkedin"
+                android:contentDescription="@string/icon" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -296,7 +296,6 @@
 
 
         <LinearLayout
-            android:id="@+id/app_version"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
@@ -306,12 +305,12 @@
             android:padding="@dimen/regular_window_padding">
 
             <ImageView
-                android:id="@+id/iv_app_launcher"
                 android:layout_width="22dp"
                 android:layout_height="22dp"
                 android:layout_gravity="center_vertical"
                 android:layout_marginEnd="3dp"
-                android:src="@drawable/ic_learning_launcher_2" />
+                android:src="@drawable/ic_learning_launcher_2"
+                android:contentDescription="@string/icon" />
 
             <TextView
                 android:id="@+id/tv_app_version"

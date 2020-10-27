@@ -1,6 +1,7 @@
 package com.erg.memorized.fragments;
 
 
+import android.annotation.SuppressLint;
 import android.app.Dialog;
 import android.os.Bundle;
 import android.os.Handler;
@@ -14,11 +15,11 @@ import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.HorizontalScrollView;
 import android.widget.LinearLayout;
-import android.widget.Switch;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.widget.SearchView;
+import androidx.appcompat.widget.SwitchCompat;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -50,12 +51,10 @@ import static com.erg.memorized.util.Constants.USER_FIRE_BASE_REFERENCE;
 public class VersesFragment extends Fragment implements View.OnClickListener, OnVerseListener,
         SearchView.OnQueryTextListener {
 
-    public static String TAG = "AddEditTextFragment";
+    public static final String TAG = "AddEditTextFragment";
 
     private AdapterRecyclerViewForVersesList adapterForVersesList;
     private ArrayList<ItemVerse> verses;
-    private ArrayList<ItemVerse> filteredVerseList;
-    private RecyclerView recycler;
     private SearchView searcher;
     private FloatingActionButton fabAddVerse;
     private LinearLayout emptyContainerSignal;
@@ -111,7 +110,7 @@ public class VersesFragment extends Fragment implements View.OnClickListener, On
 
         adapterForVersesList = new AdapterRecyclerViewForVersesList(
                 verses, requireContext(), this);
-        recycler = rootView.findViewById(R.id.recycler_view);
+        RecyclerView recycler = rootView.findViewById(R.id.recycler_view);
         LinearLayoutManager layoutManager = new LinearLayoutManager(getContext());
         recycler.setLayoutManager(layoutManager);
         recycler.setHasFixedSize(true);
@@ -179,7 +178,7 @@ public class VersesFragment extends Fragment implements View.OnClickListener, On
 
     private void filter(@NotNull String query) {
         final String lowerCaseQuery = query.toLowerCase();
-        filteredVerseList = new ArrayList<>();
+        ArrayList<ItemVerse> filteredVerseList = new ArrayList<>();
         for (ItemVerse item : verses) {
             final String title = item.getTitle().toLowerCase();
             final String verseText = item.getVerseText().toLowerCase();
@@ -215,9 +214,10 @@ public class VersesFragment extends Fragment implements View.OnClickListener, On
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
         dialog.setCancelable(false);
         LayoutInflater inflater = getLayoutInflater();
+        @SuppressLint("InflateParams")
         View dialogView = inflater.inflate(R.layout.dialog_info_long_click_opt_view, null, false);
         TextView msg = dialogView.findViewById(R.id.text_dialog);
-        Switch switchRemoveCloud = dialogView.findViewById(R.id.switch_remove_cloud_backup);
+        SwitchCompat switchRemoveCloud = dialogView.findViewById(R.id.switch_remove_cloud_backup);
 
         HorizontalScrollView horizontalScrollView = dialogView
                 .findViewById(R.id.horizontal_scroll_btn_container);

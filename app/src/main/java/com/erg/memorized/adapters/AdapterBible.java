@@ -21,15 +21,11 @@ import java.util.ArrayList;
 
 public class AdapterBible extends ArrayAdapter<Bible> {
 
-    private int resource;
-    private Context context;
     private ArrayList<Bible> bibles;
-    private int[] flagsResIds;
-    private SharedPreferencesHelper spHelper;
+    private final SharedPreferencesHelper spHelper;
 
     public AdapterBible(@NonNull Context context, int resource, @NonNull ArrayList<Bible> bibles) {
         super(context, resource, bibles);
-        this.context = context;
         this.bibles = bibles;
         spHelper = new SharedPreferencesHelper(context);
     }
@@ -71,12 +67,12 @@ public class AdapterBible extends ArrayAdapter<Bible> {
     }
 
     public static class ViewHolder {
-        private ImageView ivBible;
-        private TextView tvAbbreviationLocal;
-        private TextView tvNameLocal;
-        private TextView tvDescriptionLocal;
-        private TextView tvLanguage;
-        private RadioButton radioButton;
+        private final ImageView ivBible;
+        private final TextView tvAbbreviationLocal;
+        private final TextView tvNameLocal;
+        private final TextView tvDescriptionLocal;
+        private final TextView tvLanguage;
+        private final RadioButton radioButton;
 
         public ViewHolder(View convertView) {
             this.ivBible = convertView.findViewById(R.id.iv_bible);

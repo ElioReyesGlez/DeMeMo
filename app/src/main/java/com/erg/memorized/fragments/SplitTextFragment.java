@@ -1,5 +1,6 @@
 package com.erg.memorized.fragments;
 
+import android.annotation.SuppressLint;
 import android.app.Dialog;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -45,7 +46,7 @@ public class SplitTextFragment extends Fragment implements OnSectionListener {
 
     private SharedPreferencesHelper spHelper;
 
-    private ItemVerse verse;
+    private final ItemVerse verse;
     private ItemUser currentUser;
 
     public static SplitTextFragment newInstance(ItemVerse verse) {
@@ -124,13 +125,14 @@ public class SplitTextFragment extends Fragment implements OnSectionListener {
         new Handler().postDelayed(() -> {
             if (isVisible())
                 MessagesHelper.showTestDialog(requireActivity(), verse);
-        }, 8000);
+        }, 900);
     }
 
+    @SuppressLint("StaticFieldLeak")
     private class AsyncTaskSplit extends AsyncTask<Void, Void, Void> {
 
-        Dialog loadingDialog;
-        ReaderHelper readerHelper;
+        private Dialog loadingDialog;
+        private ReaderHelper readerHelper;
 
         @Override
         protected void onPreExecute() {
@@ -165,15 +167,5 @@ public class SplitTextFragment extends Fragment implements OnSectionListener {
     public void onStart() {
         super.onStart();
         rootView.startAnimation(animScaleUp);
-    }
-
-    @Override
-    public void onResume() {
-        super.onResume();
-    }
-
-    @Override
-    public void onPause() {
-        super.onPause();
     }
 }

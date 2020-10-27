@@ -20,16 +20,13 @@ import java.util.ArrayList;
 
 public class AdapterLanguage extends ArrayAdapter<String> {
 
-    private int resource;
-    private Context context;
-    private ArrayList<String> languages;
-    private int[] flagsResIds;
-    private int savedLanguagePos;
+    private final ArrayList<String> languages;
+    private final int[] flagsResIds;
+    private final int savedLanguagePos;
 
     public AdapterLanguage(@NonNull Context context, int resource,
                            @NonNull ArrayList<String> languages) {
         super(context, resource, languages);
-        this.context = context;
         this.languages = languages;
 
         flagsResIds = Constants.FlagResIds;
@@ -77,9 +74,9 @@ public class AdapterLanguage extends ArrayAdapter<String> {
     }
 
     public static class ViewHolder {
-        private ImageView flag;
-        private TextView language;
-        private RadioButton radioButton;
+        private final ImageView flag;
+        private final TextView language;
+        private final RadioButton radioButton;
 
         public ViewHolder(View convertView) {
             this.flag = convertView.findViewById(R.id.iv_flag);

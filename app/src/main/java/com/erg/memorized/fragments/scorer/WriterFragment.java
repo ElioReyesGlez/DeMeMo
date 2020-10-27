@@ -16,6 +16,7 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 
 import com.erg.memorized.R;
@@ -46,14 +47,11 @@ public class WriterFragment extends Fragment implements ScorerListener {
     public static final int POS = 3;
 
     private View rootView;
-    private ViewGroup container;
     private LinearLayout boxesContainer;
-    private TextView tvVerse, tvTitle;
 
     private ItemVerse verse;
 
-    private Animation animScaleUp, animScaleDown;
-    private BoxTestListener boxTestListener;
+    private Animation animScaleDown;
     private ScorerFragment scorerFragment;
 
     private ArrayList<String> dividedText;
@@ -71,7 +69,6 @@ public class WriterFragment extends Fragment implements ScorerListener {
     public WriterFragment(ItemVerse verse,
                           BoxTestListener boxTestListener,
                           ScorerFragment scorerFragment) {
-        this.boxTestListener = boxTestListener;
         this.scorerFragment = scorerFragment;
         this.verse = verse;
     }
@@ -104,7 +101,7 @@ public class WriterFragment extends Fragment implements ScorerListener {
         textViews = new ArrayList<>();
         inputEditTexts = new ArrayList<>();
 
-        animScaleUp = AnimationUtils.loadAnimation(requireContext(), R.anim.scale_up);
+        Animation animScaleUp = AnimationUtils.loadAnimation(requireContext(), R.anim.scale_up);
         animScaleDown = AnimationUtils.loadAnimation(requireContext(), R.anim.scale_down);
 
         spHelper = new SharedPreferencesHelper(requireContext());
@@ -114,14 +111,13 @@ public class WriterFragment extends Fragment implements ScorerListener {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         rootView = inflater.inflate(R.layout.fragment_writer, container, false);
-        this.container = container;
         setUpView();
         return rootView;
     }
 
     private void setUpView() {
-        tvTitle = rootView.findViewById(R.id.tv_title);
-        tvVerse = rootView.findViewById(R.id.tv_verse);
+        TextView tvTitle = rootView.findViewById(R.id.tv_title);
+        TextView tvVerse = rootView.findViewById(R.id.tv_verse);
         boxesContainer = rootView.findViewById(R.id.ll_boxes_container);
 
         tvTitle.setText(verse.getTitle());
@@ -167,8 +163,8 @@ public class WriterFragment extends Fragment implements ScorerListener {
                     inputEditText.setMaxLines(1);
                     inputEditText.setEllipsize(TextUtils.TruncateAt.END);
                     inputEditText.setLayoutParams(boxParams);
-                    inputEditText.setBackground(requireContext()
-                            .getDrawable(R.drawable.background_green_light));
+                    inputEditText.setBackground(ContextCompat.getDrawable(requireContext(),
+                            R.drawable.background_green_light));
                     inputEditText.setPadding(4, 4, 4, 4);
                     inputEditText.setTextSize(SP, 15);
                     inputEditText.setTextColor(requireContext()

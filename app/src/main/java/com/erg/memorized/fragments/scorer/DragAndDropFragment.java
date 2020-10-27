@@ -12,8 +12,6 @@ import android.view.DragEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.animation.Animation;
-import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.HorizontalScrollView;
 import android.widget.LinearLayout;
@@ -21,19 +19,18 @@ import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 
 import com.erg.memorized.R;
 import com.erg.memorized.adapters.AdapterScorerFragmentPager;
 import com.erg.memorized.fragments.ScorerFragment;
 import com.erg.memorized.helpers.ScoreHelper;
-import com.erg.memorized.helpers.SharedPreferencesHelper;
 import com.erg.memorized.helpers.TextHelper;
 import com.erg.memorized.interfaces.BoxTestListener;
 import com.erg.memorized.interfaces.ScorerListener;
 import com.erg.memorized.model.ItemVerse;
 import com.erg.memorized.model.Score;
-import com.erg.memorized.util.Constants;
 import com.erg.memorized.util.SuperUtil;
 import com.erg.memorized.views.CustomViewPager;
 
@@ -50,27 +47,17 @@ public class DragAndDropFragment extends Fragment implements View.OnClickListene
     public static final int POS = 2;
 
     private View rootView;
-    private ViewGroup container;
 
     private ArrayList<String> dividedText;
     private ArrayList<String> textShuffled;
-    private ArrayList<Integer> posReplacementsWords;
-    private Animation animScaleUp, animScaleDown;
 
-    private ItemVerse verse;
+    private final ItemVerse verse;
     private BoxTestListener boxTestListener;
-    private ScorerFragment scorerFragment;
+    private final ScorerFragment scorerFragment;
 
-    private TextView tvVerse, tvTitle;
-    private Button btnDone;
     private LinearLayout boxesContainer;
-    private int rowWith = 0;
-    private boolean focusHasChange = false;
     private ArrayList<TextView> textViews;
     private ScrollView scrollView;
-    private int scrollDistance;
-
-    private SharedPreferencesHelper spHelper;
 
     public DragAndDropFragment(ItemVerse verse,
                                BoxTestListener boxTestListener,
@@ -99,23 +86,12 @@ public class DragAndDropFragment extends Fragment implements View.OnClickListene
 
         textShuffled = new ArrayList<>(dividedText);
         Collections.shuffle(textShuffled);
-
-        posReplacementsWords = new ArrayList<>(
-                TextHelper.getPosReplacementsWords(dividedText,
-                        Constants.getMarks(requireActivity()))
-        );
-
-        animScaleUp = AnimationUtils.loadAnimation(getContext(), R.anim.less_scale_up);
-        animScaleDown = AnimationUtils.loadAnimation(getContext(), R.anim.scale_down);
-
-        spHelper = new SharedPreferencesHelper(requireContext());
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         rootView = inflater.inflate(R.layout.fragment_drag_and_drop, container, false);
-        this.container = container;
         setUpView();
         return rootView;
     }
@@ -123,8 +99,8 @@ public class DragAndDropFragment extends Fragment implements View.OnClickListene
     private void setUpView() {
         boxesContainer = rootView.findViewById(R.id.ll_boxes_container);
         scrollView = rootView.findViewById(R.id.scroll_view_boxes_container);
-        tvTitle = rootView.findViewById(R.id.tv_title);
-        btnDone = rootView.findViewById(R.id.btn_done_drag_and_drop_fragment);
+        TextView tvTitle = rootView.findViewById(R.id.tv_title);
+        Button btnDone = rootView.findViewById(R.id.btn_done_drag_and_drop_fragment);
 
         tvTitle.setText(verse.getTitle());
         btnDone.setOnClickListener(this);
@@ -191,7 +167,8 @@ public class DragAndDropFragment extends Fragment implements View.OnClickListene
         textView.setId(i);
         textView.setTag(WORD_TAG);
         textView.setTextSize(TEXT_SIZE);
-        textView.setBackground(requireContext().getDrawable(R.drawable.background_green_light));
+        textView.setBackground(ContextCompat.getDrawable(requireContext(),
+                R.drawable.background_green_light));
         textView.setElevation(1);
         textView.setMaxLines(1);
         textView.setEllipsize(TextUtils.TruncateAt.END);

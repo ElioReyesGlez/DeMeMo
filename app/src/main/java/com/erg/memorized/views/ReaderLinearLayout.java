@@ -19,6 +19,8 @@ import android.view.WindowManager;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import androidx.core.content.ContextCompat;
+
 import com.erg.memorized.R;
 
 import java.util.ArrayList;
@@ -32,7 +34,7 @@ public class ReaderLinearLayout extends LinearLayout {
     private static final int TEXT_SIZE = 15;
     private final DisplayMetrics dm = new DisplayMetrics();
     private StringBuilder text = new StringBuilder();
-    private ArrayList<TextView> textViews = new ArrayList<>();
+    private final ArrayList<TextView> textViews = new ArrayList<>();
 
     public ReaderLinearLayout(Context context) {
         super(context);
@@ -88,7 +90,8 @@ public class ReaderLinearLayout extends LinearLayout {
         textView.setTag(WORD_TAG);
         textView.setText(word);
         textView.setTextSize(TEXT_SIZE);
-        textView.setBackground(getContext().getDrawable(R.drawable.background_gray_light));
+        textView.setBackground(ContextCompat.getDrawable(getContext(),
+                 R.drawable.background_gray_light));
         textView.setElevation(1);
         textView.setMaxLines(1);
         textView.setEllipsize(TextUtils.TruncateAt.END);

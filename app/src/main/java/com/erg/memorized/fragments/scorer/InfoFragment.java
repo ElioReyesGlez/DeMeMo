@@ -31,7 +31,7 @@ public class InfoFragment extends Fragment implements ScorerListener {
 
 
     private View rootView;
-    private ScorerFragment scorerFragment;
+    private final ScorerFragment scorerFragment;
 
     public InfoFragment(ScorerFragment scorerFragment) {
         this.scorerFragment = scorerFragment;

@@ -9,7 +9,6 @@
     tools:context=".fragments.HomeFragment">
 
     <LinearLayout
-        android:id="@+id/lineal_main_container"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical">
@@ -27,7 +26,6 @@
             android:padding="@dimen/regular_window_padding">
 
             <RelativeLayout
-                android:id="@+id/rl_head_container"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="@dimen/regular_window_margin"
@@ -47,7 +45,6 @@
                 </ImageView>
 
                 <TextView
-                    android:id="@+id/title_daily_head"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerHorizontal="true"
@@ -103,8 +100,8 @@
                 android:id="@+id/rl_daily_verse"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:elevation="@dimen/default_elevation"
                 android:layout_margin="@dimen/regular_window_margin"
+                android:elevation="@dimen/default_elevation"
                 android:visibility="gone">
 
                 <TextView
@@ -117,7 +114,7 @@
                     android:ellipsize="end"
                     android:gravity="center"
                     android:maxLines="1"
-                    android:text="01/06/1993"
+                    android:text="@string/example_date"
                     android:textAlignment="center"
                     android:textColor="@color/gray_btn_bg_darker_color"
                     android:textStyle="bold" />
@@ -155,7 +152,7 @@
                         android:gravity="center_horizontal"
                         android:maxLines="2"
                         android:padding="@dimen/regular_window_padding"
-                        android:text="@string/aux_memory_text"
+                        android:text="@string/verse"
                         android:textAlignment="center"
                         android:textColor="@color/md_grey_500"
                         android:textSize="13sp" />
@@ -181,15 +178,6 @@
         </LinearLayout>
 
         <LinearLayout
-            android:id="@+id/ll_especial_info_container"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="@dimen/regular_window_margin"
-            android:orientation="vertical"
-            android:padding="@dimen/regular_window_padding"
-            android:visibility="gone" />
-
-        <LinearLayout
             android:id="@+id/ll_activity_history_container"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -202,7 +190,6 @@
             android:padding="@dimen/regular_window_padding">
 
             <RelativeLayout
-                android:id="@+id/rl_user_activity_header"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="@dimen/regular_window_margin"
@@ -217,16 +204,17 @@
                     android:layout_height="30dp"
                     android:layout_alignParentStart="true"
                     android:layout_centerVertical="true"
-                    android:src="@drawable/ic_user_activity_history"/>
+                    android:contentDescription="@string/icon"
+                    android:src="@drawable/ic_user_activity_history" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
                     android:layout_centerHorizontal="true"
                     android:layout_centerVertical="true"
-                    android:layout_toEndOf="@+id/iv_icon_user_activity_header"
-                    android:layout_alignParentEnd="true"
                     android:layout_marginEnd="30dp"
+                    android:layout_toEndOf="@+id/iv_icon_user_activity_header"
                     android:text="@string/activity"
                     android:textAlignment="center"
                     android:textColor="@color/text_default_dark_gray"
@@ -236,7 +224,6 @@
             </RelativeLayout>
 
             <ProgressBar
-                android:id="@+id/activity_progress_circular"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
@@ -245,14 +232,5 @@
             <!-- Space to fill withs Views programmatically -->
 
         </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/ll_news_info_container"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="@dimen/regular_window_margin"
-            android:orientation="vertical"
-            android:padding="@dimen/regular_window_padding" />
     </LinearLayout>
-
 </ScrollView>

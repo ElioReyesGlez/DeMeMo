@@ -9,7 +9,6 @@
     tools:context=".fragments.SettingsFragment">
 
     <LinearLayout
-        android:id="@+id/linear_layout_second_root"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
@@ -83,7 +82,7 @@
                 android:layout_toEndOf="@+id/card_view_avatar"
                 android:ellipsize="end"
                 android:maxLines="1"
-                android:text="Elioenai Reyes"
+                android:text="@string/example_name"
                 android:textColor="@color/dark_gray_btn_bg_color"
                 android:textSize="17sp"
                 android:visibility="gone" />
@@ -250,7 +249,6 @@
                     android:src="@drawable/ic_sync_user" />
 
                 <TextView
-                    android:id="@+id/tv_sync"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
@@ -301,10 +299,10 @@
                     android:layout_alignParentStart="true"
                     android:layout_centerVertical="true"
                     android:layout_marginStart="@dimen/margin_start"
-                    android:src="@drawable/ic_outbox" />
+                    android:src="@drawable/ic_outbox"
+                    android:contentDescription="@string/icon" />
 
                 <TextView
-                    android:id="@+id/tv_upload_cont"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"

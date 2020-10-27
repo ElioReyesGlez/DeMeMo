@@ -24,19 +24,19 @@ import com.erg.memorized.util.SuperUtil;
 import com.google.android.gms.ads.AdListener;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.InterstitialAd;
+import com.google.android.gms.ads.LoadAdError;
 
 public class AdMobFragment extends Fragment implements View.OnClickListener {
 
     public static final String TAG = "AdMobFragment";
 
     private CountDownTimer countDownTimer;
-    private Button btnGetPremium;
     private InterstitialAd mInterstitialAd;
-    private TextView tvCountdown, tvMission;
+    private TextView tvCountdown;
     private LinearLayout llCountdownContainer;
-    private ItemUser currentUser;
+    private final ItemUser currentUser;
     private BillingHelper billingHelper;
-    private boolean jumpFlag;
+    private final boolean jumpFlag;
     private long timerMilliseconds = 7000;
 
     public AdMobFragment(ItemUser currentUser, boolean jumpFlag) {
@@ -59,9 +59,9 @@ public class AdMobFragment extends Fragment implements View.OnClickListener {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        btnGetPremium = view.findViewById(R.id.btn_get_premium);
+        Button btnGetPremium = view.findViewById(R.id.btn_get_premium);
         tvCountdown = view.findViewById(R.id.tv_countdown);
-        tvMission = view.findViewById(R.id.tv_mission_description);
+        TextView tvMission = view.findViewById(R.id.tv_mission_description);
         llCountdownContainer = view.findViewById(R.id.ll_countdown_container);
 
         btnGetPremium.setOnClickListener(this);
@@ -148,14 +148,14 @@ public class AdMobFragment extends Fragment implements View.OnClickListener {
             }
 
             @Override
-            public void onAdFailedToLoad(int errorCode) {
+            public void onAdFailedToLoad(LoadAdError loadAdError) {
                 if (jumpFlag) {
                     loadLeaderBoardView();
                 } else {
                     SuperUtil.removeViewByTag(requireActivity(), TAG, true);
                 }
                 cancelTimer();
-                Log.d(TAG, "onAdFailedToLoad: ErrorCode : " + errorCode);
+                Log.d(TAG, "onAdFailedToLoad: ErrorCode : " + loadAdError);
             }
 
             @Override

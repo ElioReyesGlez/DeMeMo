@@ -18,7 +18,7 @@ public class ReaderHelper {
 
     public static final String TAG = "ReaderHelper";
 
-    private String text;
+    private final String text;
     private boolean againFlag = false;
 
     public ReaderHelper(String text) {

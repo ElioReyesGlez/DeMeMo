@@ -1,5 +1,6 @@
 package com.erg.memorized.views;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Color;
@@ -41,31 +42,26 @@ public class CustomLineView extends View {
     private final int DOT_INNER_CIR_RADIUS = MyUtils.dip2px(getContext(), 2);
     private final int DOT_OUTER_CIR_RADIUS = MyUtils.dip2px(getContext(), 5);
     private final int MIN_TOP_LINE_LENGTH = MyUtils.dip2px(getContext(), 12);
-    private final int MIN_VERTICAL_GRID_NUM = 4;
-    private final int MIN_HORIZONTAL_GRID_NUM = 1;
     private final int BACKGROUND_LINE_COLOR = Color.parseColor("#e0e0e0");
-    private final int BOTTOM_TEXT_COLOR = Color.parseColor("#9e9e9e");
     private final Point tmpPoint = new Point();
 
     public boolean showPopup = true;
     private int mViewHeight;
-    private boolean autoSetDataOfGird = true;
-    private boolean autoSetGridWidth = true;
     private int dataOfAGird = 10;
     private int bottomTextHeight = 0;
     private ArrayList<String> bottomTextList = new ArrayList<String>();
     private ArrayList<ArrayList<Float>> dataLists;
-    private ArrayList<Integer> xCoordinateList = new ArrayList<Integer>();
-    private ArrayList<Integer> yCoordinateList = new ArrayList<Integer>();
-    private ArrayList<ArrayList<CustomLineView.Dot>> drawDotLists = new ArrayList<>();
-    private Paint bottomTextPaint = new Paint();
+    private final ArrayList<Integer> xCoordinateList = new ArrayList<Integer>();
+    private final ArrayList<Integer> yCoordinateList = new ArrayList<Integer>();
+    private final ArrayList<ArrayList<CustomLineView.Dot>> drawDotLists = new ArrayList<>();
+    private final Paint bottomTextPaint = new Paint();
     private int bottomTextDescent;
-    private Paint popupTextPaint = new Paint();
+    private final Paint popupTextPaint = new Paint();
     private boolean showFloatNumInPopup;
     private CustomLineView.Dot pointToSelect;
     private CustomLineView.Dot selectedDot;
     private CustomLineView.Dot currentPointDot;
-    private int popupBottomPadding = MyUtils.dip2px(getContext(), 2);
+    private final int popupBottomPadding = MyUtils.dip2px(getContext(), 2);
     /*
           |  | ←topLineLength
         --+--+--+--+--+--+--
@@ -81,7 +77,7 @@ public class CustomLineView extends View {
     private int[] colorArray = {
             Color.parseColor("#e74c3c"), Color.parseColor("#2980b9"), Color.parseColor("#1abc9c")
     };
-    private Runnable animator = new Runnable() {
+    private final Runnable animator = new Runnable() {
         @Override public void run() {
             boolean needNewFrame = false;
             for (ArrayList<CustomLineView.Dot> data : drawDotLists) {
@@ -115,6 +111,7 @@ public class CustomLineView extends View {
         bottomTextPaint.setTextSize(MyUtils.sp2px(getContext(), 12));
         bottomTextPaint.setTextAlign(Paint.Align.CENTER);
         bottomTextPaint.setStyle(Paint.Style.FILL);
+        int BOTTOM_TEXT_COLOR = Color.parseColor("#9e9e9e");
         bottomTextPaint.setColor(BOTTOM_TEXT_COLOR);
         refreshTopLineLength();
     }
@@ -143,6 +140,7 @@ public class CustomLineView extends View {
         int longestWidth = 0;
         String longestStr = "";
         bottomTextDescent = 0;
+        boolean autoSetGridWidth = true;
         for (String s : bottomTextList) {
             bottomTextPaint.getTextBounds(s, 0, s.length(), r);
             if (bottomTextHeight < r.height()) {
@@ -203,6 +201,7 @@ public class CustomLineView extends View {
         }
         float biggestData = 0;
         for (ArrayList<Float> list : dataLists) {
+            boolean autoSetDataOfGird = true;
             if (autoSetDataOfGird) {
                 for (Float i : list) {
                     if (biggestData < i) {
@@ -224,13 +223,13 @@ public class CustomLineView extends View {
     }
 
     private void refreshAfterDataChanged() {
-        int verticalGridNum = getVerticalGridlNum();
+        int verticalGridNum = getVerticalGridNumb();
         refreshYCoordinateList(verticalGridNum);
         refreshDrawDotList(verticalGridNum);
     }
 
-    private int getVerticalGridlNum() {
-        int verticalGridNum = MIN_VERTICAL_GRID_NUM;
+    private int getVerticalGridNumb() {
+        int verticalGridNum = 4;
         if (dataLists != null && !dataLists.isEmpty()) {
             for (ArrayList<Float> list : dataLists) {
                 for (Float f : list) {
@@ -245,6 +244,7 @@ public class CustomLineView extends View {
 
     private int getHorizontalGridNum() {
         int horizontalGridNum = bottomTextList.size() - 1;
+        int MIN_HORIZONTAL_GRID_NUM = 1;
         if (horizontalGridNum < MIN_HORIZONTAL_GRID_NUM) {
             horizontalGridNum = MIN_HORIZONTAL_GRID_NUM;
         }
@@ -309,7 +309,7 @@ public class CustomLineView extends View {
                 - bottomTextHeight
                 - bottomTextTopMargin
                 - bottomLineLength
-                - bottomTextDescent) * (verticalGridNum - value) / (getVerticalGridlNum()));
+                - bottomTextDescent) * (verticalGridNum - value) / (getVerticalGridNumb()));
     }
 
     private void refreshTopLineLength() {
@@ -490,6 +490,7 @@ public class CustomLineView extends View {
         return getMeasurement(measureSpec, preferred);
     }
 
+    @SuppressLint("SwitchIntDef")
     private int getMeasurement(int measureSpec, int preferred) {
         int specSize = MeasureSpec.getSize(measureSpec);
         int measurement;
@@ -507,6 +508,7 @@ public class CustomLineView extends View {
         return measurement;
     }
 
+    @SuppressLint("ClickableViewAccessibility")
     @Override public boolean onTouchEvent(MotionEvent event) {
         if (event.getAction() == MotionEvent.ACTION_DOWN) {
             pointToSelect = findPointAt((int) event.getX(), (int) event.getY());
@@ -570,7 +572,7 @@ public class CustomLineView extends View {
         int targetX;
         float targetY;
         int linenumber;
-        int velocity = MyUtils.dip2px(getContext(), 18);
+        final int velocity = MyUtils.dip2px(getContext(), 18);
 
         Dot(int x, float y, int targetX, float targetY, float data, int linenumber) {
             this.x = x;

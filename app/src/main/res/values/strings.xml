@@ -1,32 +1,7 @@
 <resources>
     <string name="app_name">DeMeMo</string>
 
-    <string name="hello_blank_fragment">Hello blank fragment</string>
-
-    <string name="str_add_goal">Add new verse</string>
-    <string name="str_add">Add</string>
-    <string name="aux_memory_text">
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-        Nulla at nibh ac erat sagittis rutrum. Vivamus id facilisis lorem, vitae varius turpis.
-        Pellentesque ipsum sapien, bibendum viverra tortor in, malesuada suscipit arcu.
-        Nunc magna erat, egestas ut suscipit ac, euismod pulvinar mi.
-        Aenean vitae sodales enim. Duis quis ultricies purus. In at bibendum lectus, et lacinia eros.
-        Cras lectus tellus, consequat eget sapien ac, porttitor luctus massa.
-        Vestibulum dignissim magna at tortor finibus tempor.
-        Donec efficitur augue eros, nec placerat nunc iaculis at.
-        Mauris pulvinar blandit aliquet. Quisque eu ligula justo.
-        Curabitur sagittis velit, ut facilisis purus hendrerit eu.
-        Sed cursus mauris eget orci rhoncus, at feugiat magna ullamcorper. </string>
-
-    <string name="example_text">
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-        Nulla at nibh ac erat sagittis rutrum. Vivamus id facilisis lorem, vitae varius turpis.
-        Pellentesque ipsum sapien, bibendum viverra tortor in, malesuada suscipit arcu.
-        Nunc magna erat, egestas ut suscipit ac, euismod pulvinar mi. </string>
-
     <string name="img_description">Img</string>
-    <string name="img_add_button">Img Add Button</string>
-    <string name="loading">Loading…</string>
     <string name="tile">Quote</string>
     <string name="verse">Verse</string>
     <string name="dialog_save">Just save</string>
@@ -43,19 +18,14 @@
     <string name="failed_creating_user">Something bad happened, user not created</string>
     <string name="failed_saving_user">Er, user not saved</string>
     <string name="failed_loading_user_data">Error,  user data was not loaded!</string>
-    <string name="failed_loading_your_version_data">Something bad happened, data do not loaded</string>
 
     <string name="fam_title">Control Audio Menu</string>
     <string name="stop">stop</string>
-    <string name="pause">pause</string>
     <string name="play">play</string>
 
     <string name="empty" />
-    <string name="empty_word">empty</string>
-    <string name="not_found">Not found</string>
     <string name="hide_fam">Press again for hide Control Audio Menu</string>
     <string name="hide_status_text_size_bar">Press again for hide the Text Size Status Bar</string>
-    <string name="dismiss">Dismiss</string>
     <string name="msg_long_click_option">What would you like to do?</string>
     <string name="dialog_message_description">Put a message here</string>
     <string name="test_stop">The exam has been dismissed!</string>
@@ -74,15 +44,11 @@
     <string name="description_menu_icon">Menu icon</string>
     <string name="description_icon_right_arrow">Icon right arrow</string>
     <string name="settings">Settings</string>
-    <string name="sign_up">Sign Up</string>
     <string name="name">Name</string>
     <string name="email">E-mail</string>
     <string name="email_low_case">e-mail</string>
     <string name="mobile_number_user_info">Mobile</string>
     <string name="pass">Password</string>
-    <string name="already_a_member_login">Already a member?</string>
-    <string name="unfilled_field">Unfilled field</string>
-    <string name="login_underline"><u>Login</u></string>
     <string name="create_account">Create account</string>
     <string name="pass_again">Re-enter Password</string>
     <string name="login">Login</string>
@@ -90,20 +56,16 @@
     <string name="no_account_yet_create_one">No account yet?</string>
     <string name="crete_one"><u>Create one</u></string>
     <string name="restore"><u>Restore</u></string>
-    <string name="login_failed">Login failed</string>
     <string name="error_name">at least 3 characters</string>
     <string name="error_email">enter a valid email address</string>
     <string name="error_pass">between 4 and 10 alphanumeric characters</string>
-    <string name="error_old_pass">do not match with old password</string>
     <string name="error_re_pass">password do not match</string>
     <string name="error_mobile">enter a valid mobile number</string>
-    <string name="same_pass">enter new password</string>
     <string name="welcome">Welcome</string>
     <string name="successfully_user_created">. Account created!</string>
     <string name="user_collision">The email address is already in use by another account.</string>
     <string name="data_collision">Data collision.</string>
     <string name="invalid_user">There is no user record corresponding to this identifier</string>
-    <string name="select_img">Select image</string>
     <string name="failed_picking_img">Failed choosing image!</string>
     <string name="use">Use</string>
     <string name="use_question">Do you want to use image?</string>
@@ -119,30 +81,24 @@
     <string name="got_it">Got it</string>
     <string name="animated_img">Animated image</string>
     <string name="split_msg_dialog">Dividing the text in sections will help you to memorize more quickly.</string>
-    <string name="go_here">You can do it in the top bar.</string>
+    <string name="go_here">You can do it in the top menu.</string>
     <string name="right_arrow">Right arrow</string>
-    <string name="left_arrow">Left arrow</string>
     <string name="section_image">section image</string>
     <string name="log_out">Log out</string>
     <string name="save">Save</string>
     <string name="email_is_not_verified">press here to verify email</string>
     <string name="email_is_not_verified_msg">Please verify email first</string>
-    <string name="old_pass">Old password</string>
-    <string name="new_pass">New password</string>
     <string name="new_name">New name</string>
     <string name="new_email">New e-mail</string>
     <string name="new_mobile">New mobile number</string>
     <string name="send">Send!</string>
     <string name="dialog_message_verification_email">A verification link will be sent to this email:</string>
-    <string name="dialog_message_restore_email_was_sent">A restore link was sent to this email:</string>
     <string name="dialog_message_restore_email">A restore link will be sent to this email:</string>
     <string name="test_email">elioworkemail@gmail.com</string>
     <string name="email_sent">E-mail sent!</string>
     <string name="failed_updating">Failed updating data</string>
-    <string name="failed_updating_pass">Failed updating password</string>
     <string name="data_updated">Data updated successfully!</string>
     <string name="remove_account">Remove</string>
-    <string name="change">Change</string>
     <string name="info_icon">Info icon</string>
     <string name="daily_notification">Daily notification</string>
     <string name="weekly_notification">Weekly notification</string>
@@ -154,7 +110,6 @@
     <string name="ready_msg">Ready to memorize: </string>
     <string name="calender_ids">Calendar</string>
     <string name="calendar_ops">"Calendar selector"</string>
-    <string name="channel_description">"Channel for "</string>
     <string name="selected">selected</string>
     <string name="end_date">End date</string>
     <string name="pick_until_date_first">Please pick a end date first</string>
@@ -163,12 +118,10 @@
     <string name="text">text</string>
     <string name="invalid_until_date">The end date it is invalid!</string>
     <string name="verses">Verses</string>
-    <string name="frequency">Frequency</string>
     <string name="last_upload">Last upload</string>
     <!--    <string name="memorized">Memorized</string>-->
     <!--    <string name="verses_memorized">Memorized:\ </string>-->
     <string name="zero">0</string>
-    <string name="empty_date">waiting</string>
     <string name="upload_success">Uploading success!</string>
     <string name="failed_uploading">Failed uploading, try later!</string>
     <string name="failed_deleting">Failed removing account, try later!</string>
@@ -182,8 +135,6 @@
     <string name="leader_board">Leader Board</string>
     <string name="icon_leader_board">Icon leader board</string>
     <string name="user">User name</string>
-    <string name="evaluate">Evaluate</string>
-    <string name="check_button">Check button</string>
     <string name="ic_black_shield">ic black shield</string>
     <string name="sync">Sync</string>
     <string name="sync_not_needed">Synchronization don\'t needed!</string>
@@ -197,10 +148,8 @@
     <string name="name_local">Local name</string>
     <string name="local_abbreviation">Local abbreviation</string>
     <string name="spanish">Spanish</string>
-    <string name="son_icon">Son Icon</string>
     <string name="daily_verse">Daily Verse</string>
     <string name="msg_edit_to_save">This verse is not saved yet. Do you want to?</string>
-    <string name="msg_set_notification">Set reminder?</string>
     <string name="response_404">Verse do not found! Please check if current Bible Version if right or Try later.</string>
     <string name="a_minute_ago">\ a minute ago</string>
     <string name="an_hour_ago">\ an hour ago</string>
@@ -214,9 +163,7 @@
     <string name="hits">Hits</string>
     <string name="almost_hit">Almost</string>
     <string name="miss">Miss</string>
-    <string name="sum">Sum</string>
     <string name="fields">Fields</string>
-    <string name="score_partial">P.Score</string>
     <string name="score_total_partial">"Score: "</string>
     <string name="score_total">"Total Score: "</string>
     <string name="blank">---</string>
@@ -228,9 +175,7 @@
     <string name="writer_evaluator">Writer - Evaluator</string>
     <string name="writer_evaluator_info">"This evaluator removes some randomly words. You have to write the missing words.          (Orthography is important)     "</string>
     <string name="drag_and_drop_evaluator_message">"Swap the words until the text is in the right order "</string>
-    <string name="fill">fill</string>
     <string name="finish">Finish!</string>
-    <string name="result">Result</string>
     <string name="amount">Amount</string>
     <string name="memory_evaluator">Memory Evaluator</string>
     <string name="evaluator_name">Evaluator Name</string>
@@ -247,40 +192,25 @@
     <string name="activity">Activity</string>
     <string name="last_reading">Last reading</string>
     <string name="statistics">Usage graph</string>
-    <string name="lorem">Lorem</string>
     <string name="minutes_ago">" minutes ago"</string>
     <string name="one_second_ago">one second ago</string>
     <string name="seconds_ago">" seconds ago"</string>
 
-    <!--
-    <string name="rate_dialog_title">Are you enjoying</string>
-    <string name="rate_dialog_message">Please rate it on Google Play - it really helps!</string>
-    <string name="rate_dialog_ok">Heck yeah!</string>
-    <string name="rate_dialog_cancel">Not now</string>
-    <string name="rate_dialog_no">Uhm…no</string>
--->
-
 
     <string name="rate_dialog_cancel">Remind Me Later</string>
-    <string name="rate_dialog_message">If you enjoy DeMeMo. Would you mind taking a         moment to rate it? It really helps! Thanks for your support!</string>
+    <string name="rate_dialog_message">If you enjoy DeMeMo. Would you mind taking a moment
+        to rate it? It really helps! Thanks for your support!</string>
     <string name="rate_dialog_no">No, Thanks</string>
     <string name="rate_dialog_ok">Rate now</string>
-    <string name="rate_dialog_title">Rate this app</string>
 
 
-    <string name="premium_dialog_cancel">Remind Me Later</string>
     <string name="premium_dialog_ok">Yes, sure!</string>
     <string name="premium_dialog_no">No, Thanks</string>
     <string name="get_premium">Get Premium!</string>
     <string name="get_premium_ad_free">Get PREMIUM in order to get an AD FREE DeMeMo</string>
-    <string name="get_premium_upload_score">Get PREMIUM in order to Upload your Score</string>
-    <string name="full_access_to_the_verse_memory_evaluator">Full access to the verse memory evaluator</string>
-    <string name="worldwide_participation_on_dememo_leaderboard">Worldwide participation on DeMeMo Leaderboard</string>
     <string name="already_premium">You are already a premium member</string>
     <string name="memorizing_finish">Done, good job!  Are you ready to test your memory?</string>
-    <string name="memorizing_done_msg">Done, good job!</string>
     <string name="about">About</string>
-    <string name="support">Support</string>
     <string name="forgot_password">Forgot password?</string>
     <string name="function_temporarily_disabled">Function temporarily disabled</string>
 
@@ -296,21 +226,9 @@
         <item>@string/writer_evaluator_info</item>
     </string-array>
 
-    <string-array name="variables_evaluator_tables_names">
-        <item>fillMissingEvaluatorTable</item>
-        <item>dragAndDropEvaluatorTable</item>
-        <item>writerEvaluatorTable</item>
-    </string-array>
-
     <string-array name="tabs_titles">
         <item>Date Picker</item>
         <item>Time Picker</item>
-    </string-array>
-
-    <string-array name="tabs_titles_test">
-        <item>Premium</item>
-        <item>Score</item>
-        <item>Leaderboard</item>
     </string-array>
 
 
@@ -351,11 +269,6 @@
         <item>sat_</item>
         <item>sun_</item>
     </string-array>
-    <string name="action_settings">Settings</string>
-    <string name="interstitial_ad_sample">Interstitial Ad Sample</string>
-    <string name="start_level">Level 1</string>
-    <string name="next_level">Next Level</string>
-    <string name="level_text">Level %1$d</string>
 
     // DeMeMo adMob id
     <!--    <string name="interstitial_ad_unit_id">ca-app-pub-5375894039512920/4596144610</string>-->
@@ -386,7 +299,6 @@
     <string name="title2_about_page">Developed by</string>
     <string name="developer1_about_page">Elioenai Reyes</string>
     <string name="developer2_about_page">José Ernesto Cortes</string>
-    <string name="default_app_versio">1.0.0</string>
     <string name="version">Version:</string>
 
     <!-- Urls -->
@@ -399,7 +311,6 @@
     <string name="pick_calendar_needed">Please pick a one of yours calendar first.</string>
     <string name="calendar_permissions">We need permissions to successfully create calendar events! .Thank you!</string>
     <string name="please_try_again">Please, try again!</string>
-    <string name="premium">Premium</string>
     <string name="dememo_intro_description">DeMeMo is the app that will help you memorize your
         biblical quotes in an effective and interactive way.</string>
     <string name="evaluator_intro_description">
@@ -411,6 +322,17 @@
     <string name="cloud_backup_intro_description">Synchronize all your progress to the cloud,
         then you can retrieve everything in case you need it.</string>
     <string name="null_pointer">Null pointer exception!</string>
+    <string name="_15">15</string>
+    <string name="example_date">01/06/1993</string>
+    <string name="total_100">Total: 100</string>
+    <string name="_10">10</string>
+    <string name="_0_3">0/3</string>
+    <string name="example_name">Elioenai Reyes</string>
+    <string name="one">1</string>
+    <string name="text_view">TextView</string>
+    <string name="score_100">Score: 100</string>
+    <string name="reminder">Reminder</string>
+    <string name="reminder_intro_description">Set DeMeMo to remind you when it\'s time to memorize.</string>
 
 
 </resources>

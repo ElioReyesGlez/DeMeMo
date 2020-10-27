@@ -59,7 +59,7 @@ public class AboutFragment extends Fragment implements View.OnClickListener {
 
     private void setUpView() {
         RelativeLayout rate_on_play_store_layout = rootView.findViewById(R.id.rate_on_play_store);
-        RelativeLayout fallow_instagram_layout = rootView.findViewById(R.id.fallow_instagram);
+        RelativeLayout fallow_inst_layout = rootView.findViewById(R.id.fallow_instagram);
         RelativeLayout contact_us_layout = rootView.findViewById(R.id.contact_us);
         RelativeLayout developer1_layout = rootView.findViewById(R.id.developer1);
         RelativeLayout developer2_layout = rootView.findViewById(R.id.developer2);
@@ -67,7 +67,7 @@ public class AboutFragment extends Fragment implements View.OnClickListener {
         setVersion();
 
         rate_on_play_store_layout.setOnClickListener(this);
-        fallow_instagram_layout.setOnClickListener(this);
+        fallow_inst_layout.setOnClickListener(this);
         contact_us_layout.setOnClickListener(this);
         developer1_layout.setOnClickListener(this);
         developer2_layout.setOnClickListener(this);
@@ -94,10 +94,10 @@ public class AboutFragment extends Fragment implements View.OnClickListener {
                 contactUs(getString(R.string.email_about_page));
                 break;
             case R.id.developer1:
-                lookInLinkedinProfile(URL_DEVELOPER_1);
+                lookInLinkedInProfile(URL_DEVELOPER_1);
                 break;
             case R.id.developer2:
-                lookInLinkedinProfile(URL_DEVELOPER_2);
+                lookInLinkedInProfile(URL_DEVELOPER_2);
                 break;
         }
     }
@@ -115,8 +115,8 @@ public class AboutFragment extends Fragment implements View.OnClickListener {
         }
     }
 
-    //Set intent to go to Linkedin with the exact profile of the developer*
-    private void lookInLinkedinProfile(String developer) {
+    //Set intent to go to LinkedIn with the exact profile of the developer*
+    private void lookInLinkedInProfile(String developer) {
         try {
             Uri uri = Uri.parse(developer);
             Intent intent = new Intent(Intent.ACTION_VIEW, uri);

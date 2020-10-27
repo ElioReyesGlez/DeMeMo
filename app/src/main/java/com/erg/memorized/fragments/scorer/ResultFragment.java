@@ -46,12 +46,10 @@ public class ResultFragment extends Fragment implements View.OnClickListener {
     public static final String TAG = "ResultFragment";
     private View rootView;
     private ViewGroup container;
-    private LinearLayout emptyContainerSignal;
     private ItemVerse verse;
     private ArrayList<Score> scores;
     private ItemUser currentUser;
     private RealmHelper realmHelper;
-    private FirebaseAuth fAuth;
     private SharedPreferencesHelper spHelper;
     private Animation animScaleUp, animScaleDown;
     private float totalScore;
@@ -77,7 +75,7 @@ public class ResultFragment extends Fragment implements View.OnClickListener {
         super.onCreate(savedInstanceState);
 
         spHelper = new SharedPreferencesHelper(requireContext());
-        fAuth = FirebaseAuth.getInstance();
+        FirebaseAuth fAuth = FirebaseAuth.getInstance();
         realmHelper = new RealmHelper(requireContext());
 
         if (spHelper.getUserLoginStatus()) {
@@ -105,7 +103,7 @@ public class ResultFragment extends Fragment implements View.OnClickListener {
 
         ScrollView scrollViewScorerContainer = rootView
                 .findViewById(R.id.scroll_view_scorers_container);
-        emptyContainerSignal = rootView.findViewById(R.id.linear_layout_empty_container);
+        LinearLayout emptyContainerSignal = rootView.findViewById(R.id.linear_layout_empty_container);
 
         if (scores.isEmpty() && emptyContainerSignal.getVisibility() == View.GONE) {
             SuperUtil.showView(animScaleUp, emptyContainerSignal);

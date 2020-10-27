@@ -18,9 +18,9 @@ import java.util.ArrayList;
 
 public class AdapterEvaluator extends ArrayAdapter<Evaluator> {
 
-    private int resource;
-    private Context context;
-    private ArrayList<Evaluator> evaluators;
+    private final int resource;
+    private final Context context;
+    private final ArrayList<Evaluator> evaluators;
 
     public AdapterEvaluator(@NonNull Context context, int resource,
                             @NonNull ArrayList<Evaluator> evaluators) {
@@ -62,9 +62,9 @@ public class AdapterEvaluator extends ArrayAdapter<Evaluator> {
     }
 
     public static class ViewHolder {
-        private ImageView icon;
-        private TextView evaluatorName;
-        private TextView description;
+        private final ImageView icon;
+        private final TextView evaluatorName;
+        private final TextView description;
 
         public ViewHolder(View convertView) {
             this.icon = convertView.findViewById(R.id.iv_section);

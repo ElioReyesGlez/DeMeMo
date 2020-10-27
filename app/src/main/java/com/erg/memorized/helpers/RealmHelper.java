@@ -28,13 +28,11 @@ public class RealmHelper {
 
     private static final String TAG = "RealmHelper";
 
-    private Context context;
-    private RealmConfiguration verseRealmConfig;
-    private RealmConfiguration userRealmConfig;
+    private final RealmConfiguration verseRealmConfig;
+    private final RealmConfiguration userRealmConfig;
     private RealmResults<ItemVerse> verseRealmResults;
 
     public RealmHelper(Context context) {
-        this.context = context;
         verseRealmConfig = new RealmConfiguration.Builder()
                 .name(Constants.VERSES_REALM_DB_NAME)
                 .modules(new ItemVerse())
@@ -289,14 +287,6 @@ public class RealmHelper {
                         .removeField("isChecked");
                 oldVersion++;
             }
-
-          /*  if (oldVersion == 1) {
-                schema.get("Person")
-                        .addField(VERSE_COLUMN_ID, long.class, FieldAttribute.PRIMARY_KEY)
-                        .addRealmObjectField("favoriteDog", schema.get("Dog"))
-                        .addRealmListField("dogs", schema.get("Dog"));
-                oldVersion++;
-            }*/
         }
     }
 }

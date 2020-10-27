@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/ll_user_activity_container"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_margin="@dimen/regular_window_margin"
@@ -15,7 +14,6 @@
     android:padding="@dimen/regular_window_padding">
 
     <RelativeLayout
-        android:id="@+id/rl_head_container"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="@dimen/regular_window_margin"
@@ -35,7 +33,6 @@
             android:src="@drawable/ic_statistics"/>
 
         <TextView
-            android:id="@+id/title_user_activity_head"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentEnd="true"
@@ -51,7 +48,6 @@
     </RelativeLayout>
 
     <ProgressBar
-        android:id="@+id/user_activity_progress_circular"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"

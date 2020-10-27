@@ -1,14 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:card_view="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/main_parent"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical"
     android:tag="cards main container">
 
     <androidx.cardview.widget.CardView
-        android:id="@+id/card_view"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         card_view:cardCornerRadius="10dp"
@@ -33,7 +31,7 @@
                 android:layout_height="wrap_content"
                 android:layout_centerInParent="true"
                 android:layout_toEndOf="@+id/check_box"
-                android:layout_toRightOf="@+id/check_box"
+                android:gravity="center"
                 android:orientation="vertical">
 
                 <TextView
@@ -45,6 +43,7 @@
                     android:gravity="center_horizontal"
                     android:text="@string/title"
                     android:textAlignment="center"
+                    android:layout_gravity="center_horizontal"
                     android:textColor="@color/md_black_1000"
                     android:textSize="14sp"
                     android:ellipsize="end"
@@ -58,9 +57,9 @@
                     android:padding="@dimen/regular_item_padding"
                     android:ellipsize="end"
                     android:maxLines="2"
-                    android:text="@string/aux_memory_text"
+                    android:hint="@string/verse"
                     android:textAlignment="center"
-                    android:gravity="center_horizontal"
+                    android:layout_gravity="center_horizontal"
                     android:textColor="@color/md_grey_600"
                     android:textSize="12sp" />
             </LinearLayout>

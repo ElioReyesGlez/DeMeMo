@@ -1,68 +1,65 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.coordinatorlayout.widget.CoordinatorLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:fab="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".fragments.MemorizingFragment"
+    android:animateLayoutChanges="true"
     android:background="@drawable/background_white"
-    android:id="@+id/root_memorizing_view"
-    android:animateLayoutChanges="true">
+    tools:context=".fragments.MemorizingFragment">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical"
         android:layout_gravity="center|top"
-        android:padding="@dimen/regular_item_padding"
-        android:layout_marginBottom="70dp">
+        android:layout_marginBottom="70dp"
+        android:orientation="vertical"
+        android:padding="@dimen/regular_item_padding">
 
-      <LinearLayout
-          android:layout_width="wrap_content"
-          android:layout_height="wrap_content"
-          android:layout_gravity="end"
-          android:orientation="horizontal">
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="end"
+            android:orientation="horizontal">
 
-          <ImageView
-              android:id="@+id/iv_section_view"
-              android:layout_width="30dp"
-              android:layout_height="30dp"
-              android:layout_margin="@dimen/regular_window_padding"
-              android:clickable="true"
-              android:contentDescription="@string/description_menu_icon"
-              android:focusable="true"
-              android:src="@drawable/selector_sections" />
+            <ImageView
+                android:id="@+id/iv_section_view"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_margin="@dimen/regular_window_padding"
+                android:clickable="true"
+                android:contentDescription="@string/description_menu_icon"
+                android:focusable="true"
+                android:src="@drawable/selector_sections" />
 
 
-          <ImageView
-              android:id="@+id/iv_test_button"
-              android:layout_width="30dp"
-              android:layout_height="28dp"
-              android:layout_margin="@dimen/regular_window_padding"
-              android:clickable="true"
-              android:contentDescription="@string/description_menu_icon"
-              android:focusable="true"
-              android:src="@drawable/selector_test" />
-      </LinearLayout>
+            <ImageView
+                android:id="@+id/iv_test_button"
+                android:layout_width="30dp"
+                android:layout_height="28dp"
+                android:layout_margin="@dimen/regular_window_padding"
+                android:clickable="true"
+                android:contentDescription="@string/description_menu_icon"
+                android:focusable="true"
+                android:src="@drawable/selector_test" />
+        </LinearLayout>
 
         <TextView
             android:id="@+id/tv_title_of_memory_text"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="@dimen/regular_window_margin"
+            android:ellipsize="end"
             android:gravity="center_horizontal"
+            android:maxLines="2"
             android:text="@string/app_name"
             android:textAlignment="center"
             android:textColor="#000"
             android:textSize="24sp"
-            android:textStyle="bold|italic"
-            android:maxLines="2"
-            android:ellipsize="end"/>
+            android:textStyle="bold|italic" />
 
         <ScrollView
-            android:id="@+id/scroll_view_verse_text"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_gravity="center_horizontal">
@@ -72,16 +69,16 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@drawable/background_white"
+                android:enabled="true"
+                android:focusable="true"
                 android:gravity="start"
+                android:hint="@string/verse"
+                android:longClickable="true"
                 android:padding="@dimen/margin_top"
-                android:text="@string/aux_memory_text"
                 android:textAlignment="textStart"
                 android:textColor="@color/text_default_dark_gray"
-                android:textSize="18sp"
-                android:enabled="true"
                 android:textIsSelectable="true"
-                android:focusable="true"
-                android:longClickable="true"/>
+                android:textSize="18sp" />
 
         </ScrollView>
     </LinearLayout>
@@ -93,11 +90,11 @@
         android:orientation="vertical">
 
         <androidx.coordinatorlayout.widget.CoordinatorLayout
+            android:id="@+id/placeSnackBar"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="1"
             android:layout_gravity="bottom"
-            android:id="@+id/placeSnackBar">
+            android:layout_weight="1">
 
             <com.github.clans.fab.FloatingActionMenu
                 android:id="@+id/material_design_android_floating_action_menu"
@@ -107,12 +104,12 @@
                 fab:menu_animationDelayPerItem="55"
                 fab:menu_backgroundColor="@android:color/transparent"
                 fab:menu_buttonSpacing="0dp"
-                fab:menu_colorNormal="@color/colorGrey"
-                fab:menu_colorPressed="@color/md_blue_grey_300"
+                fab:menu_colorNormal="@color/custom_white_text_color"
+                fab:menu_colorPressed="@color/colorAccent"
                 fab:menu_colorRipple="#99d4d4d4"
                 fab:menu_fab_label="@string/fam_title"
                 fab:menu_fab_size="normal"
-                fab:menu_icon="@drawable/ic_control_media"
+                fab:menu_icon="@drawable/ic_controllers"
                 fab:menu_labels_colorNormal="#333"
                 fab:menu_labels_colorPressed="@color/custom_background_text"
                 fab:menu_labels_colorRipple="#66efecec"
@@ -163,16 +160,14 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center|bottom"
                 android:layout_marginBottom="21dp"
-                android:textAlignment="center"
                 android:background="@color/custom_background_text"
-                android:paddingRight="3dp"
-                android:paddingEnd="3dp"
-                android:paddingLeft="2dp"
                 android:paddingStart="2dp"
-                android:text="15"
+                android:paddingEnd="3dp"
+                android:text="@string/_15"
+                android:textAlignment="center"
                 android:textColor="@color/custom_white_text_color"
                 android:textSize="12sp"
-                android:visibility="gone"/>
+                android:visibility="gone" />
 
             <SeekBar
                 android:id="@+id/seekBar_text_size"
@@ -182,8 +177,8 @@
                 android:layout_marginBottom="@dimen/default_seek_bar"
                 android:max="28"
                 android:progress="16"
-                android:visibility="gone"
-                android:theme="@style/Widget.AppCompat.SeekBar.Discrete"/>
+                android:theme="@style/Widget.AppCompat.SeekBar.Discrete"
+                android:visibility="gone" />
 
         </androidx.coordinatorlayout.widget.CoordinatorLayout>
 
@@ -194,7 +189,7 @@
             android:layout_gravity="bottom|center"
             android:background="@color/md_white_1000"
             app:itemIconTint="@drawable/selector_item_color"
-            app:menu="@menu/bottom_navigation_distraction_free"/>
+            app:menu="@menu/bottom_navigation_distraction_free" />
 
     </LinearLayout>
 

@@ -265,6 +265,7 @@ public class SignUpFragment extends Fragment implements View.OnClickListener {
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
         dialog.setCancelable(false);
         LayoutInflater inflater = getLayoutInflater();
+        @SuppressLint("InflateParams")
         View dialogView = inflater.inflate(R.layout.dialog_info_send_email_view, null, false);
         TextView msg = dialogView.findViewById(R.id.text_dialog);
         TextView dialogEmail = dialogView.findViewById(R.id.tv_email);
@@ -393,6 +394,7 @@ public class SignUpFragment extends Fragment implements View.OnClickListener {
         dialog.show();
     }
 
+    @SuppressLint("StaticFieldLeak")
     public class AsyncTaskLoader extends AsyncTask<Void, Void, Void> {
 
         private Dialog progressDialog;

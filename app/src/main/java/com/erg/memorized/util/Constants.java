@@ -101,8 +101,8 @@ public class Constants {
 
 
     public static String MEMORY_TEXT_TITLE = "memory_text_title";
-    public static long VIBRATE_TIME = 7;
-    public static long MIN_VIBRATE_TIME = 4;
+    public static final long VIBRATE_TIME = 7;
+    public static final long MIN_VIBRATE_TIME = 4;
     public static final int FIX_SIZE = 4;
     public static final String FLAG_DAILY_VERSE_KEY = "isDailyVerse";
     public static final String DAILY_VERSE_KEY = "daily_verse_key";
@@ -251,7 +251,7 @@ public class Constants {
      * <item>Română</item>
      **/
 
-    public static int[] FlagResIds = new int[] {
+    public static final int[] FlagResIds = new int[] {
             R.drawable.ic_flag_uk,
             R.drawable.ic_flag_spain,
             R.drawable.ic_flag_portugal

@@ -5,16 +5,14 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.animation.Animation;
-import android.view.animation.AnimationUtils;
 import android.widget.DatePicker;
 import android.widget.RelativeLayout;
-import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.TimePicker;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.widget.SwitchCompat;
 import androidx.viewpager.widget.PagerAdapter;
 
 import com.erg.memorized.R;
@@ -29,25 +27,23 @@ import java.util.Calendar;
 
 public class AdapterPickersViewPager extends PagerAdapter {
 
-    private Activity context;
-    private Integer[] arrayPickers = new Integer[]{
+    private final Activity context;
+    private final Integer[] arrayPickers = new Integer[]{
             R.layout.date_picker_view,
             R.layout.time_picker_view
     };
 
-    private String[] tabTitles;
+    private final String[] tabTitles;
 
-    private OnPickersDateTimeChangeListener pickersListener;
-    private Calendar calendar;
-    private ItemVerse itemVerse;
-    private SharedPreferencesHelper spHelper;
-    private Animation animScaleUp, animScaleDown;
+    private final OnPickersDateTimeChangeListener pickersListener;
+    private final Calendar calendar;
+    private final ItemVerse itemVerse;
+    private final SharedPreferencesHelper spHelper;
 
     public AdapterPickersViewPager(Activity context, String[] tabsTitles,
                                    Calendar calendar,
                                    ItemVerse itemVerse,
                                    OnPickersDateTimeChangeListener pickersListener) {
-
         this.context = context;
         this.tabTitles = tabsTitles;
         this.calendar = calendar;
@@ -55,9 +51,6 @@ public class AdapterPickersViewPager extends PagerAdapter {
         this.pickersListener = pickersListener;
 
         spHelper = new SharedPreferencesHelper(context);
-        animScaleUp = AnimationUtils.loadAnimation(context, R.anim.scale_up);
-        animScaleDown = AnimationUtils.loadAnimation(context, R.anim.scale_down);
-
     }
 
     @NonNull
@@ -75,9 +68,9 @@ public class AdapterPickersViewPager extends PagerAdapter {
         if (arrayPickers.length - 1 == position) {
             DatePicker datePicker = container.findViewById(R.id.date_picker);
             TimePicker timePicker = container.findViewById(R.id.time_picker);
-            Switch dailySwitch = container.findViewById(R.id.switch_daily);
-            Switch weeklySwitch = container.findViewById(R.id.switch_weekly);
-            Switch monthlySwitch = container.findViewById(R.id.switch_monthly);
+            SwitchCompat dailySwitch = container.findViewById(R.id.switch_daily);
+            SwitchCompat weeklySwitch = container.findViewById(R.id.switch_weekly);
+            SwitchCompat monthlySwitch = container.findViewById(R.id.switch_monthly);
             RelativeLayout rlUntil = container.findViewById(R.id.rl_until);
             TextView tvEndDate = container.findViewById(R.id.tv_end_date);
 
@@ -103,9 +96,7 @@ public class AdapterPickersViewPager extends PagerAdapter {
                         pickersListener.OnDateChangeListener(datePicker1, year, month, dayOfMonth);
                     });
 
-            timePicker.setOnTimeChangedListener((view1, hourOfDay, minute) -> {
-                pickersListener.OnTimeChangeListener(view1, hourOfDay, minute);
-            });
+            timePicker.setOnTimeChangedListener(pickersListener::OnTimeChangeListener);
 
             dailySwitch.setOnCheckedChangeListener((buttonView, isChecked) -> {
                 switchOff(isChecked, weeklySwitch, monthlySwitch);
@@ -138,7 +129,8 @@ public class AdapterPickersViewPager extends PagerAdapter {
         return view;
     }
 
-    private void switchOff(boolean isChecked, Switch weeklySwitch, Switch monthlySwitch) {
+    private void switchOff(boolean isChecked, SwitchCompat weeklySwitch,
+                           SwitchCompat monthlySwitch) {
         if (isChecked) {
             if (weeklySwitch.isChecked())
                 weeklySwitch.setChecked(false);

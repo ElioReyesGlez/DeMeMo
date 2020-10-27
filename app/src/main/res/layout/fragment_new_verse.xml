@@ -2,7 +2,6 @@
 <androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/root_add_new_verse_view"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_marginBottom="@dimen/margin_bottom"
@@ -12,7 +11,6 @@
     android:scrollbars="vertical">
 
     <RelativeLayout
-        android:id="@+id/root_child_new_verse_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_gravity="center|top">

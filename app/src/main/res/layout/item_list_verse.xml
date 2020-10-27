@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/main_parent"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical"
@@ -8,7 +7,6 @@
 
     <com.google.android.material.card.MaterialCardView
         xmlns:card_view="http://schemas.android.com/apk/res-auto"
-        android:id="@+id/card_view"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         card_view:cardBackgroundColor="@color/custom_white_text_color"
@@ -27,7 +25,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@drawable/selector_gray_light"
-                android:text="01/06/1993"
+                android:text="@string/example_date"
                 android:textColor="@color/gray_btn_bg_darker_color"
                 android:textAlignment="center"
                 android:gravity="center"
@@ -38,6 +36,7 @@
                 android:layout_centerInParent="true"
                 android:orientation="vertical"
                 android:padding="2dp"
+                android:gravity="center"
                 android:layout_below="@+id/tv_date">
 
                 <TextView
@@ -59,12 +58,11 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="3dp"
-                    android:layout_marginRight="3dp"
                     android:layout_marginBottom="@dimen/regular_window_margin"
                     android:padding="@dimen/regular_item_padding"
                     android:ellipsize="end"
                     android:maxLines="2"
-                    android:text="@string/aux_memory_text"
+                    android:text="@string/verse"
                     android:textAlignment="center"
                     android:gravity="center_horizontal"
                     android:textColor="@color/md_grey_500"

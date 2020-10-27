@@ -142,7 +142,7 @@ public class BillingHelper {
         }
     }
 
-    private PurchasesUpdatedListener purchaseUpdateListener = (billingResult, purchases) -> {
+    private final PurchasesUpdatedListener purchaseUpdateListener = (billingResult, purchases) -> {
         Log.d(TAG, "onPurchasesUpdated: billingResult: " + billingResult.getDebugMessage());
         if (purchases != null) {
             for (Purchase purchase : purchases) {

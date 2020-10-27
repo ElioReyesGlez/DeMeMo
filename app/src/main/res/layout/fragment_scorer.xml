@@ -41,7 +41,7 @@
             android:layout_marginTop="2dp"
             android:layout_marginEnd="@dimen/regular_window_margin"
             android:layout_marginBottom="1dp"
-            android:text="10"
+            android:text="@string/_10"
             android:textStyle="bold"
             android:textColor="@color/text_default_dark_gray"
             android:textSize="12sp"
@@ -112,7 +112,7 @@
         android:textColor="@color/text_default_dark_gray"
         android:textStyle="bold"
         android:textSize="16sp"
-        android:text="0/3"/>
+        android:text="@string/_0_3"/>
 
 
 </RelativeLayout>

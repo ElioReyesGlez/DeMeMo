@@ -1,5 +1,6 @@
 package com.erg.memorized.adapters;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -17,8 +18,8 @@ import java.util.List;
 
 public class AdapterIntroViewPager extends PagerAdapter {
 
-   Context context;
-   List<ScreenItem> screenItems;
+   final Context context;
+   final List<ScreenItem> screenItems;
 
     public AdapterIntroViewPager(Context context, List<ScreenItem> screenItems) {
         this.context = context;
@@ -31,7 +32,7 @@ public class AdapterIntroViewPager extends PagerAdapter {
 
         LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         assert inflater != null;
-        View layoutScreen = inflater.inflate(R.layout.layout_screen, null);
+        @SuppressLint("InflateParams") View layoutScreen = inflater.inflate(R.layout.layout_screen, null);
 
         ImageView imgSlide = layoutScreen.findViewById(R.id.intro_img);
         TextView title = layoutScreen.findViewById(R.id.intro_title);

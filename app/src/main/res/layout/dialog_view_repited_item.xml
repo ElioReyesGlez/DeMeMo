@@ -1,5 +1,4 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/root_dialog_view"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     style="@style/Theme.MaterialComponents.Dialog"
@@ -14,7 +13,8 @@
         android:layout_alignParentTop="true"
         android:layout_centerInParent="true"
         android:scaleType="fitCenter"
-        android:src="@drawable/ic_square" />
+        android:src="@drawable/ic_square"
+        android:contentDescription="@string/icon" />
 
     <TextView
         android:id="@+id/text_dialog"

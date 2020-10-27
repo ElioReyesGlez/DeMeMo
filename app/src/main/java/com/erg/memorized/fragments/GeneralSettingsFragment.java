@@ -1,5 +1,6 @@
 package com.erg.memorized.fragments;
 
+import android.annotation.SuppressLint;
 import android.app.Dialog;
 import android.os.Bundle;
 import android.util.Log;
@@ -56,12 +57,11 @@ public class GeneralSettingsFragment extends Fragment implements View.OnClickLis
 
     private View rootView;
     private ViewGroup container;
-    private RelativeLayout rlLanguage, rlBibles;
     private LinearLayout linealLanguageContainer, linealBibleVersionContainer;
-    private Animation animScaleUp, animScaleDown, animSlideInFromRight;
+    private Animation animScaleUp;
+    private Animation animSlideInFromRight;
 
     private SharedPreferencesHelper spHelper;
-    private RealmHelper realmHelper;
     private ItemUser currentUser;
     private FirebaseAuth fAuth;
 
@@ -82,13 +82,13 @@ public class GeneralSettingsFragment extends Fragment implements View.OnClickLis
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         animScaleUp = AnimationUtils.loadAnimation(requireContext(), R.anim.scale_up);
-        animScaleDown = AnimationUtils.loadAnimation(requireContext(), R.anim.scale_down);
+        Animation animScaleDown = AnimationUtils.loadAnimation(requireContext(), R.anim.scale_down);
         animSlideInFromRight = AnimationUtils.loadAnimation(requireContext(),
                 R.anim.fab_slide_in_from_right);
 
         fAuth = FirebaseAuth.getInstance();
         spHelper = new SharedPreferencesHelper(requireContext());
-        realmHelper = new RealmHelper(requireContext());
+        RealmHelper realmHelper = new RealmHelper(requireContext());
         if (spHelper.getUserLoginStatus()) {
             currentUser = realmHelper.getUser();
         }
@@ -107,9 +107,9 @@ public class GeneralSettingsFragment extends Fragment implements View.OnClickLis
     }
 
     private void setUpView() {
-        rlLanguage = rootView.findViewById(R.id.rl_language);
+        RelativeLayout rlLanguage = rootView.findViewById(R.id.rl_language);
         linealLanguageContainer = rootView.findViewById(R.id.ll_language_container);
-        rlBibles = rootView.findViewById(R.id.rl_bibles);
+        RelativeLayout rlBibles = rootView.findViewById(R.id.rl_bibles);
         linealBibleVersionContainer = rootView.findViewById(R.id.ll_bible_version_container);
 
         setSavedLanguage();
@@ -121,6 +121,7 @@ public class GeneralSettingsFragment extends Fragment implements View.OnClickLis
 
     private void setSavedLanguage() {
         int savedLanguagePos = spHelper.getLanguagePos();
+        @SuppressLint("InflateParams")
         View view = getLayoutInflater().inflate(R.layout.item_language, null, false);
         AdapterLanguage.ViewHolder viewHolder = new AdapterLanguage.ViewHolder(view);
         viewHolder.setLanguage(languages.get(savedLanguagePos));
@@ -130,6 +131,7 @@ public class GeneralSettingsFragment extends Fragment implements View.OnClickLis
 
     private void setSavedBible() {
         Bible bible = spHelper.getBibleVersion();
+        @SuppressLint("InflateParams")
         View view = getLayoutInflater().inflate(R.layout.item_bible_version, null, false);
         AdapterBible.ViewHolder viewHolder = new AdapterBible.ViewHolder(view);
         viewHolder.setAbbreviationLocal(bible.getAbbreviationLocal());
@@ -160,6 +162,7 @@ public class GeneralSettingsFragment extends Fragment implements View.OnClickLis
         Dialog dialog = new Dialog(Objects.requireNonNull(getContext()), R.style.alert_dialog);
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
         LayoutInflater inflater = getLayoutInflater();
+        @SuppressLint("InflateParams")
         View dialogView = inflater.inflate(R.layout.dialog_view_language_choice, null, false);
         ListView listView = dialogView.findViewById(R.id.list_view_languages);
 
@@ -231,6 +234,7 @@ public class GeneralSettingsFragment extends Fragment implements View.OnClickLis
         Dialog dialog = new Dialog(Objects.requireNonNull(getContext()), R.style.alert_dialog);
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
         LayoutInflater inflater = getLayoutInflater();
+        @SuppressLint("InflateParams")
         View dialogView = inflater.inflate(R.layout.dialog_view_bible_choice,
                 null, false);
 

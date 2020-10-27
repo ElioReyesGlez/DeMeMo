@@ -6,7 +6,8 @@
     tools:context=".fragments.SplitTextFragment"
     android:background="@color/custom_white_text_color"
     android:padding="@dimen/regular_item_padding"
-    android:animateLayoutChanges="true">
+    android:animateLayoutChanges="true"
+    tools:ignore="Overdraw">
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recycler_view_split"

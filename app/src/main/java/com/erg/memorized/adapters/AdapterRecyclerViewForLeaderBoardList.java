@@ -28,8 +28,8 @@ public class AdapterRecyclerViewForLeaderBoardList extends
         RecyclerView.Adapter<AdapterRecyclerViewForLeaderBoardList.VerseHolder> {
 
     private ArrayList<ItemUser> users;
-    private ArrayList<ItemUser> rankUsers;
-    private Context context;
+    private final ArrayList<ItemUser> rankUsers;
+    private final Context context;
     private int selectedPos = RecyclerView.NO_POSITION;
 
     public AdapterRecyclerViewForLeaderBoardList(ArrayList<ItemUser> users,
@@ -105,7 +105,7 @@ public class AdapterRecyclerViewForLeaderBoardList extends
 
         if (bitmapFromBase64 == null && user.getImg() != null &&
                 user.getImg().equals(Constants.DEFAULT)) {
-            holder.setUserAvatarDefault(R.drawable.ic_user_profile);
+            holder.setUserAvatarDefault();
         } else {
             holder.setUserAvatarBitmap(bitmapFromBase64);
         }
@@ -132,13 +132,13 @@ public class AdapterRecyclerViewForLeaderBoardList extends
     }
 
     static class VerseHolder extends RecyclerView.ViewHolder {
-        private TextView userName;
-        private TextView score;
-        private TextView rank;
-        private ImageView badgePremiumStatus;
-        private ImageView userAvatar;
-        private ImageView badge;
-        private View rootView;
+        private final TextView userName;
+        private final TextView score;
+        private final TextView rank;
+        private final ImageView badgePremiumStatus;
+        private final ImageView userAvatar;
+        private final ImageView badge;
+        private final View rootView;
 
         VerseHolder(View itemView) {
             super(itemView);
@@ -171,8 +171,8 @@ public class AdapterRecyclerViewForLeaderBoardList extends
             this.userAvatar.setImageBitmap(userAvatar);
         }
 
-        void setUserAvatarDefault(int res) {
-            this.userAvatar.setImageResource(res);
+        void setUserAvatarDefault() {
+            this.userAvatar.setImageResource(R.drawable.ic_user_profile);
         }
 
         void setBadge(int badge) {

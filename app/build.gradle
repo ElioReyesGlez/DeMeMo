@@ -42,7 +42,7 @@ dependencies {
     //---------------------------Meow_Bottom_Bar-------------------
     implementation 'com.etebarian:meow-bottom-navigation:1.2.0'
     //---------------------------kotlin----------------------------
-    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:1.3.72"
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:1.4.10"
     //---------------------------recyclerview----------------------------
     implementation 'androidx.recyclerview:recyclerview:1.1.0'
     //---------------------------CardView----------------------------
@@ -54,16 +54,13 @@ dependencies {
     //----------------------lottie---------------------------------
     implementation 'com.airbnb.android:lottie:3.4.0'
     //----------------------FireBase---------------------------------
-    implementation 'com.google.firebase:firebase-analytics:17.6.0'
+    implementation 'com.google.firebase:firebase-analytics:18.0.0'
     //----------------------FireBase Messaging---------------------------------
-    implementation 'com.google.firebase:firebase-messaging:20.3.0'
+    implementation 'com.google.firebase:firebase-messaging:21.0.0'
     //----------------------FireBaseAuth---------------------------------
-    implementation 'com.google.firebase:firebase-auth:19.4.0'
+    implementation 'com.google.firebase:firebase-auth:20.0.0'
     //----------------------FireBaseDatabase---------------------------------
-    implementation 'com.google.firebase:firebase-database:19.5.0'
-    //----------------------FireBaseStorage---------------------------------
-    implementation 'com.google.firebase:firebase-storage:19.2.0'
-    implementation 'com.google.firebase:firebase-firestore:21.7.1'
+    implementation 'com.google.firebase:firebase-database:19.5.1'
     //----------------------cropper---------------------------------
     api 'com.theartofdev.edmodo:android-image-cropper:2.8.0'
     //----------------------Picasso---------------------------------

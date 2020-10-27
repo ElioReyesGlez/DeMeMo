@@ -15,6 +15,7 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 
 import com.erg.memorized.R;
@@ -22,7 +23,6 @@ import com.erg.memorized.adapters.AdapterScorerFragmentPager;
 import com.erg.memorized.fragments.ScorerFragment;
 import com.erg.memorized.helpers.MessagesHelper;
 import com.erg.memorized.helpers.ScoreHelper;
-import com.erg.memorized.helpers.SharedPreferencesHelper;
 import com.erg.memorized.helpers.TextHelper;
 import com.erg.memorized.interfaces.BoxTestListener;
 import com.erg.memorized.interfaces.ScorerListener;
@@ -53,15 +53,13 @@ public class BoxSelectorFragment extends Fragment implements View.OnClickListene
 
     private View rootView;
 
-    private TextView tvVerse, tvTitle;
+    private TextView tvVerse;
     private Button btnDone;
     private LinearLayout boxesContainer;
 
     private Animation animScaleUp, animScaleDown;
     private BoxTestListener boxTestListener;
     private ScorerFragment scorerFragment;
-
-    private SharedPreferencesHelper spHelper;
 
     public BoxSelectorFragment() {
         // Required empty public constructor
@@ -108,8 +106,6 @@ public class BoxSelectorFragment extends Fragment implements View.OnClickListene
 
         animScaleUp = AnimationUtils.loadAnimation(getContext(), R.anim.less_scale_up);
         animScaleDown = AnimationUtils.loadAnimation(getContext(), R.anim.scale_down);
-
-        spHelper = new SharedPreferencesHelper(requireContext());
     }
 
     @Override
@@ -121,7 +117,7 @@ public class BoxSelectorFragment extends Fragment implements View.OnClickListene
     }
 
     private void setUpView() {
-        tvTitle = rootView.findViewById(R.id.tv_title);
+        TextView tvTitle = rootView.findViewById(R.id.tv_title);
         tvVerse = rootView.findViewById(R.id.tv_verse);
         boxesContainer = rootView.findViewById(R.id.ll_boxes_container);
         btnDone = rootView.findViewById(R.id.btn_done_box_fragment);
@@ -155,7 +151,8 @@ public class BoxSelectorFragment extends Fragment implements View.OnClickListene
                 int posReplacement = posReplacementsWords.get(i);
                 TextView boxTextView = new TextView(requireContext());
                 boxTextView.setId(posReplacement);
-                boxTextView.setBackground(requireContext().getDrawable(R.drawable.selector_gray));
+                boxTextView.setBackground(ContextCompat.getDrawable(requireContext(),
+                        R.drawable.selector_gray));
                 boxTextView.setElevation(2);
                 boxTextView.setMaxLines(1);
                 boxTextView.setEllipsize(TextUtils.TruncateAt.END);

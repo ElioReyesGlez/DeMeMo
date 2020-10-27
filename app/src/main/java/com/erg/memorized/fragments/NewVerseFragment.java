@@ -1,5 +1,6 @@
 package com.erg.memorized.fragments;
 
+import android.annotation.SuppressLint;
 import android.app.Dialog;
 import android.content.Intent;
 import android.os.AsyncTask;
@@ -53,11 +54,11 @@ import static com.erg.memorized.util.Constants.SPACE;
 public class NewVerseFragment extends Fragment implements View.OnClickListener,
         OnPickersDateTimeChangeListener {
 
-    public static String TAG = "NewVerseFragment";
+    public static final String TAG = "NewVerseFragment";
 
     private View rootView;
 
-    private boolean isEditingAction;
+    private final boolean isEditingAction;
     private boolean flagStartMemorizing = false;
 
     private long notifyDate = -1;
@@ -79,7 +80,7 @@ public class NewVerseFragment extends Fragment implements View.OnClickListener,
     private boolean hasAlarmFlag = false;
     private Date untilDate;
 
-    private ItemVerse currentItemVerse;
+    private final ItemVerse currentItemVerse;
     private RealmHelper realmHelper;
     private SharedPreferencesHelper spHelper;
     private Animation animScaleUp, animScaleDown;
@@ -196,7 +197,7 @@ public class NewVerseFragment extends Fragment implements View.OnClickListener,
         final Dialog dialog = new Dialog(Objects.requireNonNull(getContext()), R.style.alert_dialog);
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
         LayoutInflater inflater = getLayoutInflater();
-        View dialogView = inflater.inflate(R.layout.dialog_date_time_picker_view, null, false);
+        @SuppressLint("InflateParams") View dialogView = inflater.inflate(R.layout.dialog_date_time_picker_view, null, false);
 
         TabLayout tabLayout = dialogView.findViewById(R.id.tabLayout);
         FixedViewPager fixedViewPager = dialogView.findViewById(R.id.fixed_viewpager);
@@ -351,20 +352,19 @@ public class NewVerseFragment extends Fragment implements View.OnClickListener,
     }
 
     @Override
-    public boolean OnDailySwitchListener(CompoundButton buttonView, boolean isChecked,
-                                         RelativeLayout untilView) {
+    public void OnDailySwitchListener(CompoundButton buttonView, boolean isChecked,
+                                      RelativeLayout untilView) {
         daily = isChecked;
         if (daily || weekly || monthly)
             SuperUtil.showView(null, untilView);
         else
             SuperUtil.hideView(null, untilView);
 
-        return isChecked;
     }
 
     @Override
-    public boolean OnWeeklySwitchListener(CompoundButton buttonView, boolean isChecked,
-                                          RelativeLayout untilView) {
+    public void OnWeeklySwitchListener(CompoundButton buttonView, boolean isChecked,
+                                       RelativeLayout untilView) {
         weekly = isChecked;
 
         if (daily || weekly || monthly)
@@ -372,12 +372,11 @@ public class NewVerseFragment extends Fragment implements View.OnClickListener,
         else
             SuperUtil.hideView(null, untilView);
 
-        return isChecked;
     }
 
     @Override
-    public boolean OnMonthlySwitchListener(CompoundButton buttonView, boolean isChecked,
-                                           RelativeLayout untilView) {
+    public void OnMonthlySwitchListener(CompoundButton buttonView, boolean isChecked,
+                                        RelativeLayout untilView) {
         monthly = isChecked;
 
         if (daily || weekly || monthly)
@@ -385,21 +384,19 @@ public class NewVerseFragment extends Fragment implements View.OnClickListener,
         else
             SuperUtil.hideView(null, untilView);
 
-        return isChecked;
     }
 
     @Override
-    public boolean OnUntilViewListener(RelativeLayout untilView, TextView tvUntilDate) {
+    public void OnUntilViewListener(RelativeLayout untilView, TextView tvUntilDate) {
         SuperUtil.vibrate(requireActivity());
         showUntilDatePickerDialog(tvUntilDate);
-        return false;
     }
 
     private void showUntilDatePickerDialog(TextView tvEndDate) {
         final Dialog dialog = new Dialog(Objects.requireNonNull(getContext()), R.style.alert_dialog);
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
         LayoutInflater inflater = getLayoutInflater();
-        View dialogView = inflater.inflate(R.layout.until_date_picker_view, null, false);
+        @SuppressLint("InflateParams") View dialogView = inflater.inflate(R.layout.until_date_picker_view, null, false);
         dialog.setContentView(dialogView);
 
         DatePicker datePicker = dialogView.findViewById(R.id.until_date_picker);
@@ -434,10 +431,11 @@ public class NewVerseFragment extends Fragment implements View.OnClickListener,
     }
 
 
+    @SuppressLint("StaticFieldLeak")
     public class AsyncTaskSaving extends AsyncTask<Void, Void, Void> {
 
-
-        private String srtTitle, srtVerse;
+        private final String srtTitle;
+        private final String srtVerse;
         private boolean verseExistByTitle = false;
         private boolean verseExistByVerseText = false;
         Dialog progressDialog;
@@ -528,7 +526,7 @@ public class NewVerseFragment extends Fragment implements View.OnClickListener,
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
         dialog.setCancelable(false);
         LayoutInflater inflater = getLayoutInflater();
-        View dialogView = inflater.inflate(R.layout.dialog_view_repited_item, null, false);
+        @SuppressLint("InflateParams") View dialogView = inflater.inflate(R.layout.dialog_view_repited_item, null, false);
         TextView msg = dialogView.findViewById(R.id.text_dialog);
 
         if (existByTitle)
@@ -579,7 +577,7 @@ public class NewVerseFragment extends Fragment implements View.OnClickListener,
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
         dialog.setCancelable(false);
         LayoutInflater inflater = getLayoutInflater();
-        View dialogView = inflater.inflate(R.layout.dialog_view_calendar_choice, null, false);
+        @SuppressLint("InflateParams") View dialogView = inflater.inflate(R.layout.dialog_view_calendar_choice, null, false);
         ListView listView = dialogView.findViewById(R.id.list_view_calendars);
 
         Animation anim = AnimationUtils.loadAnimation(getContext(), R.anim.scale_up);

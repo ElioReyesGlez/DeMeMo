@@ -15,10 +15,10 @@ import com.erg.memorized.model.ItemVerse;
 
 public class AdapterScorerFragmentPager extends FragmentPagerAdapter {
 
-    private ItemVerse verse;
+    private final ItemVerse verse;
     private Fragment currentFrag;
-    private BoxTestListener boxTestListener;
-    private ScorerFragment scorerFragment;
+    private final BoxTestListener boxTestListener;
+    private final ScorerFragment scorerFragment;
     private int position = -1;
 
     public AdapterScorerFragmentPager(@NonNull FragmentManager fm, int behavior,

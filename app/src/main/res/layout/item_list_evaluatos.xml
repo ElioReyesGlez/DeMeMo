@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/main_parent"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="@drawable/background_gray"
@@ -38,7 +37,7 @@
             android:id="@+id/tv_info_section"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/example_text"
+            android:hint="@string/text"
             android:layout_gravity="center_vertical"
             android:layout_margin="@dimen/regular_window_margin"/>
 

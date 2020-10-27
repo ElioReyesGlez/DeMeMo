@@ -62,7 +62,7 @@ public class MessageService extends FirebaseMessagingService {
         NotificationCompat.Builder notificationBuilder =
                 new NotificationCompat.Builder(this,
                         getString(R.string.default_notification_channel_id))
-                        .setSmallIcon(R.drawable.ic_learning_launcher)
+                        .setSmallIcon(R.drawable.ic_learning_launcher_notify)
                         .setContentTitle(title)
                         .setContentText(body)
                         .setSound(soundUri)

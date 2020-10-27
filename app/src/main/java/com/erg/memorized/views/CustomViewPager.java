@@ -1,5 +1,6 @@
 package com.erg.memorized.views;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
@@ -23,6 +24,7 @@ public class CustomViewPager extends ViewPager {
         this.enabled = enabled;
     }
 
+    @SuppressLint("ClickableViewAccessibility")
     @Override
     public boolean onTouchEvent(MotionEvent event) {
         if (this.enabled) {

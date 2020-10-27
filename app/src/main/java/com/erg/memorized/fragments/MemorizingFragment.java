@@ -1,5 +1,6 @@
 package com.erg.memorized.fragments;
 
+import android.annotation.SuppressLint;
 import android.app.Dialog;
 import android.content.ClipData;
 import android.content.ClipboardManager;
@@ -20,7 +21,6 @@ import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.ImageView;
-import android.widget.ScrollView;
 import android.widget.SeekBar;
 import android.widget.TextView;
 
@@ -34,11 +34,9 @@ import com.erg.memorized.helpers.RealmHelper;
 import com.erg.memorized.helpers.ScoreHelper;
 import com.erg.memorized.helpers.SharedPreferencesHelper;
 import com.erg.memorized.helpers.TimeHelper;
-import com.erg.memorized.model.ItemUser;
 import com.erg.memorized.model.ItemVerse;
 import com.erg.memorized.util.Constants;
 import com.erg.memorized.util.SuperUtil;
-import com.etebarian.meowbottomnavigation.MeowBottomNavigation;
 import com.github.clans.fab.FloatingActionButton;
 import com.github.clans.fab.FloatingActionMenu;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -58,7 +56,6 @@ public class MemorizingFragment extends Fragment {
 
     public static final String TAG = "MemorizingFragment";
     private FloatingActionMenu fam;
-    private FloatingActionButton fam_play, fam_stop;
 
     private TextToSpeech tts;
     private Locale current_locale;
@@ -68,10 +65,8 @@ public class MemorizingFragment extends Fragment {
     private SeekBar seekBar;
     private float userTextSize;
     private View rootView;
-    private ScrollView scrollViewVerse;
 
     private boolean isDailyVerse = false;
-    private MeowBottomNavigation meoBottomBar;
 
     private AudioManager audioManager;
     private AudioManager.OnAudioFocusChangeListener focusChangeListener;
@@ -81,7 +76,6 @@ public class MemorizingFragment extends Fragment {
     private SharedPreferencesHelper spHelper;
     private RealmHelper realmHelper;
     private ItemVerse verse;
-    private ItemUser currentUser;
 
     private BottomNavigationView bnv;
 
@@ -108,15 +102,11 @@ public class MemorizingFragment extends Fragment {
 
         spHelper = new SharedPreferencesHelper(requireActivity());
         realmHelper = new RealmHelper(getContext());
-        currentUser = realmHelper.getUser();
 
         if (!spHelper.getSectionViewStatus())
             userTextSize = spHelper.getUserTextSizePref(verse.getTitle());
         else
             userTextSize = spHelper.getUserTextSizePref(spHelper.getCurrentSectionKey());
-
-        meoBottomBar = requireActivity()
-                .findViewById(R.id.meow_bottom_navigation);
 
         animScaleUp = AnimationUtils.loadAnimation(getContext(), R.anim.less_scale_up);
         animScaleDown = AnimationUtils.loadAnimation(getContext(), R.anim.scale_down);
@@ -149,9 +139,8 @@ public class MemorizingFragment extends Fragment {
         ivSplitText = rootView.findViewById(R.id.iv_section_view);
         ivTest = rootView.findViewById(R.id.iv_test_button);
         fam = rootView.findViewById(R.id.material_design_android_floating_action_menu);
-        fam_play = rootView.findViewById(R.id.fam_play);
-        fam_stop = rootView.findViewById(R.id.fam_stop);
-        scrollViewVerse = rootView.findViewById(R.id.scroll_view_verse_text);
+        FloatingActionButton fam_play = rootView.findViewById(R.id.fam_play);
+        FloatingActionButton fam_stop = rootView.findViewById(R.id.fam_stop);
 
         fam.hideMenuButton(false);
 
@@ -363,6 +352,7 @@ public class MemorizingFragment extends Fragment {
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
         dialog.setCancelable(false);
         LayoutInflater inflater = getLayoutInflater();
+        @SuppressLint("InflateParams")
         View dialogView = inflater.inflate(R.layout.dialog_save_verse_view,
                 null, false);
         TextView msg = dialogView.findViewById(R.id.text_dialog);
@@ -510,11 +500,6 @@ public class MemorizingFragment extends Fragment {
             SuperUtil.hideView(animScaleDown, ivSplitText);
             SuperUtil.hideView(animScaleDown, ivTest);
         }
-    }
-
-    @Override
-    public void onDestroy() {
-        super.onDestroy();
     }
 
     @Override

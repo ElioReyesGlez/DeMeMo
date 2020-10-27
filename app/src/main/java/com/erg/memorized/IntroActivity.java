@@ -27,7 +27,6 @@ public class IntroActivity extends Activity {
     public static String TAG = "IntroActivity";
 
     private ViewPager screenPager;
-    private AdapterIntroViewPager adapterIntroViewPager;
     private TabLayout tabIndicator;
     private Button btnNext;
     private int position = 0 ;
@@ -63,6 +62,8 @@ public class IntroActivity extends Activity {
         final List<ScreenItem> screenItems = new ArrayList<>();
         screenItems.add(new ScreenItem(getString(R.string.app_name), getString(R.string.dememo_intro_description),
                 R.drawable.ic_learning_launcher_2));
+        screenItems.add(new ScreenItem(getString(R.string.reminder),
+                getString(R.string.reminder_intro_description), R.drawable.ic_calendar));
         screenItems.add(new ScreenItem(getString(R.string.memory_evaluator),
                 getString(R.string.evaluator_intro_description), R.drawable.ic_exam_main_2));
         screenItems.add(new ScreenItem(getString(R.string.cloud_backup),
@@ -72,7 +73,7 @@ public class IntroActivity extends Activity {
 
         // setup viewpager
         screenPager =findViewById(R.id.screen_viewpager);
-        adapterIntroViewPager = new AdapterIntroViewPager(this, screenItems);
+        AdapterIntroViewPager adapterIntroViewPager = new AdapterIntroViewPager(this, screenItems);
         screenPager.setAdapter(adapterIntroViewPager);
 
         tabIndicator.setupWithViewPager(screenPager);
