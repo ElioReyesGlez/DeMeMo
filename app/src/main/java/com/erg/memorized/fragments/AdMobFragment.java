@@ -140,7 +140,7 @@ public class AdMobFragment extends Fragment implements View.OnClickListener {
     private InterstitialAd newInterstitialAd(final Context context) {
 
         InterstitialAd interstitialAd = new InterstitialAd(context);
-        interstitialAd.setAdUnitId(getString(R.string.testing_interstitial_ad_unit_id));
+        interstitialAd.setAdUnitId(getString(R.string.interstitial_ad_unit_id));
         interstitialAd.setAdListener(new AdListener() {
             @Override
             public void onAdLoaded() {
