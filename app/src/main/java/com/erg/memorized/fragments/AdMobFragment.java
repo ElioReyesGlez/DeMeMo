@@ -103,9 +103,9 @@ public class AdMobFragment extends Fragment implements View.OnClickListener {
     }
 
     private void linkToDeMeMoMission() {
-        if (isVisible())
-            MessagesHelper.showInfoMessageWarning(requireActivity(),
-                    getString(R.string.todo));
+        if (isVisible()) {
+            MessagesHelper.showMissionDialog(requireActivity());
+        }
     }
 
     private void startCountdown(Context appContext, long countDown) {

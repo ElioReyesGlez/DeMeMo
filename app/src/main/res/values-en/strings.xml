@@ -286,6 +286,9 @@
 
     <string name="ad_explication">The following Ad helps us to develop:</string>
     <string name="mission">DeMeMo\'s Mission</string>
+    <string name="mission_description">DeMeMo is part of a project in
+        development that aims to position the word of God in a more current world where new
+        technologies and the beatitudes of God go hand in hand transparently.</string>
     <string name="ad_not_load">Ad did not load</string>
     <string name="you_are_premium_now">You are Premium Now!</string>
     <string name="seven">7</string>

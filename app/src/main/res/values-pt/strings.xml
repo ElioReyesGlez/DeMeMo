@@ -279,14 +279,17 @@
     </string-array>
 
     // DeMeMo adMob id
-        <string name="interstitial_ad_unit_id">ca-app-pub-5375894039512920/4596144610</string>
+    <string name="interstitial_ad_unit_id">ca-app-pub-5375894039512920/4596144610</string>
 
     // Interstitial Ad Unit Id
     <!--<string name="testing_interstitial_ad_unit_id">ca-app-pub-3940256099942544/1033173712</string>-->
 
     <string name="ad_explication">O seguinte anúncio nos ajuda a desenvolver:</string>
     <string name="mission">Missão DeMeMo</string>
-    <string name="ad_not_load">Anúncio não carregou</string>
+    <string name="mission_description">Missão DeMeMo</string>
+    <string name="ad_not_load">DeMeMo faz parte de um projeto
+        em desenvolvimento que visa posicionar a palavra de Deus num mundo mais atual onde as
+        novas tecnologias e a bem-aventurança de Deus andem de mãos dadas de forma transparente.</string>
     <string name="you_are_premium_now">Já é Premium!</string>
     <string name="seven">7</string>
 
