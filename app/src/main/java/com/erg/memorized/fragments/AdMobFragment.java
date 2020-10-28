@@ -1,5 +1,7 @@
 package com.erg.memorized.fragments;
 
+import android.annotation.SuppressLint;
+import android.app.Dialog;
 import android.content.Context;
 import android.os.Bundle;
 import android.os.CountDownTimer;
@@ -7,6 +9,9 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.Window;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -20,6 +25,7 @@ import com.erg.memorized.R;
 import com.erg.memorized.helpers.BillingHelper;
 import com.erg.memorized.helpers.MessagesHelper;
 import com.erg.memorized.model.ItemUser;
+import com.erg.memorized.util.Constants;
 import com.erg.memorized.util.SuperUtil;
 import com.google.android.gms.ads.AdListener;
 import com.google.android.gms.ads.AdRequest;
@@ -104,8 +110,33 @@ public class AdMobFragment extends Fragment implements View.OnClickListener {
 
     private void linkToDeMeMoMission() {
         if (isVisible()) {
-            MessagesHelper.showMissionDialog(requireActivity());
+            cancelTimer();
+            showMissionDialog();
         }
+    }
+
+    public void showMissionDialog() {
+        final Dialog dialog = new Dialog(requireContext(), R.style.alert_dialog);
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        dialog.setCancelable(false);
+        LayoutInflater inflater = getLayoutInflater();
+        @SuppressLint("InflateParams")
+        View dialogView = inflater.inflate(R.layout.dialog_mission_view,
+                null, false);
+        dialog.setContentView(dialogView);
+
+        /*onClick on dialog ok button*/
+        Button btnOK = dialogView.findViewById(R.id.ok);
+        btnOK.setOnClickListener(v -> {
+            SuperUtil.vibrate(requireContext());
+            startCountdown(requireContext(), timerMilliseconds);
+            if (dialog.isShowing())
+                dialog.dismiss();
+        });
+
+        dialog.show();
+        Animation animScaleUp = AnimationUtils.loadAnimation(requireContext(), R.anim.less_scale_up);
+        dialogView.startAnimation(animScaleUp);
     }
 
     private void startCountdown(Context appContext, long countDown) {
@@ -140,7 +171,7 @@ public class AdMobFragment extends Fragment implements View.OnClickListener {
     private InterstitialAd newInterstitialAd(final Context context) {
 
         InterstitialAd interstitialAd = new InterstitialAd(context);
-        interstitialAd.setAdUnitId(getString(R.string.interstitial_ad_unit_id));
+        interstitialAd.setAdUnitId(Constants.interstitial_ad_unit_id);
         interstitialAd.setAdListener(new AdListener() {
             @Override
             public void onAdLoaded() {

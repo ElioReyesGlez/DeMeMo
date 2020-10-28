@@ -236,6 +236,14 @@ public class Constants {
     public static final String URL_DEVELOPER_2 = "https://www.linkedin.com/in/josé-ernesto-cortes-7bb8671b6";
 
 
+    // DeMeMo adMob id
+    public static final String interstitial_ad_unit_id = "ca-app-pub-5375894039512920/4596144610";
+
+    // Interstitial Ad Unit Id
+    public static final String testing_interstitial_ad_unit_id =
+            "ca-app-pub-3940256099942544/1033173712";
+
+
     public static ArrayList<String> getMarks(FragmentActivity context) {
         ArrayList<String> marks = new ArrayList<>();
         Collections.addAll(marks, context.getResources().getStringArray(R.array.marks));

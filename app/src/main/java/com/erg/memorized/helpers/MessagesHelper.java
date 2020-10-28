@@ -200,29 +200,6 @@ public class MessagesHelper {
         return dialog;
     }
 
-    public static void showMissionDialog(FragmentActivity context) {
-        final Dialog dialog = new Dialog(context, R.style.alert_dialog);
-        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
-        dialog.setCancelable(false);
-        LayoutInflater inflater = context.getLayoutInflater();
-        @SuppressLint("InflateParams")
-        View dialogView = inflater.inflate(R.layout.dialog_mission_view,
-                null, false);
-        dialog.setContentView(dialogView);
-
-        /*onClick on dialog ok button*/
-        Button btnOK = dialogView.findViewById(R.id.ok);
-        btnOK.setOnClickListener(v -> {
-            SuperUtil.vibrate(context);
-            if (dialog.isShowing())
-                dialog.dismiss();
-        });
-
-        dialog.show();
-        Animation animScaleUp = AnimationUtils.loadAnimation(context, R.anim.less_scale_up);
-        dialogView.startAnimation(animScaleUp);
-    }
-
 
     private static void showRatingDialog(Activity context, Animation anim) {
 
