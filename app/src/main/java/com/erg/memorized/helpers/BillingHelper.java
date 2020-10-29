@@ -39,8 +39,6 @@ public class BillingHelper {
 
     private ItemUser currentUser;
 
-    private boolean isAgreeToBy = false;
-
     public BillingHelper(Activity context, ItemUser currentUser)
     {
         this.context = context;
@@ -92,6 +90,7 @@ public class BillingHelper {
 
                         if (billingResult.getResponseCode() == BillingClient.BillingResponseCode.OK) {
                             Log.d(TAG, "billingResult: " + billingResult.getDebugMessage());
+                            assert skuDetailsList != null;
                             Log.d(TAG, "skuDetailsList: " + skuDetailsList.toString());
                             for (SkuDetails skuDetails : skuDetailsList) {
                                 if (skuDetails.getSku().equals(SKU_PREMIUM)) {
@@ -186,7 +185,7 @@ public class BillingHelper {
                         }
 
                         Log.e(TAG, "Failed uploading User Premium Status Error: "
-                                + task.getException().getMessage());
+                                + task.getException());
                     }
                 });
     }
@@ -196,7 +195,7 @@ public class BillingHelper {
                 .getReference(LEADER_BOARD_FIRE_BASE_REFERENCE)
                 .child(currentUser.getId())
                 .child(PREMIUM_USER_FIRE_BASE_REFERENCE);
-        fReferenceLeaderBoard.setValue(currentUser.isPremium())
+        fReferenceLeaderBoard.setValue(String.valueOf(currentUser.isPremium()))
                 .addOnCompleteListener(task -> {
                     if (task.isSuccessful()) {
                         Log.d(TAG, "Leader board upload Premium Status: Success:  "
@@ -205,14 +204,14 @@ public class BillingHelper {
                         if (task.getException() instanceof FirebaseNetworkException) {
                             Toast.makeText(context,context.getString(R.string.network_error),
                                     Toast.LENGTH_LONG).show();
-                            Log.d(TAG, "upload: " + task.getException().getMessage());
+                            Log.d(TAG, "upload: " + task.getException());
                         } else {
                             Toast.makeText(context,context.getString(R.string.failed_uploading),
                                     Toast.LENGTH_LONG).show();
                         }
 
                         Log.e(TAG, "Failed uploading on Leader board Premium Status Error: "
-                                + task.getException().getMessage());
+                                + task.getException());
                     }
                 });
     }
