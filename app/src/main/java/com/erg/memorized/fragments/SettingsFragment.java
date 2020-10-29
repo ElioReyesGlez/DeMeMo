@@ -20,11 +20,9 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
 
 import com.erg.memorized.R;
-import com.erg.memorized.helpers.BillingHelper;
 import com.erg.memorized.helpers.MessagesHelper;
 import com.erg.memorized.helpers.RealmHelper;
 import com.erg.memorized.helpers.ScoreHelper;
@@ -35,6 +33,7 @@ import com.erg.memorized.model.ItemVerse;
 import com.erg.memorized.model.LeaderboardItem;
 import com.erg.memorized.util.Constants;
 import com.erg.memorized.util.SuperUtil;
+import com.google.android.material.imageview.ShapeableImageView;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
@@ -74,9 +73,9 @@ public class SettingsFragment extends Fragment implements View.OnClickListener {
     public static final String TAG = "SettingsFragment";
     private View rootView;
     private ViewGroup container;
-    private ImageView ivImageProfile;
-    private CardView cardViewAvatar;
+    private ShapeableImageView ivImageProfile;
     private ImageView ivRightArrowUser;
+    private ImageView ivBadge;
     private ImageView ivUploadNeeded;
     private ImageView ivDownloadNeeded;
     private TextView tvUserName;
@@ -150,7 +149,7 @@ public class SettingsFragment extends Fragment implements View.OnClickListener {
     private void setUpView() {
 
         ivImageProfile = rootView.findViewById(R.id.iv_profile);
-        cardViewAvatar = rootView.findViewById(R.id.card_view_avatar);
+        ivBadge = rootView.findViewById(R.id.iv_premium_badge);
         ivRightArrowUser = rootView.findViewById(R.id.iv_right_arrow_user);
         tvUserName = rootView.findViewById(R.id.tv_username);
         tvUser = rootView.findViewById(R.id.tv_user);
@@ -180,9 +179,6 @@ public class SettingsFragment extends Fragment implements View.OnClickListener {
             currentUser = realmHelper.getUser();
             isLoginAction = false;
             if (currentUser != null) {
-                if (!currentUser.isPremium()) {
-                    BillingHelper billingHelper = new BillingHelper(requireActivity(), currentUser);
-                }
                 new AsyncTaskViewLoader(currentUser).execute();
                 startDataListener();
                 startLeaderBoarDataListener();
@@ -752,7 +748,7 @@ public class SettingsFragment extends Fragment implements View.OnClickListener {
 
             if (isLoginAction) {
                 if (isVisible()) {
-                    if (currentUser != null && isLoginAction) {
+                    if (isLoginAction) {
                         String welcomeMsg = getString(R.string.welcome)
                                 + SPACE + this.currentUser.getName()
                                 + EXCLAMATION_MARK_CHAR_DOWN;
@@ -810,7 +806,8 @@ public class SettingsFragment extends Fragment implements View.OnClickListener {
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
 
                 GenericTypeIndicator<HashMap<String, String>> t =
-                        new GenericTypeIndicator<HashMap<String, String>>() {};
+                        new GenericTypeIndicator<HashMap<String, String>>() {
+                        };
                 cloudVerses = new ArrayList<>();
                 for (DataSnapshot snap : dataSnapshot.getChildren()) {
                     cloudVerses.add(ItemVerse.getVerseFromHasMap(
@@ -853,7 +850,8 @@ public class SettingsFragment extends Fragment implements View.OnClickListener {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
 
-                if (dataSnapshot.exists()) {LeaderboardItem leaderboardItem = new LeaderboardItem();
+                if (dataSnapshot.exists()) {
+                    LeaderboardItem leaderboardItem = new LeaderboardItem();
                     leaderboardItem.setId(dataSnapshot.getKey());
                     leaderboardItem.setImg(
                             dataSnapshot.child(LEADER_BOARD_COLUMN_IMG).getValue(String.class));
@@ -895,10 +893,16 @@ public class SettingsFragment extends Fragment implements View.OnClickListener {
     private void showUserInfo(ItemUser itemUser, Bitmap bitmapFromBase64) {
 
         SuperUtil.hideView(null, btnSignUp);
-        SuperUtil.showView(null, cardViewAvatar);
+        SuperUtil.showView(null, ivImageProfile);
         SuperUtil.showView(null, tvUserName);
         SuperUtil.showView(null, tvUser);
         SuperUtil.showView(null, ivRightArrowUser);
+
+        if (currentUser.isPremium()) {
+            SuperUtil.showView(null, ivBadge);
+        } else {
+            SuperUtil.hideView(null, ivBadge);
+        }
 
         if (itemUser.getImg() != null && itemUser.getImg().equals(Constants.DEFAULT)) {
             ivImageProfile.setImageResource(R.drawable.ic_user_profile);
@@ -916,8 +920,6 @@ public class SettingsFragment extends Fragment implements View.OnClickListener {
             checkIfUploadIsNeeded();
             loadUserDashBoard();
         }
-
-        Log.d(TAG, "showUserInfo: User: " + currentUser.toString());
     }
 
     private boolean validate(TextInputLayout tilMail, TextInputLayout tilPass,

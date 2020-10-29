@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical"
-    tools:context=".fragments.UserInfoFragment"
-    android:padding="@dimen/regular_item_padding">
+    android:padding="@dimen/regular_item_padding"
+    tools:context=".fragments.UserInfoFragment">
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -29,43 +29,30 @@
             android:textStyle="bold"
             android:visibility="gone" />
 
-        <com.google.android.material.card.MaterialCardView
-            android:id="@+id/card_view_avatar"
-            android:layout_width="135dp"
-            android:layout_height="135dp"
+
+        <com.google.android.material.imageview.ShapeableImageView
+            android:id="@+id/iv_profile"
+            android:layout_width="130dp"
+            android:layout_height="130dp"
+            android:elevation="@dimen/default_elevation_plus"
             android:layout_alignParentTop="true"
             android:layout_centerInParent="true"
             android:layout_marginTop="10dp"
-            app:cardBackgroundColor="@color/md_text_white"
-            app:cardCornerRadius="250dp">
-
-            <com.google.android.material.card.MaterialCardView
-                android:layout_width="130dp"
-                android:layout_height="130dp"
-                android:layout_gravity="center"
-                app:cardCornerRadius="250dp">
-
-                <ImageView
-                    android:id="@+id/iv_profile"
-                    android:layout_width="130dp"
-                    android:layout_height="130dp"
-                    android:layout_gravity="center_horizontal"
-                    android:layout_marginBottom="24dp"
-                    android:clickable="true"
-                    android:contentDescription="@string/description_add_image"
-                    android:focusable="true"
-                    android:scaleType="centerCrop"
-                    android:src="@drawable/ic_user_profile" />
-            </com.google.android.material.card.MaterialCardView>
-
-        </com.google.android.material.card.MaterialCardView>
+            android:layout_marginBottom="24dp"
+            android:clickable="true"
+            android:contentDescription="@string/description_add_image"
+            android:focusable="true"
+            android:scaleType="centerCrop"
+            app:shapeAppearanceOverlay="@style/circleImageView"
+            app:srcCompat="@drawable/ic_user_profile"
+            android:adjustViewBounds="true" />
 
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="84dp"
             android:background="@drawable/background_white"
-            android:padding="@dimen/regular_item_padding"
-            android:layout_marginTop="84dp">
+            android:padding="@dimen/regular_item_padding">
 
             <RelativeLayout
                 android:id="@+id/rl_name"
@@ -94,12 +81,12 @@
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
                     android:layout_marginStart="16dp"
-                    android:layout_toEndOf="@id/icon_name"
                     android:layout_toStartOf="@+id/iv_edit_icon_name"
-                    android:text="@string/name"
-                    android:textColor="@color/text_default_dark_gray"
+                    android:layout_toEndOf="@id/icon_name"
                     android:ellipsize="end"
                     android:maxLines="1"
+                    android:text="@string/name"
+                    android:textColor="@color/text_default_dark_gray"
                     android:textSize="16sp" />
 
                 <ImageView
@@ -157,8 +144,8 @@
                     android:layout_below="@+id/rl_msg_not_verified"
                     android:layout_centerVertical="true"
                     android:layout_marginTop="3dp"
-                    android:src="@drawable/ic_email"
-                    android:contentDescription="@string/icon" />
+                    android:contentDescription="@string/icon"
+                    android:src="@drawable/ic_email" />
 
                 <TextView
                     android:id="@+id/tv_email"
@@ -167,13 +154,13 @@
                     android:layout_below="@+id/rl_msg_not_verified"
                     android:layout_centerVertical="true"
                     android:layout_marginStart="16dp"
-                    android:layout_toEndOf="@id/icon_mail"
                     android:layout_toStartOf="@+id/iv_edit_icon_email"
-                    android:text="@string/email"
-                    android:textColor="@color/text_default_dark_gray"
+                    android:layout_toEndOf="@id/icon_mail"
                     android:ellipsize="end"
                     android:maxLines="1"
-                    android:textSize="16sp"/>
+                    android:text="@string/email"
+                    android:textColor="@color/text_default_dark_gray"
+                    android:textSize="16sp" />
 
                 <ImageView
                     android:id="@+id/iv_edit_icon_email"
@@ -205,8 +192,8 @@
                     android:layout_height="24dp"
                     android:layout_centerVertical="true"
                     android:layout_marginTop="3dp"
-                    android:src="@drawable/ic_telephone"
-                    android:contentDescription="@string/icon" />
+                    android:contentDescription="@string/icon"
+                    android:src="@drawable/ic_telephone" />
 
                 <TextView
                     android:id="@+id/tv_mobile"
@@ -214,12 +201,12 @@
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
                     android:layout_marginStart="16dp"
-                    android:layout_toEndOf="@id/icon_mobile"
                     android:layout_toStartOf="@+id/iv_edit_icon_mobile"
-                    android:text="@string/mobile_number_user_info"
-                    android:textColor="@color/text_default_dark_gray"
+                    android:layout_toEndOf="@id/icon_mobile"
                     android:ellipsize="end"
                     android:maxLines="1"
+                    android:text="@string/mobile_number_user_info"
+                    android:textColor="@color/text_default_dark_gray"
                     android:textSize="16sp" />
 
                 <ImageView
@@ -240,9 +227,9 @@
                 android:layout_centerInParent="true"
                 android:layout_marginTop="@dimen/settings_item_margin_dividing_section"
                 android:background="@drawable/selector_gray_light"
+                android:clickable="true"
                 android:elevation="@dimen/default_elevation"
                 android:focusable="true"
-                android:clickable="true"
                 android:padding="@dimen/regular_window_padding">
 
                 <ImageView
@@ -251,8 +238,8 @@
                     android:layout_height="24dp"
                     android:layout_centerVertical="true"
                     android:layout_marginTop="3dp"
-                    android:src="@drawable/ic_pass"
-                    android:contentDescription="@string/icon">
+                    android:contentDescription="@string/icon"
+                    android:src="@drawable/ic_pass">
 
                 </ImageView>
 
@@ -262,18 +249,18 @@
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
                     android:layout_marginStart="16dp"
-                    android:layout_toEndOf="@id/icon_pass"
                     android:layout_toStartOf="@+id/iv_edit_icon_pass"
+                    android:layout_toEndOf="@id/icon_pass"
+                    android:clickable="false"
+                    android:ellipsize="end"
+                    android:enabled="false"
+                    android:focusableInTouchMode="false"
                     android:inputType="textPassword"
+                    android:longClickable="false"
+                    android:maxLines="1"
                     android:text="@string/pass"
                     android:textColor="@color/text_default_dark_gray"
-                    android:ellipsize="end"
-                    android:maxLines="1"
                     android:textSize="16sp"
-                    android:focusableInTouchMode="false"
-                    android:longClickable="false"
-                    android:clickable="false"
-                    android:enabled="false"
                     tools:ignore="TextViewEdits" />
 
                 <ImageView
@@ -292,20 +279,20 @@
                 android:layout_below="@+id/rl_pass"
                 android:layout_centerInParent="true"
                 android:layout_margin="@dimen/regular_window_margin"
+                android:baselineAligned="false"
                 android:orientation="horizontal"
-                android:weightSum="2"
                 android:padding="@dimen/regular_window_padding"
-                android:baselineAligned="false">
+                android:weightSum="2">
 
                 <LinearLayout
                     android:id="@+id/ll_remove_account"
                     android:layout_width="80dp"
                     android:layout_height="70dp"
-                    android:background="@drawable/selector_red"
-                    android:orientation="vertical"
-                    android:gravity="center"
                     android:layout_margin="@dimen/regular_window_margin"
                     android:layout_weight="1"
+                    android:background="@drawable/selector_red"
+                    android:gravity="center"
+                    android:orientation="vertical"
                     android:padding="@dimen/regular_item_padding">
 
                     <ImageView
@@ -318,13 +305,13 @@
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:ellipsize="end"
+                        android:maxLines="1"
                         android:text="@string/remove_account"
                         android:textAlignment="center"
                         android:textColor="@color/dark_gray_btn_bg_color"
                         android:textSize="12sp"
-                        android:textStyle="bold"
-                        android:maxLines="1"
-                        android:ellipsize="end"/>
+                        android:textStyle="bold" />
 
                 </LinearLayout>
 
@@ -332,11 +319,11 @@
                     android:id="@+id/ll_log_out"
                     android:layout_width="80dp"
                     android:layout_height="70dp"
+                    android:layout_margin="@dimen/regular_window_margin"
+                    android:layout_weight="1"
                     android:background="@drawable/selector_gray_light"
                     android:gravity="center"
                     android:orientation="vertical"
-                    android:layout_margin="@dimen/regular_window_margin"
-                    android:layout_weight="1"
                     android:padding="@dimen/regular_item_padding">
 
                     <ImageView
@@ -349,14 +336,14 @@
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:ellipsize="end"
                         android:gravity="center"
+                        android:maxLines="2"
                         android:text="@string/log_out"
                         android:textAlignment="center"
                         android:textColor="@color/dark_gray_btn_bg_color"
                         android:textSize="12sp"
-                        android:textStyle="bold"
-                        android:maxLines="2"
-                        android:ellipsize="end"/>
+                        android:textStyle="bold" />
 
                 </LinearLayout>
             </LinearLayout>

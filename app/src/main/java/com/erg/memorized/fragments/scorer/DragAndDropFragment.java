@@ -44,7 +44,6 @@ import static com.erg.memorized.util.Constants.TEXT_SIZE;
 public class DragAndDropFragment extends Fragment implements View.OnClickListener, ScorerListener {
 
     public static final String TAG = "DragAndDropFragment";
-    public static final int POS = 2;
 
     private View rootView;
 
@@ -161,7 +160,7 @@ public class DragAndDropFragment extends Fragment implements View.OnClickListene
         LinearLayout.LayoutParams boxParams = new LinearLayout.LayoutParams(
                 LinearLayout.LayoutParams.WRAP_CONTENT,
                 LinearLayout.LayoutParams.WRAP_CONTENT);
-        boxParams.setMargins(6, 5, 6, 5);
+        boxParams.setMargins(7, 6, 7, 6);
 
         TextView textView = new TextView(requireContext());
         textView.setId(i);
@@ -173,7 +172,7 @@ public class DragAndDropFragment extends Fragment implements View.OnClickListene
         textView.setMaxLines(1);
         textView.setEllipsize(TextUtils.TruncateAt.END);
         textView.setLayoutParams(boxParams);
-        textView.setPadding(7, 7, 7, 7);
+        textView.setPadding(8, 8, 8, 8);
         textView.setText(word);
 
         setOnLongClick(textView);
@@ -217,6 +216,7 @@ public class DragAndDropFragment extends Fragment implements View.OnClickListene
                     }
                     return false;
                 case DragEvent.ACTION_DRAG_ENTERED:
+                    SuperUtil.vibrate(requireContext());
                     v.setBackgroundResource(R.drawable.background_green_light);
                     v.invalidate();
                     return true;
@@ -309,6 +309,7 @@ public class DragAndDropFragment extends Fragment implements View.OnClickListene
 
     private void setOnLongClick(TextView boxTextView) {
         boxTextView.setOnLongClickListener(v -> {
+            SuperUtil.vibrate(requireContext());
             TextView textView = (TextView) v;
             ClipData.Item item = new ClipData.Item(textView.getText());
             ClipData dragData = new ClipData(

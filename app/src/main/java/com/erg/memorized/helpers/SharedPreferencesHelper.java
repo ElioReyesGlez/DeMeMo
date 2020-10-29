@@ -32,14 +32,12 @@ import static com.erg.memorized.util.Constants.BIBLE_SELECTED_KEY;
 import static com.erg.memorized.util.Constants.BIBLE_VERSION_KEY;
 import static com.erg.memorized.util.Constants.CURRENT_SECTION_KEY;
 import static com.erg.memorized.util.Constants.DAILY_VERSE_KEY;
-import static com.erg.memorized.util.Constants.DECIMAL_PLACE;
 import static com.erg.memorized.util.Constants.DIALOG_SPLIT_INFO_STATUS_KEY;
 import static com.erg.memorized.util.Constants.EMAIL_VERIFIED_STATUS_KEY;
 import static com.erg.memorized.util.Constants.INTRO_STATUS_KEY;
 import static com.erg.memorized.util.Constants.LAST_USAGE_KEY;
 import static com.erg.memorized.util.Constants.LAST_VERSE_READ_DATE;
 import static com.erg.memorized.util.Constants.LAST_VERSE_READ_KEY;
-import static com.erg.memorized.util.Constants.LAST_VERSE_TEXT_KEY;
 import static com.erg.memorized.util.Constants.LOGIN_STATUS_KEY;
 import static com.erg.memorized.util.Constants.OPEN_TIME_USAGE_KEY;
 import static com.erg.memorized.util.Constants.PREFS_NAME;
@@ -48,7 +46,6 @@ import static com.erg.memorized.util.Constants.PREF_APP_FIRST_LAUNCH_KEY;
 import static com.erg.memorized.util.Constants.PREF_LAST_LAUNCH_PREMIUM_DIALOG_DATE_KEY;
 import static com.erg.memorized.util.Constants.PREF_LAST_LAUNCH_RATE_DIALOG_DATE_KEY;
 import static com.erg.memorized.util.Constants.PREF_PREMIUM_LAUNCH_TIMES_KEY;
-import static com.erg.memorized.util.Constants.PREF_PREMIUM_SHOW_DIALOG_FLAG_KEY;
 import static com.erg.memorized.util.Constants.PREF_RATE_LAUNCH_TIMES_KEY;
 import static com.erg.memorized.util.Constants.PREF_SHOW_DIALOG_FLAG_KEY;
 import static com.erg.memorized.util.Constants.SECTION_STATUS_KEY;
@@ -72,10 +69,10 @@ public class SharedPreferencesHelper {
         return sharedPref.getAll().isEmpty();
     }
 
-    public boolean clear() {
+/*    public boolean clear() {
         editor = sharedPref.edit();
         return editor.clear().commit();
-    }
+    }*/
 
     public void setOnAudioMessageViewed(String key) {
         editor = sharedPref.edit();
@@ -278,7 +275,7 @@ public class SharedPreferencesHelper {
 
 
     private Bible getDefaultBibleVersion() {
-        String localeCode = Locale.getDefault().getLanguage();
+//        String localeCode = Locale.getDefault().getLanguage();
         String es = new Locale("es").getLanguage();
         String pt = new Locale("pt").getLanguage();
         String[] arrayCodes = context.getResources().getStringArray(R.array.languages_codes);
@@ -328,16 +325,12 @@ public class SharedPreferencesHelper {
         for (int i = 0; i < TimeHelper.getCurrentDayOfWeekInNumber(); i++) {
             String key = dayCodes[i] + (i+1);
             float value = getUsageValue(key);
-            float roundValue = ScoreHelper.round(value, DECIMAL_PLACE);
+            float roundValue = ScoreHelper.round(value);
             temp.add(roundValue);
         }
         return temp;
     }
 
-
-    public String getLastVerseText() {
-        return sharedPref.getString(LAST_VERSE_TEXT_KEY, "");
-    }
 
     public void saveLastUsage(long date) {
         editor = sharedPref.edit();
@@ -475,18 +468,6 @@ public class SharedPreferencesHelper {
         editor.apply();
     }
 
-    /*--------------------------Premium Dialog Flags--------------------------------------*/
-
-    public void setAgreeToShowPremiumDialog(boolean flag) {
-        editor = sharedPref.edit();
-        editor.putBoolean(PREF_PREMIUM_SHOW_DIALOG_FLAG_KEY, flag);
-        editor.apply();
-    }
-
-    public boolean getIsAgreeShowPremiumDialog() {
-        return sharedPref.getBoolean(PREF_PREMIUM_SHOW_DIALOG_FLAG_KEY, true);
-    }
-
     public void setPremiumLaunchTimes(int launchTimes) {
         editor = sharedPref.edit();
         editor.putInt(PREF_PREMIUM_LAUNCH_TIMES_KEY, launchTimes);
@@ -500,16 +481,6 @@ public class SharedPreferencesHelper {
     public void setLastPremiumRateDialogDate() {
         editor = sharedPref.edit();
         editor.putLong(PREF_LAST_LAUNCH_PREMIUM_DIALOG_DATE_KEY, System.currentTimeMillis());
-        editor.apply();
-    }
-
-    public long getLastLaunchPremiumDialogDate() {
-        return sharedPref.getLong(PREF_LAST_LAUNCH_PREMIUM_DIALOG_DATE_KEY, 0);
-    }
-
-    public void resetPremiumDialogFlags() {
-        editor = sharedPref.edit();
-        editor.remove(PREF_PREMIUM_LAUNCH_TIMES_KEY);
         editor.apply();
     }
 }

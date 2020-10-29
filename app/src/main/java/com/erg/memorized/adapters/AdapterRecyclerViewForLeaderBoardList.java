@@ -59,7 +59,7 @@ public class AdapterRecyclerViewForLeaderBoardList extends
 
         holder.setUserName(user.getName());
         holder.setScore(context.getString(R.string.score) +
-                DOUBLE_DOT  + SPACE + user.getScore());
+                DOUBLE_DOT  + SPACE + Math.round(user.getScore()));
 
         setBadge(user, rank, holder);
 

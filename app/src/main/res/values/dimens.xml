@@ -20,6 +20,7 @@
     <dimen name="settings_item_margin_horizontal">20dp</dimen>
     <dimen name="settings_item_margin_dividing_section">30dp</dimen>
     <dimen name="default_elevation">2dp</dimen>
+    <dimen name="default_elevation_plus">3dp</dimen>
     <!-- Default screen margins, per the Android Design guidelines. -->
 
 </resources>

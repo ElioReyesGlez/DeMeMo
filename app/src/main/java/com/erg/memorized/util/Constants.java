@@ -101,14 +101,14 @@ public class Constants {
 
 
     public static String MEMORY_TEXT_TITLE = "memory_text_title";
-    public static final long VIBRATE_TIME = 7;
-    public static final long MIN_VIBRATE_TIME = 4;
+    public static final long VIBRATE_TIME = 12;
+    public static final long MIN_VIBRATE_TIME = 10;
     public static final int FIX_SIZE = 4;
     public static final String FLAG_DAILY_VERSE_KEY = "isDailyVerse";
     public static final String DAILY_VERSE_KEY = "daily_verse_key";
 
     public static final int MIN_TEXT_SIZE = 12;
-    public static final int TEXT_SIZE = 17;
+    public static final int TEXT_SIZE = 18;
 
     public static String CHANNEL_ID = "unique_chanel_id_for_reminder_of_memory_text";
     public static String ACTION_NOTIFY = "android.intent.action.BroadcastReceiverNotify";
@@ -116,10 +116,6 @@ public class Constants {
     public static final int MENU_HOME = 1;
     public static final int MENU_VERSES = 2;
     public static final int MENU_CONFIG = 3;
-
-
-    public static final int DECIMAL_PLACE = 1;
-
 
     public static final int MIN_LAUNCHES_UNTIL_PROMPT = 20;
     public static final int MIN_DAYS_UNTIL_PROMPT = 7;

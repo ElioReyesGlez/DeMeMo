@@ -42,34 +42,24 @@
                 android:background="@color/float_transparent"
                 android:visibility="gone" />
 
-            <com.google.android.material.card.MaterialCardView
-                android:id="@+id/card_view_avatar"
-                android:layout_width="70dp"
-                android:layout_height="70dp"
+            <com.google.android.material.imageview.ShapeableImageView
+                android:id="@+id/iv_profile"
+                android:layout_width="66dp"
+                android:layout_height="66dp"
+                android:elevation="@dimen/default_elevation_plus"
+                android:layout_alignParentStart="true"
                 android:layout_centerVertical="true"
+                android:layout_gravity="center_horizontal"
                 android:layout_marginStart="10dp"
-                android:visibility="gone"
-                app:cardCornerRadius="180dp">
-
-                <com.google.android.material.card.MaterialCardView
-                    android:layout_width="66dp"
-                    android:layout_height="66dp"
-                    android:layout_gravity="center"
-                    app:cardCornerRadius="180dp">
-
-                    <ImageView
-                        android:id="@+id/iv_profile"
-                        android:layout_width="66dp"
-                        android:layout_height="66dp"
-                        android:layout_gravity="center_horizontal"
-                        android:layout_marginBottom="24dp"
-                        android:clickable="true"
-                        android:contentDescription="@string/description_add_image"
-                        android:focusable="true"
-                        android:scaleType="centerCrop"
-                        android:src="@drawable/ic_user_profile" />
-                </com.google.android.material.card.MaterialCardView>
-            </com.google.android.material.card.MaterialCardView>
+                android:layout_marginBottom="24dp"
+                android:clickable="true"
+                android:contentDescription="@string/description_add_image"
+                android:focusable="true"
+                android:scaleType="centerCrop"
+                app:shapeAppearanceOverlay="@style/circleImageView"
+                app:srcCompat="@drawable/ic_user_profile"
+                android:adjustViewBounds="true"
+                android:visibility="gone" />
 
             <TextView
                 android:id="@+id/tv_username"
@@ -79,7 +69,7 @@
                 android:layout_marginStart="12dp"
                 android:layout_marginTop="20dp"
                 android:layout_toStartOf="@+id/iv_right_arrow_user"
-                android:layout_toEndOf="@+id/card_view_avatar"
+                android:layout_toEndOf="@+id/iv_profile"
                 android:ellipsize="end"
                 android:maxLines="1"
                 android:text="@string/example_name"
@@ -95,8 +85,8 @@
                 android:layout_centerVertical="true"
                 android:layout_marginStart="12dp"
                 android:layout_marginTop="5dp"
-                android:layout_toStartOf="@+id/iv_right_arrow_user"
-                android:layout_toEndOf="@+id/card_view_avatar"
+                android:layout_toStartOf="@+id/iv_premium_badge"
+                android:layout_toEndOf="@+id/iv_profile"
                 android:ellipsize="end"
                 android:maxLines="1"
                 android:padding="@dimen/regular_item_padding"
@@ -106,15 +96,26 @@
                 android:visibility="gone" />
 
             <ImageView
+                android:id="@+id/iv_premium_badge"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_centerVertical="true"
+                android:layout_margin="@dimen/regular_item_padding"
+                android:contentDescription="@string/img_description"
+                android:layout_toStartOf="@+id/iv_right_arrow_user"
+                android:src="@drawable/ic_badge_blue"
+                android:visibility="invisible"/>
+
+            <ImageView
                 android:id="@+id/iv_right_arrow_user"
                 android:layout_width="16dp"
                 android:layout_height="16dp"
                 android:layout_alignParentEnd="true"
                 android:layout_centerVertical="true"
-                android:layout_marginEnd="5dp"
+                android:layout_marginEnd="2dp"
                 android:contentDescription="@string/description_icon_right_arrow"
                 android:src="@drawable/ic_arrow_right"
-                android:visibility="gone" />
+                android:visibility="invisible" />
 
             <Button
                 android:id="@+id/bt_login"
@@ -299,8 +300,8 @@
                     android:layout_alignParentStart="true"
                     android:layout_centerVertical="true"
                     android:layout_marginStart="@dimen/margin_start"
-                    android:src="@drawable/ic_outbox"
-                    android:contentDescription="@string/icon" />
+                    android:contentDescription="@string/icon"
+                    android:src="@drawable/ic_outbox" />
 
                 <TextView
                     android:layout_width="wrap_content"

@@ -151,15 +151,6 @@ public class ItemUser extends RealmObject implements Serializable {
         return scoreHasMap;
     }
 
-    public static ItemUser getUserFromHasMap(HashMap<String, String> hasUser) {
-        ItemUser user = new ItemUser();
-        user.setName(hasUser.get(USER_COLUMN_NAME));
-        user.setImg(hasUser.get(USER_COLUMN_IMG));
-        user.setScore(Integer.parseInt(hasUser.get(USER_COLUMN_VERSES_SCORE)));
-        user.setPremium(Boolean.parseBoolean(hasUser.get(USER_COLUMN_PREMIUM_STATUS)));
-        return user;
-    }
-
     @Override
     public boolean equals(@Nullable Object obj) {
         if (obj instanceof ItemUser) {
@@ -168,20 +159,5 @@ public class ItemUser extends RealmObject implements Serializable {
         } else {
             return false;
         }
-    }
-
-    @Override
-    public String toString() {
-        return "ItemUser{" +
-                "id='" + id + '\'' +
-                ", email='" + email + '\'' +
-                ", img='" + img + '\'' +
-                ", mobile='" + mobile + '\'' +
-                ", name='" + name + '\'' +
-                ", pass='" + pass + '\'' +
-                ", verses=" + verses +
-                ", score=" + score +
-                ", isPremium=" + isPremium +
-                '}';
     }
 }

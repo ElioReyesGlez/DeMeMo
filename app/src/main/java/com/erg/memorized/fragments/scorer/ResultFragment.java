@@ -29,13 +29,11 @@ import com.erg.memorized.model.ItemVerse;
 import com.erg.memorized.model.Score;
 import com.erg.memorized.util.SuperUtil;
 import com.google.firebase.FirebaseNetworkException;
-import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.ArrayList;
 
-import static com.erg.memorized.util.Constants.DECIMAL_PLACE;
 import static com.erg.memorized.util.Constants.LEADER_BOARD_FIRE_BASE_REFERENCE;
 import static com.erg.memorized.util.Constants.SPACE;
 import static com.erg.memorized.util.Constants.USER_COLUMN_VERSES_SCORE;
@@ -52,7 +50,7 @@ public class ResultFragment extends Fragment implements View.OnClickListener {
     private RealmHelper realmHelper;
     private SharedPreferencesHelper spHelper;
     private Animation animScaleUp, animScaleDown;
-    private float totalScore;
+    private int totalScore;
     private boolean isAlreadyAdShowed = false;
 
     public ResultFragment() {
@@ -75,7 +73,6 @@ public class ResultFragment extends Fragment implements View.OnClickListener {
         super.onCreate(savedInstanceState);
 
         spHelper = new SharedPreferencesHelper(requireContext());
-        FirebaseAuth fAuth = FirebaseAuth.getInstance();
         realmHelper = new RealmHelper(requireContext());
 
         if (spHelper.getUserLoginStatus()) {
@@ -151,7 +148,7 @@ public class ResultFragment extends Fragment implements View.OnClickListener {
 
             float evaluatorTotalScore = ScoreHelper.getEvaluatorScore(score);
             String stringBuilder = getString(R.string.score_total_partial)
-                    + SPACE + ScoreHelper.round(evaluatorTotalScore, DECIMAL_PLACE);
+                    + SPACE + ScoreHelper.round(evaluatorTotalScore);
             tvTotalScore.setText(stringBuilder);
 
             scorerContainer.addView(table);
@@ -159,7 +156,7 @@ public class ResultFragment extends Fragment implements View.OnClickListener {
 
         totalScore = ScoreHelper.getTotalScore(scores);
         String stringBuilder = getString(R.string.score_total) + SPACE +
-                ScoreHelper.round(totalScore, DECIMAL_PLACE);
+                ScoreHelper.round(totalScore);
         tvTotal.setText(stringBuilder);
 
         TableRow tableRowAlmost = tableLayouts[2].findViewById(R.id.table_row_almost);
@@ -198,7 +195,7 @@ public class ResultFragment extends Fragment implements View.OnClickListener {
                                 MessagesHelper.showInfoMessage(requireActivity(),
                                         getString(R.string.upload_success));
                         } else {
-                            Log.e(TAG, "uploadScore: " + task.getException().getMessage());
+                            Log.e(TAG, "uploadScore: " + task.getException());
                             if (task.getException() instanceof FirebaseNetworkException) {
                                 if (isVisible())
                                     MessagesHelper.showInfoMessageWarning(requireActivity(),
@@ -242,7 +239,7 @@ public class ResultFragment extends Fragment implements View.OnClickListener {
                     if (task.isSuccessful()) {
                         Log.d(TAG, "User Score uploadScore: Success ");
                     } else {
-                        Log.e(TAG, "User uploadScore: " + task.getException().getMessage());
+                        Log.e(TAG, "User uploadScore: " + task.getException());
                     }
                     if (pgsDialog.isShowing())
                         pgsDialog.dismiss();

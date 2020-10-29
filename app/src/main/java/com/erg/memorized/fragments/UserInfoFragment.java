@@ -15,7 +15,6 @@ import android.view.Window;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.Button;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -29,6 +28,7 @@ import com.erg.memorized.helpers.RealmHelper;
 import com.erg.memorized.helpers.SharedPreferencesHelper;
 import com.erg.memorized.model.ItemUser;
 import com.erg.memorized.util.SuperUtil;
+import com.google.android.material.imageview.ShapeableImageView;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
@@ -58,7 +58,7 @@ public class UserInfoFragment extends Fragment implements View.OnClickListener {
 
     private SharedPreferencesHelper spHelper;
 
-    private ImageView ivAvatar;
+    private ShapeableImageView ivAvatar;
     private TextView tvEmail;
     private TextView tvName;
     private TextView tvMobile;

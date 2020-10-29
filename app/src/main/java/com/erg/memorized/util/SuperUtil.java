@@ -6,7 +6,6 @@ import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Point;
-import android.graphics.Rect;
 import android.net.Uri;
 import android.os.Build;
 import android.os.VibrationEffect;
@@ -42,12 +41,9 @@ import org.jetbrains.annotations.NotNull;
 
 import java.io.ByteArrayOutputStream;
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.Comparator;
 import java.util.HashMap;
 import java.util.Objects;
-
-import io.realm.RealmList;
 
 import static com.erg.memorized.util.Constants.AT;
 import static com.erg.memorized.util.Constants.DOT;
@@ -63,24 +59,30 @@ public class SuperUtil {
     }
 
     public static void vibrate(Context context) {
+        Log.d(TAG, "vibrate: ");
         Vibrator v = (Vibrator) context.getSystemService(Context.VIBRATOR_SERVICE);
         assert v != null;
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             v.vibrate(VibrationEffect.createOneShot(VIBRATE_TIME,
                     VibrationEffect.DEFAULT_AMPLITUDE));
+            Log.d(TAG, "vibrate: VIBRATE_TIME VibrationEffect :" + VIBRATE_TIME);
         } else {
-            v.vibrate(VIBRATE_TIME);
+            v.vibrate(50);
+            Log.d(TAG, "vibrate: VIBRATE_TIME :" + 50);
         }
     }
 
     public static void vibrateMin(Context context) {
+        Log.d(TAG, "vibrateMin: ");
         Vibrator v = (Vibrator) context.getSystemService(Context.VIBRATOR_SERVICE);
         assert v != null;
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             v.vibrate(VibrationEffect.createOneShot(MIN_VIBRATE_TIME,
                     VibrationEffect.DEFAULT_AMPLITUDE));
+            Log.d(TAG, "vibrateMin: MIN_VIBRATE_TIME VibrationEffect " + MIN_VIBRATE_TIME);
         } else {
-            v.vibrate(MIN_VIBRATE_TIME);
+            v.vibrate(50);
+            Log.d(TAG, "vibrateMin: MIN_VIBRATE_TIME " + 50);
         }
     }
 
@@ -322,77 +324,44 @@ public class SuperUtil {
     }
 
 
-    /* Interval between today in exactly one month after */
-    public static long getMonthlyDuration() {
-        // get today's date
-        Calendar cal = Calendar.getInstance();
-        // get current month
-        int currentMonth = cal.get(Calendar.MONTH);
-
-        // move month ahead
-        currentMonth++;
-
-        // check if has not exceeded threshold of december
-        if (currentMonth > Calendar.DECEMBER) {
-            // alright, reset month to jan and forward year by 1 e.g fro 2013 to 2014
-            currentMonth = Calendar.JANUARY;
-            // Move year ahead as well
-            cal.set(Calendar.YEAR, cal.get(Calendar.YEAR) + 1);
-        }
-
-        // reset calendar to next month
-        cal.set(Calendar.MONTH, currentMonth);
-        // get the maximum possible days in this month
-        int maximumDay = cal.getActualMaximum(Calendar.DAY_OF_MONTH);
-
-        // set the calendar to maximum day (e.g in case of fEB 28th, or leap 29th)
-        cal.set(Calendar.DAY_OF_MONTH, maximumDay);
-        long thenTime = cal.getTimeInMillis(); // this is time one month ahead
-
-        return (thenTime); // this is what you set as trigger point time i.e one month after
-    }
-
-
     public static void showView(Animation anim, View view) {
-        if (view.getVisibility() == View.GONE || view.getVisibility() == View.INVISIBLE) {
-            if (anim != null)
-                view.setAnimation(anim);
-            view.setVisibility(View.VISIBLE);
-        } else {
-            if (anim != null) {
-                view.startAnimation(anim);
+        if (view != null)
+            if (view.getVisibility() == View.GONE || view.getVisibility() == View.INVISIBLE) {
+                if (anim != null)
+                    view.setAnimation(anim);
+                view.setVisibility(View.VISIBLE);
+            } else {
+                if (anim != null) {
+                    view.startAnimation(anim);
+                }
             }
-        }
     }
+
     public static void showViewWhitStartAnimation(Animation anim, View view) {
-        if (view.getVisibility() == View.GONE || view.getVisibility() == View.INVISIBLE) {
-            if (anim != null)
-                view.startAnimation(anim);
-            view.setVisibility(View.VISIBLE);
-        }
+        if (view != null)
+            if (view.getVisibility() == View.GONE || view.getVisibility() == View.INVISIBLE) {
+                if (anim != null)
+                    view.startAnimation(anim);
+                view.setVisibility(View.VISIBLE);
+            }
     }
 
     public static void hideView(Animation anim, View view) {
-        if (view.getVisibility() == View.VISIBLE) {
-            if (anim != null)
-                view.setAnimation(anim);
-            view.setVisibility(View.GONE);
-        }
+        if (view != null)
+            if (view.getVisibility() == View.VISIBLE) {
+                if (anim != null)
+                    view.setAnimation(anim);
+                view.setVisibility(View.GONE);
+            }
     }
 
     public static void hideViewInvisibleWay(Animation anim, View view) {
-        if (view.getVisibility() == View.VISIBLE) {
-            if (anim != null)
-                view.setAnimation(anim);
-            view.setVisibility(View.INVISIBLE);
-        }
-    }
-
-    public static RealmList<HashMap<String, String>> getVersesIntoRealmList(
-            ArrayList<HashMap<String, String>> verses) {
-        RealmList<HashMap<String, String>> realmList = new RealmList<>();
-        realmList.addAll(verses);
-        return realmList;
+        if (view != null)
+            if (view.getVisibility() == View.VISIBLE) {
+                if (anim != null)
+                    view.setAnimation(anim);
+                view.setVisibility(View.INVISIBLE);
+            }
     }
 
     public static ArrayList<HashMap<String, String>> getVersesIntoHasMapList(
@@ -421,24 +390,12 @@ public class SuperUtil {
         return size.x;
     }
 
-    public static int getDisplayHeight(FragmentActivity context) {
+/*    public static int getDisplayHeight(FragmentActivity context) {
         Display display = context.getWindowManager().getDefaultDisplay();
         Point size = new Point();
         display.getSize(size);
         return size.y;
-    }
-
-    /*
-    *         verseHasMap.put(VERSE_COLUMN_ID, String.valueOf(getId()));
-        verseHasMap.put(VERSE_COLUMN_TITLE, getTitle());
-        verseHasMap.put(VERSE_COLUMN_VERSE, getVerseText());
-        verseHasMap.put(VERSE_COLUMN_MEMORIZING_STATUS, String.valueOf(isMemorized()));
-        verseHasMap.put(VERSE_ALARM_STATUS, String.valueOf(isOnAlarm()));
-        verseHasMap.put(VERSE_COLUMN_DATE_ALARM, String.valueOf(getDateAlarm()));
-        verseHasMap.put(VERSE_COLUMN_UNTIL_DATE_ALARM, String.valueOf(getUntilAlarm()));
-        verseHasMap.put(VERSE_COLUMN_REPEATING_STATUS, String.valueOf(getRepeatingAlarmStatus()));
-    *
-    * */
+    }*/
 
     public static boolean containsAll(@NotNull ArrayList<ItemVerse> verses,
                                       ArrayList<ItemVerse> container) {
@@ -448,16 +405,5 @@ public class SuperUtil {
             }
         }
         return true;
-    }
-
-    public static boolean isTouchInsideOfView(View view, Point touchPosition) {
-        Rect rScroll = new Rect();
-        view.getGlobalVisibleRect(rScroll);
-        return isTouchInsideOfRect(touchPosition, rScroll);
-    }
-
-    public static boolean isTouchInsideOfRect(Point touchPosition, Rect rScroll) {
-        return touchPosition.x > rScroll.left && touchPosition.x < rScroll.right //within x axis / width
-                && touchPosition.y > rScroll.top && touchPosition.y < rScroll.bottom; //withing y axis / height
     }
 }

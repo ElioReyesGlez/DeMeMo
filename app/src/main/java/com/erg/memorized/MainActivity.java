@@ -132,7 +132,7 @@ public class MainActivity extends FragmentActivity {
         bottomNavigation.add(new MeowBottomNavigation.Model(Constants.MENU_VERSES, R.drawable.ic_holy_bible));
         bottomNavigation.add(new MeowBottomNavigation.Model(Constants.MENU_CONFIG, R.drawable.ic_black_settings));
         bottomNavigation.setOnClickMenuListener(model -> {
-            SuperUtil.vibrate(this);
+            SuperUtil.vibrateMin(this);
             switch (model.getId()) {
                 case Constants.MENU_HOME:
                     actualFragment = HomeFragment.newInstance();

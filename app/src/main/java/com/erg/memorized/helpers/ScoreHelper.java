@@ -10,7 +10,6 @@ import com.google.android.material.textfield.TextInputEditText;
 import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.NotNull;
 
-import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
@@ -100,12 +99,12 @@ public class ScoreHelper {
         return new Score( hitsCont, almostHitsCont, missCont, ops);
     }
 
-    public static float getTotalScore(ArrayList<Score> scores) {
+    public static int getTotalScore(ArrayList<Score> scores) {
         float TOTAL = 0;
         for (Score score : scores) {
             TOTAL += getEvaluatorScore(score);
         }
-        return TOTAL;
+        return Math.round(TOTAL);
     }
 
     public static float getEvaluatorScore(Score score) {
@@ -128,10 +127,8 @@ public class ScoreHelper {
         return df.format(d);
     }
 
-    public static float round(float d, int decimalPlace) {
-        BigDecimal bd = new BigDecimal(Float.toString(d));
-        bd = bd.setScale(decimalPlace, BigDecimal.ROUND_HALF_UP);
-        return bd.floatValue();
+    public static int round(float d) {
+        return Math.round(d);
     }
 
     public static float calculateUsageScore(Long time) {
