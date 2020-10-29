@@ -227,7 +227,9 @@ public class Constants {
 
     /*Urls*/
     public static final String GOOGLE_APP_DETAILS_URL = "http://play.google.com/store/apps/details?id=";
-    public static final String INSTAGRAM_APP_ACCOUNT_URL = "http://instagram.com/";
+    public static final String INSTAGRAM_APP_ACCOUNT_USER = "dememo_app";
+    public static final String INSTAGRAM_APP_ACCOUNT_URL = "http://instagram.com/_u/"
+            + INSTAGRAM_APP_ACCOUNT_USER;
     public static final String INSTAGRAM_PACKAGE = "com.instagram.android";
     public static final String LINKEDIN_PACKAGE = "com.linkedin.android";
     public static final String MARKET_APP_DETAILS_URL = "market://details?id=";
