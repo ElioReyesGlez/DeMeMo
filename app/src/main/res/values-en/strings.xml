@@ -16,7 +16,7 @@
     <string name="exit">Please press BACK again to EXIT</string>
 
     <string name="failed_creating_user">Something bad happened, user not created</string>
-    <string name="failed_saving_user">Er, user not saved</string>
+    <string name="failed_saving_user">Error, user not saved</string>
     <string name="failed_loading_user_data">Error,  user data was not loaded!</string>
 
     <string name="fam_title">Control Audio Menu</string>
@@ -24,6 +24,7 @@
     <string name="play">play</string>
 
     <string name="empty" />
+    <string name="empty_field">Empty field </string>
     <string name="hide_fam">Press again for hide Control Audio Menu</string>
     <string name="hide_status_text_size_bar">Press again for hide the Text Size Status Bar</string>
     <string name="msg_long_click_option">What would you like to do?</string>
@@ -72,6 +73,7 @@
     <string name="network_error">Network error! Please check your internet connection</string>
     <string name="used_email">E-mail address is already in use</string>
     <string name="invalid_credentials">Invalid credentials, rectify user or password</string>
+    <string name="invalid_credentials_fields">Invalid credentials</string>
     <string name="too_many_requests">Too many unsuccessful login attempts. Please try again later.</string>
     <string name="skip">Skip</string>
     <string name="todo">TODO</string>

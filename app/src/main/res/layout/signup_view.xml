@@ -12,34 +12,21 @@
         android:paddingTop="18dp"
         android:paddingRight="24dp">
 
-        <androidx.cardview.widget.CardView
-            android:layout_width="145dp"
-            android:layout_height="145dp"
+
+        <com.google.android.material.imageview.ShapeableImageView
+            android:id="@+id/iv_avatar"
+            android:layout_width="140dp"
+            android:layout_height="140dp"
+            android:elevation="@dimen/default_elevation_plus"
             android:layout_gravity="center_horizontal"
-            android:layout_marginBottom="10dp"
-            app:cardBackgroundColor="@color/md_text_white"
-            app:cardCornerRadius="250dp">
-
-            <androidx.cardview.widget.CardView
-                android:layout_width="140dp"
-                android:layout_height="140dp"
-                android:layout_gravity="center"
-                app:cardCornerRadius="250dp">
-
-                <ImageView
-                    android:id="@+id/iv_avatar"
-                    android:layout_width="140dp"
-                    android:layout_height="140dp"
-                    android:layout_gravity="center_horizontal"
-                    android:layout_marginBottom="24dp"
-                    android:clickable="true"
-                    android:contentDescription="@string/description_add_image"
-                    android:focusable="true"
-                    android:scaleType="centerCrop"
-                    android:src="@drawable/ic_user_profile" />
-            </androidx.cardview.widget.CardView>
-
-        </androidx.cardview.widget.CardView>
+            android:layout_marginBottom="24dp"
+            android:clickable="true"
+            android:contentDescription="@string/description_add_image"
+            android:focusable="true"
+            android:scaleType="centerCrop"
+            app:shapeAppearanceOverlay="@style/circleImageView"
+            app:srcCompat="@drawable/ic_user_profile"
+            android:adjustViewBounds="true" />
 
         <!-- Name Label -->
         <com.google.android.material.textfield.TextInputLayout

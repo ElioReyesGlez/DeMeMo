@@ -14,7 +14,6 @@ import android.view.Window;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.Button;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.fragment.app.Fragment;
@@ -26,6 +25,7 @@ import com.erg.memorized.helpers.SharedPreferencesHelper;
 import com.erg.memorized.model.ItemUser;
 import com.erg.memorized.util.Constants;
 import com.erg.memorized.util.SuperUtil;
+import com.google.android.material.imageview.ShapeableImageView;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
@@ -62,7 +62,7 @@ public class SignUpFragment extends Fragment implements View.OnClickListener {
     private TextInputLayout tilPass;
     private TextInputLayout tilRePass;
     private CropImageView cropImageView;
-    private ImageView ivAvatar;
+    private ShapeableImageView ivAvatar;
 
     private FirebaseAuth fAuth;
     private DatabaseReference fReference;
@@ -159,8 +159,7 @@ public class SignUpFragment extends Fragment implements View.OnClickListener {
             tilPass.setError(null);
         }
 
-        if (reEnterPassword.isEmpty() || reEnterPassword.length() < 4
-                || reEnterPassword.length() > 10 || !(reEnterPassword.equals(password))) {
+        if (!(reEnterPassword.equals(password))) {
             tilRePass.setError(getString(R.string.error_re_pass));
             valid = false;
         } else {
@@ -176,14 +175,16 @@ public class SignUpFragment extends Fragment implements View.OnClickListener {
         switch (v.getId()) {
             case R.id.btn_create_account:
                 if (validate()) {
-                    Dialog dialog = SuperUtil.showProgressDialog(getActivity(), container);
                     ItemUser user = new ItemUser();
                     user.setName(name);
                     user.setEmail(email);
                     user.setMobile(mobile);
                     user.setPass(password);
                     user.setImg(base64Image);
-                    saveOnFirebaseDB(user, dialog);
+                    saveOnFirebaseDB(user);
+                } else {
+                    MessagesHelper.showInfoMessageWarning(requireActivity(),
+                            getString(R.string.invalid_credentials));
                 }
                 break;
             case R.id.iv_avatar:
@@ -192,7 +193,8 @@ public class SignUpFragment extends Fragment implements View.OnClickListener {
         }
     }
 
-    private void saveOnFirebaseDB(ItemUser user, Dialog dialog) {
+    private void saveOnFirebaseDB(ItemUser user) {
+        Dialog dialog = SuperUtil.showProgressDialog(getActivity(), container);
         fAuth.createUserWithEmailAndPassword(user.getEmail(), user.getPass())
                 .addOnCompleteListener(task -> {
                     if (task.isSuccessful()) {
@@ -223,25 +225,16 @@ public class SignUpFragment extends Fragment implements View.OnClickListener {
                                     }
                                 });
                     } else {
-                        Log.d(TAG, "Task saveOnFirebaseDB: " + task.getException());
+                        Log.d(TAG, "Task saveOnFirebaseDB: " + task.getException().getMessage());
 
                         if (dialog.isShowing())
                             dialog.dismiss();
 
                         if (task.getException() instanceof FirebaseAuthUserCollisionException) {
-                            try {
-                                if (Objects.requireNonNull(task.getException()
-                                        .getMessage()).contains(getString(R.string.email_low_case))) {
-                                    if (isVisible())
-                                        MessagesHelper.showInfoMessageWarning(requireActivity(),
-                                                getString(R.string.user_collision));
-                                    tilEmail.setError(getString(R.string.used_email));
-                                }
-                            } catch (NullPointerException e) {
-                                if (isVisible())
-                                    MessagesHelper.showInfoMessageWarning(requireActivity(),
-                                            getString(R.string.null_pointer));
-                            }
+                            if (isVisible())
+                                MessagesHelper.showInfoMessageWarning(requireActivity(),
+                                        getString(R.string.user_collision));
+                            tilEmail.setError(getString(R.string.used_email));
                         } else if (task.getException() instanceof FirebaseNetworkException) {
                             if (isVisible())
                                 MessagesHelper.showInfoMessageWarning(requireActivity(),
@@ -307,7 +300,7 @@ public class SignUpFragment extends Fragment implements View.OnClickListener {
                             pgsDialog.dismiss();
                         showInfoMessageOnDialog(msg, dialogView, dialog);
                     } else {
-                        Log.d(TAG, "sendConfirmationEmail: " + task.getException().getMessage());
+                        Log.d(TAG, "sendConfirmationEmail: " + task.getException());
                         if (pgsDialog.isShowing())
                             pgsDialog.dismiss();
 

@@ -24,6 +24,7 @@
     <string name="play">play</string>
 
     <string name="empty" />
+    <string name ="empty_field">Campo vazio </string>
     <string name="hide_fam">Pressione novamente para ocultar o menu de controle de áudio</string>
     <string name="hide_status_text_size_bar">Pressione novamente para ocultar a barra de status do tamanho do texto</string>
     <string name="msg_long_click_option">O que gostaria de fazer?</string>
@@ -74,6 +75,7 @@
     <string name="network_error">Erro de rede! Por favor, verifique sua conexão à internet</string>
     <string name="used_email">O endereço de e-mail já está em uso</string>
     <string name="invalid_credentials">Credenciais inválidas, retificar usuário ou senha</string>
+    <string name="invalid_credentials_fields">Credenciais inválidas</string>
     <string name="too_many_requests">Muitas tentativas de login sem sucesso. Por favor, tente novamente mais tarde.</string>
     <string name="skip">Pular</string>
     <string name="todo">POR FAZER</string>

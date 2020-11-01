@@ -24,6 +24,7 @@
     <string name="play">reproducir</string>
 
     <string name="empty" />
+    <string name="empty_field">Campo vacío</string>
     <string name="hide_fam">Presionar nuevamente para ocultar el Control de Audio</string>
     <string name="hide_status_text_size_bar">Presionar nuevamente para ocultar la barra de estado del tamaño del texto</string>
     <string name="msg_long_click_option">¿Qué le gustaría hacer?</string>
@@ -74,6 +75,7 @@
     <string name="network_error">¡Error de red! Por favor revisar su conexion a internet</string>
     <string name="used_email">dirección de correo electrónico ya está en uso</string>
     <string name="invalid_credentials">Credenciales inválidas, rectificar usuario o contraseña</string>
+    <string name="invalid_credentials_fields">Credenciales inválidas</string>
     <string name="too_many_requests">Demasiados intentos de inicio de sesión fallidos. Por favor, internar de nuevo más tarde.</string>
     <string name="skip">Omitir</string>
     <string name="todo">POR HACER</string>
@@ -312,7 +314,7 @@
     <string name="dememo_intro_description"><u>DeMeMo</u> es la app que le ayudará a memorizar sus citas
         bíblicas de manera eficaz e interactiva.</string>
     <string name="evaluator_intro_description">Deje que DeMeMo evalúe su memoria,
-        entonces podrá saber con seguridad cuanto domina sus citas biblicas.</string>
+        entonces podrá saber con seguridad cuanto domina sus citas bíblicas.</string>
     <string name="leader_board_intro_description">Participe en la tabla de clasificación de <u>DeMeMo</u>.
         Compare su puntuación y compita de manera saludable por llegar a las mejores posiciones.</string>
     <string name="cloud_backup">Copia de Seguridad</string>

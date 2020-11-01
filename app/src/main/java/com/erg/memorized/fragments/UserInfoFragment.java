@@ -105,7 +105,7 @@ public class UserInfoFragment extends Fragment implements View.OnClickListener {
         super.onCreate(savedInstanceState);
 
         spHelper = new SharedPreferencesHelper(requireContext());
-        realmHelper =  new RealmHelper(requireContext());
+        realmHelper = new RealmHelper(requireContext());
 
         fAuth = FirebaseAuth.getInstance();
 
@@ -502,7 +502,11 @@ public class UserInfoFragment extends Fragment implements View.OnClickListener {
                 }
                 tvName.setText(name);
                 tvEmail.setText(email);
-                tvMobile.setText(mobile);
+                if (mobile.equals(DEFAULT) || mobile.isEmpty()) {
+                    tvMobile.setText(getString(R.string.empty_field));
+                } else {
+                    tvMobile.setText(mobile);
+                }
                 tvPass.setText(password);
             }
 
@@ -546,11 +550,9 @@ public class UserInfoFragment extends Fragment implements View.OnClickListener {
                                 pgsDialog.dismiss();
 
                             if (task.getException() instanceof FirebaseAuthUserCollisionException) {
-                                if (task.getException().getMessage().contains(getString(R.string.email_low_case))) {
-                                    if (isVisible())
-                                        MessagesHelper.showInfoMessageWarning(requireActivity(),
-                                                getString(R.string.data_collision));
-                                }
+                                if (isVisible())
+                                    MessagesHelper.showInfoMessageWarning(requireActivity(),
+                                            getString(R.string.data_collision));
                             } else if (task.getException() instanceof FirebaseNetworkException) {
                                 if (isVisible())
                                     MessagesHelper.showInfoMessageWarning(requireActivity(),
@@ -712,7 +714,7 @@ public class UserInfoFragment extends Fragment implements View.OnClickListener {
         dialogView.startAnimation(animScaleUp);
     }
 
-    private void sendRestorePassByEmail(Dialog rootDialog, View dialogView){
+    private void sendRestorePassByEmail(Dialog rootDialog, View dialogView) {
         Dialog pgsDialog = SuperUtil.showProgressDialog(getActivity(), container);
         String msg = getString(R.string.email_sent);
 
