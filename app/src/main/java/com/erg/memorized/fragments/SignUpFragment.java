@@ -225,7 +225,7 @@ public class SignUpFragment extends Fragment implements View.OnClickListener {
                                     }
                                 });
                     } else {
-                        Log.d(TAG, "Task saveOnFirebaseDB: " + task.getException().getMessage());
+                        Log.d(TAG, "Task saveOnFirebaseDB: " + task.getException());
 
                         if (dialog.isShowing())
                             dialog.dismiss();
