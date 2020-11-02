@@ -49,6 +49,8 @@ import static com.erg.memorized.util.Constants.AT;
 import static com.erg.memorized.util.Constants.DOT;
 import static com.erg.memorized.util.Constants.LOW_LINE;
 import static com.erg.memorized.util.Constants.MIN_VIBRATE_TIME;
+import static com.erg.memorized.util.Constants.SPECIAL_MIN_VIBRATE_TIME;
+import static com.erg.memorized.util.Constants.SPECIAL_VIBRATE_TIME;
 import static com.erg.memorized.util.Constants.VIBRATE_TIME;
 
 public class SuperUtil {
@@ -59,30 +61,54 @@ public class SuperUtil {
     }
 
     public static void vibrate(Context context) {
-        Log.d(TAG, "vibrate: ");
+
+        long VIBRATION_TIME = getRightVibrationTime(context, true);
         Vibrator v = (Vibrator) context.getSystemService(Context.VIBRATOR_SERVICE);
+
         assert v != null;
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            v.vibrate(VibrationEffect.createOneShot(VIBRATE_TIME,
+            v.vibrate(VibrationEffect.createOneShot(VIBRATION_TIME,
                     VibrationEffect.DEFAULT_AMPLITUDE));
-            Log.d(TAG, "vibrate: VIBRATE_TIME VibrationEffect :" + VIBRATE_TIME);
+            Log.d(TAG, "regular vibrate: VIBRATE_TIME VibrationEffect :" + VIBRATION_TIME);
         } else {
-            v.vibrate(70);
-            Log.d(TAG, "vibrate: VIBRATE_TIME :" + 70);
+            v.vibrate(VIBRATION_TIME);
+            Log.d(TAG, "regular vibrate: VIBRATE_TIME :" + VIBRATION_TIME);
         }
     }
 
     public static void vibrateMin(Context context) {
-        Log.d(TAG, "vibrateMin: ");
+
+        long VIBRATION_TIME = getRightVibrationTime(context, false);
         Vibrator v = (Vibrator) context.getSystemService(Context.VIBRATOR_SERVICE);
+
         assert v != null;
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            v.vibrate(VibrationEffect.createOneShot(MIN_VIBRATE_TIME,
+            v.vibrate(VibrationEffect.createOneShot(VIBRATION_TIME,
                     VibrationEffect.DEFAULT_AMPLITUDE));
-            Log.d(TAG, "vibrateMin: MIN_VIBRATE_TIME VibrationEffect " + MIN_VIBRATE_TIME);
+            Log.d(TAG, "vibrateMin: MIN_VIBRATE_TIME VibrationEffect " + VIBRATION_TIME);
         } else {
-            v.vibrate(70);
-            Log.d(TAG, "vibrateMin: MIN_VIBRATE_TIME " + 70);
+            v.vibrate(VIBRATION_TIME);
+            Log.d(TAG, "vibrateMin: MIN_VIBRATE_TIME " + VIBRATION_TIME);
+        }
+    }
+
+    private static long getRightVibrationTime(Context context, boolean isRegular) {
+        if (isRegular) {
+            for (String brand : Constants.getBrands(context)) {
+                if (Build.MANUFACTURER.toLowerCase().contains(brand.toLowerCase())) {
+                    return SPECIAL_VIBRATE_TIME;
+                }
+                Log.d(TAG, "regular vibrate: flagSwitchVibrationTime: false");
+            }
+            return VIBRATE_TIME;
+        } else {
+            for (String brand : Constants.getBrands(context)) {
+                if (Build.MANUFACTURER.toLowerCase().contains(brand.toLowerCase())) {
+                    return SPECIAL_MIN_VIBRATE_TIME;
+                }
+                Log.d(TAG, "regular vibrate: flagSwitchVibrationTime: false");
+            }
+            return MIN_VIBRATE_TIME;
         }
     }
 
@@ -141,25 +167,6 @@ public class SuperUtil {
         return email;
     }
 
-
- /*   public static void retrieveCurrentToken() {
-        FirebaseInstanceId.getInstance().getInstanceId()
-                .addOnCompleteListener(task -> {
-                    if (!task.isSuccessful()) {
-                        Log.w(MainActivity.TAG, "getInstanceId failed", task.getException());
-                        return;
-                    }
-
-                    // Get new Instance ID token
-                    String token = task.getResult().getToken();
-                    Log.d(MainActivity.TAG, "onComplete: Token: " + token);
-                    // Log and toast
-//                        String msg = context.getString(R.string.msg_token_fmt, token);
-//                        Log.d(MainActivity.TAG, msg);
-//                        Toast.makeText(context, msg, Toast.LENGTH_SHORT).show();
-                });
-    }*/
-
     public String encodeBase64ToString(Bitmap bitmap, String extension) {
 
         String result = null;
@@ -192,27 +199,6 @@ public class SuperUtil {
             result = Base64.encodeToString(byteArray, Base64.DEFAULT);
         }
         return result;
-    }
-
-    public static String encodeToBase64(Bitmap image) {
-
-        ByteArrayOutputStream baos = new ByteArrayOutputStream();
-        image.compress(Bitmap.CompressFormat.JPEG, 100, baos);
-        byte[] b = baos.toByteArray();
-        String temp = null;
-        try {
-            System.gc();
-            temp = Base64.encodeToString(b, Base64.DEFAULT);
-        } catch (Exception e) {
-            e.printStackTrace();
-        } catch (OutOfMemoryError e) {
-            baos = new ByteArrayOutputStream();
-            image.compress(Bitmap.CompressFormat.JPEG, 50, baos);
-            b = baos.toByteArray();
-            temp = Base64.encodeToString(b, Base64.DEFAULT);
-            Log.e("EWN", "Out of memory error catched");
-        }
-        return temp;
     }
 
     public static Bitmap decodeBase64ToBitmap(String encodedImage) {
@@ -376,10 +362,6 @@ public class SuperUtil {
     public static final Comparator<ItemUser> userComparator = (u1, u2) -> {
         float u1Score = u1.getScore();
         float u2Score = u2.getScore();
-
-        //ascending order
-//        return Float.compare(u1Score, u2Score);
-        //descending order
         return Float.compare(u2Score, u1Score);
     };
 
@@ -389,13 +371,6 @@ public class SuperUtil {
         display.getSize(size);
         return size.x;
     }
-
-/*    public static int getDisplayHeight(FragmentActivity context) {
-        Display display = context.getWindowManager().getDefaultDisplay();
-        Point size = new Point();
-        display.getSize(size);
-        return size.y;
-    }*/
 
     public static boolean containsAll(@NotNull ArrayList<ItemVerse> verses,
                                       ArrayList<ItemVerse> container) {

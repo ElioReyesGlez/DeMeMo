@@ -29,7 +29,7 @@
     <string name="hide_status_text_size_bar">Presionar nuevamente para ocultar la barra de estado del tamaño del texto</string>
     <string name="msg_long_click_option">¿Qué le gustaría hacer?</string>
     <string name="dialog_message_description">Pon un mensaje aquí</string>
-    <string name="leaving_alert">¡Todo será descartado! ¿Estás seguro?</string>
+    <string name="leaving_alert">¡Todo será descartado!\n ¿Está seguro/a?</string>
     <string name="test_stop">¡El examen ha sido descartado!</string>
     <string name="dialog_delete">Eliminar</string>
     <string name="dialog_delete_all">Eliminar todo</string>
@@ -37,10 +37,10 @@
     <string name="dialog_cancel">Cancelar</string>
     <string name="empty_list">¡Lista vacía!</string>
     <string name="empty_list_please_add">… por favor adicionar un nuevo versículo.</string>
-    <string name="title_exists">¡Este título ya existe!\n¿Sobrescribir?</string>
-    <string name="title_and_verse_exists">¡Este título y este versículo ya existen! \n¿Sobrescribir?</string>
-    <string name="verse_exists">¡Estos versículos ya existen!  ¿Sobrescribir?</string>
-    <string name="delete_confirmation_msg">Está a punto de eliminar tu cuenta. ¿Está seguro/a?</string>
+    <string name="title_exists">¡Este título ya existe!\n ¿Sobrescribir?</string>
+    <string name="title_and_verse_exists">¡Este título y este versículo ya existen!\n ¿Sobrescribir?</string>
+    <string name="verse_exists">¡Estos versículos ya existen!\n ¿Sobrescribir?</string>
+    <string name="delete_confirmation_msg">Está a punto de eliminar tu cuenta.\n ¿Está seguro/a?</string>
     <string name="ok">¡Vale!</string>
     <string name="agree">De acuerdo</string>
     <string name="title">Título</string>
@@ -296,7 +296,7 @@
         bienaventuranzas de Dios van de la mano de forma transparente.</string>
     <string name="email_about_page">dememoteam@gmail.com</string>
     <string name="app_version_about_page">Version: 1.0.0</string>
-    <string name="play_store_about_page">Califícanos en Play Store</string>
+    <string name="play_store_about_page">Califíquenos en Play Store</string>
     <string name="instagram_about_page">Síganos en Instagram</string>
     <string name="contact_us_about_page">Contáctenos vía E-mail</string>
     <string name="title1_about_page">Conecte con nosotros</string>
@@ -334,4 +334,5 @@
     <string name="reminder">Recordatorio</string>
     <string name="reminder_intro_description">Configure a DeMeMo para que le recuerde cuando
         es tiempo de memorizar.</string>
+    <string name="exit_without_saving">Salir</string>
 </resources>

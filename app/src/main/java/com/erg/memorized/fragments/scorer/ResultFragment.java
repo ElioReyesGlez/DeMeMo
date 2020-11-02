@@ -95,8 +95,10 @@ public class ResultFragment extends Fragment implements View.OnClickListener {
     private void setUpView() {
 
         LinearLayout scorerContainer = rootView.findViewById(R.id.ll_scorer_container);
-        Button saveScore = rootView.findViewById(R.id.save_score);
-        saveScore.setOnClickListener(this);
+        Button btnSaveScore = rootView.findViewById(R.id.btn_save_score);
+        Button btnExit = rootView.findViewById(R.id.btn_exit_score);
+        btnSaveScore.setOnClickListener(this);
+        btnExit.setOnClickListener(this);
 
         ScrollView scrollViewScorerContainer = rootView
                 .findViewById(R.id.scroll_view_scorers_container);
@@ -165,10 +167,15 @@ public class ResultFragment extends Fragment implements View.OnClickListener {
 
     @Override
     public void onClick(View v) {
-        if (v.getId() == R.id.save_score) {
-            SuperUtil.vibrate(requireActivity());
-            saveScoreOnLocalDB();
-            uploadScore();
+        SuperUtil.vibrate(requireActivity());
+        switch (v.getId()) {
+            case R.id.btn_save_score:
+                saveScoreOnLocalDB();
+                uploadScore();
+                break;
+            case R.id.btn_exit_score:
+                MessagesHelper.showLivingAlertDialog(requireActivity());
+                break;
         }
     }
 

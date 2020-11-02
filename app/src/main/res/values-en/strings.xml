@@ -36,10 +36,10 @@
     <string name="dialog_cancel">Cancel</string>
     <string name="empty_list">Empty list!</string>
     <string name="empty_list_please_add">… please add new verse.</string>
-    <string name="title_exists">This title already exists! Overwrite?</string>
+    <string name="title_exists">This title already exists!\n Overwrite?</string>
     <string name="title_and_verse_exists">This title and verse already exists! Overwrite?</string>
-    <string name="verse_exists">These verses already exist! Overwrite?</string>
-    <string name="delete_confirmation_msg">You are about to delete your account. Are you sure?</string>
+    <string name="verse_exists">These verses already exist!\n Overwrite?</string>
+    <string name="delete_confirmation_msg">You are about to delete your account.\n Are you sure?</string>
     <string name="ok">OK</string>
     <string name="agree">Agree</string>
     <string name="title">Title</string>
@@ -308,7 +308,7 @@
     <string name="faild_billing_connection">Falha na conexão de faturamento!</string>
     <string name="cant_not_query_product">Error can not query product</string>
     <string name="refresh">Refresh</string>
-    <string name="leaving_alert">Everything will be dismissed! Are you sure?</string>
+    <string name="leaving_alert">Everything will be dismissed!\n Are you sure?</string>
     <string name="mobile_number">Mobile number (Optional)</string>
     <string name="description_add_image">Add Image</string>
     <string name="pick_calendar_needed">Please pick a one of yours calendar first.</string>
@@ -336,6 +336,5 @@
     <string name="score_100">Score: 100</string>
     <string name="reminder">Reminder</string>
     <string name="reminder_intro_description">Set DeMeMo to remind you when it\'s time to memorize.</string>
-
-
+    <string name="exit_without_saving">Exit</string>
 </resources>

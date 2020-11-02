@@ -53,7 +53,6 @@ public class MessagesHelper {
         }
     }
 
-
     public static void showInfoMessageError(Activity context, String msg) {
         if (!context.isFinishing()) {
 
@@ -321,5 +320,38 @@ public class MessagesHelper {
                 horizontalScrollView.fullScroll(HorizontalScrollView.FOCUS_RIGHT);
             }
         }, 1000);
+    }
+
+    public static void showLivingAlertDialog(FragmentActivity context) {
+        Animation animScaleUp = AnimationUtils.loadAnimation(context, R.anim.less_scale_up);
+        final Dialog dialog = new Dialog(context, R.style.alert_dialog);
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        dialog.setCancelable(false);
+        LayoutInflater inflater = context.getLayoutInflater();
+        @SuppressLint("InflateParams")
+        View dialogView = inflater.inflate(R.layout.dialog_leaving_alert_view,
+                null, false);
+        dialog.setContentView(dialogView);
+
+        /*onClick on dialog cancel button*/
+        Button cancelBtn = dialog.findViewById(R.id.cancel_dialog_button);
+        cancelBtn.setOnClickListener(v -> {
+            SuperUtil.vibrate(context);
+
+            if (dialog.isShowing())
+                dialog.dismiss();
+        });
+
+        /*onClick on dialog leave button*/
+        Button editBtn = dialog.findViewById(R.id.leave_dialog_button);
+        editBtn.setOnClickListener(v -> {
+            SuperUtil.vibrate(context);
+            context.onBackPressed();
+
+            if (dialog.isShowing())
+                dialog.dismiss();
+        });
+        dialog.show();
+        dialogView.startAnimation(animScaleUp);
     }
 }

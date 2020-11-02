@@ -29,7 +29,7 @@
     <string name="hide_status_text_size_bar">Pressione novamente para ocultar a barra de status do tamanho do texto</string>
     <string name="msg_long_click_option">O que gostaria de fazer?</string>
     <string name="dialog_message_description">Coloque uma mensagem aqui</string>
-    <string name="leaving_alert">Tudo será demitido! Tem certeza?</string>
+    <string name="leaving_alert">Tudo será demitido!\n Tem certeza?</string>
     <string name="test_stop">O exame foi dispensado!</string>
     <string name="dialog_delete">Apagar</string>
     <string name="dialog_delete_all">Apagar tudo</string>
@@ -37,9 +37,9 @@
     <string name="dialog_cancel">Cancelar</string>
     <string name="empty_list">Lista vazia!</string>
     <string name="empty_list_please_add">… por favor, adicione um novo verso.</string>
-    <string name="title_exists">Este título já existe! Substituir?</string>
-    <string name="verse_exists">Estes versos já existe! Substituir?</string>
-    <string name="delete_confirmation_msg">Vai apagar sua conta. Tem certeza?</string>
+    <string name="title_exists">Este título já existe!\n Substituir?</string>
+    <string name="verse_exists">Estes versos já existe!\n Substituir?</string>
+    <string name="delete_confirmation_msg">Vai apagar sua conta.\n Tem certeza?</string>
     <string name="ok">Está bem!</string>
     <string name="agree">Concordo</string>
     <string name="title">Título</string>
@@ -335,4 +335,5 @@
     <string name="reminder">Lembrete</string>
     <string name="reminder_intro_description">Configure a DeMeMo para lembrá-lo quando for
         a hora de memorizar.</string>
+    <string name="exit_without_saving">Sair</string>
 </resources>

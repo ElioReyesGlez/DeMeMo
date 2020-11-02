@@ -348,7 +348,6 @@ public class MainActivity extends FragmentActivity {
         });
         dialog.show();
         dialogView.startAnimation(animScaleUp);
-
     }
 
     @Override
@@ -384,7 +383,6 @@ public class MainActivity extends FragmentActivity {
         });
         dialog.show();
         dialogView.startAnimation(animScaleUpPlus);
-
     }
 
     private void adminUsage() {

@@ -259,6 +259,14 @@
         <item>"?"</item>
     </string-array>
 
+    <string-array name="brands">
+        <item>Huawei</item>
+        <item>Honor</item>
+        <item>HTC</item>
+        <item>Xiaomi</item>
+        <item>Realme</item>
+        <item>Oppo</item>
+    </string-array>
 
     <string-array name="day_codes">
         <item>mon_</item>
@@ -329,4 +337,5 @@
     <string name="score_100">Score: 100</string>
     <string name="reminder">Reminder</string>
     <string name="reminder_intro_description">Set DeMeMo to remind you when it\'s time to memorize.</string>
+    <string name="exit_without_saving">Exit</string>
 </resources>
