@@ -213,7 +213,7 @@ public class GeneralSettingsFragment extends Fragment implements View.OnClickLis
                                 } else {
                                     if (isVisible())
                                         MessagesHelper.showInfoMessageError(requireActivity(),
-                                                getString(R.string.failed_uploading));
+                                                getString(R.string.failed_synchronizing));
                                 }
                             }
                         });
@@ -285,7 +285,7 @@ public class GeneralSettingsFragment extends Fragment implements View.OnClickLis
                 if (!response.isSuccessful()) {
                     if (isVisible())
                         MessagesHelper.showInfoMessageError(requireActivity(),
-                                getString(R.string.failed_uploading));
+                                getString(R.string.failed_synchronizing));
                     Log.d(TAG, "onResponse: " + response.message());
                     return;
                 }
@@ -311,7 +311,7 @@ public class GeneralSettingsFragment extends Fragment implements View.OnClickLis
                 Log.e(TAG, "onFailure: " + t.getMessage());
                 if (isVisible())
                     MessagesHelper.showInfoMessageError(requireActivity(),
-                            getString(R.string.failed_uploading));
+                            getString(R.string.failed_synchronizing));
             }
         });
     }

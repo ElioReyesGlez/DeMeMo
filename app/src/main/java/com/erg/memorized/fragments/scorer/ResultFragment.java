@@ -193,7 +193,7 @@ public class ResultFragment extends Fragment implements View.OnClickListener {
 
                             if (isVisible())
                                 MessagesHelper.showInfoMessage(requireActivity(),
-                                        getString(R.string.upload_success));
+                                        getString(R.string.sync_success));
                         } else {
                             Log.e(TAG, "uploadScore: " + task.getException());
                             if (task.getException() instanceof FirebaseNetworkException) {
@@ -203,7 +203,7 @@ public class ResultFragment extends Fragment implements View.OnClickListener {
                             } else {
                                 if (isVisible())
                                     MessagesHelper.showInfoMessageError(requireActivity(),
-                                            getString(R.string.failed_uploading));
+                                            getString(R.string.failed_synchronizing));
                             }
                         }
                     });

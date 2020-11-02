@@ -24,7 +24,7 @@
     <string name="play">play</string>
 
     <string name="empty" />
-    <string name ="empty_field">Campo vazio </string>
+    <string name="empty_field">Campo vazio </string>
     <string name="hide_fam">Pressione novamente para ocultar o menu de controle de áudio</string>
     <string name="hide_status_text_size_bar">Pressione novamente para ocultar a barra de status do tamanho do texto</string>
     <string name="msg_long_click_option">O que gostaria de fazer?</string>
@@ -32,6 +32,7 @@
     <string name="leaving_alert">Tudo será demitido! Tem certeza?</string>
     <string name="test_stop">O exame foi dispensado!</string>
     <string name="dialog_delete">Apagar</string>
+    <string name="dialog_delete_all">Apagar tudo</string>
     <string name="dialog_edit">Editar</string>
     <string name="dialog_cancel">Cancelar</string>
     <string name="empty_list">Lista vazia!</string>
@@ -124,20 +125,18 @@
     <string name="text">texto</string>
     <string name="invalid_until_date">A data de término é inválida!</string>
     <string name="verses">Versos</string>
-    <string name="last_upload">Último carregamento</string>
+    <string name="last_sync">Última sincro</string>
     <!--    <string name="memorized">Memorized</string>-->
     <!--    <string name="verses_memorized">Memorized:\ </string>-->
     <string name="zero">0</string>
-    <string name="upload_success">Carregamento com sucesso!</string>
-    <string name="failed_uploading">Falha ao enviar, tente mais tarde!</string>
+    <string name="sync_success">Sincronização com sucesso!</string>
+    <string name="failed_synchronizing">Falha ao sincronizar, tente mais tarde!</string>
     <string name="failed_deleting">Falha ao remover conta, tente mais tarde!</string>
     <string name="refresh">Atualizar</string>
     <string name="refresh_icon">ícone de atualização</string>
     <string name="upload">Carregar</string>
     <string name="general_settings">Definições Gerais</string>
-    <string name="upload_needed">Carregamento necessário</string>
-    <string name="changes_to_be_uploaded">Alerta de carregamento: Novos dados a serem carregados!</string>
-    <string name="changes_to_be_downloaded">Alerta de sincronização: Dados a serem descarregados!</string>
+    <string name="changes_to_be_sync">Alerta de sincronização: Dados a serem sincronizados!</string>
     <string name="search">pesquisa…</string>
     <string name="leader_board">Tabela de Classificação</string>
     <string name="icon_leader_board">Tabela de classificação de ícones</string>
@@ -217,6 +216,7 @@
     <string name="premium_dialog_ok">Sim, claro!</string>
     <string name="premium_dialog_no">Não, obrigado/a</string>
     <string name="get_premium">Torne-se Premium!</string>
+    <string name="premium_congrats">Parabéns, é um utente PREMIUM agora!</string>
     <string name="get_premium_ad_free">Torne-se PREMIUM para obter um DeMeMo SEM ANÚNCIOS</string>
     <string name="already_premium">Já é um membro premium</string>
     <string name="memorizing_finish">Pronto, bom trabalho! \n Está pronto para testar a sua memória?</string>

@@ -60,6 +60,7 @@ public class MainActivity extends FragmentActivity {
     private boolean maybeWantToLeaveScoreSection = false;
     private Animation animScaleUp, animScaleUpPlus;
     private SharedPreferencesHelper spHelper;
+    private ItemUser currentUser;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -72,7 +73,7 @@ public class MainActivity extends FragmentActivity {
         RealmHelper.startRealm(getApplicationContext());
         spHelper = new SharedPreferencesHelper(this);
         RealmHelper realmHelper = new RealmHelper(this);
-        ItemUser currentUser = realmHelper.getUser();
+        currentUser = realmHelper.getUser();
 
         animScaleUp = AnimationUtils.loadAnimation(this, R.anim.scale_up);
         animScaleUpPlus = AnimationUtils.loadAnimation(this, R.anim.less_scale_up);
@@ -81,10 +82,7 @@ public class MainActivity extends FragmentActivity {
             SuperUtil.logInUser(this, currentUser);
         }
 
-//        SuperUtil.retrieveCurrentToken();
-
         spHelper.setRateLaunchTimes(spHelper.getRateLaunchesTimes() + 1);
-        spHelper.setPremiumLaunchTimes(spHelper.getPremiumLaunchesTimes() + 1);
 
         if (spHelper.getIsAgreeShowRateDialog() && !spHelper.isAlreadyRated()) {
             long daySinceLastLaunch = TimeHelper
@@ -104,9 +102,15 @@ public class MainActivity extends FragmentActivity {
     }
 
     private void handleToShowRateDialog() {
-        new Handler().postDelayed(() -> {
-            MessagesHelper.showRateDialog(MainActivity.this, animScaleUpPlus);
-        }, 2000);
+        new Handler().postDelayed(() ->
+                        MessagesHelper.showRateDialog(
+                                MainActivity.this,
+                                animScaleUpPlus),
+                2000);
+    }
+
+    private void handleToShowPremiumDialog() {
+        new Handler().postDelayed(this::showPremiumDialogStatus, 2000);
     }
 
     private void setUpAppLanguage() {
@@ -229,8 +233,9 @@ public class MainActivity extends FragmentActivity {
 
 
         boolean isNewVerseFragmentOn = false;
-        if (newVerseFragment != null)
+        if (newVerseFragment != null) {
             isNewVerseFragmentOn = newVerseFragment.isVisible();
+        }
 
         boolean isMemorizingFragmentOn = false;
         if (memorizingFragment != null) {
@@ -241,22 +246,26 @@ public class MainActivity extends FragmentActivity {
         }
 
         boolean isSignUpFragmentOn = false;
-        if (signUpFragment != null)
+        if (signUpFragment != null) {
             isSignUpFragmentOn = signUpFragment.isVisible();
+        }
 
         boolean isSplitTextFragmentOn = false;
-        if (splitTextFragment != null)
+        if (splitTextFragment != null) {
             isSplitTextFragmentOn = splitTextFragment.isVisible();
+        }
 
         boolean isUserInfoFragmentOn = false;
-        if (userInfoFragment != null)
+        if (userInfoFragment != null) {
             isUserInfoFragmentOn = userInfoFragment.isVisible();
+        }
 
         boolean isLeaderBoardFragmentOn = false;
-        if (leaderBoardFragment != null)
+        if (leaderBoardFragment != null) {
             isLeaderBoardFragmentOn = leaderBoardFragment.isVisible();
+        }
 
-        boolean isScorerFragmentOn = false;
+        boolean isScorerFragmentOn;
         if (scorerFragment != null) {
             isScorerFragmentOn = scorerFragment.isVisible();
             if (isScorerFragmentOn) {
@@ -268,20 +277,23 @@ public class MainActivity extends FragmentActivity {
         }
 
         boolean isGeneralSettingsFragmentOn = false;
-        if (generalSettingsFragment != null)
+        if (generalSettingsFragment != null) {
             isGeneralSettingsFragmentOn = generalSettingsFragment.isVisible();
+        }
 
         boolean isResultFragmentOn = false;
-        if (resultFragment != null)
+        if (resultFragment != null) {
             isResultFragmentOn = resultFragment.isVisible();
+        }
 
         boolean isAboutFragmentOn = false;
         if (aboutFragment != null)
             isAboutFragmentOn = aboutFragment.isVisible();
 
         boolean isAdMobFragmentOn = false;
-        if (adMobFragment != null)
+        if (adMobFragment != null) {
             isAdMobFragmentOn = adMobFragment.isVisible();
+        }
 
         if (isAdMobFragmentOn) {
             adMobFragment.onBackPressed();
@@ -344,6 +356,35 @@ public class MainActivity extends FragmentActivity {
         super.onResume();
         adminUsage();
         setUpAppLanguage();
+        if (!spHelper.isAlreadyLaunchedPremiumDialog()) {
+            if (currentUser != null && currentUser.isPremium()) {
+                handleToShowPremiumDialog();
+            }
+        }
+    }
+
+
+    private void showPremiumDialogStatus() {
+        final Dialog dialog = new Dialog(this, R.style.alert_dialog);
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        dialog.setCancelable(false);
+        LayoutInflater inflater = getLayoutInflater();
+        @SuppressLint("InflateParams")
+        View dialogView = inflater.inflate(R.layout.dialog_premium_status,
+                null, false);
+        dialog.setContentView(dialogView);
+
+        /*onClick ok dialog leave button*/
+        Button ok = dialog.findViewById(R.id.btn_dialog_ok);
+        ok.setOnClickListener(v -> {
+            SuperUtil.vibrate(MainActivity.this);
+            spHelper.activatePremiumDialogFlag();
+            if (dialog.isShowing())
+                dialog.dismiss();
+        });
+        dialog.show();
+        dialogView.startAnimation(animScaleUpPlus);
+
     }
 
     private void adminUsage() {

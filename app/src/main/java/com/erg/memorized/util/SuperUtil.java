@@ -67,8 +67,8 @@ public class SuperUtil {
                     VibrationEffect.DEFAULT_AMPLITUDE));
             Log.d(TAG, "vibrate: VIBRATE_TIME VibrationEffect :" + VIBRATE_TIME);
         } else {
-            v.vibrate(50);
-            Log.d(TAG, "vibrate: VIBRATE_TIME :" + 50);
+            v.vibrate(70);
+            Log.d(TAG, "vibrate: VIBRATE_TIME :" + 70);
         }
     }
 
@@ -81,8 +81,8 @@ public class SuperUtil {
                     VibrationEffect.DEFAULT_AMPLITUDE));
             Log.d(TAG, "vibrateMin: MIN_VIBRATE_TIME VibrationEffect " + MIN_VIBRATE_TIME);
         } else {
-            v.vibrate(50);
-            Log.d(TAG, "vibrateMin: MIN_VIBRATE_TIME " + 50);
+            v.vibrate(70);
+            Log.d(TAG, "vibrateMin: MIN_VIBRATE_TIME " + 70);
         }
     }
 

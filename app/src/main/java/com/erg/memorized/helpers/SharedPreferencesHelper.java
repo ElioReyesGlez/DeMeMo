@@ -45,7 +45,7 @@ import static com.erg.memorized.util.Constants.PREF_ALREADY_RATED_KEY;
 import static com.erg.memorized.util.Constants.PREF_APP_FIRST_LAUNCH_KEY;
 import static com.erg.memorized.util.Constants.PREF_LAST_LAUNCH_PREMIUM_DIALOG_DATE_KEY;
 import static com.erg.memorized.util.Constants.PREF_LAST_LAUNCH_RATE_DIALOG_DATE_KEY;
-import static com.erg.memorized.util.Constants.PREF_PREMIUM_LAUNCH_TIMES_KEY;
+import static com.erg.memorized.util.Constants.PREF_PREMIUM_SHOW_DIALOG_FLAG_KEY;
 import static com.erg.memorized.util.Constants.PREF_RATE_LAUNCH_TIMES_KEY;
 import static com.erg.memorized.util.Constants.PREF_SHOW_DIALOG_FLAG_KEY;
 import static com.erg.memorized.util.Constants.SECTION_STATUS_KEY;
@@ -323,7 +323,7 @@ public class SharedPreferencesHelper {
         calendar.setFirstDayOfWeek(Calendar.MONDAY);
 
         for (int i = 0; i < TimeHelper.getCurrentDayOfWeekInNumber(); i++) {
-            String key = dayCodes[i] + (i+1);
+            String key = dayCodes[i] + (i + 1);
             float value = getUsageValue(key);
             float roundValue = ScoreHelper.round(value);
             temp.add(roundValue);
@@ -389,12 +389,13 @@ public class SharedPreferencesHelper {
     public ItemVerse getLastVerseRead() {
         Gson gson = new Gson();
         String json = sharedPref.getString(LAST_VERSE_READ_KEY, null);
-        Type type = new TypeToken<ItemVerse>() {}.getType();
+        Type type = new TypeToken<ItemVerse>() {
+        }.getType();
         try {
             return gson.fromJson(json, type);
         } catch (Exception e) {
             Log.e(TAG, "getLastVerseRead: ERROR: " + e.getMessage());
-            return  null;
+            return null;
         }
     }
 
@@ -458,7 +459,17 @@ public class SharedPreferencesHelper {
     }
 
     public boolean isAlreadyRated() {
-        return sharedPref.getBoolean(PREF_ALREADY_RATED_KEY, false) ;
+        return sharedPref.getBoolean(PREF_ALREADY_RATED_KEY, false);
+    }
+
+    public boolean isAlreadyLaunchedPremiumDialog() {
+        return sharedPref.getBoolean(PREF_PREMIUM_SHOW_DIALOG_FLAG_KEY, false);
+    }
+
+    public void activatePremiumDialogFlag() {
+        editor = sharedPref.edit();
+        editor.putBoolean(PREF_PREMIUM_SHOW_DIALOG_FLAG_KEY, true);
+        editor.apply();
     }
 
     public void resetRateDialogFlags() {
@@ -466,16 +477,6 @@ public class SharedPreferencesHelper {
         editor.remove(PREF_ALREADY_RATED_KEY);
         editor.remove(PREF_RATE_LAUNCH_TIMES_KEY);
         editor.apply();
-    }
-
-    public void setPremiumLaunchTimes(int launchTimes) {
-        editor = sharedPref.edit();
-        editor.putInt(PREF_PREMIUM_LAUNCH_TIMES_KEY, launchTimes);
-        editor.apply();
-    }
-
-    public int getPremiumLaunchesTimes() {
-        return sharedPref.getInt(PREF_PREMIUM_LAUNCH_TIMES_KEY, 0);
     }
 
     public void setLastPremiumRateDialogDate() {

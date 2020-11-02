@@ -108,7 +108,7 @@ public class Constants {
     public static final String DAILY_VERSE_KEY = "daily_verse_key";
 
     public static final int MIN_TEXT_SIZE = 12;
-    public static final int TEXT_SIZE = 18;
+    public static final int TEXT_SIZE = 19;
 
     public static String CHANNEL_ID = "unique_chanel_id_for_reminder_of_memory_text";
     public static String ACTION_NOTIFY = "android.intent.action.BroadcastReceiverNotify";

@@ -2,6 +2,8 @@ package com.erg.memorized.model;
 
 import androidx.annotation.Nullable;
 
+import com.erg.memorized.helpers.ScoreHelper;
+
 import java.io.Serializable;
 import java.util.HashMap;
 
@@ -137,7 +139,7 @@ public class ItemUser extends RealmObject implements Serializable {
         userHasMap.put(USER_COLUMN_MOBILE, mobile);
         userHasMap.put(USER_COLUMN_NAME, name);
         userHasMap.put(USER_COLUMN_PASS, pass);
-        userHasMap.put(USER_COLUMN_VERSES_SCORE, String.valueOf(score));
+        userHasMap.put(USER_COLUMN_VERSES_SCORE, String.valueOf(ScoreHelper.round(score)));
         userHasMap.put(USER_COLUMN_PREMIUM_STATUS, String.valueOf(isPremium));
         return userHasMap;
     }
@@ -146,7 +148,7 @@ public class ItemUser extends RealmObject implements Serializable {
         HashMap<String, String> scoreHasMap = new HashMap<>();
         scoreHasMap.put(USER_COLUMN_NAME, name);
         scoreHasMap.put(USER_COLUMN_IMG, img);
-        scoreHasMap.put(USER_COLUMN_VERSES_SCORE, String.valueOf(score));
+        scoreHasMap.put(USER_COLUMN_VERSES_SCORE, String.valueOf(ScoreHelper.round(score)));
         scoreHasMap.put(USER_COLUMN_PREMIUM_STATUS, String.valueOf(isPremium));
         return scoreHasMap;
     }

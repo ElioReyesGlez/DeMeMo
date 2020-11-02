@@ -46,20 +46,20 @@
                 android:id="@+id/iv_profile"
                 android:layout_width="66dp"
                 android:layout_height="66dp"
-                android:elevation="@dimen/default_elevation_plus"
                 android:layout_alignParentStart="true"
                 android:layout_centerVertical="true"
                 android:layout_gravity="center_horizontal"
                 android:layout_marginStart="10dp"
                 android:layout_marginBottom="24dp"
+                android:adjustViewBounds="true"
                 android:clickable="true"
                 android:contentDescription="@string/description_add_image"
+                android:elevation="@dimen/default_elevation_plus"
                 android:focusable="true"
                 android:scaleType="centerCrop"
+                android:visibility="gone"
                 app:shapeAppearanceOverlay="@style/circleImageView"
-                app:srcCompat="@drawable/ic_user_profile"
-                android:adjustViewBounds="true"
-                android:visibility="gone" />
+                app:srcCompat="@drawable/ic_user_profile" />
 
             <TextView
                 android:id="@+id/tv_username"
@@ -101,10 +101,10 @@
                 android:layout_height="30dp"
                 android:layout_centerVertical="true"
                 android:layout_margin="@dimen/regular_item_padding"
-                android:contentDescription="@string/img_description"
                 android:layout_toStartOf="@+id/iv_right_arrow_user"
+                android:contentDescription="@string/img_description"
                 android:src="@drawable/ic_badge_blue"
-                android:visibility="invisible"/>
+                android:visibility="invisible" />
 
             <ImageView
                 android:id="@+id/iv_right_arrow_user"
@@ -148,6 +148,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
+                    android:ellipsize="end"
+                    android:maxLines="1"
                     android:text="@string/verses"
                     android:textColor="#212121"
                     android:textSize="16sp" />
@@ -157,6 +159,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
+                    android:ellipsize="end"
+                    android:maxLines="1"
                     android:text="@string/zero"
                     android:textColor="#919191"
                     android:textSize="14sp" />
@@ -167,7 +171,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
+                android:ellipsize="end"
                 android:gravity="center"
+                android:maxLines="1"
                 android:orientation="vertical">
 
                 <TextView
@@ -175,6 +181,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
+                    android:ellipsize="end"
+                    android:maxLines="1"
                     android:text="@string/score"
                     android:textColor="#212121"
                     android:textSize="16sp" />
@@ -184,6 +192,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
+                    android:ellipsize="end"
+                    android:maxLines="1"
                     android:text="@string/zero"
                     android:textColor="#919191"
                     android:textSize="14sp" />
@@ -202,7 +212,9 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    android:text="@string/last_upload"
+                    android:ellipsize="end"
+                    android:maxLines="1"
+                    android:text="@string/last_sync"
                     android:textColor="#212121"
                     android:textSize="16sp" />
 
@@ -211,6 +223,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
+                    android:ellipsize="end"
+                    android:maxLines="1"
                     android:text="@string/blank"
                     android:textColor="#919191"
                     android:textSize="14sp" />
@@ -226,16 +240,16 @@
             android:background="@drawable/background_gray"
             android:baselineAligned="false"
             android:elevation="@dimen/default_elevation"
+            android:gravity="center"
             android:orientation="horizontal"
-            android:padding="12dp"
-            android:weightSum="2">
+            android:padding="12dp">
 
             <RelativeLayout
                 android:id="@+id/rl_sync"
                 android:layout_width="match_parent"
                 android:layout_height="80dp"
+                android:layout_gravity="center"
                 android:layout_margin="2dp"
-                android:layout_weight="1"
                 android:background="@drawable/selector_gray"
                 android:padding="@dimen/regular_item_padding">
 
@@ -245,44 +259,52 @@
                     android:layout_height="40dp"
                     android:layout_alignParentStart="true"
                     android:layout_centerVertical="true"
-                    android:layout_marginStart="@dimen/margin_start"
+                    android:layout_marginStart="20dp"
                     android:contentDescription="@string/refresh_icon"
                     android:src="@drawable/ic_sync_user" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_centerVertical="true"
+                    android:layout_centerInParent="true"
                     android:layout_gravity="center"
                     android:layout_marginStart="@dimen/regular_window_margin"
-                    android:layout_toStartOf="@+id/download_needed"
+                    android:layout_toStartOf="@+id/iv_sync_needed"
                     android:layout_toEndOf="@+id/iv_sync_icon"
                     android:ellipsize="end"
                     android:maxLines="1"
                     android:text="@string/sync"
                     android:textAlignment="center"
                     android:textColor="@color/dark_gray_btn_bg_color"
-                    android:textSize="12sp"
+                    android:textSize="17sp"
                     android:textStyle="bold" />
 
                 <ImageView
-                    android:id="@+id/download_needed"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentEnd="true"
-                    android:layout_gravity="top|end"
-                    android:layout_margin="3dp"
-                    android:layout_marginStart="8dp"
+                    android:id="@+id/iv_sync_needed"
+                    android:layout_width="28dp"
+                    android:layout_height="28dp"
+                    android:layout_margin="@dimen/regular_item_padding"
+                    android:layout_toStartOf="@+id/sync_progress_circular"
                     android:background="@drawable/selector_yellow"
                     android:clickable="true"
-                    android:contentDescription="@string/upload_needed"
+                    android:contentDescription="@string/changes_to_be_sync"
                     android:focusable="true"
-                    android:padding="3dp"
+                    android:padding="4dp"
                     android:src="@drawable/ic_exclamation_mark"
                     android:visibility="invisible" />
+
+                <ProgressBar
+                    android:id="@+id/sync_progress_circular"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_alignParentEnd="true"
+                    android:layout_margin="@dimen/regular_item_padding"
+                    android:contentDescription="@string/refresh"
+                    android:visibility="invisible" />
+
             </RelativeLayout>
 
-            <RelativeLayout
+            <!--<RelativeLayout
                 android:id="@+id/rl_upload"
                 android:layout_width="match_parent"
                 android:layout_height="80dp"
@@ -334,7 +356,7 @@
                     android:src="@drawable/ic_exclamation_mark"
                     android:visibility="invisible" />
 
-            </RelativeLayout>
+            </RelativeLayout>-->
 
         </LinearLayout>
 

@@ -160,7 +160,7 @@ public class DragAndDropFragment extends Fragment implements View.OnClickListene
         LinearLayout.LayoutParams boxParams = new LinearLayout.LayoutParams(
                 LinearLayout.LayoutParams.WRAP_CONTENT,
                 LinearLayout.LayoutParams.WRAP_CONTENT);
-        boxParams.setMargins(7, 6, 7, 6);
+        boxParams.setMargins(7, 7, 7, 7);
 
         TextView textView = new TextView(requireContext());
         textView.setId(i);
@@ -172,7 +172,7 @@ public class DragAndDropFragment extends Fragment implements View.OnClickListene
         textView.setMaxLines(1);
         textView.setEllipsize(TextUtils.TruncateAt.END);
         textView.setLayoutParams(boxParams);
-        textView.setPadding(8, 8, 8, 8);
+        textView.setPadding(9, 9, 9, 9);
         textView.setText(word);
 
         setOnLongClick(textView);
@@ -216,7 +216,7 @@ public class DragAndDropFragment extends Fragment implements View.OnClickListene
                     }
                     return false;
                 case DragEvent.ACTION_DRAG_ENTERED:
-                    SuperUtil.vibrate(requireContext());
+                    SuperUtil.vibrateMin(requireContext());
                     v.setBackgroundResource(R.drawable.background_green_light);
                     v.invalidate();
                     return true;
@@ -234,8 +234,8 @@ public class DragAndDropFragment extends Fragment implements View.OnClickListene
 
                     Log.d(TAG, "View MeasuredHeight: " + viewMeasureHeight +
                             " onDrag: TranslatedY: " + fixedTraTopTranslate
-                                    + " topOfDropZone: " + topOfDropZone
-                                    + " bottomOfDropZone: " + bottomOfDropZone
+                            + " topOfDropZone: " + topOfDropZone
+                            + " bottomOfDropZone: " + bottomOfDropZone
                     );
                     // scrolling Up due the y has passed the threshold
                     if (fixedTraTopTranslate - viewMeasureHeight < topOfDropZone) {
@@ -309,7 +309,7 @@ public class DragAndDropFragment extends Fragment implements View.OnClickListene
 
     private void setOnLongClick(TextView boxTextView) {
         boxTextView.setOnLongClickListener(v -> {
-            SuperUtil.vibrate(requireContext());
+            SuperUtil.vibrateMin(requireContext());
             TextView textView = (TextView) v;
             ClipData.Item item = new ClipData.Item(textView.getText());
             ClipData dragData = new ClipData(

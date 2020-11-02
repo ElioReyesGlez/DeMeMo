@@ -275,6 +275,20 @@ public class VersesFragment extends Fragment implements View.OnClickListener, On
                 dialog.dismiss();
         });
 
+        /*onClick on dialog edit button*/
+        Button deleteAll = dialog.findViewById(R.id.delete_all_dialog_button);
+        deleteAll.setOnClickListener(v -> {
+            SuperUtil.vibrate(requireContext());
+
+            realmHelper.deleteAllVerseFromRealmDataBase();
+            verses = realmHelper.getSavedVerses();
+            adapterForVersesList.refreshAdapter(verses);
+            setUpEmptyContainer();
+
+            if (dialog.isShowing())
+                dialog.dismiss();
+        });
+
         dialog.show();
         dialogView.startAnimation(animScaleUp);
 
@@ -326,7 +340,7 @@ public class VersesFragment extends Fragment implements View.OnClickListener, On
                         } else {
                             if (isVisible())
                                 MessagesHelper.showInfoMessageError(requireActivity(),
-                                        getString(R.string.failed_uploading));
+                                        getString(R.string.failed_synchronizing));
                         }
                     }
                 });

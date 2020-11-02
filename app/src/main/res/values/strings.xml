@@ -24,13 +24,14 @@
     <string name="play">play</string>
 
     <string name="empty" />
-    <string name = "empty_field">Empty field</string>
+    <string name="empty_field">Empty field</string>
     <string name="hide_fam">Press again for hide Control Audio Menu</string>
     <string name="hide_status_text_size_bar">Press again for hide the Text Size Status Bar</string>
     <string name="msg_long_click_option">What would you like to do?</string>
     <string name="dialog_message_description">Put a message here</string>
     <string name="test_stop">The exam has been dismissed!</string>
     <string name="dialog_delete">Delete</string>
+    <string name="dialog_delete_all">Delete all</string>
     <string name="dialog_edit">Edit</string>
     <string name="dialog_cancel">Cancel</string>
     <string name="empty_list">Empty list!</string>
@@ -120,25 +121,21 @@
     <string name="text">text</string>
     <string name="invalid_until_date">The end date it is invalid!</string>
     <string name="verses">Verses</string>
-    <string name="last_upload">Last upload</string>
-    <!--    <string name="memorized">Memorized</string>-->
-    <!--    <string name="verses_memorized">Memorized:\ </string>-->
+    <string name="last_sync">Last sync</string>
     <string name="zero">0</string>
-    <string name="upload_success">Uploading success!</string>
-    <string name="failed_uploading">Failed uploading, try later!</string>
+    <string name="sync_success">Success synchronizing!</string>
+    <string name="failed_synchronizing">Failed synchronizing, try later!</string>
     <string name="failed_deleting">Failed removing account, try later!</string>
     <string name="refresh_icon">refresh icon</string>
     <string name="upload">Upload</string>
     <string name="general_settings">General Settings</string>
-    <string name="upload_needed">Upload needed</string>
-    <string name="changes_to_be_uploaded">Upload alert: New data to be uploaded!</string>
-    <string name="changes_to_be_downloaded">Synchronization alert: Data to be downloaded!</string>
+    <string name="changes_to_be_sync">Synchronization alert: Data to be synchronized!</string>
     <string name="search">search…</string>
     <string name="leader_board">Leader Board</string>
     <string name="icon_leader_board">Icon leader board</string>
     <string name="user">User name</string>
     <string name="ic_black_shield">ic black shield</string>
-    <string name="sync">Sync</string>
+    <string name="sync">Synchronize</string>
     <string name="sync_not_needed">Synchronization don\'t needed!</string>
     <string name="upload_not_needed">Upload don\'t needed!</string>
     <string name="language">Language</string>
@@ -209,6 +206,7 @@
     <string name="premium_dialog_ok">Yes, sure!</string>
     <string name="premium_dialog_no">No, Thanks</string>
     <string name="get_premium">Get Premium!</string>
+    <string name="premium_congrats">Congratulations you are a PREMIUM user now!</string>
     <string name="get_premium_ad_free">Get PREMIUM in order to get an AD FREE DeMeMo</string>
     <string name="already_premium">You are already a premium member</string>
     <string name="memorizing_finish">Done, good job!  Are you ready to test your memory?</string>
@@ -331,6 +329,4 @@
     <string name="score_100">Score: 100</string>
     <string name="reminder">Reminder</string>
     <string name="reminder_intro_description">Set DeMeMo to remind you when it\'s time to memorize.</string>
-
-
 </resources>

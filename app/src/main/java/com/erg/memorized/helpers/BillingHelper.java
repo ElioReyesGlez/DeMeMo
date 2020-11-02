@@ -180,7 +180,7 @@ public class BillingHelper {
                                     Toast.LENGTH_LONG).show();
                             Log.d(TAG, "upload: " + task.getException().getMessage());
                         } else {
-                            Toast.makeText(context,context.getString(R.string.failed_uploading),
+                            Toast.makeText(context,context.getString(R.string.failed_synchronizing),
                                     Toast.LENGTH_LONG).show();
                         }
 
@@ -206,7 +206,7 @@ public class BillingHelper {
                                     Toast.LENGTH_LONG).show();
                             Log.d(TAG, "upload: " + task.getException());
                         } else {
-                            Toast.makeText(context,context.getString(R.string.failed_uploading),
+                            Toast.makeText(context,context.getString(R.string.failed_synchronizing),
                                     Toast.LENGTH_LONG).show();
                         }
 

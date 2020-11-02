@@ -19,7 +19,6 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import com.erg.memorized.R;
@@ -76,8 +75,7 @@ public class SettingsFragment extends Fragment implements View.OnClickListener {
     private ShapeableImageView ivImageProfile;
     private ImageView ivRightArrowUser;
     private ImageView ivBadge;
-    private ImageView ivUploadNeeded;
-    private ImageView ivDownloadNeeded;
+    private ImageView ivSyncNeeded;
     private TextView tvUserName;
     private TextView tvUser;
     private TextView tvVerseCont;
@@ -85,14 +83,15 @@ public class SettingsFragment extends Fragment implements View.OnClickListener {
     private TextView tvLastUploadDate;
     private Button btnSignUp;
     private RelativeLayout rlUserSettings;
-    private RelativeLayout rlSync, rlUpload;
-    private ProgressBar progressBar;
+    private RelativeLayout rlSync;
+    private ProgressBar progressBar, syncProgress;
 
     private SharedPreferencesHelper spHelper;
     private boolean isLoginAction = false;
     private boolean isSigningAction;
-    private boolean isSyncNeeded;
+    private boolean isDownloadNeeded;
     private boolean isUploadNeeded;
+    private boolean isLeaderBoardSyncNeeded;
     private ItemUser currentUser;
     private RealmHelper realmHelper;
     private FirebaseAuth fAuth;
@@ -159,18 +158,15 @@ public class SettingsFragment extends Fragment implements View.OnClickListener {
         RelativeLayout rlAbout = rootView.findViewById(R.id.rl_about);
         RelativeLayout rlGeneralSettings = rootView.findViewById(R.id.rl_general_settings);
         progressBar = rootView.findViewById(R.id.progressBar);
+        syncProgress = rootView.findViewById(R.id.sync_progress_circular);
         tvVerseCont = rootView.findViewById(R.id.tv_verses_cont);
         tvUserScore = rootView.findViewById(R.id.tv_user_score);
         tvLastUploadDate = rootView.findViewById(R.id.tv_upload_date);
         rlSync = rootView.findViewById(R.id.rl_sync);
-        rlUpload = rootView.findViewById(R.id.rl_upload);
-        ivUploadNeeded = rootView.findViewById(R.id.upload_needed);
-        ivDownloadNeeded = rootView.findViewById(R.id.download_needed);
+        ivSyncNeeded = rootView.findViewById(R.id.iv_sync_needed);
 
         rlSync.setOnClickListener(this);
-        rlUpload.setOnClickListener(this);
-        ivUploadNeeded.setOnClickListener(this);
-        ivDownloadNeeded.setOnClickListener(this);
+        ivSyncNeeded.setOnClickListener(this);
         rlLeaderBoard.setOnClickListener(this);
         rlAbout.setOnClickListener(this);
         rlGeneralSettings.setOnClickListener(this);
@@ -192,9 +188,7 @@ public class SettingsFragment extends Fragment implements View.OnClickListener {
     }
 
     private void activateSignUpButton() {
-        if (btnSignUp.getVisibility() == View.GONE)
-            btnSignUp.setVisibility(View.VISIBLE);
-
+        SuperUtil.showView(null, btnSignUp);
         rlUserSettings.setFocusable(true);
         rlUserSettings.setClickable(true);
         btnSignUp.setOnClickListener(this);
@@ -234,9 +228,18 @@ public class SettingsFragment extends Fragment implements View.OnClickListener {
             case R.id.rl_sync:
                 if (spHelper.getUserLoginStatus()) {
                     if (spHelper.getEmailVerifiedStatus()) {
-                        if (isSyncNeeded) {
-                            synchronize();
-                        } else {
+                        if (isDownloadNeeded) {
+                            download();
+                            Log.d(TAG, "onClick: Download");
+                        }
+                        if (isUploadNeeded) {
+                            upload();
+                            Log.d(TAG, "onClick: Upload");
+                        } else if (isLeaderBoardSyncNeeded) {
+                            upload();
+                            Log.d(TAG, "onClick: LeaderBoardSync Upload");
+                        }
+                        if (!isUploadNeeded && !isDownloadNeeded && !isLeaderBoardSyncNeeded) {
                             MessagesHelper.showInfoMessage(requireActivity(),
                                     getString(R.string.sync_not_needed));
                         }
@@ -249,36 +252,10 @@ public class SettingsFragment extends Fragment implements View.OnClickListener {
                             getString(R.string.login_needed));
                 }
                 break;
-            case R.id.rl_upload:
-                if (spHelper.getUserLoginStatus()) {
-                    if (spHelper.getEmailVerifiedStatus()) {
-                        if (isUploadNeeded) {
-                            upload();
-                        } else {
-                            if (isVisible())
-                                MessagesHelper.showInfoMessage(requireActivity(),
-                                        getString(R.string.upload_not_needed));
-                        }
-                    } else {
-                        if (isVisible())
-                            MessagesHelper.showInfoMessageWarning(requireActivity(),
-                                    getString(R.string.email_is_not_verified_msg));
-                    }
-                } else {
-                    if (isVisible())
-                        MessagesHelper.showInfoMessageWarning(requireActivity(),
-                                getString(R.string.login_needed));
-                }
-                break;
-            case R.id.upload_needed:
+            case R.id.iv_sync_needed:
                 if (isVisible())
                     MessagesHelper.showInfoMessageWarning(requireActivity(),
-                            getString(R.string.changes_to_be_uploaded));
-                break;
-            case R.id.download_needed:
-                if (isVisible())
-                    MessagesHelper.showInfoMessageWarning(requireActivity(),
-                            getString(R.string.changes_to_be_downloaded));
+                            getString(R.string.changes_to_be_sync));
                 break;
             case R.id.rl_leader_board:
                 if (spHelper.getUserLoginStatus()) {
@@ -287,12 +264,10 @@ public class SettingsFragment extends Fragment implements View.OnClickListener {
                             SuperUtil.loadView(requireActivity(),
                                     LeaderBoardFragment.newInstance(),
                                     LeaderBoardFragment.TAG, true);
-
                         } else {
                             SuperUtil.loadView(requireActivity(),
                                     AdMobFragment.newInstance(currentUser, true),
                                     AdMobFragment.TAG, true);
-
                         }
                         Log.d(TAG, "onClick: leader_board: " + "Premium: "
                                 + currentUser.isPremium());
@@ -307,7 +282,6 @@ public class SettingsFragment extends Fragment implements View.OnClickListener {
                                 getString(R.string.login_needed));
                 }
                 break;
-
             case R.id.rl_about:
                 SuperUtil.loadView(requireActivity(), AboutFragment.newInstance(),
                         AboutFragment.TAG, true);
@@ -320,19 +294,18 @@ public class SettingsFragment extends Fragment implements View.OnClickListener {
         }
     }
 
-    private void synchronize() {
+    private void download() {
         DatabaseReference fReference = FirebaseDatabase.getInstance()
                 .getReference(USER_FIRE_BASE_REFERENCE)
                 .child(currentUser.getId());
-        Dialog pgsDialog = SuperUtil.showProgressDialog(getActivity(), container);
+
+        SuperUtil.showView(animScaleUp, syncProgress);
         fAuth.signInWithEmailAndPassword(currentUser.getEmail(), currentUser.getPass())
                 .addOnCompleteListener(task -> {
                     if (task.isSuccessful()) {
                         fReference.addValueEventListener(new ValueEventListener() {
                             @Override
                             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                                if (pgsDialog.isShowing())
-                                    pgsDialog.dismiss();
 
                                 currentUser = new ItemUser();
                                 currentUser.setId(fAuth.getCurrentUser().getUid());
@@ -346,6 +319,9 @@ public class SettingsFragment extends Fragment implements View.OnClickListener {
                                         .getValue(String.class));
                                 currentUser.setImg(dataSnapshot.child(Constants.USER_COLUMN_IMG)
                                         .getValue(String.class));
+                                currentUser.setPremium(Boolean.parseBoolean(
+                                        dataSnapshot.child(Constants.USER_COLUMN_PREMIUM_STATUS)
+                                                .getValue(String.class)));
 
                                 GenericTypeIndicator<HashMap<String, String>> t =
                                         new GenericTypeIndicator<HashMap<String, String>>() {
@@ -367,18 +343,20 @@ public class SettingsFragment extends Fragment implements View.OnClickListener {
                                     new AsyncTaskViewLoader(currentUser).execute();
                                 }
 
+
+                                SuperUtil.hideViewInvisibleWay(animScaleDown, syncProgress);
                             }
 
                             @Override
                             public void onCancelled(@NonNull DatabaseError databaseError) {
-                                Log.e(TAG, "synchronize onCancelled: " + databaseError.getMessage());
+                                SuperUtil.hideViewInvisibleWay(animScaleDown, syncProgress);
+                                Log.e(TAG, "synchronize onCancelled: " +
+                                        databaseError.getMessage());
                             }
                         });
 
                     } else {
-                        if (pgsDialog.isShowing())
-                            pgsDialog.dismiss();
-
+                        SuperUtil.hideViewInvisibleWay(animScaleUp, syncProgress);
                         if (task.getException() instanceof FirebaseNetworkException) {
                             if (isVisible())
                                 MessagesHelper.showInfoMessageWarning(requireActivity(),
@@ -386,7 +364,7 @@ public class SettingsFragment extends Fragment implements View.OnClickListener {
                         } else {
                             if (isVisible())
                                 MessagesHelper.showInfoMessageError(requireActivity(),
-                                        getString(R.string.failed_uploading));
+                                        getString(R.string.failed_synchronizing));
                         }
                     }
                 });
@@ -398,7 +376,7 @@ public class SettingsFragment extends Fragment implements View.OnClickListener {
                 .child(currentUser.getId())
                 .child(USER_COLUMN_VERSES);
 
-        Dialog pgsDialog = SuperUtil.showProgressDialog(getActivity(), container);
+        SuperUtil.showView(animScaleUp, syncProgress);
         fAuth.signInWithEmailAndPassword(currentUser.getEmail(), currentUser.getPass())
                 .addOnCompleteListener(task -> {
                     if (task.isSuccessful()) {
@@ -406,21 +384,19 @@ public class SettingsFragment extends Fragment implements View.OnClickListener {
                                 SuperUtil.getVersesIntoHasMapList(realmHelper.getSavedVerses()))
                                 .addOnCompleteListener(task_2 -> {
                                     if (task_2.isSuccessful()) {
-                                        if (pgsDialog.isShowing())
-                                            pgsDialog.dismiss();
                                         spHelper.setLastUploadDate(LAST_UPLOAD + currentUser.getId(),
                                                 System.currentTimeMillis());
 
                                         isLoginAction = false;
                                         new AsyncTaskViewLoader(currentUser).execute();
 
-                                        uploadScore(pgsDialog);
+                                        uploadScoreOnLeaderBoardTable();
                                     }
                                 });
                     } else {
 
-                        if (pgsDialog.isShowing())
-                            pgsDialog.dismiss();
+                        //hiding progress cirlce
+                        SuperUtil.hideViewInvisibleWay(animScaleDown, syncProgress);
 
                         if (task.getException() instanceof FirebaseNetworkException) {
                             if (isVisible())
@@ -430,47 +406,57 @@ public class SettingsFragment extends Fragment implements View.OnClickListener {
                         } else {
                             if (isVisible())
                                 MessagesHelper.showInfoMessageError(requireActivity(),
-                                        getString(R.string.failed_uploading));
+                                        getString(R.string.failed_synchronizing));
                         }
                     }
                 });
     }
 
-    private void uploadScore(Dialog pgsDialog) {
+    private void uploadScoreOnLeaderBoardTable() {
         DatabaseReference fReferenceLeaderBoard = FirebaseDatabase.getInstance()
                 .getReference(LEADER_BOARD_FIRE_BASE_REFERENCE)
                 .child(currentUser.getId());
+
+        SuperUtil.showView(null, syncProgress);
         fReferenceLeaderBoard.setValue(currentUser.getScoreInfoIntoHasMap())
                 .addOnCompleteListener(task -> {
                     if (task.isSuccessful()) {
                         Log.d(TAG, "Leader board uploadScore:Success ");
-                        if (isVisible())
-                            MessagesHelper.showInfoMessage(requireActivity(), getString(R.string.upload_success));
+                        loadUserDashBoard();
                     } else {
-                        Log.e(TAG, "uploadScore: " + task.getException().getMessage());
+                        Log.e(TAG, "uploadScore: " + task.getException());
                     }
-                    if (pgsDialog.isShowing())
-                        pgsDialog.dismiss();
+
+                    //hiding progress cirlce
+                    SuperUtil.hideViewInvisibleWay(animScaleDown, syncProgress);
                 });
 
-        updateUserScoreOnFireBase(pgsDialog);
+        updateUserScoreOnUserTable();
     }
 
-    private void updateUserScoreOnFireBase(Dialog pgsDialog) {
+    private void updateUserScoreOnUserTable() {
         DatabaseReference fReferenceUser = FirebaseDatabase.getInstance()
                 .getReference(USER_FIRE_BASE_REFERENCE)
                 .child(currentUser.getId())
                 .child(USER_COLUMN_VERSES_SCORE);
 
-        fReferenceUser.setValue(String.valueOf(currentUser.getScore()))
+        SuperUtil.showView(null, syncProgress);
+        fReferenceUser.setValue(String.valueOf(ScoreHelper.round(currentUser.getScore())))
                 .addOnCompleteListener(task -> {
                     if (task.isSuccessful()) {
+                        isLeaderBoardSyncNeeded = false;
+                        loadUserDashBoard();
                         Log.d(TAG, "User Score uploadScore: Success ");
+
+                        if (isVisible()) {
+                            MessagesHelper.showInfoMessage(requireActivity(),
+                                    getString(R.string.sync_success));
+                        }
                     } else {
-                        Log.e(TAG, "User uploadScore: " + task.getException().getMessage());
+                        Log.e(TAG, "User uploadScore: " + task.getException());
                     }
-                    if (pgsDialog.isShowing())
-                        pgsDialog.dismiss();
+                    //hiding progress cirlce
+                    SuperUtil.hideViewInvisibleWay(animScaleDown, syncProgress);
                 });
     }
 
@@ -577,7 +563,7 @@ public class SettingsFragment extends Fragment implements View.OnClickListener {
                         showInfoMessageOnDialog(msg, dialogView, rootDialog);
                         Log.d(TAG, "sendRestorePassEmail. Email sent.");
                     } else {
-                        Log.d(TAG, "sendRestorePassEmail: " + task.getException().getMessage());
+                        Log.d(TAG, "sendRestorePassEmail: " + task.getException());
                         if (pgsDialog.isShowing())
                             pgsDialog.dismiss();
 
@@ -640,6 +626,7 @@ public class SettingsFragment extends Fragment implements View.OnClickListener {
                         FirebaseUser fUser = fAuth.getCurrentUser();
                         currentUser = new ItemUser();
                         currentUser.setPass(password);
+                        assert fUser != null;
                         DatabaseReference fReference = FirebaseDatabase.getInstance()
                                 .getReference(USER_FIRE_BASE_REFERENCE)
                                 .child(fUser.getUid());
@@ -670,12 +657,12 @@ public class SettingsFragment extends Fragment implements View.OnClickListener {
                                     isLoginAction = true;
                                     new AsyncTaskViewLoader(currentUser).execute();
                                     startDataListener();
+                                    startLeaderBoarDataListener();
                                 } else {
                                     if (isVisible())
                                         MessagesHelper.showInfoMessageWarningOnDialog(requireActivity(),
                                                 getString(R.string.invalid_user), dialogView);
                                 }
-
                             }
 
                             @Override
@@ -723,10 +710,7 @@ public class SettingsFragment extends Fragment implements View.OnClickListener {
         @Override
         protected void onPreExecute() {
             super.onPreExecute();
-            if (progressBar.getVisibility() == View.GONE) {
-                progressBar.setVisibility(View.VISIBLE);
-                progressBar.startAnimation(animScaleUp);
-            }
+            SuperUtil.showView(null, progressBar);
         }
 
         @Override
@@ -739,11 +723,8 @@ public class SettingsFragment extends Fragment implements View.OnClickListener {
         @Override
         protected void onPostExecute(Void aVoid) {
             super.onPostExecute(aVoid);
-            if (progressBar.getVisibility() == View.VISIBLE) {
-                progressBar.setVisibility(View.GONE);
-                progressBar.startAnimation(animScaleDown);
-            }
 
+            SuperUtil.hideView(null, progressBar);
             showUserInfo(currentUser, bitmapFromBase64);
 
             if (isLoginAction) {
@@ -774,24 +755,14 @@ public class SettingsFragment extends Fragment implements View.OnClickListener {
             tvLastUploadDate.setText(TimeHelper.dateFormatterShort(lastUploadDate));
 
         float score = ScoreHelper.getUserScoreByVersesList(localVerses);
-        tvUserScore.setText(String.valueOf(score));
+        tvUserScore.setText(String.valueOf(ScoreHelper.round(score)));
         currentUser.setScore(score);
 
-
-        if (isUploadNeeded) {
-            SuperUtil.showView(animScaleUp, ivUploadNeeded);
-            rlUpload.setBackgroundResource(R.drawable.selector_light_green);
-        } else {
-            SuperUtil.hideViewInvisibleWay(animScaleDown, ivUploadNeeded);
-            rlUpload.setBackgroundResource(R.drawable.selector_gray);
-        }
-
-
-        if (isSyncNeeded) {
-            SuperUtil.showView(animScaleUp, ivDownloadNeeded);
+        if (isUploadNeeded || isDownloadNeeded || isLeaderBoardSyncNeeded) {
+            SuperUtil.showView(animScaleUp, ivSyncNeeded);
             rlSync.setBackgroundResource(R.drawable.selector_light_green);
         } else {
-            SuperUtil.hideViewInvisibleWay(animScaleDown, ivDownloadNeeded);
+            SuperUtil.hideViewInvisibleWay(animScaleDown, ivSyncNeeded);
             rlSync.setBackgroundResource(R.drawable.selector_gray);
         }
     }
@@ -801,6 +772,8 @@ public class SettingsFragment extends Fragment implements View.OnClickListener {
                 .getReference(USER_FIRE_BASE_REFERENCE)
                 .child(currentUser.getId())
                 .child(USER_COLUMN_VERSES);
+
+        SuperUtil.showView(animScaleUp, syncProgress);
         fReference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -817,27 +790,30 @@ public class SettingsFragment extends Fragment implements View.OnClickListener {
                 localVerses = realmHelper.getSavedVerses();
                 if (spHelper.getUserLoginStatus()) {
                     checkIfEmailIsVerified();
-                    checkIfSyncIsNeeded();
+                    checkIfDownloadIsNeeded();
                     checkIfUploadIsNeeded();
                     loadUserDashBoard();
                 }
 
+                SuperUtil.hideViewInvisibleWay(animScaleDown, syncProgress);
                 Log.d(TAG, "onDataChange: Cloud Verses: " + cloudVerses.toString());
                 Log.d(TAG, "onDataChange: Local Verses: " + localVerses.toString());
             }
 
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
-                Log.e(TAG, "startDataListener onCancelled: DatabaseError: " + databaseError.getMessage());
+                SuperUtil.hideViewInvisibleWay(animScaleDown, syncProgress);
+                Log.e(TAG, "startDataListener onCancelled: DatabaseError: "
+                        + databaseError.getMessage());
             }
         });
     }
 
     private void checkIfUploadIsNeeded() {
-        isSyncNeeded = !SuperUtil.containsAll(cloudVerses, localVerses) && !cloudVerses.isEmpty();
+        isDownloadNeeded = !SuperUtil.containsAll(cloudVerses, localVerses) && !cloudVerses.isEmpty();
     }
 
-    private void checkIfSyncIsNeeded() {
+    private void checkIfDownloadIsNeeded() {
         isUploadNeeded = !SuperUtil.containsAll(localVerses, cloudVerses);
     }
 
@@ -846,6 +822,7 @@ public class SettingsFragment extends Fragment implements View.OnClickListener {
                 .getReference(LEADER_BOARD_FIRE_BASE_REFERENCE)
                 .child(currentUser.getId());
 
+        SuperUtil.showView(animScaleUp, syncProgress);
         fReference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -863,27 +840,28 @@ public class SettingsFragment extends Fragment implements View.OnClickListener {
                             Objects.requireNonNull(dataSnapshot
                                     .child(LEADER_BOARD_COLUMN_SCORE).getValue(String.class))));
 
-                    if (!leaderboardItem.getName().equals(currentUser.getName())
+                    isLeaderBoardSyncNeeded = !leaderboardItem.getName().equals(currentUser.getName())
                             || !leaderboardItem.getImg().equals(currentUser.getImg())
                             || leaderboardItem.getScore() != currentUser.getScore()
-                            || leaderboardItem.isPremium() != currentUser.isPremium()) {
-                        isUploadNeeded = true;
-                        loadUserDashBoard();
-                    }
+                            || leaderboardItem.isPremium() != currentUser.isPremium();
+
+                    loadUserDashBoard();
 
                     Log.d(TAG, "onDataChange: LeaderBoardItem: " + leaderboardItem.toString());
                 } else {
                     if (currentUser.getScore() != 0) {
-                        isUploadNeeded = true;
+                        isLeaderBoardSyncNeeded = true;
                         loadUserDashBoard();
                     }
                     Log.d(TAG, "onDataChange: dataSnapshot DO NOT EXISTS");
                 }
 
+                SuperUtil.hideViewInvisibleWay(animScaleDown, syncProgress);
             }
 
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
+                SuperUtil.hideViewInvisibleWay(animScaleDown, syncProgress);
                 Log.e(TAG, "startLeaderBoarDataListener onCancelled: DatabaseError: "
                         + databaseError.getMessage());
             }
@@ -901,7 +879,7 @@ public class SettingsFragment extends Fragment implements View.OnClickListener {
         if (currentUser.isPremium()) {
             SuperUtil.showView(null, ivBadge);
         } else {
-            SuperUtil.hideView(null, ivBadge);
+            SuperUtil.hideViewInvisibleWay(null, ivBadge);
         }
 
         if (itemUser.getImg() != null && itemUser.getImg().equals(Constants.DEFAULT)) {
@@ -916,7 +894,7 @@ public class SettingsFragment extends Fragment implements View.OnClickListener {
 
         if (spHelper.getUserLoginStatus()) {
             checkIfEmailIsVerified();
-            checkIfSyncIsNeeded();
+            checkIfDownloadIsNeeded();
             checkIfUploadIsNeeded();
             loadUserDashBoard();
         }
@@ -949,21 +927,5 @@ public class SettingsFragment extends Fragment implements View.OnClickListener {
         if (isSigningAction) {
             rlUserSettings.startAnimation(animScaleUp);
         }
-    }
-
-    @Override
-    public void onSaveInstanceState(@NonNull Bundle outState) {
-        outState.putBoolean("isSyncNeeded", isSyncNeeded);
-        outState.putBoolean("isUploadNeeded", isUploadNeeded);
-        super.onSaveInstanceState(outState);
-    }
-
-    @Override
-    public void onViewStateRestored(@Nullable Bundle savedInstanceState) {
-        if (savedInstanceState != null) {
-            isSyncNeeded = savedInstanceState.getBoolean("isSyncNeeded");
-            isUploadNeeded = savedInstanceState.getBoolean("isUploadNeeded");
-        }
-        super.onViewStateRestored(savedInstanceState);
     }
 }
