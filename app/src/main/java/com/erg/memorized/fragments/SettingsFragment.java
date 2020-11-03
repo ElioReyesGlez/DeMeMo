@@ -299,7 +299,7 @@ public class SettingsFragment extends Fragment implements View.OnClickListener {
                 .getReference(USER_FIRE_BASE_REFERENCE)
                 .child(currentUser.getId());
 
-        SuperUtil.showView(animScaleUp, syncProgress);
+        SuperUtil.showView(null, syncProgress);
         fAuth.signInWithEmailAndPassword(currentUser.getEmail(), currentUser.getPass())
                 .addOnCompleteListener(task -> {
                     if (task.isSuccessful()) {
@@ -308,7 +308,8 @@ public class SettingsFragment extends Fragment implements View.OnClickListener {
                             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
 
                                 currentUser = new ItemUser();
-                                currentUser.setId(fAuth.getCurrentUser().getUid());
+                                currentUser.setId(Objects.requireNonNull(fAuth.getCurrentUser())
+                                        .getUid());
                                 currentUser.setEmail(dataSnapshot.child(Constants.USER_COLUMN_EMAIL)
                                         .getValue(String.class));
                                 currentUser.setMobile(dataSnapshot.child(Constants.USER_COLUMN_MOBILE)
@@ -345,19 +346,19 @@ public class SettingsFragment extends Fragment implements View.OnClickListener {
                                     spHelper.setLastSync(LAST_SYNC + currentUser.getId(),
                                             System.currentTimeMillis());
                                 }
-                                SuperUtil.hideViewInvisibleWay(animScaleDown, syncProgress);
+                                SuperUtil.hideViewInvisibleWay(null, syncProgress);
                             }
 
                             @Override
                             public void onCancelled(@NonNull DatabaseError databaseError) {
-                                SuperUtil.hideViewInvisibleWay(animScaleDown, syncProgress);
+                                SuperUtil.hideViewInvisibleWay(null, syncProgress);
                                 Log.e(TAG, "synchronize onCancelled: " +
                                         databaseError.getMessage());
                             }
                         });
 
                     } else {
-                        SuperUtil.hideViewInvisibleWay(animScaleUp, syncProgress);
+                        SuperUtil.hideViewInvisibleWay(null, syncProgress);
                         if (task.getException() instanceof FirebaseNetworkException) {
                             if (isVisible())
                                 MessagesHelper.showInfoMessageWarning(requireActivity(),
@@ -377,7 +378,7 @@ public class SettingsFragment extends Fragment implements View.OnClickListener {
                 .child(currentUser.getId())
                 .child(USER_COLUMN_VERSES);
 
-        SuperUtil.showView(animScaleUp, syncProgress);
+        SuperUtil.showView(null, syncProgress);
         fAuth.signInWithEmailAndPassword(currentUser.getEmail(), currentUser.getPass())
                 .addOnCompleteListener(task -> {
                     if (task.isSuccessful()) {
@@ -397,7 +398,7 @@ public class SettingsFragment extends Fragment implements View.OnClickListener {
                     } else {
 
                         //hiding progress cirlce
-                        SuperUtil.hideViewInvisibleWay(animScaleDown, syncProgress);
+                        SuperUtil.hideViewInvisibleWay(null, syncProgress);
 
                         if (task.getException() instanceof FirebaseNetworkException) {
                             if (isVisible())
@@ -429,7 +430,7 @@ public class SettingsFragment extends Fragment implements View.OnClickListener {
                     }
 
                     //hiding progress cirlce
-                    SuperUtil.hideViewInvisibleWay(animScaleDown, syncProgress);
+                    SuperUtil.hideViewInvisibleWay(null, syncProgress);
                 });
 
         updateUserScoreOnUserTable();
@@ -457,7 +458,7 @@ public class SettingsFragment extends Fragment implements View.OnClickListener {
                         Log.e(TAG, "User uploadScore: " + task.getException());
                     }
                     //hiding progress cirlce
-                    SuperUtil.hideViewInvisibleWay(animScaleDown, syncProgress);
+                    SuperUtil.hideViewInvisibleWay(null, syncProgress);
                 });
     }
 
@@ -489,8 +490,8 @@ public class SettingsFragment extends Fragment implements View.OnClickListener {
         loginBtn.setOnClickListener(v -> {
             SuperUtil.vibrate(Objects.requireNonNull(getContext()));
 
-            String email = etMail.getText().toString();
-            String password = etPass.getText().toString();
+            String email = Objects.requireNonNull(etMail.getText()).toString();
+            String password = Objects.requireNonNull(etPass.getText()).toString();
 
             if (validate(tilMail, tilPass, email, password)) {
                 login(email, password, dialog, dialogView);
@@ -542,7 +543,7 @@ public class SettingsFragment extends Fragment implements View.OnClickListener {
         Button editBtn = dialogRestoresEmailSentDialog.findViewById(R.id.send_dialog_button);
         editBtn.setOnClickListener(v -> {
             SuperUtil.vibrate(requireContext());
-            String email = editTextEmail.getText().toString();
+            String email = Objects.requireNonNull(editTextEmail.getText()).toString();
             if (validateEmail(email, tilEmail)) {
                 sendRestorePassByEmail(email, dialogRestoresEmailSentDialog, dialogView);
             }
@@ -767,7 +768,7 @@ public class SettingsFragment extends Fragment implements View.OnClickListener {
                 .child(currentUser.getId())
                 .child(USER_COLUMN_VERSES);
 
-        SuperUtil.showView(animScaleUp, syncProgress);
+        SuperUtil.showView(null, syncProgress);
         fReference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -790,14 +791,14 @@ public class SettingsFragment extends Fragment implements View.OnClickListener {
                     checkIfShowSyncAlert();
                 }
 
-                SuperUtil.hideViewInvisibleWay(animScaleDown, syncProgress);
+                SuperUtil.hideViewInvisibleWay(null, syncProgress);
                 Log.d(TAG, "onDataChange: Cloud Verses: " + cloudVerses.toString());
                 Log.d(TAG, "onDataChange: Local Verses: " + localVerses.toString());
             }
 
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
-                SuperUtil.hideViewInvisibleWay(animScaleDown, syncProgress);
+                SuperUtil.hideViewInvisibleWay(null, syncProgress);
                 Log.e(TAG, "startDataListener onCancelled: DatabaseError: "
                         + databaseError.getMessage());
             }
@@ -809,7 +810,7 @@ public class SettingsFragment extends Fragment implements View.OnClickListener {
                 .getReference(LEADER_BOARD_FIRE_BASE_REFERENCE)
                 .child(currentUser.getId());
 
-        SuperUtil.showView(animScaleUp, syncProgress);
+        SuperUtil.showView(null, syncProgress);
         fReference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -845,12 +846,12 @@ public class SettingsFragment extends Fragment implements View.OnClickListener {
                     Log.d(TAG, "onDataChange: dataSnapshot DO NOT EXISTS");
                 }
 
-                SuperUtil.hideViewInvisibleWay(animScaleDown, syncProgress);
+                SuperUtil.hideViewInvisibleWay(null, syncProgress);
             }
 
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
-                SuperUtil.hideViewInvisibleWay(animScaleDown, syncProgress);
+                SuperUtil.hideViewInvisibleWay(null, syncProgress);
                 Log.e(TAG, "startLeaderBoarDataListener onCancelled: DatabaseError: "
                         + databaseError.getMessage());
             }
@@ -872,7 +873,7 @@ public class SettingsFragment extends Fragment implements View.OnClickListener {
         isUploadNeeded = !SuperUtil.containsAll(localVerses, cloudVerses);
     }
 
-    private void checkIfShowSyncAlert(){
+    private void checkIfShowSyncAlert() {
         if (spHelper.getUserLoginStatus()) {
             if (isUploadNeeded || isDownloadNeeded || isLeaderBoardSyncNeeded) {
                 MessagesHelper.showInfoMessageWarningWhitsDissmis(

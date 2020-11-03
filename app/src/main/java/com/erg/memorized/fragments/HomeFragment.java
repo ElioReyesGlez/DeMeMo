@@ -282,7 +282,8 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
 
         call.enqueue(new Callback<DailyVerse>() {
             @Override
-            public void onResponse(Call<DailyVerse> call, Response<DailyVerse> response) {
+            public void onResponse(@NotNull Call<DailyVerse> call,
+                                   @NotNull Response<DailyVerse> response) {
                 if (!response.isSuccessful()) {
                     Log.d(TAG, "YourVersionApi onResponse: Not Successful  Code: "
                             + response.code()
@@ -308,7 +309,8 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
             }
 
             @Override
-            public void onFailure(Call<DailyVerse> call, Throwable t) {
+            public void onFailure(@NotNull Call<DailyVerse> call,
+                                  @NotNull Throwable t) {
                 Log.e(TAG, "YourVersionApi onFailure: " + t.getMessage());
                 SuperUtil.hideView(animScaleDown, pgrView);
                 if (isRefreshingAction)
@@ -357,7 +359,8 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
             }
 
             @Override
-            public void onFailure(Call<VerseBible> call, Throwable t) {
+            public void onFailure(@NotNull Call<VerseBible> call,
+                                  @NotNull Throwable t) {
                 Log.e(TAG, "BibleApi onFailure: Error: " + t.getMessage());
                 SuperUtil.hideView(animScaleDown, pgrView);
                 if (isRefreshingAction)
@@ -396,10 +399,8 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
                                         builder.append(child.getText());
                                     } else if (child.getItems() != null) {
                                         for (Item subChild : child.getItems()) {
-                                            if (subChild != null) {
-                                                if (subChild.getText() != null) {
-                                                    builder.append(subChild.getText());
-                                                }
+                                            if (subChild != null && subChild.getText() != null) {
+                                                builder.append(subChild.getText());
                                             }
                                         }
                                     }
