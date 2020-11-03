@@ -39,7 +39,8 @@ public class MessagesHelper {
             Snackbar snackBar = Snackbar.make(context.findViewById(R.id.placeSnackBar)
                     , msg, Snackbar.LENGTH_SHORT);
             snackBar.setBackgroundTint(context.getColor(R.color.colorPrimary));
-            snackBar.show();
+            if (!snackBar.isShown())
+                snackBar.show();
         }
     }
 
@@ -48,7 +49,8 @@ public class MessagesHelper {
             Snackbar snackBar = Snackbar.make(rootView.findViewById(R.id.placeSnackBar)
                     , msg, Snackbar.LENGTH_SHORT);
             snackBar.setBackgroundTint(context.getColor(R.color.colorPrimary));
-            snackBar.show();
+            if (!snackBar.isShown())
+                snackBar.show();
         }
     }
 
@@ -58,7 +60,8 @@ public class MessagesHelper {
             Snackbar snackBar = Snackbar.make(context.findViewById(R.id.placeSnackBar)
                     , msg, Snackbar.LENGTH_SHORT);
             snackBar.setBackgroundTint(context.getColor(R.color.red_btn_bg_color));
-            snackBar.show();
+            if (!snackBar.isShown())
+                snackBar.show();
         }
     }
 
@@ -68,7 +71,8 @@ public class MessagesHelper {
                     , msg, Snackbar.LENGTH_SHORT);
             snackBar.setBackgroundTint(context.getColor(R.color.yellow_bg_color));
             snackBar.setTextColor(context.getColor(R.color.dark_gray_btn_bg_color));
-            snackBar.show();
+            if (!snackBar.isShown())
+                snackBar.show();
         }
     }
 
@@ -83,7 +87,8 @@ public class MessagesHelper {
                 SuperUtil.vibrateMin(context);
                 snackBar.dismiss();
             });
-            snackBar.show();
+            if (!snackBar.isShown())
+                snackBar.show();
         }
     }
 
@@ -100,7 +105,8 @@ public class MessagesHelper {
                 CalendarHelper.requestCalendarReadWritePermission(context);
                 snackBar.dismiss();
             });
-            snackBar.show();
+            if (!snackBar.isShown())
+                snackBar.show();
         }
     }
 
@@ -110,7 +116,8 @@ public class MessagesHelper {
             Snackbar snackBar = Snackbar.make(dialogView, msg, Snackbar.LENGTH_SHORT);
             snackBar.setBackgroundTint(context.getColor(R.color.yellow_bg_color));
             snackBar.setTextColor(context.getColor(R.color.dark_gray_btn_bg_color));
-            snackBar.show();
+            if (!snackBar.isShown())
+                snackBar.show();
         }
     }
 
@@ -119,7 +126,8 @@ public class MessagesHelper {
         if (!context.isFinishing()) {
             Snackbar snackBar = Snackbar.make(dialogView, msg, Snackbar.LENGTH_SHORT);
             snackBar.setBackgroundTint(context.getColor(R.color.red_btn_bg_color));
-            snackBar.show();
+            if (!snackBar.isShown())
+                snackBar.show();
         }
     }
 
@@ -147,7 +155,8 @@ public class MessagesHelper {
                     }
                 }
             });
-            snackBar.show();
+            if (!snackBar.isShown())
+                snackBar.show();
         }
     }
 
