@@ -6,7 +6,6 @@ import android.graphics.Color;
 import android.graphics.Point;
 import android.graphics.Rect;
 import android.os.Bundle;
-import android.text.TextUtils;
 import android.util.Log;
 import android.view.DragEvent;
 import android.view.LayoutInflater;
@@ -170,9 +169,8 @@ public class DragAndDropFragment extends Fragment implements View.OnClickListene
                 R.drawable.background_green_light));
         textView.setElevation(1);
         textView.setMaxLines(1);
-        textView.setEllipsize(TextUtils.TruncateAt.END);
         textView.setLayoutParams(boxParams);
-        textView.setPadding(9, 9, 9, 9);
+        textView.setPadding(10, 10, 10, 10);
         textView.setText(word);
 
         setOnLongClick(textView);

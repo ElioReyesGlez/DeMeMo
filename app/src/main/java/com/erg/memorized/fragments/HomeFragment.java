@@ -35,7 +35,6 @@ import com.erg.memorized.views.CustomLineView;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collections;
 
 import retrofit2.Call;
@@ -82,8 +81,6 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
         spHelper = new SharedPreferencesHelper(requireContext());
         animScaleUp = AnimationUtils.loadAnimation(requireContext(), R.anim.scale_up);
         animScaleDown = AnimationUtils.loadAnimation(requireContext(), R.anim.scale_down);
-        String[] arrayLanguages = getResources().getStringArray(R.array.languages);
-        ArrayList<String> languages = new ArrayList<>(Arrays.asList(arrayLanguages));
     }
 
     @Override
@@ -172,7 +169,7 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
         lastReading.setOnClickListener(v -> {
             SuperUtil.vibrate(requireContext());
             SuperUtil.loadView(
-                    requireActivity(), MemorizingFragment.newInstance(verse, false),
+                    requireActivity(), MemorizingFragment.newInstance(verse, true),
                     MemorizingFragment.TAG,
                     true
             );
@@ -244,10 +241,9 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
         SuperUtil.vibrate(requireContext());
         switch (v.getId()) {
             case R.id.ll_daily_verse_container:
-                boolean isDailyVerse = true;
                 SuperUtil.loadView(requireActivity(),
                         MemorizingFragment.newInstance(dailyVerse,
-                                isDailyVerse),
+                                true),
                         MemorizingFragment.TAG, true);
                 break;
             case R.id.ib_refresh_daily_verse:
@@ -388,18 +384,30 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
 
         StringBuilder builder = new StringBuilder();
         for (Children childrenChild : children) {
-            if (childrenChild != null && childrenChild.getItems() != null)
+            if (childrenChild != null && childrenChild.getItems() != null) {
                 for (Item item : childrenChild.getItems()) {
                     if (item != null) {
                         if (item.getText() != null) {
                             builder.append(item.getText());
-                        } else if (item.getItems() != null && builder.length() == 0)
+                        } else if (item.getItems() != null)
                             for (Child child : item.getItems()) {
-                                if (child != null)
-                                    builder.append(child.getText());
+                                if (child != null) {
+                                    if (child.getText() != null) {
+                                        builder.append(child.getText());
+                                    } else if (child.getItems() != null) {
+                                        for (Item subChild : child.getItems()) {
+                                            if (subChild != null) {
+                                                if (subChild.getText() != null) {
+                                                    builder.append(subChild.getText());
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
                             }
                     }
                 }
+            }
         }
         return builder.toString();
     }

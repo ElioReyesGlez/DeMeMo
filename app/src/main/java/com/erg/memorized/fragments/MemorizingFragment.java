@@ -1,10 +1,7 @@
 package com.erg.memorized.fragments;
 
-import android.annotation.SuppressLint;
-import android.app.Dialog;
 import android.content.ClipData;
 import android.content.ClipboardManager;
-import android.content.Context;
 import android.media.AudioManager;
 import android.os.Build;
 import android.os.Bundle;
@@ -16,10 +13,8 @@ import android.view.ContextMenu;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.Window;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.SeekBar;
 import android.widget.TextView;
@@ -48,7 +43,6 @@ import java.util.Objects;
 import static android.content.Context.AUDIO_SERVICE;
 import static android.content.Context.CLIPBOARD_SERVICE;
 import static com.erg.memorized.util.Constants.FIX_SIZE;
-import static com.erg.memorized.util.Constants.LOTTIE_CHECK_BOX;
 import static com.erg.memorized.util.Constants.STATUS_BAR_MSG_KEY;
 
 
@@ -66,7 +60,7 @@ public class MemorizingFragment extends Fragment {
     private float userTextSize;
     private View rootView;
 
-    private boolean isDailyVerse = false;
+    private boolean checkIfStored = false;
 
     private AudioManager audioManager;
     private AudioManager.OnAudioFocusChangeListener focusChangeListener;
@@ -83,13 +77,13 @@ public class MemorizingFragment extends Fragment {
         // Required empty public constructor
     }
 
-    public MemorizingFragment(ItemVerse verse, boolean isDailyVerse) {
+    public MemorizingFragment(ItemVerse verse, boolean checkIfStored) {
         this.verse = verse;
-        this.isDailyVerse = isDailyVerse;
+        this.checkIfStored = checkIfStored;
     }
 
-    public static MemorizingFragment newInstance(ItemVerse verse, boolean isDailyVerse) {
-        return new MemorizingFragment(verse, isDailyVerse);
+    public static MemorizingFragment newInstance(ItemVerse verse, boolean checkIfStored) {
+        return new MemorizingFragment(verse, checkIfStored);
     }
 
     @Override
@@ -112,8 +106,6 @@ public class MemorizingFragment extends Fragment {
         animScaleDown = AnimationUtils.loadAnimation(getContext(), R.anim.scale_down);
         animSlideInFromRight = AnimationUtils.loadAnimation(getContext(),
                 R.anim.fab_slide_in_from_right);
-
-
     }
 
     @Override
@@ -201,9 +193,7 @@ public class MemorizingFragment extends Fragment {
 
     private void showBottomNavigationView() {
         if (bnv != null) {
-            bnv.setAnimation(animScaleUp);
-            if (bnv.getVisibility() == View.GONE)
-                bnv.setVisibility(View.VISIBLE);
+            SuperUtil.showView(animScaleUp, bnv);
         }
     }
 
@@ -346,50 +336,6 @@ public class MemorizingFragment extends Fragment {
         });
     }
 
-
-    private void showSaveVerseDialog(Context context) {
-        final Dialog dialog = new Dialog(context, R.style.alert_dialog);
-        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
-        dialog.setCancelable(false);
-        LayoutInflater inflater = getLayoutInflater();
-        @SuppressLint("InflateParams")
-        View dialogView = inflater.inflate(R.layout.dialog_save_verse_view,
-                null, false);
-        TextView msg = dialogView.findViewById(R.id.text_dialog);
-        msg.setText(R.string.msg_edit_to_save);
-        dialog.setContentView(dialogView);
-
-        /*onClick on dialog cancel button*/
-        Button cancelBtn = dialog.findViewById(R.id.cancel_dialog_button);
-        cancelBtn.setOnClickListener(v -> {
-            SuperUtil.vibrate(requireContext());
-            if (dialog.isShowing())
-                dialog.dismiss();
-        });
-
-        /*onClick on dialog delete button*/
-        Button editBtn = dialog.findViewById(R.id.edit_save_dialog_button);
-        editBtn.setOnClickListener(v -> {
-            SuperUtil.vibrate(requireContext());
-            ItemVerse currentItemVerse = new ItemVerse(verse.getTitle(), verse.getVerseText());
-            long idVerse = System.currentTimeMillis();
-            currentItemVerse.setId(idVerse);
-
-            SuperUtil.loadView(
-                    requireActivity(),
-                    NewVerseFragment.newInstance(currentItemVerse, true),
-                    NewVerseFragment.TAG,
-                    true
-            );
-
-            if (dialog.isShowing())
-                dialog.dismiss();
-
-        });
-        dialog.show();
-        dialogView.startAnimation(animScaleUp);
-    }
-
     private void saveUsageScoreByWeekDay() {
 
         String dayCodeKey;
@@ -443,27 +389,44 @@ public class MemorizingFragment extends Fragment {
     public void onStart() {
         super.onStart();
         rootView.startAnimation(animSlideInFromRight);
-        if (isDailyVerse) {
+        if (checkIfStored) {
             boolean verseExistByTitle = realmHelper.findItemVerseByTitle(verse.getTitle()) != null;
             boolean verseExistByVerseText = realmHelper.findItemVerseByText(verse.getVerseText()) != null;
             if (!verseExistByTitle && !verseExistByVerseText) {
                 new Handler().postDelayed(() -> {
                     if (isVisible()) {
-                        showSaveVerseDialog(requireContext());
-                        isDailyVerse = false;
+                        MessagesHelper.showSaveVerseDialog(requireActivity(), container,
+                                animScaleUp, verse);
+                        checkIfStored = false;
                     }
                 }, 800);
             }
         }
         if (!spHelper.getDialogSplitInfoStatus()) {
-            SuperUtil.showDialogWithLottie(getActivity(), LOTTIE_CHECK_BOX,
-                    getString(R.string.split_msg_dialog), getString(R.string.got_it),
-                    container, spHelper);
+            handleShowDialogtDialogSplit();
+        } else if (!spHelper.getDialogAskToDoTestStatus()) {
+            handleShowDialogAskToDoTest();
         }
-
         spHelper.saveMemorizingFragmentUsageOpenTime(System.currentTimeMillis());
     }
 
+    private void handleShowDialogtDialogSplit() {
+        new Handler().postDelayed(() -> {
+            if (isVisible()) {
+                MessagesHelper.showDialogtDialogSplit(requireActivity(),
+                        container, animScaleUp);
+            }
+        }, 1000);
+    }
+
+    private void handleShowDialogAskToDoTest() {
+        new Handler().postDelayed(() -> {
+            if (isVisible()) {
+                MessagesHelper.showDialogAskToDoTest(requireActivity(), container, animScaleUp,
+                        verse);
+            }
+        }, 1000);
+    }
 
     @Override
     public void onStop() {

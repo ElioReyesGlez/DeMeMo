@@ -56,7 +56,7 @@ import java.util.HashMap;
 import java.util.Objects;
 
 import static com.erg.memorized.util.Constants.EXCLAMATION_MARK_CHAR_DOWN;
-import static com.erg.memorized.util.Constants.LAST_UPLOAD;
+import static com.erg.memorized.util.Constants.LAST_SYNC;
 import static com.erg.memorized.util.Constants.LEADER_BOARD_COLUMN_IMG;
 import static com.erg.memorized.util.Constants.LEADER_BOARD_COLUMN_IS_PREMIUM;
 import static com.erg.memorized.util.Constants.LEADER_BOARD_COLUMN_NAME;
@@ -341,9 +341,10 @@ public class SettingsFragment extends Fragment implements View.OnClickListener {
                                     }
                                     isLoginAction = false;
                                     new AsyncTaskViewLoader(currentUser).execute();
+
+                                    spHelper.setLastSync(LAST_SYNC + currentUser.getId(),
+                                            System.currentTimeMillis());
                                 }
-
-
                                 SuperUtil.hideViewInvisibleWay(animScaleDown, syncProgress);
                             }
 
@@ -384,7 +385,7 @@ public class SettingsFragment extends Fragment implements View.OnClickListener {
                                 SuperUtil.getVersesIntoHasMapList(realmHelper.getSavedVerses()))
                                 .addOnCompleteListener(task_2 -> {
                                     if (task_2.isSuccessful()) {
-                                        spHelper.setLastUploadDate(LAST_UPLOAD + currentUser.getId(),
+                                        spHelper.setLastSync(LAST_SYNC + currentUser.getId(),
                                                 System.currentTimeMillis());
 
                                         isLoginAction = false;
@@ -740,17 +741,10 @@ public class SettingsFragment extends Fragment implements View.OnClickListener {
         }
     }
 
-    private void checkIfEmailIsVerified() {
-        if (fAuth.getCurrentUser() != null) {
-            boolean isVerified = fAuth.getCurrentUser().isEmailVerified();
-            spHelper.setEmailVerifiedStatus(isVerified);
-        }
-    }
-
     private void loadUserDashBoard() {
         tvVerseCont.setText(String.valueOf(realmHelper.getSavedVerses().size()));
 
-        long lastUploadDate = spHelper.getLastUploadDate(LAST_UPLOAD + currentUser.getId());
+        long lastUploadDate = spHelper.getLastSyncDate(LAST_SYNC + currentUser.getId());
         if (lastUploadDate != 0)
             tvLastUploadDate.setText(TimeHelper.dateFormatterShort(lastUploadDate));
 
@@ -793,6 +787,7 @@ public class SettingsFragment extends Fragment implements View.OnClickListener {
                     checkIfDownloadIsNeeded();
                     checkIfUploadIsNeeded();
                     loadUserDashBoard();
+                    checkIfShowSyncAlert();
                 }
 
                 SuperUtil.hideViewInvisibleWay(animScaleDown, syncProgress);
@@ -807,14 +802,6 @@ public class SettingsFragment extends Fragment implements View.OnClickListener {
                         + databaseError.getMessage());
             }
         });
-    }
-
-    private void checkIfUploadIsNeeded() {
-        isDownloadNeeded = !SuperUtil.containsAll(cloudVerses, localVerses) && !cloudVerses.isEmpty();
-    }
-
-    private void checkIfDownloadIsNeeded() {
-        isUploadNeeded = !SuperUtil.containsAll(localVerses, cloudVerses);
     }
 
     private void startLeaderBoarDataListener() {
@@ -846,12 +833,14 @@ public class SettingsFragment extends Fragment implements View.OnClickListener {
                             || leaderboardItem.isPremium() != currentUser.isPremium();
 
                     loadUserDashBoard();
+                    checkIfShowSyncAlert();
 
                     Log.d(TAG, "onDataChange: LeaderBoardItem: " + leaderboardItem.toString());
                 } else {
                     if (currentUser.getScore() != 0) {
                         isLeaderBoardSyncNeeded = true;
                         loadUserDashBoard();
+                        checkIfShowSyncAlert();
                     }
                     Log.d(TAG, "onDataChange: dataSnapshot DO NOT EXISTS");
                 }
@@ -866,6 +855,30 @@ public class SettingsFragment extends Fragment implements View.OnClickListener {
                         + databaseError.getMessage());
             }
         });
+    }
+
+    private void checkIfEmailIsVerified() {
+        if (fAuth.getCurrentUser() != null) {
+            boolean isVerified = fAuth.getCurrentUser().isEmailVerified();
+            spHelper.setEmailVerifiedStatus(isVerified);
+        }
+    }
+
+    private void checkIfUploadIsNeeded() {
+        isDownloadNeeded = !SuperUtil.containsAll(cloudVerses, localVerses) && !cloudVerses.isEmpty();
+    }
+
+    private void checkIfDownloadIsNeeded() {
+        isUploadNeeded = !SuperUtil.containsAll(localVerses, cloudVerses);
+    }
+
+    private void checkIfShowSyncAlert(){
+        if (spHelper.getUserLoginStatus()) {
+            if (isUploadNeeded || isDownloadNeeded || isLeaderBoardSyncNeeded) {
+                MessagesHelper.showInfoMessageWarningWhitsDissmis(
+                        requireActivity(), getString(R.string.changes_to_be_sync));
+            }
+        }
     }
 
     private void showUserInfo(ItemUser itemUser, Bitmap bitmapFromBase64) {
@@ -897,6 +910,7 @@ public class SettingsFragment extends Fragment implements View.OnClickListener {
             checkIfDownloadIsNeeded();
             checkIfUploadIsNeeded();
             loadUserDashBoard();
+            checkIfShowSyncAlert();
         }
     }
 

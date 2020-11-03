@@ -61,16 +61,13 @@ public class Constants {
     public static final String SIGN_ACTION_KEY = "signing_flag";
     public static final String INTRO_STATUS_KEY = "intro_flag";
     public static final String DIALOG_SPLIT_INFO_STATUS_KEY = "split_info_flag";
-    public static final String CHECK_STATUS_KEY = "checked_section_flag";
+    public static final String DIALOG_ASK_TO_DO_TEST_STATUS_KEY = "ask_to_do_test_flag";
     public static final String POSITION_SECTION = "position_section";
     public static final String SECTION_STATUS_KEY = "section_view_flag";
     public static final String EMAIL_VERIFIED_STATUS_KEY = "email_verified_flag";
     public static final String USER_TEXT_SIZE_PREF = "user_text_size";
     public static final String BIBLE_VERSION_KEY = "bible_version_key";
 
-
-    /*Lottie Animation Assets Name*/
-    public static final String LOTTIE_CHECK_BOX = "checking_box_black.json";
     /*URI CALENDARS*/
     public static final String URI_CALENDARS = "content://com.android.calendar/calendars";
     public static final int DEFAULT_SELECTED_REMAINDER = 10;
@@ -78,7 +75,7 @@ public class Constants {
     public static final String DAILY_KEY = "key_daily_";
     public static final String MONTHLY_KEY = "key_monthly_";
     public static final String WEEKLY_KEY = "key_weekly_";
-    public static final String LAST_UPLOAD = "last_upload_";
+    public static final String LAST_SYNC = "last_upload_";
     public static final String UPLOAD_CONT = "upload_cont_";
     public static final int LEADER_BOARD_USERS_LIMIT = 20;
     public static int VIEWS_PER_ROW = 3;

@@ -19,15 +19,12 @@ import android.view.ViewGroup;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.webkit.MimeTypeMap;
-import android.widget.Button;
-import android.widget.TextView;
 
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
-import com.airbnb.lottie.LottieAnimationView;
 import com.erg.memorized.R;
 import com.erg.memorized.helpers.MessagesHelper;
 import com.erg.memorized.helpers.SharedPreferencesHelper;
@@ -220,35 +217,6 @@ public class SuperUtil {
         dialog.setContentView(dialogView);
         dialog.show();
         return dialog;
-    }
-
-
-    public static void showDialogWithLottie(Activity context, String lottieAssetName,
-                                            String msg, String btnMsg, ViewGroup container,
-                                            SharedPreferencesHelper spHelper) {
-        Dialog dialog = new Dialog(context, R.style.alert_dialog);
-        dialog.setCancelable(false);
-        LayoutInflater inflater = context.getLayoutInflater();
-        View dialogView = inflater.inflate(R.layout.dialog_lottie, container, false);
-
-        LottieAnimationView lottie = dialogView.findViewById(R.id.lottie_anim);
-        lottie.setAnimation(lottieAssetName);
-
-        TextView tvMsg = dialogView.findViewById(R.id.tv_msg_dialog);
-        tvMsg.setText(msg);
-
-        Button btn = dialogView.findViewById(R.id.btn_dialog);
-        btn.setText(btnMsg);
-        btn.setOnClickListener(v -> {
-            vibrate(context);
-            spHelper.setDialogSplitInfoStatus(true);
-            dialog.dismiss();
-        });
-
-        Animation anim = AnimationUtils.loadAnimation(context, R.anim.less_scale_up);
-        dialogView.setAnimation(anim);
-        dialog.setContentView(dialogView);
-        dialog.show();
     }
 
     public static void showMeoBottomBar(Activity context, Animation anim) {

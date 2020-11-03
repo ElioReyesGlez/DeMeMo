@@ -59,7 +59,6 @@ public class NewVerseFragment extends Fragment implements View.OnClickListener,
     private View rootView;
 
     private final boolean isEditingAction;
-    private boolean flagStartMemorizing = false;
 
     private long notifyDate = -1;
     private TextInputLayout tilTitle, tilVerse;
@@ -134,11 +133,11 @@ public class NewVerseFragment extends Fragment implements View.OnClickListener,
         tiEditTextVerse = rootView.findViewById(R.id.ti_edit_text_verse);
         RelativeLayout rlShowPickers = rootView.findViewById(R.id.rl_show_pickers);
         tvDate = rootView.findViewById(R.id.tv_date);
-        Button justSave = rootView.findViewById(R.id.save_button);
-        Button saveStart = rootView.findViewById(R.id.save_button_start);
+        Button btnSave = rootView.findViewById(R.id.btn_save);
+        Button btnCancel = rootView.findViewById(R.id.cancel_button);
 
-        justSave.setOnClickListener(this);
-        saveStart.setOnClickListener(this);
+        btnSave.setOnClickListener(this);
+        btnCancel.setOnClickListener(this);
         rlShowPickers.setOnClickListener(this);
 
         if (isEditingAction) {
@@ -168,12 +167,10 @@ public class NewVerseFragment extends Fragment implements View.OnClickListener,
     public void onClick(View v) {
         SuperUtil.vibrate(requireContext());
         switch (v.getId()) {
-            case R.id.save_button:
-                savingProcess();
+            case R.id.cancel_button:
+                requireActivity().onBackPressed();
                 break;
-            case R.id.save_button_start:
-                flagStartMemorizing = true;
-                SuperUtil.vibrate(requireContext());
+            case R.id.btn_save:
                 savingProcess();
                 break;
             case R.id.rl_show_pickers:
@@ -314,24 +311,11 @@ public class NewVerseFragment extends Fragment implements View.OnClickListener,
     @Override
     public void onStart() {
         super.onStart();
-        if (meoBottomBar != null) {
-            meoBottomBar.setAnimation(animScaleDown);
-            if (meoBottomBar.getVisibility() == View.VISIBLE)
-                meoBottomBar.setVisibility(View.GONE);
-        }
-    }
-
-    @Override
-    public void onPause() {
-        super.onPause();
-        if (meoBottomBar != null) {
-            meoBottomBar.setAnimation(animScaleUp);
-            if (meoBottomBar.getVisibility() == View.GONE)
-                meoBottomBar.setVisibility(View.VISIBLE);
-        }
+        SuperUtil.showView(animScaleUp, meoBottomBar);
     }
 
     private void loadMemorizingView() {
+        SuperUtil.removeViewByTag(requireActivity(), TAG, true);
         SuperUtil.removeViewByTag(requireActivity(), MemorizingFragment.TAG, true);
         SuperUtil.loadView(requireActivity(),
                 MemorizingFragment.newInstance(currentItemVerse, false),
@@ -470,9 +454,8 @@ public class NewVerseFragment extends Fragment implements View.OnClickListener,
                 showDialogItemExit(verseExistByTitle, verseExistByVerseText);
             else {
                 saveIntoDB();
-                if (flagStartMemorizing) {
-                    loadMemorizingView();
-                }
+                loadMemorizingView();
+
             }
         }
     }
@@ -483,7 +466,6 @@ public class NewVerseFragment extends Fragment implements View.OnClickListener,
         saveSharedPref();
         MessagesHelper.showInfoMessage(requireActivity(),
                 getString(R.string.saved));
-        SuperUtil.removeViewByTag(requireActivity(), TAG, true);
     }
 
     private void saveSharedPref() {
@@ -509,7 +491,7 @@ public class NewVerseFragment extends Fragment implements View.OnClickListener,
                     formattedUntilDate = TimeHelper.getUntil(untilDate);
                     hasAlarmFlag = true;
                 }
-            } else if (currentItemVerse != null && currentItemVerse.getUntilAlarm() != -1) {
+            } else if (currentItemVerse.getUntilAlarm() != -1) {
                 formattedUntilDate = TimeHelper.dateFormatterMedium(currentItemVerse.getUntilAlarm());
             }
 
@@ -559,11 +541,8 @@ public class NewVerseFragment extends Fragment implements View.OnClickListener,
             if (isVisible())
                 MessagesHelper.showInfoMessage(requireActivity(),
                         getString(R.string.saved));
-            SuperUtil.removeViewByTag(requireActivity(), TAG, true);
 
-            if (flagStartMemorizing) {
-                loadMemorizingView();
-            }
+            loadMemorizingView();
 
             if (dialog.isShowing())
                 dialog.dismiss();

@@ -104,7 +104,7 @@
                 android:layout_centerVertical="true"
                 android:layout_marginStart="16dp"
                 android:layout_toEndOf="@id/icon_date_and_time_symbol"
-                android:text="@string/notification_setup"
+                android:text="@string/reminder"
                 android:textColor="#202020"
                 android:textSize="18sp"
                 android:maxLines="1"
@@ -132,25 +132,25 @@
             android:weightSum="2">
 
             <Button
-                android:id="@+id/save_button"
+                android:id="@+id/cancel_button"
                 style="@style/ok_button"
                 android:layout_marginStart="@dimen/cancel_button_margin_left"
                 android:layout_marginTop="@dimen/regular_item_padding"
                 android:layout_marginEnd="2dp"
                 android:layout_marginBottom="@dimen/regular_window_margin"
                 android:layout_weight="1"
-                android:background="@drawable/selector_blue"
-                android:text="@string/dialog_save"/>
+                android:background="@drawable/selector_gray_2"
+                android:text="@string/dialog_cancel"/>
 
             <Button
-                android:id="@+id/save_button_start"
+                android:id="@+id/btn_save"
                 style="@style/ok_button"
                 android:layout_marginStart="3dp"
                 android:layout_marginTop="@dimen/regular_item_padding"
                 android:layout_marginEnd="@dimen/save_button_margin_right"
                 android:layout_marginBottom="@dimen/regular_window_margin"
                 android:layout_weight="1"
-                android:text="@string/dialog_save_start"/>
+                android:text="@string/save"/>
 
         </LinearLayout>
     </RelativeLayout>

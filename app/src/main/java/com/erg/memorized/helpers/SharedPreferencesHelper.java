@@ -32,6 +32,7 @@ import static com.erg.memorized.util.Constants.BIBLE_SELECTED_KEY;
 import static com.erg.memorized.util.Constants.BIBLE_VERSION_KEY;
 import static com.erg.memorized.util.Constants.CURRENT_SECTION_KEY;
 import static com.erg.memorized.util.Constants.DAILY_VERSE_KEY;
+import static com.erg.memorized.util.Constants.DIALOG_ASK_TO_DO_TEST_STATUS_KEY;
 import static com.erg.memorized.util.Constants.DIALOG_SPLIT_INFO_STATUS_KEY;
 import static com.erg.memorized.util.Constants.EMAIL_VERIFIED_STATUS_KEY;
 import static com.erg.memorized.util.Constants.INTRO_STATUS_KEY;
@@ -120,6 +121,16 @@ public class SharedPreferencesHelper {
         editor.apply();
     }
 
+    public boolean getDialogAskToDoTestStatus() {
+        return sharedPref.getBoolean(DIALOG_ASK_TO_DO_TEST_STATUS_KEY, false);
+    }
+
+    public void setDialogAskToDoTestStatus(boolean flag) {
+        editor = sharedPref.edit();
+        editor.putBoolean(DIALOG_ASK_TO_DO_TEST_STATUS_KEY, flag);
+        editor.apply();
+    }
+
     public boolean getDialogSplitInfoStatus() {
         return sharedPref.getBoolean(DIALOG_SPLIT_INFO_STATUS_KEY, false);
     }
@@ -202,11 +213,11 @@ public class SharedPreferencesHelper {
         return sharedPref.getBoolean(key, false);
     }
 
-    public Long getLastUploadDate(String key) {
+    public Long getLastSyncDate(String key) {
         return sharedPref.getLong(key, 0);
     }
 
-    public void setLastUploadDate(String key, long date) {
+    public void setLastSync(String key, long date) {
         editor = sharedPref.edit();
         editor.putLong(key, date);
         editor.apply();

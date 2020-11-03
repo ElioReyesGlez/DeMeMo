@@ -45,6 +45,7 @@ public class ScorerFragment extends Fragment implements BoxTestListener {
     private ItemVerse verse;
 
     private View rootView;
+    private ViewGroup container;
     public CustomViewPager scorerViewPager;
     public AdapterScorerFragmentPager scoreViewPagerAdapter;
     private TextView tvIndicator, tvCountdown;
@@ -88,6 +89,7 @@ public class ScorerFragment extends Fragment implements BoxTestListener {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         rootView = inflater.inflate(R.layout.fragment_scorer, container, false);
+        this.container = container;
         setUpView();
         return rootView;
     }
@@ -195,6 +197,7 @@ public class ScorerFragment extends Fragment implements BoxTestListener {
                 if (isVisible()) {
                     MessagesHelper.showEvaluatorDialogInfoMessage(
                             requireActivity(),
+                            container,
                             finalImage,
                             finalMsg,
                             tag
@@ -222,7 +225,7 @@ public class ScorerFragment extends Fragment implements BoxTestListener {
                     SuperUtil.hideView(animScaleDown, llCountdownContainer);
                     isOnTick = false;
                     timeFinishDialog = MessagesHelper.showTimeFinishedDialog(requireActivity(),
-                            ScorerFragment.this);
+                            container,ScorerFragment.this);
                 }
             }
         };

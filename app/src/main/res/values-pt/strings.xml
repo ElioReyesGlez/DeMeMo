@@ -220,6 +220,7 @@
     <string name="get_premium_ad_free">Torne-se PREMIUM para obter um DeMeMo SEM ANÚNCIOS</string>
     <string name="already_premium">Já é um membro premium</string>
     <string name="memorizing_finish">Pronto, bom trabalho! \n Está pronto para testar a sua memória?</string>
+    <string name="dialog_msg_ask_to_do_test">Está pronto para testar a sua memória?</string>
     <string name="about">Sobre</string>
     <string name="forgot_password">Esqueceu a senha?</string>
     <string name="function_temporarily_disabled">Função temporariamente desativada</string>

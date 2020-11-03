@@ -79,7 +79,7 @@ public class ResultFragment extends Fragment implements View.OnClickListener {
             currentUser = realmHelper.getUser();
         }
 
-        animScaleUp = AnimationUtils.loadAnimation(getContext(), R.anim.scale_up);
+        animScaleUp = AnimationUtils.loadAnimation(getContext(), R.anim.less_scale_up);
         animScaleDown = AnimationUtils.loadAnimation(getContext(), R.anim.scale_down);
     }
 
@@ -174,7 +174,7 @@ public class ResultFragment extends Fragment implements View.OnClickListener {
                 uploadScore();
                 break;
             case R.id.btn_exit_score:
-                MessagesHelper.showLivingAlertDialog(requireActivity());
+                MessagesHelper.showLivingAlertDialog(requireActivity(), container, animScaleUp);
                 break;
         }
     }
