@@ -136,7 +136,7 @@
     <string name="refresh_icon">" icono actualizar"</string>
     <string name="upload">Salvar</string>
     <string name="general_settings">Configuración General</string>
-    <string name="changes_to_be_sync">Alerta de sincronización: ¡Datos para ser sincronizados!</string>
+    <string name="changes_to_be_sync">Alerta de sincronización: ¡Datos para sincronizar!</string>
     <string name="search">buscar…</string>
     <string name="leader_board">Tabla de Clasificación</string>
     <string name="icon_leader_board">Icono de tabla de clasificación</string>

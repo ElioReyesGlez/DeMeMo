@@ -78,8 +78,6 @@ public class Constants {
     public static final String LAST_SYNC = "last_upload_";
     public static final String UPLOAD_CONT = "upload_cont_";
     public static final int LEADER_BOARD_USERS_LIMIT = 20;
-    public static int VIEWS_PER_ROW = 3;
-    public static final int DEFAULT_VIEWS_PER_ROW = 4;
 
 
     /*VIBRATION*/
@@ -195,6 +193,7 @@ public class Constants {
     public static final String URL_DEVELOPER_1 = "https://www.linkedin.com/in/elioenai-reyes-gonzález";
     public static final String URL_DEVELOPER_2 = "https://www.linkedin.com/in/josé-ernesto-cortes-7bb8671b6";
 
+    public static final String SYNC_ALERT_FLAG_KEY = "sync_alert_flag";
 
     // DeMeMo adMob id
     public static final String interstitial_ad_unit_id = "ca-app-pub-5375894039512920/4596144610";

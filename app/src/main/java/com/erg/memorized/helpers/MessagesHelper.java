@@ -76,21 +76,6 @@ public class MessagesHelper {
         }
     }
 
-    public static void showInfoMessageWarningWhitsDissmis(Activity context, String msg) {
-        if (!context.isFinishing()) {
-            Snackbar snackBar = Snackbar.make(context.findViewById(R.id.placeSnackBar)
-                    , msg, Snackbar.LENGTH_SHORT);
-            snackBar.setBackgroundTint(context.getColor(R.color.yellow_bg_color));
-            snackBar.setTextColor(context.getColor(R.color.dark_gray_btn_bg_color));
-            snackBar.setDuration(Snackbar.LENGTH_INDEFINITE);
-            snackBar.setAction(context.getString(R.string.ok), v -> {
-                SuperUtil.vibrateMin(context);
-                snackBar.dismiss();
-            });
-            if (!snackBar.isShown())
-                snackBar.show();
-        }
-    }
 
     public static void showPermissionAskInfoMessage(Activity context, String msg) {
 

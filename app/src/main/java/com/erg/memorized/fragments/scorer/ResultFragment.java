@@ -52,6 +52,7 @@ public class ResultFragment extends Fragment implements View.OnClickListener {
     private Animation animScaleUp, animScaleDown;
     private int totalScore;
     private boolean isAlreadyAdShowed = false;
+    private boolean isAlreadySaved = false;
 
     public ResultFragment() {
         // Required empty public constructor
@@ -172,9 +173,14 @@ public class ResultFragment extends Fragment implements View.OnClickListener {
             case R.id.btn_save_score:
                 saveScoreOnLocalDB();
                 uploadScore();
+                isAlreadySaved = true;
                 break;
             case R.id.btn_exit_score:
-                MessagesHelper.showLivingAlertDialog(requireActivity(), container, animScaleUp);
+                if (isAlreadySaved) {
+                    requireActivity().onBackPressed();
+                } else {
+                    MessagesHelper.showLivingAlertDialog(requireActivity(), container, animScaleUp);
+                }
                 break;
         }
     }
@@ -225,7 +231,7 @@ public class ResultFragment extends Fragment implements View.OnClickListener {
 
     private void handleAdd() {
         new Handler().postDelayed(() -> {
-            if (isVisible()){
+            if (isVisible()) {
                 SuperUtil.loadView(
                         requireActivity(),
                         AdMobFragment.newInstance(currentUser, false),

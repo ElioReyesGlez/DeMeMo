@@ -275,13 +275,18 @@ public class VersesFragment extends Fragment implements View.OnClickListener, On
                 dialog.dismiss();
         });
 
-        /*onClick on dialog edit button*/
+        /*onClick on dialog delete all button*/
         Button deleteAll = dialog.findViewById(R.id.delete_all_dialog_button);
         deleteAll.setOnClickListener(v -> {
             SuperUtil.vibrate(requireContext());
 
             realmHelper.deleteAllVerseFromRealmDataBase();
             verses = realmHelper.getSavedVerses();
+            if (spHelper.getUserLoginStatus() && currentUser != null) {
+                if (switchRemoveCloud.isChecked())
+                    removeFromCloud();
+            }
+
             adapterForVersesList.refreshAdapter(verses);
             setUpEmptyContainer();
 
@@ -313,6 +318,52 @@ public class VersesFragment extends Fragment implements View.OnClickListener, On
                 .addOnCompleteListener(task -> {
                     if (task.isSuccessful()) {
                         fReference.setValue(SuperUtil.getVersesIntoHasMapList(verses))
+                                .addOnCompleteListener(task1 -> {
+                                    Log.d(TAG, "removeFromCloud: " + task1.toString());
+                                    if (pgsDialog.isShowing())
+                                        pgsDialog.dismiss();
+
+                                    if (task1.isSuccessful()) {
+                                        if (isVisible())
+                                            MessagesHelper.showInfoMessage(requireActivity(),
+                                                    getString(R.string.cloud_successfully_deleted));
+                                    } else {
+                                        if (isVisible())
+                                            MessagesHelper.showInfoMessageWarning(requireActivity(),
+                                                    getString(R.string.failed_removing));
+                                    }
+                                });
+                    } else {
+                        if (pgsDialog.isShowing())
+                            pgsDialog.dismiss();
+
+                        if (task.getException() instanceof FirebaseNetworkException) {
+                            if (isVisible())
+                                MessagesHelper.showInfoMessageWarning(requireActivity(),
+                                        getString(R.string.network_error));
+                            Log.d(TAG, "upload: " + task.getException().getMessage());
+                        } else {
+                            if (isVisible())
+                                MessagesHelper.showInfoMessageError(requireActivity(),
+                                        getString(R.string.failed_synchronizing));
+                        }
+                    }
+                });
+    }
+
+    private void removeAllFromCloud() {
+        verses = new ArrayList<>(realmHelper.getSavedVerses());
+
+        DatabaseReference fReference = FirebaseDatabase.getInstance()
+                .getReference(USER_FIRE_BASE_REFERENCE)
+                .child(currentUser.getId())
+                .child(USER_COLUMN_VERSES);
+
+        Dialog pgsDialog = SuperUtil.showProgressDialog(requireActivity(), container);
+        fAuth.signInWithEmailAndPassword(currentUser.getEmail(), currentUser.getPass())
+                .addOnCompleteListener(task -> {
+                    if (task.isSuccessful()) {
+                        fReference.removeValue()
                                 .addOnCompleteListener(task1 -> {
                                     Log.d(TAG, "removeFromCloud: " + task1.toString());
                                     if (pgsDialog.isShowing())

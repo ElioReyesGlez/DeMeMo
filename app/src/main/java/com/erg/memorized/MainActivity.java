@@ -435,6 +435,8 @@ public class MainActivity extends FragmentActivity {
     @Override
     protected void onStop() {
         super.onStop();
+        spHelper.setSyncAlertAlreadyShowedFlag(false);
+        Log.d(TAG, "onStop: SyncAlertAlready cleared: FALSE");
         spHelper.saveLastUsage(System.currentTimeMillis());
         Log.d(TAG, "onStop: LastUsage Saved: " + System.currentTimeMillis());
     }

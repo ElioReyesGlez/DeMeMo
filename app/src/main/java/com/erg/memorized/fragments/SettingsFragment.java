@@ -5,6 +5,7 @@ import android.app.Dialog;
 import android.graphics.Bitmap;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.os.Handler;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -99,6 +100,7 @@ public class SettingsFragment extends Fragment implements View.OnClickListener {
     private ArrayList<ItemVerse> cloudVerses;
     private ArrayList<ItemVerse> localVerses;
     private Animation animScaleUp, animScaleDown;
+    private Snackbar snackbarSyncAlert = null;
 
     public SettingsFragment() {
         // Required empty public constructor
@@ -164,6 +166,7 @@ public class SettingsFragment extends Fragment implements View.OnClickListener {
         tvLastUploadDate = rootView.findViewById(R.id.tv_upload_date);
         rlSync = rootView.findViewById(R.id.rl_sync);
         ivSyncNeeded = rootView.findViewById(R.id.iv_sync_needed);
+        setUpSnackBarSyncNeededAlert();
 
         rlSync.setOnClickListener(this);
         ivSyncNeeded.setOnClickListener(this);
@@ -618,7 +621,6 @@ public class SettingsFragment extends Fragment implements View.OnClickListener {
         return valid;
     }
 
-
     private void login(String email, String password, Dialog dialog, View dialogView) {
         Dialog pgsDialog = SuperUtil.showProgressDialog(getActivity(), container);
 
@@ -663,7 +665,8 @@ public class SettingsFragment extends Fragment implements View.OnClickListener {
                                 } else {
                                     if (isVisible())
                                         MessagesHelper.showInfoMessageWarningOnDialog(requireActivity(),
-                                                getString(R.string.invalid_user), dialogView);
+                                                getString(R.string.invalid_user),
+                                                dialogView);
                                 }
                             }
 
@@ -680,11 +683,13 @@ public class SettingsFragment extends Fragment implements View.OnClickListener {
                         if (task.getException() instanceof FirebaseAuthInvalidUserException) {
                             if (isVisible())
                                 MessagesHelper.showInfoMessageWarningOnDialog(requireActivity(),
-                                        getString(R.string.invalid_user), dialogView);
+                                        getString(R.string.invalid_user),
+                                        dialogView);
                         } else if (task.getException() instanceof FirebaseNetworkException) {
                             if (isVisible())
                                 MessagesHelper.showInfoMessageWarningOnDialog(requireActivity(),
-                                        getString(R.string.network_error), dialogView);
+                                        getString(R.string.network_error),
+                                        dialogView);
                         } else if (task.getException() instanceof FirebaseAuthInvalidCredentialsException) {
                             if (isVisible())
                                 MessagesHelper.showInfoMessageWarningOnDialog(requireActivity(),
@@ -692,7 +697,8 @@ public class SettingsFragment extends Fragment implements View.OnClickListener {
                         } else if (task.getException() instanceof FirebaseTooManyRequestsException) {
                             if (isVisible())
                                 MessagesHelper.showInfoMessageWarningOnDialog(requireActivity(),
-                                        getString(R.string.too_many_requests), dialogView);
+                                        getString(R.string.too_many_requests),
+                                        dialogView);
                             deactivateLoginButton(dialogView);
                         }
                     }
@@ -759,7 +765,14 @@ public class SettingsFragment extends Fragment implements View.OnClickListener {
         } else {
             SuperUtil.hideViewInvisibleWay(animScaleDown, ivSyncNeeded);
             rlSync.setBackgroundResource(R.drawable.selector_gray);
+            if (snackbarSyncAlert != null && snackbarSyncAlert.isShown()) {
+                snackbarSyncAlert.dismiss();
+            }
         }
+    }
+
+    private void handleShowSyncAlert() {
+        new Handler().postDelayed(this::checkIfShowSyncAlert, 1700);
     }
 
     private void startDataListener() {
@@ -783,13 +796,11 @@ public class SettingsFragment extends Fragment implements View.OnClickListener {
                 }
 
                 localVerses = realmHelper.getSavedVerses();
-                if (spHelper.getUserLoginStatus()) {
-                    checkIfEmailIsVerified();
-                    checkIfDownloadIsNeeded();
-                    checkIfUploadIsNeeded();
-                    loadUserDashBoard();
-                    checkIfShowSyncAlert();
-                }
+                checkIfEmailIsVerified();
+                checkIfDownloadIsNeeded();
+                checkIfUploadIsNeeded();
+                loadUserDashBoard();
+                handleShowSyncAlert();
 
                 SuperUtil.hideViewInvisibleWay(null, syncProgress);
                 Log.d(TAG, "onDataChange: Cloud Verses: " + cloudVerses.toString());
@@ -834,14 +845,14 @@ public class SettingsFragment extends Fragment implements View.OnClickListener {
                             || leaderboardItem.isPremium() != currentUser.isPremium();
 
                     loadUserDashBoard();
-                    checkIfShowSyncAlert();
+                    handleShowSyncAlert();
 
                     Log.d(TAG, "onDataChange: LeaderBoardItem: " + leaderboardItem.toString());
                 } else {
                     if (currentUser.getScore() != 0) {
                         isLeaderBoardSyncNeeded = true;
                         loadUserDashBoard();
-                        checkIfShowSyncAlert();
+                        handleShowSyncAlert();
                     }
                     Log.d(TAG, "onDataChange: dataSnapshot DO NOT EXISTS");
                 }
@@ -876,8 +887,14 @@ public class SettingsFragment extends Fragment implements View.OnClickListener {
     private void checkIfShowSyncAlert() {
         if (spHelper.getUserLoginStatus()) {
             if (isUploadNeeded || isDownloadNeeded || isLeaderBoardSyncNeeded) {
-                MessagesHelper.showInfoMessageWarningWhitsDissmis(
-                        requireActivity(), getString(R.string.changes_to_be_sync));
+                if (snackbarSyncAlert != null && !spHelper.isSyncAlertShowedAlready()
+                        && !snackbarSyncAlert.isShown()) {
+                    snackbarSyncAlert.show();
+                }
+            } else {
+                if (snackbarSyncAlert != null && snackbarSyncAlert.isShown()) {
+                    snackbarSyncAlert.dismiss();
+                }
             }
         }
     }
@@ -911,7 +928,6 @@ public class SettingsFragment extends Fragment implements View.OnClickListener {
             checkIfDownloadIsNeeded();
             checkIfUploadIsNeeded();
             loadUserDashBoard();
-            checkIfShowSyncAlert();
         }
     }
 
@@ -933,6 +949,21 @@ public class SettingsFragment extends Fragment implements View.OnClickListener {
             tilPass.setError(null);
         }
         return valid;
+    }
+
+    private void setUpSnackBarSyncNeededAlert() {
+        snackbarSyncAlert = Snackbar.make(requireActivity().findViewById(R.id.placeSnackBar)
+                , getString(R.string.changes_to_be_sync), Snackbar.LENGTH_SHORT);
+        snackbarSyncAlert.setBackgroundTint(requireContext().getColor(R.color.yellow_bg_color));
+        snackbarSyncAlert.setTextColor(requireContext().getColor(R.color.dark_gray_btn_bg_color));
+        snackbarSyncAlert.setDuration(Snackbar.LENGTH_INDEFINITE);
+        snackbarSyncAlert.setAction(requireContext().getString(R.string.ok), v -> {
+            if (isVisible()) {
+                SuperUtil.vibrateMin(requireActivity());
+            }
+            spHelper.setSyncAlertAlreadyShowedFlag(true);
+            snackbarSyncAlert.dismiss();
+        });
     }
 
     @Override

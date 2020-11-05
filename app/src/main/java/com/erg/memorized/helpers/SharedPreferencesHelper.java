@@ -51,6 +51,7 @@ import static com.erg.memorized.util.Constants.PREF_RATE_LAUNCH_TIMES_KEY;
 import static com.erg.memorized.util.Constants.PREF_SHOW_DIALOG_FLAG_KEY;
 import static com.erg.memorized.util.Constants.SECTION_STATUS_KEY;
 import static com.erg.memorized.util.Constants.STATUS_BAR_MSG_KEY;
+import static com.erg.memorized.util.Constants.SYNC_ALERT_FLAG_KEY;
 
 public class SharedPreferencesHelper {
 
@@ -69,11 +70,6 @@ public class SharedPreferencesHelper {
     public boolean isEmpty() {
         return sharedPref.getAll().isEmpty();
     }
-
-/*    public boolean clear() {
-        editor = sharedPref.edit();
-        return editor.clear().commit();
-    }*/
 
     public void setOnAudioMessageViewed(String key) {
         editor = sharedPref.edit();
@@ -494,5 +490,16 @@ public class SharedPreferencesHelper {
         editor = sharedPref.edit();
         editor.putLong(PREF_LAST_LAUNCH_PREMIUM_DIALOG_DATE_KEY, System.currentTimeMillis());
         editor.apply();
+    }
+
+
+    public void setSyncAlertAlreadyShowedFlag(boolean flag) {
+        editor = sharedPref.edit();
+        editor.putBoolean(SYNC_ALERT_FLAG_KEY, flag);
+        editor.apply();
+    }
+
+    public boolean isSyncAlertShowedAlready() {
+        return sharedPref.getBoolean(SYNC_ALERT_FLAG_KEY, false);
     }
 }
