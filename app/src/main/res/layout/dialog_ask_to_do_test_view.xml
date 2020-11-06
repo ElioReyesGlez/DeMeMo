@@ -106,28 +106,15 @@
                     android:id="@+id/lineal_l_buttons_container"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:weightSum="2">
-
-                    <Button
-                        android:id="@+id/do_test_dialog_no"
-                        style="@style/ok_button"
-                        android:layout_margin="@dimen/regular_item_padding"
-                        android:layout_weight="1"
-                        android:paddingStart="@dimen/regular_window_padding"
-                        android:paddingEnd="@dimen/regular_window_padding"
-                        android:background="@drawable/selector_gray"
-                        android:text="@string/premium_dialog_no" />
-
+                    android:orientation="horizontal">
                     <Button
                         android:id="@+id/do_test_dialog_ok"
                         style="@style/ok_button"
                         android:layout_margin="@dimen/regular_item_padding"
-                        android:layout_weight="1"
                         android:paddingStart="@dimen/regular_window_padding"
                         android:paddingEnd="@dimen/regular_window_padding"
                         android:background="@drawable/selector_light_green"
-                        android:text="@string/premium_dialog_ok" />
+                        android:text="@string/got_it" />
 
                 </LinearLayout>
             </HorizontalScrollView>

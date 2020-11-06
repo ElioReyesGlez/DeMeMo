@@ -100,12 +100,12 @@ public class ScoreHelper {
         return new Score( hitsCont, almostHitsCont, missCont, ops);
     }
 
-    public static int getTotalScore(ArrayList<Score> scores) {
+    public static float getTotalScore(ArrayList<Score> scores) {
         float TOTAL = 0;
         for (Score score : scores) {
             TOTAL += getEvaluatorScore(score);
         }
-        return Math.round(TOTAL);
+        return TOTAL;
     }
 
     public static float getEvaluatorScore(Score score) {

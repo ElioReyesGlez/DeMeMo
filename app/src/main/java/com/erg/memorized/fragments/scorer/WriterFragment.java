@@ -36,6 +36,7 @@ import com.erg.memorized.views.CustomViewPager;
 import com.google.android.material.textfield.TextInputEditText;
 
 import java.util.ArrayList;
+import java.util.Objects;
 
 import static androidx.annotation.Dimension.SP;
 import static com.erg.memorized.util.Constants.REGEX_SPACE;
@@ -152,7 +153,7 @@ public class WriterFragment extends Fragment implements ScorerListener {
                     boxTextView.setEllipsize(TextUtils.TruncateAt.END);
                     boxTextView.setLayoutParams(boxParams);
                     boxTextView.setPadding(4, 4, 4, 4);
-                    boxTextView.setTextSize(SP, 16);
+                    boxTextView.setTextSize(SP, 17);
                     boxTextView.setText(wordToSelect);
                     registerForContextMenu(boxTextView);
                     row.addView(boxTextView);
@@ -166,7 +167,7 @@ public class WriterFragment extends Fragment implements ScorerListener {
                     inputEditText.setBackground(ContextCompat.getDrawable(requireContext(),
                             R.drawable.background_green_light));
                     inputEditText.setPadding(4, 4, 4, 4);
-                    inputEditText.setTextSize(SP, 15);
+                    inputEditText.setTextSize(SP, 17);
                     inputEditText.setTextColor(requireContext()
                             .getColor(R.color.text_default_dark_gray));
                     String lowLine = TextHelper.getLowLineFromWord(wordToSelect);
@@ -212,7 +213,7 @@ public class WriterFragment extends Fragment implements ScorerListener {
                 if (s.length() > 0) {
                     boolean flag = true;
                     for (TextInputEditText editText : inputEditTexts) {
-                        if (editText.getText().toString().isEmpty()) {
+                        if (Objects.requireNonNull(editText.getText()).toString().isEmpty()) {
                             flag = false;
                             break;
                         }

@@ -60,8 +60,8 @@
             android:layout_column="0"
             android:layout_weight="1"
             android:text="@string/hits"
-            android:textSize="12sp"
-            android:textStyle="bold" />
+            android:textStyle="bold"
+            android:textSize="12sp"/>
 
         <TextView
             android:id="@+id/tv_hits_sum"
@@ -85,7 +85,8 @@
             android:layout_column="0"
             android:layout_weight="1"
             android:text="@string/almost_hit"
-            android:textStyle="bold" />
+            android:textStyle="bold"
+            android:textSize="12sp" />
 
         <TextView
             android:id="@+id/tv_almost_sum"
@@ -107,7 +108,8 @@
             android:layout_column="0"
             android:layout_weight="1"
             android:text="@string/miss"
-            android:textStyle="bold" />
+            android:textStyle="bold"
+            android:textSize="12sp" />
 
         <TextView
             android:id="@+id/tv_miss_sum"
@@ -117,7 +119,7 @@
             android:layout_weight="1"
             android:text="@string/blank"
             android:textAlignment="center"
-            android:textSize="12sp" />
+            android:textSize="12sp"/>
 
     </TableRow>
 
@@ -129,7 +131,7 @@
         android:text="@string/score_100"
         android:textAlignment="center"
         android:textColor="@color/text_default_dark_gray"
-        android:textSize="14sp"
-        android:textStyle="bold" />
+        android:textStyle="bold"
+        android:textSize="14sp"/>
 
 </TableLayout>

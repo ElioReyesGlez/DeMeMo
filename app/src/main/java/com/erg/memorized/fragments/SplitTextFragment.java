@@ -116,7 +116,8 @@ public class SplitTextFragment extends Fragment implements OnSectionListener {
 
     @Override
     public void isFullyCheckedListener() {
-        if (currentUser != null && currentUser.getEmail() != null) {
+        if (currentUser != null && currentUser.getEmail() != null &&
+                !currentUser.getEmail().isEmpty() && spHelper.getUserLoginStatus()) {
             showTestDialog();
         }
     }
@@ -125,7 +126,7 @@ public class SplitTextFragment extends Fragment implements OnSectionListener {
         new Handler().postDelayed(() -> {
             if (isVisible())
                 MessagesHelper.showTestDialog(requireActivity(), container, animScaleUp, verse);
-        }, 900);
+        }, 1000);
     }
 
     @SuppressLint("StaticFieldLeak")

@@ -422,8 +422,7 @@ public class MemorizingFragment extends Fragment {
     private void handleShowDialogAskToDoTest() {
         new Handler().postDelayed(() -> {
             if (isVisible()) {
-                MessagesHelper.showDialogAskToDoTest(requireActivity(), container, animScaleUp,
-                        verse);
+                MessagesHelper.showDialogAskToDoTest(requireActivity(), container, animScaleUp);
             }
         }, 1000);
     }

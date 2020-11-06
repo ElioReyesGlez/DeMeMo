@@ -9,12 +9,23 @@
     android:scrollbars="vertical"
     tools:context=".fragments.scorer.ResultFragment">
 
+    <ImageView
+        android:id="@+id/iv_score_calculation_info"
+        android:layout_width="27dp"
+        android:layout_height="27dp"
+        android:layout_gravity="top|end"
+        android:src="@drawable/ic_square"
+        android:background="@drawable/selector_white"
+        android:layout_margin="@dimen/regular_window_margin"
+        android:padding="@dimen/regular_item_padding"
+        android:contentDescription="@string/info_icon" />
+
     <TextView
         android:id="@+id/tv_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal|top"
-        android:layout_margin="2dp"
+        android:layout_marginBottom="2dp"
         android:padding="@dimen/regular_window_padding"
         android:text="@string/title"
         android:textAlignment="center"

@@ -11,9 +11,11 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.erg.memorized.R;
+import com.erg.memorized.helpers.ScoreHelper;
 import com.erg.memorized.helpers.TimeHelper;
 import com.erg.memorized.interfaces.OnVerseListener;
 import com.erg.memorized.model.ItemVerse;
+import com.erg.memorized.util.SuperUtil;
 
 import java.util.ArrayList;
 
@@ -22,7 +24,6 @@ public class AdapterRecyclerViewForVersesList extends RecyclerView.Adapter<Adapt
     private ArrayList<ItemVerse> verses;
     private final Context context;
     private final OnVerseListener onVerseListener;
-    private int selectedPos = RecyclerView.NO_POSITION;
 
     public AdapterRecyclerViewForVersesList(ArrayList<ItemVerse> verses, Context context,
                                             OnVerseListener onVerseListener) {
@@ -48,6 +49,13 @@ public class AdapterRecyclerViewForVersesList extends RecyclerView.Adapter<Adapt
         holder.setVerseText(verse.getVerseText());
         holder.setVerseDate(verse.getId());
         holder.setSelected();
+
+        if (verse.getVerseScore() > 0) {
+            SuperUtil.showView(null, holder.getVerseScore());
+            holder.setVerseScore(ScoreHelper.round(verse.getVerseScore()));
+        } else {
+            SuperUtil.hideViewInvisibleWay(null, holder.getVerseScore());
+        }
     }
 
     @Override
@@ -60,6 +68,7 @@ public class AdapterRecyclerViewForVersesList extends RecyclerView.Adapter<Adapt
         private final TextView verseTitle;
         private final TextView verseText;
         private final TextView verseDate;
+        private final TextView verseScore;
         private final RelativeLayout relativeLayout;
         private final OnVerseListener onVerseListener;
 
@@ -68,6 +77,7 @@ public class AdapterRecyclerViewForVersesList extends RecyclerView.Adapter<Adapt
             verseTitle = itemView.findViewById(R.id.tv_verse_title);
             verseText = itemView.findViewById(R.id.tv_verse_text);
             verseDate = itemView.findViewById(R.id.tv_date);
+            verseScore = itemView.findViewById(R.id.tv_verse_score);
             relativeLayout = itemView.findViewById(R.id.relative_layout_item_list);
             this.onVerseListener = onVerseListener;
 
@@ -87,8 +97,29 @@ public class AdapterRecyclerViewForVersesList extends RecyclerView.Adapter<Adapt
             verseDate.setText(TimeHelper.getDisplayableTime(context, longDate));
         }
 
+        void setVerseScore(float score) {
+            String auxStr = String.valueOf(ScoreHelper.round(score));
+            verseScore.setText(auxStr);
+        }
+
         void setSelected() {
             relativeLayout.setBackgroundResource(R.drawable.selector_white);
+        }
+
+        public TextView getVerseTitle() {
+            return verseTitle;
+        }
+
+        public TextView getVerseText() {
+            return verseText;
+        }
+
+        public TextView getVerseDate() {
+            return verseDate;
+        }
+
+        public TextView getVerseScore() {
+            return verseScore;
         }
 
         @Override

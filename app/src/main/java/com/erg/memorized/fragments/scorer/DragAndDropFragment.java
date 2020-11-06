@@ -36,6 +36,7 @@ import com.erg.memorized.views.CustomViewPager;
 import java.util.ArrayList;
 import java.util.Collections;
 
+import static androidx.annotation.Dimension.SP;
 import static com.erg.memorized.util.Constants.SPACE;
 import static com.erg.memorized.util.Constants.TEXT_SIZE;
 
@@ -164,7 +165,7 @@ public class DragAndDropFragment extends Fragment implements View.OnClickListene
         TextView textView = new TextView(requireContext());
         textView.setId(i);
         textView.setTag(WORD_TAG);
-        textView.setTextSize(TEXT_SIZE);
+        textView.setTextSize(SP, TEXT_SIZE);
         textView.setBackground(ContextCompat.getDrawable(requireContext(),
                 R.drawable.background_green_light));
         textView.setElevation(1);

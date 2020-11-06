@@ -275,7 +275,7 @@ public class MessagesHelper {
             if (dialog.isShowing()) {
                 horizontalScrollView.fullScroll(HorizontalScrollView.FOCUS_RIGHT);
             }
-        }, 1000);
+        }, 900);
 
         spHelper.setLastLaunchRateDialogDate();
     }
@@ -290,8 +290,8 @@ public class MessagesHelper {
                                       Animation anim,
                                       ItemVerse verse) {
         final Dialog dialog = new Dialog(context, R.style.alert_dialog);
-        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
         dialog.setCancelable(false);
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
         LayoutInflater inflater = context.getLayoutInflater();
         View dialogView = inflater.inflate(R.layout.dialog_do_test_view,
                 container, false);
@@ -326,7 +326,7 @@ public class MessagesHelper {
             if (dialog.isShowing()) {
                 horizontalScrollView.fullScroll(HorizontalScrollView.FOCUS_RIGHT);
             }
-        }, 1000);
+        }, 900);
     }
 
     public static void showLivingAlertDialog(FragmentActivity context, ViewGroup container,
@@ -385,8 +385,7 @@ public class MessagesHelper {
     }
 
     public static void showDialogAskToDoTest(FragmentActivity context, ViewGroup container,
-                                             Animation anim,
-                                             ItemVerse verse) {
+                                             Animation anim) {
         Dialog dialog = new Dialog(context, R.style.alert_dialog);
         dialog.setCancelable(false);
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
@@ -397,20 +396,11 @@ public class MessagesHelper {
                 .findViewById(R.id.horizontal_scroll_btn_container);
 
         SharedPreferencesHelper spHelper = new SharedPreferencesHelper(context);
-        Button btnCancel = dialogView.findViewById(R.id.do_test_dialog_no);
-        btnCancel.setOnClickListener(v -> {
-            SuperUtil.vibrate(context);
-            spHelper.setDialogAskToDoTestStatus(true);
-            if (dialog.isShowing())
-                dialog.dismiss();
-        });
 
         Button btnOk = dialogView.findViewById(R.id.do_test_dialog_ok);
         btnOk.setOnClickListener(v -> {
             SuperUtil.vibrate(context);
-            spHelper.setDialogSplitInfoStatus(true);
-            SuperUtil.loadView(context, ScorerFragment.newInstance(verse),
-                    ScorerFragment.TAG, true);
+            spHelper.setDialogAskToDoTestStatus(true);
             if (dialog.isShowing())
                 dialog.dismiss();
         });
@@ -463,6 +453,46 @@ public class MessagesHelper {
             if (dialog.isShowing())
                 dialog.dismiss();
 
+        });
+
+        dialog.setContentView(dialogView);
+        dialog.show();
+        dialogView.startAnimation(anim);
+    }
+
+    public static void showScoreCalcInfo(FragmentActivity context,
+                                         ViewGroup container, Animation anim) {
+        final Dialog dialog = new Dialog(context, R.style.alert_dialog);
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        dialog.setCancelable(false);
+        LayoutInflater inflater = context.getLayoutInflater();
+        View dialogView = inflater.inflate(R.layout.dialog_info_calc_info_view,
+                container, false);
+
+        TextView tv_s = dialogView.findViewById(R.id.tv_s);
+        TextView tv_h = dialogView.findViewById(R.id.tv_h);
+        TextView tv_a = dialogView.findViewById(R.id.tv_a);
+        TextView tv_m = dialogView.findViewById(R.id.tv_m);
+        TextView tv_o = dialogView.findViewById(R.id.tv_o);
+
+        String s = "s : " + context.getString(R.string.score);
+        String h = "h : " + context.getString(R.string.hits);
+        String a = "a : " + context.getString(R.string.almost_hit);
+        String m = "m : " + context.getString(R.string.miss);
+        String o = "o : " + context.getString(R.string.options);
+
+        tv_s.setText(s);
+        tv_h.setText(h);
+        tv_a.setText(a);
+        tv_m.setText(m);
+        tv_o.setText(o);
+
+        /*onClick on dialog cancel button*/
+        Button btnOK = dialogView.findViewById(R.id.btn_ok);
+        btnOK.setOnClickListener(v -> {
+            SuperUtil.vibrate(context);
+            if (dialog.isShowing())
+                dialog.dismiss();
         });
 
         dialog.setContentView(dialogView);

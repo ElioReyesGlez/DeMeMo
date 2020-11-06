@@ -10,6 +10,7 @@ import android.view.ViewGroup;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ScrollView;
 import android.widget.TableLayout;
@@ -50,7 +51,7 @@ public class ResultFragment extends Fragment implements View.OnClickListener {
     private RealmHelper realmHelper;
     private SharedPreferencesHelper spHelper;
     private Animation animScaleUp, animScaleDown;
-    private int totalScore;
+    private float totalScore;
     private boolean isAlreadyAdShowed = false;
     private boolean isAlreadySaved = false;
 
@@ -98,6 +99,8 @@ public class ResultFragment extends Fragment implements View.OnClickListener {
         LinearLayout scorerContainer = rootView.findViewById(R.id.ll_scorer_container);
         Button btnSaveScore = rootView.findViewById(R.id.btn_save_score);
         Button btnExit = rootView.findViewById(R.id.btn_exit_score);
+        ImageView ivCalcInfo = rootView.findViewById(R.id.iv_score_calculation_info);
+        ivCalcInfo.setOnClickListener(this);
         btnSaveScore.setOnClickListener(this);
         btnExit.setOnClickListener(this);
 
@@ -181,6 +184,9 @@ public class ResultFragment extends Fragment implements View.OnClickListener {
                 } else {
                     MessagesHelper.showLivingAlertDialog(requireActivity(), container, animScaleUp);
                 }
+                break;
+            case R.id.iv_score_calculation_info:
+                MessagesHelper.showScoreCalcInfo(requireActivity(), container, animScaleUp);
                 break;
         }
     }

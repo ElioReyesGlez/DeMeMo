@@ -336,4 +336,7 @@
     <string name="reminder_intro_description">Configure a DeMeMo para que le recuerde cuando
         es tiempo de memorizar.</string>
     <string name="exit_without_saving">Salir</string>
+    <string name="calculation_msg">La puntuación se calcula con la siguiente ecuación:</string>
+    <string name="equation">Ecuación</string>
+    <string name="options">Opciones</string>
 </resources>

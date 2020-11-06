@@ -337,4 +337,7 @@
     <string name="reminder_intro_description">Configure a DeMeMo para lembrá-lo quando for
         a hora de memorizar.</string>
     <string name="exit_without_saving">Sair</string>
+    <string name="calculation_msg">A pontuação é calculada com a seguinte equação:</string>
+    <string name="equation">Equação</string>
+    <string name="options">Opções</string>
 </resources>
