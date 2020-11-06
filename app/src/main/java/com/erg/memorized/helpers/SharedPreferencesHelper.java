@@ -32,6 +32,7 @@ import static com.erg.memorized.util.Constants.BIBLE_SELECTED_KEY;
 import static com.erg.memorized.util.Constants.BIBLE_VERSION_KEY;
 import static com.erg.memorized.util.Constants.CURRENT_SECTION_KEY;
 import static com.erg.memorized.util.Constants.DAILY_VERSE_KEY;
+import static com.erg.memorized.util.Constants.DECIMAL_PLACE;
 import static com.erg.memorized.util.Constants.DIALOG_ASK_TO_DO_TEST_STATUS_KEY;
 import static com.erg.memorized.util.Constants.DIALOG_SPLIT_INFO_STATUS_KEY;
 import static com.erg.memorized.util.Constants.EMAIL_VERIFIED_STATUS_KEY;
@@ -332,7 +333,7 @@ public class SharedPreferencesHelper {
         for (int i = 0; i < TimeHelper.getCurrentDayOfWeekInNumber(); i++) {
             String key = dayCodes[i] + (i + 1);
             float value = getUsageValue(key);
-            float roundValue = ScoreHelper.round(value);
+            float roundValue = ScoreHelper.round(value, DECIMAL_PLACE);
             temp.add(roundValue);
         }
         return temp;

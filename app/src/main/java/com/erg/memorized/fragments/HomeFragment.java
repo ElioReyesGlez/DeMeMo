@@ -212,7 +212,6 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
         tvDailyDate.setText(TimeHelper.dateFormatterShort(dailyVerse.getId()));
         tvDailyVerseTitle.setText(dailyVerse.getTitle());
         tvDailyVerseText.setText(dailyVerse.getVerseText());
-
     }
 
     private void showDailyContentWhitAnim() {
@@ -337,7 +336,8 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
 
         call.enqueue(new Callback<VerseBible>() {
             @Override
-            public void onResponse(@NotNull Call<VerseBible> call, @NotNull Response<VerseBible> response) {
+            public void onResponse(@NotNull Call<VerseBible> call,
+                                   @NotNull Response<VerseBible> response) {
                 if (!response.isSuccessful()) {
                     Log.d(TAG, "BibleApi onResponse: Not Successful  Code: " + response.code()
                             + "\n" + response.message());

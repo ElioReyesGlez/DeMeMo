@@ -122,6 +122,7 @@ public class Constants {
     public static final String DEFAULT = "default";
 
     public static final int IMG_REQ_CODE = 1;
+    public static final int DECIMAL_PLACE = 1;
 
     public static final String SPACE = " ";
     public static final String DOT = ".";
