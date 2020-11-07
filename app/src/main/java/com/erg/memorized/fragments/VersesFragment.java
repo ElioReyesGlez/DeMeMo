@@ -284,7 +284,7 @@ public class VersesFragment extends Fragment implements View.OnClickListener, On
             verses = realmHelper.getSavedVerses();
             if (spHelper.getUserLoginStatus() && currentUser != null) {
                 if (switchRemoveCloud.isChecked())
-                    removeFromCloud();
+                    removeAllFromCloud();
             }
 
             adapterForVersesList.refreshAdapter(verses);
