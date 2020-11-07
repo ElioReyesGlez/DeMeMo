@@ -37,6 +37,7 @@ import com.google.android.material.imageview.ShapeableImageView;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
+import com.google.firebase.FirebaseException;
 import com.google.firebase.FirebaseNetworkException;
 import com.google.firebase.FirebaseTooManyRequestsException;
 import com.google.firebase.auth.FirebaseAuth;
@@ -700,6 +701,11 @@ public class SettingsFragment extends Fragment implements View.OnClickListener {
                                         getString(R.string.too_many_requests),
                                         dialogView);
                             deactivateLoginButton(dialogView);
+                        } else if (task.getException() instanceof FirebaseException) {
+                            if (isVisible())
+                                MessagesHelper.showInfoMessageWarningOnDialog(requireActivity(),
+                                        getString(R.string.something_bad),
+                                        dialogView);
                         }
                     }
                 });
@@ -857,6 +863,8 @@ public class SettingsFragment extends Fragment implements View.OnClickListener {
                     Log.d(TAG, "onDataChange: dataSnapshot DO NOT EXISTS");
                 }
 
+                Log.d(TAG, "onDataChange: LeaderBoarDataListener DataSnap: "
+                        + dataSnapshot.toString());
                 SuperUtil.hideViewInvisibleWay(null, syncProgress);
             }
 
@@ -964,6 +972,18 @@ public class SettingsFragment extends Fragment implements View.OnClickListener {
             spHelper.setSyncAlertAlreadyShowedFlag(true);
             snackbarSyncAlert.dismiss();
         });
+    }
+
+    private void setUpAppLanguage() {
+        String[] arrayLanguagesCodes = getResources().getStringArray(R.array.languages_codes);
+        int langPos = spHelper.getLanguagePos();
+        TimeHelper.setLocale(requireActivity(), arrayLanguagesCodes[langPos]);
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        setUpAppLanguage();
     }
 
     @Override

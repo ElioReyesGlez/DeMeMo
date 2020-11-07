@@ -395,7 +395,7 @@ public class MemorizingFragment extends Fragment {
             if (!verseExistByTitle && !verseExistByVerseText) {
                 new Handler().postDelayed(() -> {
                     if (isVisible()) {
-                        MessagesHelper.showSaveVerseDialog(requireActivity(), container,
+                        MessagesHelper.showSaveVerseDialog(this, container,
                                 animScaleUp, verse);
                         checkIfStored = false;
                     }
@@ -422,7 +422,7 @@ public class MemorizingFragment extends Fragment {
     private void handleShowDialogAskToDoTest() {
         new Handler().postDelayed(() -> {
             if (isVisible()) {
-                MessagesHelper.showDialogAskToDoTest(requireActivity(), container, animScaleUp);
+                MessagesHelper.showDialogAskToDoTest(this, container, animScaleUp);
             }
         }, 1000);
     }

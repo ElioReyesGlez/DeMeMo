@@ -22,6 +22,7 @@ import androidx.appcompat.widget.SwitchCompat;
 import androidx.fragment.app.FragmentActivity;
 
 import com.erg.memorized.R;
+import com.erg.memorized.fragments.MemorizingFragment;
 import com.erg.memorized.fragments.NewVerseFragment;
 import com.erg.memorized.fragments.ScorerFragment;
 import com.erg.memorized.model.ItemVerse;
@@ -374,7 +375,8 @@ public class MessagesHelper {
         SharedPreferencesHelper spHelper = new SharedPreferencesHelper(context);
         Button btn = dialogView.findViewById(R.id.btn_dialog);
         btn.setOnClickListener(v -> {
-            SuperUtil.vibrate(context);
+            if (!context.isFinishing())
+                SuperUtil.vibrate(context);
             spHelper.setDialogSplitInfoStatus(true);
             dialog.dismiss();
         });
@@ -384,9 +386,9 @@ public class MessagesHelper {
         dialogView.startAnimation(anim);
     }
 
-    public static void showDialogAskToDoTest(FragmentActivity context, ViewGroup container,
+    public static void showDialogAskToDoTest(MemorizingFragment context, ViewGroup container,
                                              Animation anim) {
-        Dialog dialog = new Dialog(context, R.style.alert_dialog);
+        Dialog dialog = new Dialog(context.requireActivity(), R.style.alert_dialog);
         dialog.setCancelable(false);
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
         LayoutInflater inflater = context.getLayoutInflater();
@@ -395,11 +397,12 @@ public class MessagesHelper {
         HorizontalScrollView horizontalScrollView = dialogView
                 .findViewById(R.id.horizontal_scroll_btn_container);
 
-        SharedPreferencesHelper spHelper = new SharedPreferencesHelper(context);
+        SharedPreferencesHelper spHelper = new SharedPreferencesHelper(context.requireActivity());
 
         Button btnOk = dialogView.findViewById(R.id.do_test_dialog_ok);
         btnOk.setOnClickListener(v -> {
-            SuperUtil.vibrate(context);
+            if (!context.isVisible())
+                SuperUtil.vibrate(context.requireContext());
             spHelper.setDialogAskToDoTestStatus(true);
             if (dialog.isShowing())
                 dialog.dismiss();
@@ -415,10 +418,10 @@ public class MessagesHelper {
         }, 900);
     }
 
-    public static void showSaveVerseDialog(FragmentActivity context,
+    public static void showSaveVerseDialog(MemorizingFragment context,
                                            ViewGroup container, Animation anim,
                                            ItemVerse verse) {
-        final Dialog dialog = new Dialog(context, R.style.alert_dialog);
+        final Dialog dialog = new Dialog(context.requireActivity(), R.style.alert_dialog);
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
         dialog.setCancelable(false);
         LayoutInflater inflater = context.getLayoutInflater();
@@ -430,7 +433,8 @@ public class MessagesHelper {
         /*onClick on dialog cancel button*/
         Button cancelBtn = dialogView.findViewById(R.id.cancel_dialog_button);
         cancelBtn.setOnClickListener(v -> {
-            SuperUtil.vibrate(context);
+            if (!context.isVisible())
+                SuperUtil.vibrate(context.requireContext());
             if (dialog.isShowing())
                 dialog.dismiss();
         });
@@ -438,13 +442,14 @@ public class MessagesHelper {
         /*onClick on dialog delete button*/
         Button editBtn = dialogView.findViewById(R.id.edit_save_dialog_button);
         editBtn.setOnClickListener(v -> {
-            SuperUtil.vibrate(context);
+            if (!context.isVisible())
+                SuperUtil.vibrate(context.requireContext());
             ItemVerse currentItemVerse = new ItemVerse(verse.getTitle(), verse.getVerseText());
             long idVerse = System.currentTimeMillis();
             currentItemVerse.setId(idVerse);
 
             SuperUtil.loadView(
-                    context,
+                    context.requireActivity(),
                     NewVerseFragment.newInstance(currentItemVerse, true),
                     NewVerseFragment.TAG,
                     true

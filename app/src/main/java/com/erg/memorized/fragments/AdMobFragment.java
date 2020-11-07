@@ -24,6 +24,8 @@ import androidx.fragment.app.Fragment;
 import com.erg.memorized.R;
 import com.erg.memorized.helpers.BillingHelper;
 import com.erg.memorized.helpers.MessagesHelper;
+import com.erg.memorized.helpers.SharedPreferencesHelper;
+import com.erg.memorized.helpers.TimeHelper;
 import com.erg.memorized.model.ItemUser;
 import com.erg.memorized.util.Constants;
 import com.erg.memorized.util.SuperUtil;
@@ -36,6 +38,7 @@ public class AdMobFragment extends Fragment implements View.OnClickListener {
 
     public static final String TAG = "AdMobFragment";
 
+    private View rootView;
     private CountDownTimer countDownTimer;
     private InterstitialAd mInterstitialAd;
     private TextView tvCountdown;
@@ -59,40 +62,33 @@ public class AdMobFragment extends Fragment implements View.OnClickListener {
     public View onCreateView(@NonNull LayoutInflater inflater,
                              @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.fragment_ad_mob, container, false);
+        Log.d(TAG, "onCreateView: starts");
+        rootView = inflater.inflate(R.layout.fragment_ad_mob, container, false);
+
+        initAdAndBilling();
+        setUpView();
+
+        return rootView;
     }
 
-    @Override
-    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
-        super.onViewCreated(view, savedInstanceState);
-        Button btnGetPremium = view.findViewById(R.id.btn_get_premium);
-        tvCountdown = view.findViewById(R.id.tv_countdown);
-        TextView tvMission = view.findViewById(R.id.tv_mission_description);
-        llCountdownContainer = view.findViewById(R.id.ll_countdown_container);
+    private void setUpView() {
+        Button btnGetPremium = rootView.findViewById(R.id.btn_get_premium);
+        tvCountdown = rootView.findViewById(R.id.tv_countdown);
+        TextView tvMission = rootView.findViewById(R.id.tv_mission_description);
+        llCountdownContainer = rootView.findViewById(R.id.ll_countdown_container);
 
         btnGetPremium.setOnClickListener(this);
         tvMission.setOnClickListener(this);
+
+        Log.d(TAG, "setUpView: Done!");
     }
 
-    @Override
-    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
-        super.onActivityCreated(savedInstanceState);
-
-        final Context appContext = getAppContext();
-        if (appContext == null)
-            return;
-
-        mInterstitialAd = newInterstitialAd(appContext);
+    private void initAdAndBilling() {
+        mInterstitialAd = newInterstitialAd(requireContext());
         loadInterstitial();
 
         billingHelper = new BillingHelper(requireActivity(), currentUser);
         billingHelper.init();
-    }
-
-    private Context getAppContext() {
-        if (getActivity() == null || getActivity().getApplicationContext() == null)
-            return null;
-        return getActivity().getApplicationContext();
     }
 
     @Override
@@ -186,7 +182,7 @@ public class AdMobFragment extends Fragment implements View.OnClickListener {
                     SuperUtil.removeViewByTag(requireActivity(), TAG, true);
                 }
                 cancelTimer();
-                Log.d(TAG, "onAdFailedToLoad: ErrorCode : " + loadAdError);
+                Log.d(TAG, "onAdFailedToLoad: ErrorCode : " + loadAdError.toString());
             }
 
             @Override
@@ -231,10 +227,7 @@ public class AdMobFragment extends Fragment implements View.OnClickListener {
     public void onResume() {
         super.onResume();
         if (!currentUser.isPremium()) {
-            Context appContext = getAppContext();
-            if (appContext == null) return;
-
-            startCountdown(getAppContext(), timerMilliseconds);
+            startCountdown(requireContext(), timerMilliseconds);
         } else {
             if (jumpFlag) {
                 loadLeaderBoardView();
@@ -242,6 +235,15 @@ public class AdMobFragment extends Fragment implements View.OnClickListener {
                 SuperUtil.removeViewByTag(requireActivity(), TAG, true);
             }
         }
+
+        setUpAppLanguage();
+    }
+
+    private void setUpAppLanguage() {
+        SharedPreferencesHelper spHelper = new SharedPreferencesHelper(requireContext());
+        String[] arrayLanguagesCodes = getResources().getStringArray(R.array.languages_codes);
+        int langPos = spHelper.getLanguagePos();
+        TimeHelper.setLocale(requireActivity(), arrayLanguagesCodes[langPos]);
     }
 
     private void loadLeaderBoardView() {

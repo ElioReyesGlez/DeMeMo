@@ -7,6 +7,7 @@
     <string name="dialog_save">Solo guardar</string>
     <string name="dialog_save_start">Guardar y empezar</string>
     <string name="failed_saving">¡Algo malo pasó, versículo sin salvar!</string>
+    <string name="something_bad">Ha ocurrido algo malo, vuelva a intentarlo más tarde.</string>
     <string name="required_field">¡Campo requerido!</string>
     <string name="saved">¡Guardado exitosamente!</string>
     <string name="successfully_deleted">¡Eliminado con éxito!</string>
@@ -212,7 +213,7 @@
 
     <string name="premium_dialog_ok">¡Si, seguro!</string>
     <string name="premium_dialog_no">No, gracias</string>
-    <string name="get_premium">¡Hágase Premium!</string>
+    <string name="get_premium">¡Hacerse Premium!</string>
     <string name="premium_congrats">¡Felicidades, es usuario PREMIUM ahora!</string>
     <string name="already_premium">Ya es miembro premium</string>
     <string name="memorizing_finish">¡Buen trabajo!\n  ¿Desea poner a prueba su memoria?</string>

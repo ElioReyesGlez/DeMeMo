@@ -7,6 +7,7 @@
     <string name="dialog_save">Just save</string>
     <string name="dialog_save_start">Save and start</string>
     <string name="failed_saving">Something bad happened, verse without saving!</string>
+    <string name="something_bad">Something bad happened, please try again later!</string>
     <string name="required_field">Required field!</string>
     <string name="saved">Saved successfully! </string>
     <string name="successfully_deleted">Successfully removed!</string>

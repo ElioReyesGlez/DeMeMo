@@ -7,6 +7,7 @@
     <string name="dialog_save">Apenas salvar</string>
     <string name="dialog_save_start">Salvar e começar</string>
     <string name="failed_saving">Algum erro aconteceu, verso sem salvar!</string>
+    <string name="something_bad">Algum erro aconteceu, tente novamente mais tarde!</string>
     <string name="required_field">Campo obrigatório!</string>
     <string name="saved">Salvo com sucesso!</string>
     <string name="successfully_deleted">Removido com sucesso!</string>
@@ -215,7 +216,7 @@
 
     <string name="premium_dialog_ok">Sim, claro!</string>
     <string name="premium_dialog_no">Não, obrigado/a</string>
-    <string name="get_premium">Torne-se Premium!</string>
+    <string name="get_premium">Tornar-se Premium!</string>
     <string name="premium_congrats">Parabéns, é um utente PREMIUM agora!</string>
     <string name="get_premium_ad_free">Torne-se PREMIUM para obter um DeMeMo SEM ANÚNCIOS</string>
     <string name="already_premium">Já é um membro premium</string>
