@@ -4,8 +4,6 @@
     <string name="img_description">Img</string>
     <string name="tile">Cita</string>
     <string name="verse">Versículo</string>
-    <string name="dialog_save">Apenas salvar</string>
-    <string name="dialog_save_start">Salvar e começar</string>
     <string name="failed_saving">Algum erro aconteceu, verso sem salvar!</string>
     <string name="something_bad">Algum erro aconteceu, tente novamente mais tarde!</string>
     <string name="required_field">Campo obrigatório!</string>
@@ -49,7 +47,6 @@
     <string name="settings">Definições</string>
     <string name="name">Nome</string>
     <string name="email">E-mail</string>
-    <string name="email_low_case">e-mail</string>
     <string name="mobile_number">Número do telemóvel (opcional)</string>
     <string name="mobile_number_user_info">Móvel</string>
     <string name="pass">Senha</string>
@@ -77,7 +74,6 @@
     <string name="network_error">Erro de rede! Por favor, verifique sua conexão à internet</string>
     <string name="used_email">O endereço de e-mail já está em uso</string>
     <string name="invalid_credentials">Credenciais inválidas, retificar usuário ou senha</string>
-    <string name="invalid_credentials_fields">Credenciais inválidas</string>
     <string name="too_many_requests">Muitas tentativas de login sem sucesso. Por favor, tente novamente mais tarde.</string>
     <string name="skip">Pular</string>
     <string name="todo">POR FAZER</string>
@@ -109,7 +105,6 @@
     <string name="daily_notification">Notificação diária</string>
     <string name="weekly_notification">Notificação semanal</string>
     <string name="monthly_notification">Notificação mensal</string>
-    <string name="notification_setup">Configuração de notificação</string>
     <string name="date_and_time_symbol">Símbolo de data e hora</string>
     <string name="calendar_permissions">Precisamos de permissões para criar eventos de calendário com sucesso! .Obrigado!</string>
     <string name="please_calendar_grant_permissions">Conceda as permissões necessárias</string>
@@ -135,7 +130,6 @@
     <string name="failed_deleting">Falha ao remover conta, tente mais tarde!</string>
     <string name="refresh">Atualizar</string>
     <string name="refresh_icon">ícone de atualização</string>
-    <string name="upload">Carregar</string>
     <string name="general_settings">Definições Gerais</string>
     <string name="changes_to_be_sync">Alerta de sincronização: Dados a serem sincronizados!</string>
     <string name="search">pesquisa…</string>
@@ -145,7 +139,6 @@
     <string name="ic_black_shield">escudo preto ic</string>
     <string name="sync">Sincronizar</string>
     <string name="sync_not_needed">A sincronização não é necessária!</string>
-    <string name="upload_not_needed">Carregamento não é necessário!</string>
     <string name="language">Idioma</string>
     <string name="bible_language">Idioma:</string>
     <string name="language_selector">Seletor de idioma</string>

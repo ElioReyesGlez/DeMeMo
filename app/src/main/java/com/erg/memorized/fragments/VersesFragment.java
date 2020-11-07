@@ -80,7 +80,7 @@ public class VersesFragment extends Fragment implements View.OnClickListener, On
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        realmHelper = new RealmHelper(requireContext());
+        realmHelper = new RealmHelper();
         animScaleUp = AnimationUtils.loadAnimation(requireContext(), R.anim.scale_up);
 
         verses = new ArrayList<>(realmHelper.getSavedVerses());

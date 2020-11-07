@@ -1,5 +1,7 @@
 package com.erg.memorized.model.your_version_models;
 
+import org.jetbrains.annotations.NotNull;
+
 import java.util.ArrayList;
 
 public class Verse {
@@ -25,6 +27,7 @@ public class Verse {
         return text;
     }
 
+    @NotNull
     @Override
     public String toString() {
         return "Verse{" +

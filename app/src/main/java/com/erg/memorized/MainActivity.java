@@ -72,7 +72,7 @@ public class MainActivity extends FragmentActivity {
 
         RealmHelper.startRealm(getApplicationContext());
         spHelper = new SharedPreferencesHelper(this);
-        RealmHelper realmHelper = new RealmHelper(this);
+        RealmHelper realmHelper = new RealmHelper();
         currentUser = realmHelper.getUser();
 
         animScaleUp = AnimationUtils.loadAnimation(this, R.anim.scale_up);

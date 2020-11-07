@@ -42,9 +42,6 @@ import java.util.Comparator;
 import java.util.HashMap;
 import java.util.Objects;
 
-import static com.erg.memorized.util.Constants.AT;
-import static com.erg.memorized.util.Constants.DOT;
-import static com.erg.memorized.util.Constants.LOW_LINE;
 import static com.erg.memorized.util.Constants.MIN_VIBRATE_TIME;
 import static com.erg.memorized.util.Constants.SPECIAL_MIN_VIBRATE_TIME;
 import static com.erg.memorized.util.Constants.SPECIAL_VIBRATE_TIME;
@@ -120,7 +117,7 @@ public class SuperUtil {
         transaction.commit();
     }
 
-    public static void refreshFragment(FragmentActivity context, String tag) {
+/*    public static void refreshFragment(FragmentActivity context, String tag) {
         FragmentManager manager = context.getSupportFragmentManager();
         Fragment frg = manager.findFragmentByTag(tag);
 
@@ -130,7 +127,7 @@ public class SuperUtil {
             transaction.attach(frg);
             transaction.commit();
         }
-    }
+    }*/
 
     public static void removeViewByTag(FragmentActivity context, String tag, boolean popBackStack) {
         FragmentManager manager = context.getSupportFragmentManager();
@@ -153,7 +150,7 @@ public class SuperUtil {
             return false;
     }
 
-    public static String getUserFromEmail(String email) {
+/*    public static String getUserFromEmail(String email) {
         String aux = email;
         if (email.contains(AT)) {
             aux = email.replace(AT, LOW_LINE);
@@ -162,7 +159,7 @@ public class SuperUtil {
             email = aux.replace(DOT, LOW_LINE);
         }
         return email;
-    }
+    }*/
 
     public String encodeBase64ToString(Bitmap bitmap, String extension) {
 

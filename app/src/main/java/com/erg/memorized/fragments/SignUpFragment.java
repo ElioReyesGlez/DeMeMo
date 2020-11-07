@@ -207,7 +207,7 @@ public class SignUpFragment extends Fragment implements View.OnClickListener {
                                     if (dialog.isShowing())
                                         dialog.dismiss();
                                     if (task1.isSuccessful()) {
-                                        RealmHelper realmHelper = new RealmHelper(requireContext());
+                                        RealmHelper realmHelper = new RealmHelper();
                                         realmHelper.addUserToDB(user); // Saving On Realm
 
                                         SharedPreferencesHelper spHelper =

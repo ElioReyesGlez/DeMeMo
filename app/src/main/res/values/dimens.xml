@@ -6,7 +6,6 @@
     <dimen name="regular_window_padding">5dp</dimen>
     <dimen name="regular_window_margin">4dp</dimen>
     <dimen name="margin_bottom">8dp</dimen>
-    <dimen name="margin_start">8dp</dimen>
     <dimen name="margin_top">8dp</dimen>
     <dimen name="margin_bottom_button_save">10dp</dimen>
     <dimen name="margin_bottom_button_add">12dp</dimen>

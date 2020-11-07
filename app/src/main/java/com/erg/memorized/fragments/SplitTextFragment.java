@@ -62,7 +62,7 @@ public class SplitTextFragment extends Fragment implements OnSectionListener {
         super.onCreate(savedInstanceState);
 
         spHelper = new SharedPreferencesHelper(requireActivity());
-        RealmHelper realmHelper = new RealmHelper(requireContext());
+        RealmHelper realmHelper = new RealmHelper();
         currentUser = realmHelper.getUser();
 
         animScaleUp = AnimationUtils.loadAnimation(getContext(), R.anim.less_scale_up);

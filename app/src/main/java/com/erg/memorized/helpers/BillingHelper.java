@@ -126,7 +126,7 @@ public class BillingHelper {
                 if (currentUser != null) {
                     if (!currentUser.isPremium()) {
                         currentUser.setPremium(true);
-                        RealmHelper realmHelper = new RealmHelper(context);
+                        RealmHelper realmHelper = new RealmHelper();
                         realmHelper.addUserToDB(currentUser);
 
                         updateUserPremiumStatus();
@@ -148,7 +148,7 @@ public class BillingHelper {
                 String purchaseSku = purchase.getSku();
                 if (purchaseSku.equals(SKU_PREMIUM)) {
                     currentUser.setPremium(true);
-                    RealmHelper realmHelper = new RealmHelper(context);
+                    RealmHelper realmHelper = new RealmHelper();
                     realmHelper.addUserToDB(currentUser);
 
                     updateUserPremiumStatus();

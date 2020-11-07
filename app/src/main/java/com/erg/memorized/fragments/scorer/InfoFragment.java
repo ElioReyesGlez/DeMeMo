@@ -27,8 +27,6 @@ import java.util.ArrayList;
 public class InfoFragment extends Fragment implements ScorerListener {
 
     public static final String TAG = "InfoFragment";
-    public static final int POS = 0;
-
 
     private View rootView;
     private final ScorerFragment scorerFragment;

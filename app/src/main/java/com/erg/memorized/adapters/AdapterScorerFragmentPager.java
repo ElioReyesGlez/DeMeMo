@@ -16,10 +16,8 @@ import com.erg.memorized.model.ItemVerse;
 public class AdapterScorerFragmentPager extends FragmentPagerAdapter {
 
     private final ItemVerse verse;
-    private Fragment currentFrag;
     private final BoxTestListener boxTestListener;
     private final ScorerFragment scorerFragment;
-    private int position = -1;
 
     public AdapterScorerFragmentPager(@NonNull FragmentManager fm, int behavior,
                                       ItemVerse verse,
@@ -34,7 +32,7 @@ public class AdapterScorerFragmentPager extends FragmentPagerAdapter {
     @NonNull
     @Override
     public Fragment getItem(int position) {
-        this.position = position;
+        Fragment currentFrag = InfoFragment.newInstance(scorerFragment);
         switch (position) {
             case 0:
                 currentFrag = InfoFragment.newInstance(scorerFragment);
@@ -44,28 +42,18 @@ public class AdapterScorerFragmentPager extends FragmentPagerAdapter {
                         boxTestListener, scorerFragment);
                 return currentFrag;
             case 2:
-                currentFrag = DragAndDropFragment.newInstance(verse,
-                        boxTestListener, scorerFragment);
+                currentFrag = DragAndDropFragment.newInstance(verse, scorerFragment);
                 return currentFrag;
             case 3:
-                currentFrag = WriterFragment.newInstance(verse,
-                        boxTestListener, scorerFragment);
+                currentFrag = WriterFragment.newInstance(verse, scorerFragment);
                 return currentFrag;
             default:
-                return null;
+                return currentFrag;
         }
     }
 
     @Override
     public int getCount() {
         return 4;
-    }
-
-    public int getCurrentPosition() {
-        return position;
-    }
-
-    public Fragment getCurrentFrag() {
-        return currentFrag;
     }
 }

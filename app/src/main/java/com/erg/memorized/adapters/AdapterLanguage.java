@@ -50,11 +50,9 @@ public class AdapterLanguage extends ArrayAdapter<String> {
             LayoutInflater inflater = LayoutInflater.from(getContext());
             convertView = inflater.inflate(R.layout.item_language, parent, false);
             viewHolder = new ViewHolder(convertView);
-            result = convertView;
             convertView.setTag(viewHolder);
         } else {
             viewHolder = (ViewHolder) convertView.getTag();
-            result = convertView;
         }
 
         viewHolder.setLanguage(languages.get(position));
@@ -94,14 +92,6 @@ public class AdapterLanguage extends ArrayAdapter<String> {
 
         public void setCheckedRadioButton(boolean flag) {
             this.radioButton.setChecked(flag);
-        }
-
-        public ImageView getFlag() {
-            return flag;
-        }
-
-        public TextView getLanguage() {
-            return language;
         }
 
         public RadioButton getRadioButton() {

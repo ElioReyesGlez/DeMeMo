@@ -8,20 +8,13 @@ import com.erg.memorized.model.ItemVerse;
 import com.erg.memorized.util.Constants;
 
 import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.List;
 import java.util.Objects;
 
-import io.realm.DynamicRealm;
 import io.realm.Realm;
 import io.realm.RealmConfiguration;
-import io.realm.RealmList;
-import io.realm.RealmMigration;
 import io.realm.RealmResults;
-import io.realm.RealmSchema;
 import io.realm.Sort;
 
-import static com.erg.memorized.util.Constants.VERSES_REALM_CLASS;
 import static com.erg.memorized.util.Constants.VERSE_COLUMN_ID;
 
 public class RealmHelper {
@@ -32,7 +25,7 @@ public class RealmHelper {
     private final RealmConfiguration userRealmConfig;
     private RealmResults<ItemVerse> verseRealmResults;
 
-    public RealmHelper(Context context) {
+    public RealmHelper() {
         verseRealmConfig = new RealmConfiguration.Builder()
                 .name(Constants.VERSES_REALM_DB_NAME)
                 .modules(new ItemVerse())
@@ -56,31 +49,6 @@ public class RealmHelper {
 
     public static void startRealm(Context context) {
         Realm.init(context);
-    }
-
-    public static void saveAlarmDateOnRealmDataBase(long idItem, Calendar calendarTarget) {
-
-        Realm mRealm = Realm.getDefaultInstance();
-        mRealm.executeTransaction(realm -> {
-            RealmResults<ItemVerse> resultToUpdate = realm.where(ItemVerse.class)
-                    .equalTo(VERSE_COLUMN_ID, idItem)
-                    .findAll();
-            resultToUpdate.setLong(Constants.VERSE_COLUMN_DATE_ALARM, calendarTarget.getTimeInMillis());
-
-        });
-    }
-
-    public static void setOnOffAlarmOnRealmDataBase(boolean flag, long idItem) {
-
-        Realm mRealm = Realm.getDefaultInstance();
-        mRealm.executeTransaction(realm -> {
-
-            RealmResults<ItemVerse> resultToUpdate = realm.where(ItemVerse.class)
-                    .equalTo(VERSE_COLUMN_ID, idItem)
-                    .findAll();
-            resultToUpdate.setBoolean(Constants.ON_OFF, flag);
-
-        });
     }
 
     public void addVerseToDB(ItemVerse itemVerse) {
@@ -130,22 +98,6 @@ public class RealmHelper {
         return new ArrayList<>(mRealm.copyFromRealm(verseRealmResults));
     }
 
-    public void updateVersePosDataBaseRealm(List<ItemVerse> itemVerses) {
-
-        Realm mRealm = getVerseRealmInstance();
-
-        mRealm.executeTransaction(realm -> {
-
-            for (ItemVerse verse : itemVerses) {
-                RealmResults<ItemVerse> resultToUpdate = realm.where(ItemVerse.class)
-                        .equalTo(VERSE_COLUMN_ID, verse.getId())
-                        .findAll();
-                resultToUpdate.setInt(Constants.VERSE_COLUMN_POS, itemVerses.indexOf(verse));
-            }
-
-        });
-    }
-
     public void deleteVerseFromRealmDataBase(ItemVerse itemVerse) {
         Realm mRealm = getVerseRealmInstance();
         mRealm.executeTransaction(realm -> {
@@ -170,71 +122,13 @@ public class RealmHelper {
             result.deleteFirstFromRealm();
         });
     }
+
+/*
     public void deleteAllUserFromRealmDataBase() {
         Realm mRealm = getUserRealmInstance();
         mRealm.executeTransaction(realm -> realm.delete(ItemUser.class));
     }
-
-    public void setTitleVerseToItemInDataBase(ItemVerse itemVerse) {
-        Realm mRealm = getVerseRealmInstance();
-        mRealm.executeTransaction(realm -> {
-
-            RealmResults<ItemVerse> resultToUpdate = realm.where(ItemVerse.class)
-                    .equalTo(VERSE_COLUMN_ID, itemVerse.getId())
-                    .findAll();
-            resultToUpdate.setString(Constants.VERSE_COLUMN_TITLE, itemVerse.getTitle());
-
-        });
-    }
-
-    public void setVerseToItemInDataBase(ItemVerse itemVerse) {
-        Realm mRealm = getVerseRealmInstance();
-        mRealm.executeTransaction(realm -> {
-
-            RealmResults<ItemVerse> resultToUpdate = realm.where(ItemVerse.class)
-                    .equalTo(VERSE_COLUMN_ID, itemVerse.getId())
-                    .findAll();
-            resultToUpdate.setString(Constants.VERSE_COLUMN_VERSE, itemVerse.getVerseText());
-
-        });
-    }
-
-    public void updateModelDataBaseRealm(final ItemVerse itemVerse,
-                                                final boolean isChecked,
-                                                List<ItemVerse> mItems) {
-
-        Realm mRealm = getVerseRealmInstance();
-        mRealm.executeTransaction(realm -> {
-
-            RealmResults<ItemVerse> results = realm.where(ItemVerse.class)
-                    .equalTo(VERSE_COLUMN_ID, itemVerse.getId())
-                    .findAll();
-            results.setBoolean(Constants.VERSE_COLUMN_CHECKED, isChecked);
-            results.setInt(Constants.VERSE_COLUMN_POS, isChecked ? mItems.size() - 1 : 0);
-        });
-    }
-
-    public void saveListOfDaysOnDataBaseRealm(long idItem, boolean[] alarmDays) {
-        try (Realm mRealm = getVerseRealmInstance()) {
-            mRealm.executeTransaction(realm -> {
-
-                ArrayList<Boolean> auxIntegerList = new ArrayList<>(alarmDays.length);
-                for (boolean alarmDay : alarmDays) {
-                    auxIntegerList.add(alarmDay);
-                }
-
-                RealmResults<ItemVerse> results = realm.where(ItemVerse.class)
-                        .equalTo(VERSE_COLUMN_ID, idItem)
-                        .findAll();
-
-                RealmList<Boolean> realmList = new RealmList<>();
-                realmList.addAll(auxIntegerList);
-
-                results.setList(Constants.VERSE_COLUMN_DAYS_ON, realmList);
-
-            });
-        }
-    }
+*/
 
     public  ItemVerse findItemVerseById(long idItem) {
         Realm mRealm = getVerseRealmInstance();
@@ -264,15 +158,7 @@ public class RealmHelper {
                 .findFirst();
     }
 
-
-    /*
-    - Property 'ItemVerse.untilAlarm' has been added.
-    - Property 'ItemVerse.isRepeatingAlarm' has been added.
-    - Property 'ItemVerse.daysOn' has been removed.
-    - Property 'ItemVerse.isChecked' has been removed.
-    */
-
-    private class Migration implements RealmMigration {
+/*    private static class Migration implements RealmMigration {
 
         @Override
         public void migrate(DynamicRealm realm, long oldVersion, long newVersion) {
@@ -288,5 +174,5 @@ public class RealmHelper {
                 oldVersion++;
             }
         }
-    }
+    }*/
 }

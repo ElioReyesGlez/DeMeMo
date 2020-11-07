@@ -26,7 +26,6 @@ import com.erg.memorized.helpers.MessagesHelper;
 import com.erg.memorized.helpers.ScoreHelper;
 import com.erg.memorized.helpers.SharedPreferencesHelper;
 import com.erg.memorized.helpers.TextHelper;
-import com.erg.memorized.interfaces.BoxTestListener;
 import com.erg.memorized.interfaces.ScorerListener;
 import com.erg.memorized.model.ItemVerse;
 import com.erg.memorized.model.Score;
@@ -45,7 +44,6 @@ import static com.erg.memorized.util.Constants.SPACE;
 public class WriterFragment extends Fragment implements ScorerListener {
 
     public static final String TAG = "WriterFragment";
-    public static final int POS = 3;
 
     private View rootView;
     private LinearLayout boxesContainer;
@@ -58,7 +56,6 @@ public class WriterFragment extends Fragment implements ScorerListener {
     private ArrayList<String> dividedText;
     private ArrayList<String> textWithLowLinesAuxList;
     private ArrayList<Integer> posReplacementsWords;
-    private ArrayList<TextView> textViews;
     private ArrayList<TextInputEditText> inputEditTexts;
 
     SharedPreferencesHelper spHelper;
@@ -68,7 +65,6 @@ public class WriterFragment extends Fragment implements ScorerListener {
     }
 
     public WriterFragment(ItemVerse verse,
-                          BoxTestListener boxTestListener,
                           ScorerFragment scorerFragment) {
         this.scorerFragment = scorerFragment;
         this.verse = verse;
@@ -76,9 +72,8 @@ public class WriterFragment extends Fragment implements ScorerListener {
 
 
     public static WriterFragment newInstance(ItemVerse verse,
-                                             BoxTestListener boxTestListener,
                                              ScorerFragment scorerFragment) {
-        return new WriterFragment(verse, boxTestListener, scorerFragment);
+        return new WriterFragment(verse, scorerFragment);
     }
 
     @Override
@@ -99,10 +94,8 @@ public class WriterFragment extends Fragment implements ScorerListener {
                 TextHelper.getTextWithLowLines(dividedText, posReplacementsWords)
         );
 
-        textViews = new ArrayList<>();
         inputEditTexts = new ArrayList<>();
 
-        Animation animScaleUp = AnimationUtils.loadAnimation(requireContext(), R.anim.scale_up);
         animScaleDown = AnimationUtils.loadAnimation(requireContext(), R.anim.scale_down);
 
         spHelper = new SharedPreferencesHelper(requireContext());
@@ -118,7 +111,6 @@ public class WriterFragment extends Fragment implements ScorerListener {
 
     private void setUpView() {
         TextView tvTitle = rootView.findViewById(R.id.tv_title);
-        TextView tvVerse = rootView.findViewById(R.id.tv_verse);
         boxesContainer = rootView.findViewById(R.id.ll_boxes_container);
 
         tvTitle.setText(verse.getTitle());
@@ -157,7 +149,6 @@ public class WriterFragment extends Fragment implements ScorerListener {
                     boxTextView.setText(wordToSelect);
                     registerForContextMenu(boxTextView);
                     row.addView(boxTextView);
-                    textViews.add(boxTextView);
                 } else {
                     TextInputEditText inputEditText = new TextInputEditText(requireContext());
                     inputEditText.setId(i);

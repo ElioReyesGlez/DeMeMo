@@ -54,7 +54,7 @@ import static com.erg.memorized.util.Constants.USER_FIRE_BASE_REFERENCE;
 
 public class UserInfoFragment extends Fragment implements View.OnClickListener {
 
-    public static String TAG = "UserInfoFragment";
+    public static final String TAG = "UserInfoFragment";
 
     private SharedPreferencesHelper spHelper;
 
@@ -105,7 +105,7 @@ public class UserInfoFragment extends Fragment implements View.OnClickListener {
         super.onCreate(savedInstanceState);
 
         spHelper = new SharedPreferencesHelper(requireContext());
-        realmHelper = new RealmHelper(requireContext());
+        realmHelper = new RealmHelper();
 
         fAuth = FirebaseAuth.getInstance();
 
@@ -226,7 +226,7 @@ public class UserInfoFragment extends Fragment implements View.OnClickListener {
     }
 
     private void logOut() {
-        RealmHelper realmHelper = new RealmHelper(getContext());
+        RealmHelper realmHelper = new RealmHelper();
         realmHelper.deleteUserFromRealmDataBase(currentUser);
         spHelper.setUserLoginState(false);
         SuperUtil.signOutUser();
@@ -306,8 +306,8 @@ public class UserInfoFragment extends Fragment implements View.OnClickListener {
         Snackbar snackBar = Snackbar.make(dialogView,
                 getString(R.string.account_successfully_deleted), Snackbar.LENGTH_SHORT);
 
-        snackBar.setBackgroundTint(getContext().getColor(R.color.colorAccent));
-        snackBar.setTextColor(getContext().getColor(R.color.dark_gray_btn_bg_color));
+        snackBar.setBackgroundTint(requireContext().getColor(R.color.colorAccent));
+        snackBar.setTextColor(requireContext().getColor(R.color.dark_gray_btn_bg_color));
         snackBar.setDuration(Snackbar.LENGTH_INDEFINITE);
 
         snackBar.setAction(getString(R.string.ok), v -> {
@@ -384,7 +384,7 @@ public class UserInfoFragment extends Fragment implements View.OnClickListener {
                             if (pgsDialog.isShowing())
                                 pgsDialog.dismiss();
                         } else {
-                            Log.e(TAG, "sendConfirmationEmail: " + task.getException().getMessage());
+                            Log.e(TAG, "sendConfirmationEmail: " + task.getException());
                             if (pgsDialog.isShowing())
                                 pgsDialog.dismiss();
 
@@ -586,7 +586,7 @@ public class UserInfoFragment extends Fragment implements View.OnClickListener {
                     if (task.isSuccessful()) {
                         Log.d(TAG, "Leader board uploadScore:Success ");
                     } else {
-                        Log.e(TAG, "uploadScore: " + task.getException().getMessage());
+                        Log.e(TAG, "uploadScore: " + task.getException());
                     }
                     if (pgsDialog.isShowing())
                         pgsDialog.dismiss();
@@ -602,7 +602,7 @@ public class UserInfoFragment extends Fragment implements View.OnClickListener {
                 Log.d(TAG, "deleteUserOnFirebaseDB: " + "Success deleting");
                 deleteUserFromFirebase(dialog, dialogView);
             } else {
-                Log.d(TAG, "deleteUserOnFirebaseDB: FAILED DELETING ERROR: " + task.getException().getMessage());
+                Log.d(TAG, "deleteUserOnFirebaseDB: FAILED DELETING ERROR: " + task.getException());
             }
         });
     }
@@ -617,7 +617,7 @@ public class UserInfoFragment extends Fragment implements View.OnClickListener {
                             if (pgsDialog.isShowing())
                                 pgsDialog.dismiss();
 
-                            RealmHelper realmHelper = new RealmHelper(getContext());
+                            RealmHelper realmHelper = new RealmHelper();
                             realmHelper.deleteUserFromRealmDataBase(currentUser);
                             realmHelper.deleteAllVerseFromRealmDataBase();
                             showSuccessDeleteMsgOnDialog(dialog, dialogView);
@@ -669,7 +669,7 @@ public class UserInfoFragment extends Fragment implements View.OnClickListener {
 
             switch (resLayout) {
                 case R.layout.dialog_update_name_view:
-                    String auxStrName = editingField.getText().toString();
+                    String auxStrName = Objects.requireNonNull(editingField.getText()).toString();
                     if (validateName(auxStrName, tilField)) {
 
                         if (!name.equals(auxStrName))
@@ -682,7 +682,7 @@ public class UserInfoFragment extends Fragment implements View.OnClickListener {
                     }
                     break;
                 case R.layout.dialog_update_email_view:
-                    String auxStrEmail = editingField.getText().toString();
+                    String auxStrEmail = Objects.requireNonNull(editingField.getText()).toString();
                     if (validateEmail(auxStrEmail, tilField)) {
 
                         if (!email.equals(auxStrEmail))
@@ -695,7 +695,7 @@ public class UserInfoFragment extends Fragment implements View.OnClickListener {
                     }
                     break;
                 case R.layout.dialog_update_mobile_view:
-                    String auxStrMobile = editingField.getText().toString();
+                    String auxStrMobile = Objects.requireNonNull(editingField.getText()).toString();
                     if (validateMobile(auxStrMobile, tilField)) {
 
                         if (!mobile.equals(auxStrMobile))
@@ -726,7 +726,7 @@ public class UserInfoFragment extends Fragment implements View.OnClickListener {
                         showInfoMessageOnDialog(msg, dialogView, rootDialog);
                         Log.d(TAG, "sendRestorePassEmail. Email sent.");
                     } else {
-                        Log.d(TAG, "sendRestorePassEmail: " + task.getException().getMessage());
+                        Log.d(TAG, "sendRestorePassEmail: " + task.getException());
                         if (pgsDialog.isShowing())
                             pgsDialog.dismiss();
 
@@ -771,7 +771,7 @@ public class UserInfoFragment extends Fragment implements View.OnClickListener {
         Button editBtn = dialogRestoresEmailSentDialog.findViewById(R.id.send_dialog_button);
         editBtn.setOnClickListener(v -> {
             SuperUtil.vibrate(requireContext());
-            String email = editTextEmail.getText().toString();
+            String email = Objects.requireNonNull(editTextEmail.getText()).toString();
             if (validateEmail(email, tilEmail)) {
                 sendRestorePassByEmail(dialogRestoresEmailSentDialog, dialogView);
             }

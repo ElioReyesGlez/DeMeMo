@@ -72,7 +72,7 @@ public class LeaderBoardFragment extends Fragment implements SearchView.OnQueryT
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        RealmHelper realmHelper = new RealmHelper(requireContext());
+        RealmHelper realmHelper = new RealmHelper();
         spHelper = new SharedPreferencesHelper(requireContext());
         leaderBoardUsers = new ArrayList<>();
         fAuth = FirebaseAuth.getInstance();

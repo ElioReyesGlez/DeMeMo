@@ -1,5 +1,7 @@
 package com.erg.memorized.model.bible_api_models;
 
+import org.jetbrains.annotations.NotNull;
+
 import java.util.ArrayList;
 
 public class Child {
@@ -23,6 +25,7 @@ public class Child {
         this.items = items;
     }
 
+    @NotNull
     @Override
     public String toString() {
         return "Child{" +

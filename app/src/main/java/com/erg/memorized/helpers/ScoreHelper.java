@@ -11,9 +11,8 @@ import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.NotNull;
 
 import java.math.BigDecimal;
-import java.math.RoundingMode;
-import java.text.DecimalFormat;
 import java.util.ArrayList;
+import java.util.Objects;
 
 public class ScoreHelper {
 
@@ -72,7 +71,7 @@ public class ScoreHelper {
         for (int i = 0; i < inputEditTexts.size(); i++) {
             TextInputEditText inputEditText = inputEditTexts.get(i);
             String rightWord = dividedText.get(inputEditText.getId());
-            String userWord = inputEditText.getText().toString();
+            String userWord = Objects.requireNonNull(inputEditText.getText()).toString();
             if (rightWord.equals(userWord)) {
                 hitsCont++;
             } else {
@@ -109,7 +108,7 @@ public class ScoreHelper {
     }
 
     public static float getEvaluatorScore(Score score) {
-        float TOTAL = 0;
+        float TOTAL;
         int hitsCont = score.getHitsCont();
         int almostHitsCont = score.getAlmostHitsCont();
         int missCont = score.getMissCont();
@@ -118,14 +117,6 @@ public class ScoreHelper {
         TOTAL = (float) hitsCont + ((float) (almostHitsCont / 2)) - ((float) (missCont / ops));
 
         return TOTAL;
-    }
-
-
-    public static String getRoundOut(Float number) {
-        DecimalFormat df = new DecimalFormat("#.##");
-        df.setRoundingMode(RoundingMode.CEILING);
-        Double d = number.doubleValue();
-        return df.format(d);
     }
 
     public static int round(float d) {

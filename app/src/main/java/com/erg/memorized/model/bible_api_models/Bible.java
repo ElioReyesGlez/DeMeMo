@@ -1,5 +1,7 @@
 package com.erg.memorized.model.bible_api_models;
 
+import org.jetbrains.annotations.NotNull;
+
 public class Bible {
 
     private String id;
@@ -48,6 +50,7 @@ public class Bible {
         this.descriptionLocal = descriptionLocal;
     }
 
+    @NotNull
     @Override
     public String toString() {
         return "Bible{" +

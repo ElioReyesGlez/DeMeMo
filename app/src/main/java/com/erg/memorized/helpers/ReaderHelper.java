@@ -6,7 +6,6 @@ import android.util.Log;
 import java.util.ArrayList;
 
 import static com.erg.memorized.util.Constants.DOT_CHAR;
-import static com.erg.memorized.util.Constants.EAT_CHAR;
 import static com.erg.memorized.util.Constants.EXCLAMATION_MARK_CHAR_DOWN;
 import static com.erg.memorized.util.Constants.QUESTION_MARK_CHAR_DOWN;
 import static com.erg.memorized.util.Constants.REGEX_SPACE;
@@ -19,7 +18,6 @@ public class ReaderHelper {
     public static final String TAG = "ReaderHelper";
 
     private final String text;
-    private boolean againFlag = false;
 
     public ReaderHelper(String text) {
         this.text = text;
@@ -92,17 +90,17 @@ public class ReaderHelper {
                 || token == SEMICOLON_CHAR;
     }
 
-    private boolean isBreakingPointWithEatChar(char token) {
+/*    private boolean isBreakingPointWithEatChar(char token) {
         return token == DOT_CHAR
                 || token == EXCLAMATION_MARK_CHAR_DOWN
                 || token == QUESTION_MARK_CHAR_DOWN
                 || token == EAT_CHAR;
-    }
+    }*/
 
-    private boolean isSectionBreakingPoint(char token) {
+/*    private boolean isSectionBreakingPoint(char token) {
         return token == DOT_CHAR
                 || token == EXCLAMATION_MARK_CHAR_DOWN
                 || token == QUESTION_MARK_CHAR_DOWN
                 || token == SEMICOLON_CHAR;
-    }
+    }*/
 }

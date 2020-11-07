@@ -1,5 +1,7 @@
 package com.erg.memorized.model.bible_api_models;
 
+import org.jetbrains.annotations.NotNull;
+
 import java.util.ArrayList;
 
 public class BibleRoot {
@@ -13,6 +15,7 @@ public class BibleRoot {
         this.data = data;
     }
 
+    @NotNull
     @Override
     public String toString() {
         return "Bible{" +

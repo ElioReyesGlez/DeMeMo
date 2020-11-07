@@ -75,7 +75,7 @@ public class ResultFragment extends Fragment implements View.OnClickListener {
         super.onCreate(savedInstanceState);
 
         spHelper = new SharedPreferencesHelper(requireContext());
-        realmHelper = new RealmHelper(requireContext());
+        realmHelper = new RealmHelper();
 
         if (spHelper.getUserLoginStatus()) {
             currentUser = realmHelper.getUser();

@@ -30,7 +30,6 @@ public class AdapterRecyclerViewForLeaderBoardList extends
     private ArrayList<ItemUser> users;
     private final ArrayList<ItemUser> rankUsers;
     private final Context context;
-    private int selectedPos = RecyclerView.NO_POSITION;
 
     public AdapterRecyclerViewForLeaderBoardList(ArrayList<ItemUser> users,
                                                  ArrayList<ItemUser> finalUserList,
@@ -66,7 +65,7 @@ public class AdapterRecyclerViewForLeaderBoardList extends
         if (user.isPremium())
             holder.activateBadgePremium();
 
-        ItemUser currentUser = new RealmHelper(context).getUser();
+        ItemUser currentUser = new RealmHelper().getUser();
 
         if (currentUser != null && currentUser.getId() != null) {
             if (user.getId().equals(currentUser.getId())) {
@@ -122,15 +121,6 @@ public class AdapterRecyclerViewForLeaderBoardList extends
         this.notifyDataSetChanged();
     }
 
-    public void refreshAdapter(ArrayList<ItemUser> users) {
-        this.users = users;
-        this.notifyDataSetChanged();
-    }
-
-    public ArrayList<ItemUser> getUsers() {
-        return users;
-    }
-
     static class VerseHolder extends RecyclerView.ViewHolder {
         private final TextView userName;
         private final TextView score;
@@ -184,28 +174,12 @@ public class AdapterRecyclerViewForLeaderBoardList extends
             SuperUtil.showView(null, this.badgePremiumStatus);
         }
 
-        public TextView getUserName() {
-            return userName;
-        }
-
         public TextView getScore() {
             return score;
         }
 
         public TextView getRank() {
             return rank;
-        }
-
-        public ImageView getBadgePremiumStatus() {
-            return badgePremiumStatus;
-        }
-
-        public ImageView getUserAvatar() {
-            return userAvatar;
-        }
-
-        public ImageView getBadge() {
-            return badge;
         }
 
         public View getRootView() {

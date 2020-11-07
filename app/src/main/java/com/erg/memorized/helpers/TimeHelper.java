@@ -8,9 +8,7 @@ import com.erg.memorized.R;
 
 import org.joda.time.DateTime;
 import org.joda.time.Days;
-import org.joda.time.Hours;
 import org.joda.time.Minutes;
-import org.joda.time.Seconds;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -41,13 +39,13 @@ public class TimeHelper {
         return Days.daysBetween(new DateTime(past), new DateTime(today)).getDays();
     }
 
-    public static long getDifferenceInHours(long date1, long date2) {
+/*    public static long getDifferenceInHours(long date1, long date2) {
         Date past = new Date();
         past.setTime(date1);
         Date today = new Date();
         today.setTime(date2);
         return Hours.hoursBetween(new DateTime(past), new DateTime(today)).getHours();
-    }
+    }*/
 
     public static int getWeekNumber(long date) {
         Calendar calendar = Calendar.getInstance();
@@ -56,13 +54,13 @@ public class TimeHelper {
         return calendar.get(Calendar.WEEK_OF_YEAR);
     }
 
-    public static long getDifferenceInSeconds(long date1, long date2) {
+/*    public static long getDifferenceInSeconds(long date1, long date2) {
         Date past = new Date();
         past.setTime(date1);
         Date today = new Date();
         today.setTime(date2);
         return Seconds.secondsBetween(new DateTime(past), new DateTime(today)).getSeconds();
-    }
+    }*/
 
     public static void setLocale(Activity context, String langCode) {
         Locale locale = new Locale(langCode);
@@ -75,7 +73,7 @@ public class TimeHelper {
 
     public static String getDisplayableTime(Context context, long date)
     {
-        long difference = 0;
+        long difference;
         long currentTime = java.lang.System.currentTimeMillis();
 
         if(currentTime > date)
@@ -85,8 +83,8 @@ public class TimeHelper {
             final long minutes = seconds/60;
             final long hours = minutes/60;
             final long days = hours/24;
-            final long months = days/31;
-            final long years = days/365;
+//            final long months = days/31;
+//            final long years = days/365;
 
             if (seconds < 0)
             {

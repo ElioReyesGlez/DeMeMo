@@ -103,7 +103,7 @@ public class NewVerseFragment extends Fragment implements View.OnClickListener,
         animScaleUp = AnimationUtils.loadAnimation(getContext(), R.anim.less_scale_up);
         animScaleDown = AnimationUtils.loadAnimation(getContext(), R.anim.scale_down);
 
-        realmHelper = new RealmHelper(requireContext());
+        realmHelper = new RealmHelper();
         spHelper = new SharedPreferencesHelper(requireContext());
         untilDate = new Date();
 

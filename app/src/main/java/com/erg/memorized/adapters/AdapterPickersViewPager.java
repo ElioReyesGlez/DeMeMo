@@ -92,9 +92,7 @@ public class AdapterPickersViewPager extends PagerAdapter {
             }
 
             datePicker.init(calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH),
-                    calendar.get(Calendar.DAY_OF_MONTH), (datePicker1, year, month, dayOfMonth) -> {
-                        pickersListener.OnDateChangeListener(datePicker1, year, month, dayOfMonth);
-                    });
+                    calendar.get(Calendar.DAY_OF_MONTH), pickersListener::OnDateChangeListener);
 
             timePicker.setOnTimeChangedListener(pickersListener::OnTimeChangeListener);
 
@@ -120,9 +118,7 @@ public class AdapterPickersViewPager extends PagerAdapter {
                         rlUntil);
             });
 
-            rlUntil.setOnClickListener(v -> {
-                pickersListener.OnUntilViewListener(rlUntil, tvEndDate);
-            });
+            rlUntil.setOnClickListener(v -> pickersListener.OnUntilViewListener(rlUntil, tvEndDate));
 
         }
 

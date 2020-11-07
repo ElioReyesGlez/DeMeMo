@@ -4,8 +4,6 @@
     <string name="img_description">Img</string>
     <string name="tile">Cita</string>
     <string name="verse">Verso</string>
-    <string name="dialog_save">Solo guardar</string>
-    <string name="dialog_save_start">Guardar y empezar</string>
     <string name="failed_saving">¡Algo malo pasó, versículo sin salvar!</string>
     <string name="something_bad">Ha ocurrido algo malo, vuelva a intentarlo más tarde.</string>
     <string name="required_field">¡Campo requerido!</string>
@@ -50,7 +48,6 @@
     <string name="settings">Configuraciones</string>
     <string name="name">Nombre</string>
     <string name="email">E-mail</string>
-    <string name="email_low_case">e-mail</string>
     <string name="mobile_number_user_info">Móvil</string>
     <string name="pass">Contraseña</string>
     <string name="create_account">Crear cuenta</string>
@@ -77,7 +74,6 @@
     <string name="network_error">¡Error de red! Por favor revisar su conexion a internet</string>
     <string name="used_email">dirección de correo electrónico ya está en uso</string>
     <string name="invalid_credentials">Credenciales inválidas, rectificar usuario o contraseña</string>
-    <string name="invalid_credentials_fields">Credenciales inválidas</string>
     <string name="too_many_requests">Demasiados intentos de inicio de sesión fallidos. Por favor, internar de nuevo más tarde.</string>
     <string name="skip">Omitir</string>
     <string name="todo">POR HACER</string>
@@ -109,7 +105,6 @@
     <string name="daily_notification">Notificación diaria</string>
     <string name="weekly_notification">Notificación semanal</string>
     <string name="monthly_notification">Notificación mensual</string>
-    <string name="notification_setup">Configuración de notificaciones</string>
     <string name="date_and_time_symbol">Símbolo de fecha y hora</string>
     <string name="calendar_permissions">¡Necesitamos permisos para crear eventos de calendario con éxito! ¡Gracias!</string>
     <string name="please_calendar_grant_permissions">Otorgue los permisos necesarios</string>
@@ -135,7 +130,6 @@
     <string name="failed_deleting">Error al eliminar la cuenta, inténtalo más tarde.</string>
     <string name="refresh">Actualizar</string>
     <string name="refresh_icon">" icono actualizar"</string>
-    <string name="upload">Salvar</string>
     <string name="general_settings">Configuración General</string>
     <string name="changes_to_be_sync">Alerta de sincronización: ¡Datos para sincronizar!</string>
     <string name="search">buscar…</string>
@@ -145,7 +139,6 @@
     <string name="ic_black_shield">ic escudo negro</string>
     <string name="sync">Sincronizar</string>
     <string name="sync_not_needed">¡No se necesita sincronización!</string>
-    <string name="upload_not_needed">¡Subir no es necesario!</string>
     <string name="language">Idioma</string>
     <string name="bible_language">Idioma:</string>
     <string name="language_selector">Selector de idioma</string>

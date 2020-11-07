@@ -1,5 +1,7 @@
 package com.erg.memorized.model;
 
+import org.jetbrains.annotations.NotNull;
+
 public class LeaderboardItem {
 
     private String id;
@@ -9,14 +11,6 @@ public class LeaderboardItem {
     private float score;
 
     public LeaderboardItem() {
-    }
-
-    public LeaderboardItem(String id, String img, boolean isPremium, String name, float score) {
-        this.id = id;
-        this.img = img;
-        this.isPremium = isPremium;
-        this.name = name;
-        this.score = score;
     }
 
     public String getId() {
@@ -59,6 +53,7 @@ public class LeaderboardItem {
         this.score = score;
     }
 
+    @NotNull
     @Override
     public String toString() {
         return "LeaderboardItem{" +

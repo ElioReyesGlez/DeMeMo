@@ -1,23 +1,17 @@
 package com.erg.memorized.helpers;
 
-import android.app.Activity;
 import android.content.Context;
 import android.graphics.Paint;
 import android.graphics.Rect;
 import android.widget.TextView;
 
-import com.erg.memorized.R;
 import com.erg.memorized.util.Constants;
-import com.google.android.material.textfield.TextInputLayout;
 
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.HashMap;
-import java.util.List;
 import java.util.Random;
 
 import static com.erg.memorized.util.Constants.LOW_LINE;
-import static com.erg.memorized.util.Constants.LOW_LINE_2X;
 import static com.erg.memorized.util.Constants.REGEX_SPACE;
 import static com.erg.memorized.util.Constants.SPACE;
 import static com.erg.memorized.util.Constants.TEXT_SIZE;
@@ -49,7 +43,7 @@ public class TextHelper {
 
     public static String getTextIntoString(ArrayList<String> arrayList) {
         StringBuilder textIntoString = new StringBuilder();
-        for (String word: arrayList) {
+        for (String word : arrayList) {
             textIntoString.append(word).append(SPACE);
         }
         return textIntoString.toString();
@@ -71,9 +65,8 @@ public class TextHelper {
     }
 
     public static String setLowLine(ArrayList<String> textWithLowLines,
-                                               String selectedWord,
-                                    ArrayList<Integer> sortedPosReplacementsWords)
-    {
+                                    String selectedWord,
+                                    ArrayList<Integer> sortedPosReplacementsWords) {
         StringBuilder lowLine = new StringBuilder();
         for (int j = 0; j < selectedWord.length(); j++) {
             lowLine.append(LOW_LINE);
@@ -90,7 +83,7 @@ public class TextHelper {
     }
 
 
-    public static ArrayList<HashMap<String, Integer>> saveWord
+/*    public static ArrayList<HashMap<String, Integer>> saveWord
             (String word, int pos, ArrayList<HashMap<String, Integer>>
             hashMapWordPos) {
 
@@ -103,9 +96,9 @@ public class TextHelper {
             }
         }
         return hashMapWordPos;
-    }
+    }*/
 
-    public static int getPosFromWord (String word, ArrayList<HashMap<String, Integer>>
+/*    public static int getPosFromWord (String word, ArrayList<HashMap<String, Integer>>
             hashMapWordPos) {
 
         for (HashMap<String, Integer> hasMap : hashMapWordPos) {
@@ -114,7 +107,7 @@ public class TextHelper {
             }
         }
         return -1;
-    } 
+    }
 
     private static boolean thereAreNoLinesBefore(ArrayList<String> textWithLowLines, int i) {
         for (int j = i; j > 0; j--) {
@@ -131,10 +124,10 @@ public class TextHelper {
         list.remove(pos);
         array = list.toArray(new String[]{});
         return array;
-    }
+    }*/
 
     public static ArrayList<Integer> getPosReplacementsWords(ArrayList<String> dividedText,
-                                                         ArrayList<String> marks) {
+                                                             ArrayList<String> marks) {
         int wordsToReplace = (dividedText.size() / 2) / 2;
         ArrayList<Integer> replacementsPos = new ArrayList<>();
         ArrayList<String> wordsHistory = new ArrayList<>();
@@ -164,14 +157,14 @@ public class TextHelper {
         return true;
     }
 
-    private static String cleanWord(String word, ArrayList<String> marks) {
+/*    private static String cleanWord(String word, ArrayList<String> marks) {
         for (String mark : marks) {
             if (word.contains(mark)) {
                 word = word.replace(mark, "");
             }
         }
         return word;
-    }
+    }*/
 
     public static int getTextWith(final String text, Context context) {
         TextView textView = new TextView(context);
@@ -180,7 +173,7 @@ public class TextHelper {
         Paint textPaint = textView.getPaint();
         Rect bounds = new Rect();
         textPaint.getTextBounds(text, 0, text.length(), bounds);
-        int height = bounds.height();
+//        int height = bounds.height();
         return bounds.width();
     }
 
@@ -192,7 +185,7 @@ public class TextHelper {
         return lowLine.toString();
     }
 
-    public static boolean validate(Activity context,
+/*    public static boolean validate(Activity context,
                                    TextInputLayout tilMail, TextInputLayout tilPass,
                                    String email, String password) {
         boolean valid = true;
@@ -211,5 +204,5 @@ public class TextHelper {
             tilPass.setError(null);
         }
         return valid;
-    }
+    }*/
 }

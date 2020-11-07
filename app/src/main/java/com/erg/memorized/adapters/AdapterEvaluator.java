@@ -39,7 +39,6 @@ public class AdapterEvaluator extends ArrayAdapter<Evaluator> {
     @Override
     public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
         ViewHolder viewHolder;
-        final View result;
 
         Evaluator evaluator = evaluators.get(position);
 
@@ -47,11 +46,9 @@ public class AdapterEvaluator extends ArrayAdapter<Evaluator> {
             LayoutInflater inflater = LayoutInflater.from(context);
             convertView = inflater.inflate(resource, parent, false);
             viewHolder = new ViewHolder(convertView);
-            result = convertView;
             convertView.setTag(viewHolder);
         } else {
             viewHolder = (ViewHolder) convertView.getTag();
-            result = convertView;
         }
 
         viewHolder.setIcon(evaluator.getImage());

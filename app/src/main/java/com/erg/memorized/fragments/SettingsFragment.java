@@ -121,7 +121,7 @@ public class SettingsFragment extends Fragment implements View.OnClickListener {
 
         spHelper = new SharedPreferencesHelper(requireContext());
         fAuth = FirebaseAuth.getInstance();
-        realmHelper = new RealmHelper(requireContext());
+        realmHelper = new RealmHelper();
 
         Bundle args = getArguments();
         if (args != null) {

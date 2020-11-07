@@ -50,7 +50,7 @@ import static com.erg.memorized.util.Constants.YOUR_VERSION_BASE_URL;
 
 public class HomeFragment extends Fragment implements View.OnClickListener {
 
-    public static String TAG = "HomeFragment";
+    public static final String TAG = "HomeFragment";
 
     private View rootView;
     private ViewGroup container;

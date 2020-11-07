@@ -13,7 +13,6 @@ import android.view.animation.AnimationUtils;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.RadioButton;
-import android.widget.RelativeLayout;
 
 import androidx.appcompat.widget.SearchView;
 import androidx.fragment.app.Fragment;
@@ -82,13 +81,12 @@ public class GeneralSettingsFragment extends Fragment implements View.OnClickLis
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         animScaleUp = AnimationUtils.loadAnimation(requireContext(), R.anim.scale_up);
-        Animation animScaleDown = AnimationUtils.loadAnimation(requireContext(), R.anim.scale_down);
         animSlideInFromRight = AnimationUtils.loadAnimation(requireContext(),
                 R.anim.fab_slide_in_from_right);
 
         fAuth = FirebaseAuth.getInstance();
         spHelper = new SharedPreferencesHelper(requireContext());
-        RealmHelper realmHelper = new RealmHelper(requireContext());
+        RealmHelper realmHelper = new RealmHelper();
         if (spHelper.getUserLoginStatus()) {
             currentUser = realmHelper.getUser();
         }
@@ -107,9 +105,7 @@ public class GeneralSettingsFragment extends Fragment implements View.OnClickLis
     }
 
     private void setUpView() {
-        RelativeLayout rlLanguage = rootView.findViewById(R.id.rl_language);
         linealLanguageContainer = rootView.findViewById(R.id.ll_language_container);
-        RelativeLayout rlBibles = rootView.findViewById(R.id.rl_bibles);
         linealBibleVersionContainer = rootView.findViewById(R.id.ll_bible_version_container);
 
         setSavedLanguage();
@@ -219,12 +215,12 @@ public class GeneralSettingsFragment extends Fragment implements View.OnClickLis
                         });
             } else {
                 if (isVisible())
-                    MessagesHelper.showInfoMessageWarning(getActivity(),
+                    MessagesHelper.showInfoMessageWarning(requireActivity(),
                             getString(R.string.email_is_not_verified_msg));
             }
         } else {
             if (isVisible())
-                MessagesHelper.showInfoMessageWarning(getActivity(),
+                MessagesHelper.showInfoMessageWarning(requireActivity(),
                         getString(R.string.login_needed));
         }
     }
@@ -281,7 +277,7 @@ public class GeneralSettingsFragment extends Fragment implements View.OnClickLis
         Call<BibleRoot> call = bibleApi.getBibles();
         call.enqueue(new Callback<BibleRoot>() {
             @Override
-            public void onResponse(Call<BibleRoot> call, Response<BibleRoot> response) {
+            public void onResponse(@NotNull Call<BibleRoot> call, @NotNull Response<BibleRoot> response) {
                 if (!response.isSuccessful()) {
                     if (isVisible())
                         MessagesHelper.showInfoMessageError(requireActivity(),
@@ -294,7 +290,7 @@ public class GeneralSettingsFragment extends Fragment implements View.OnClickLis
                 BibleRoot bibleRoot = response.body();
                 if (bibleRoot != null) {
                     bibles.addAll(bibleRoot.getData());
-                    adapterBible = new AdapterBible(getActivity(),
+                    adapterBible = new AdapterBible(requireActivity(),
                             R.layout.item_bible_version, bibles);
                     listViewBibles.setAdapter(adapterBible);
                     adapterBible.notifyDataSetChanged();
@@ -305,7 +301,7 @@ public class GeneralSettingsFragment extends Fragment implements View.OnClickLis
             }
 
             @Override
-            public void onFailure(Call<BibleRoot> call, Throwable t) {
+            public void onFailure(@NotNull Call<BibleRoot> call, @NotNull Throwable t) {
                 if (pgsDialog.isShowing())
                     pgsDialog.dismiss();
                 Log.e(TAG, "onFailure: " + t.getMessage());

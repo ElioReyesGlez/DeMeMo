@@ -16,15 +16,13 @@ import java.util.Collections;
  */
 public class Constants {
 
-    public static final String APP_NAME = "DeMeMo";
+//    public static final String APP_NAME = "DeMeMo";
 
     public static final String VERSES_REALM_DB_NAME = "verses_realm_db";
     public static final String USERS_REALM_DB_NAME = "users_realm_db";
 
     public static final String VERSES_REALM_CLASS = "ItemVerse";
-    public static final String USERS_REALM_CLASS = "ItemUser";
-
-    public static final long ANIM_DURATION_MILLIS = 300;
+//    public static final String USERS_REALM_CLASS = "ItemUser";
 
     /*Verses Rows*/
     public static final String VERSE_COLUMN_POS = "pos";
@@ -52,20 +50,17 @@ public class Constants {
     public static final CharSequence LOW_LINE_2X = "__";
 
     /*Shared Preferences*/
-    public static final String ID_RESOURCE = "key_resource";
+//    public static final String ID_RESOURCE = "key_resource";
     public static final String PREFS_NAME = "SharedPreferencesMemorized";
     public static final String AUDIO_MSG_KEY = "audio_message_key";
     public static final String STATUS_BAR_MSG_KEY = "status_bar_message_key";
-    public static final String EDIT_KEY = "edit_flag";
     public static final String LOGIN_STATUS_KEY = "login_user_state";
     public static final String SIGN_ACTION_KEY = "signing_flag";
     public static final String INTRO_STATUS_KEY = "intro_flag";
     public static final String DIALOG_SPLIT_INFO_STATUS_KEY = "split_info_flag";
     public static final String DIALOG_ASK_TO_DO_TEST_STATUS_KEY = "ask_to_do_test_flag";
-    public static final String POSITION_SECTION = "position_section";
     public static final String SECTION_STATUS_KEY = "section_view_flag";
     public static final String EMAIL_VERIFIED_STATUS_KEY = "email_verified_flag";
-    public static final String USER_TEXT_SIZE_PREF = "user_text_size";
     public static final String BIBLE_VERSION_KEY = "bible_version_key";
 
     /*URI CALENDARS*/
@@ -76,7 +71,7 @@ public class Constants {
     public static final String MONTHLY_KEY = "key_monthly_";
     public static final String WEEKLY_KEY = "key_weekly_";
     public static final String LAST_SYNC = "last_upload_";
-    public static final String UPLOAD_CONT = "upload_cont_";
+//    public static final String UPLOAD_CONT = "upload_cont_";
     public static final int LEADER_BOARD_USERS_LIMIT = 20;
 
 
@@ -87,7 +82,6 @@ public class Constants {
     public static final long MIN_VIBRATE_TIME = 10;
     public static final int FIX_SIZE = 4;
 
-    public static final String FLAG_DAILY_VERSE_KEY = "isDailyVerse";
     public static final String DAILY_VERSE_KEY = "daily_verse_key";
 
     /*TEXT SIZES*/
@@ -105,11 +99,10 @@ public class Constants {
     public static final String USER_FIRE_BASE_REFERENCE = "users";
     public static final String LEADER_BOARD_FIRE_BASE_REFERENCE = "leader_board";
     public static final String PREMIUM_USER_FIRE_BASE_REFERENCE = "isPremium";
-    public static final String IMG_FIRE_BASE_REFERENCE = "img_profile";
 
     /*User Rows*/
     public static final String USER_COLUMN_ID = "id";
-    public static final String USER_COLUMN_POS = "pos";
+//    public static final String USER_COLUMN_POS = "pos";
     public static final String USER_COLUMN_NAME = "name";
     public static final String USER_COLUMN_EMAIL = "email";
     public static final String USER_COLUMN_MOBILE = "mobile";
@@ -121,7 +114,7 @@ public class Constants {
 
     public static final String DEFAULT = "default";
 
-    public static final int IMG_REQ_CODE = 1;
+
     public static final int DECIMAL_PLACE = 1;
 
     public static final String SPACE = " ";
@@ -129,15 +122,15 @@ public class Constants {
     public static final String DOUBLE_DOT = ":";
     public static final char DOT_CHAR = '.';
     public static final char SEMICOLON_CHAR = ';';
-    public static final char EAT_CHAR = ',';
-    public static final char EXCLAMATION_MARK_CHAR_UP = '¡';
+//    public static final char EAT_CHAR = ',';
+//    public static final char EXCLAMATION_MARK_CHAR_UP = '¡';
     public static final char EXCLAMATION_MARK_CHAR_DOWN = '!';
-    public static final char QUESTION_MARK_CHAR_UP = '¿';
+//    public static final char QUESTION_MARK_CHAR_UP = '¿';
     public static final char QUESTION_MARK_CHAR_DOWN = '?';
-    public static final char DOUBLE_QUOTE = '"';
+//    public static final char DOUBLE_QUOTE = '"';
     public static final String REGEX_SPACE = "\\s+";
     public static final int SENTENCE_IDEAL_LENGTH = 7;
-    public static final int SECTION_SENTENCE_IDEAL_LENGTH = 10;
+//    public static final int SECTION_SENTENCE_IDEAL_LENGTH = 10;
 
     //API YourVersion
     public static final String YOUR_VERSION_BASE_URL = "https://developers.youversionapi.com/1.0/";
@@ -200,8 +193,8 @@ public class Constants {
     public static final String interstitial_ad_unit_id = "ca-app-pub-5375894039512920/4596144610";
 
     // Interstitial Ad Unit Id
-    public static final String testing_interstitial_ad_unit_id =
-            "ca-app-pub-3940256099942544/1033173712";
+//    public static final String testing_interstitial_ad_unit_id =
+//            "ca-app-pub-3940256099942544/1033173712";
 
     public static ArrayList<String> getBrands(Context context) {
         ArrayList<String> brands = new ArrayList<>();

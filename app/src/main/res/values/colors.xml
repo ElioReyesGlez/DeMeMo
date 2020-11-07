@@ -57,7 +57,6 @@
     <!--blue grey-->
     <color name="md_blue_grey_300">#90a4ae</color>
     <!--Texts-->
-    <color name="md_text_white">#ffffffff</color>
     <!--Falcon-->
 
     <color name="md_status_bar_translucent">#4000</color>

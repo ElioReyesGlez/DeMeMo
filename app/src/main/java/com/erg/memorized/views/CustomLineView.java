@@ -49,10 +49,10 @@ public class CustomLineView extends View {
     private int mViewHeight;
     private int dataOfAGird = 10;
     private int bottomTextHeight = 0;
-    private ArrayList<String> bottomTextList = new ArrayList<String>();
+    private ArrayList<String> bottomTextList = new ArrayList<>();
     private ArrayList<ArrayList<Float>> dataLists;
-    private final ArrayList<Integer> xCoordinateList = new ArrayList<Integer>();
-    private final ArrayList<Integer> yCoordinateList = new ArrayList<Integer>();
+    private final ArrayList<Integer> xCoordinateList = new ArrayList<>();
+    private final ArrayList<Integer> yCoordinateList = new ArrayList<>();
     private final ArrayList<ArrayList<CustomLineView.Dot>> drawDotLists = new ArrayList<>();
     private final Paint bottomTextPaint = new Paint();
     private int bottomTextDescent;
@@ -140,13 +140,12 @@ public class CustomLineView extends View {
         int longestWidth = 0;
         String longestStr = "";
         bottomTextDescent = 0;
-        boolean autoSetGridWidth = true;
         for (String s : bottomTextList) {
             bottomTextPaint.getTextBounds(s, 0, s.length(), r);
             if (bottomTextHeight < r.height()) {
                 bottomTextHeight = r.height();
             }
-            if (autoSetGridWidth && (longestWidth < r.width())) {
+            if (longestWidth < r.width()) {
                 longestWidth = r.width();
                 longestStr = s;
             }
@@ -155,14 +154,12 @@ public class CustomLineView extends View {
             }
         }
 
-        if (autoSetGridWidth) {
-            if (backgroundGridWidth < longestWidth) {
-                backgroundGridWidth =
-                        longestWidth + (int) bottomTextPaint.measureText(longestStr, 0, 1);
-            }
-            if (sideLineLength < longestWidth / 2) {
-                sideLineLength = longestWidth / 2;
-            }
+        if (backgroundGridWidth < longestWidth) {
+            backgroundGridWidth =
+                    longestWidth + (int) bottomTextPaint.measureText(longestStr, 0, 1);
+        }
+        if (sideLineLength < longestWidth / 2) {
+            sideLineLength = longestWidth / 2;
         }
 
         refreshXCoordinateList(getHorizontalGridNum());
@@ -202,11 +199,9 @@ public class CustomLineView extends View {
         float biggestData = 0;
         for (ArrayList<Float> list : dataLists) {
             boolean autoSetDataOfGird = true;
-            if (autoSetDataOfGird) {
-                for (Float i : list) {
-                    if (biggestData < i) {
-                        biggestData = i;
-                    }
+            for (Float i : list) {
+                if (biggestData < i) {
+                    biggestData = i;
                 }
             }
             dataOfAGird = 1;
@@ -274,7 +269,7 @@ public class CustomLineView extends View {
         if (dataLists != null && !dataLists.isEmpty()) {
             if (drawDotLists.size() == 0) {
                 for (int k = 0; k < dataLists.size(); k++) {
-                    drawDotLists.add(new ArrayList<CustomLineView.Dot>());
+                    drawDotLists.add(new ArrayList<>());
                 }
             }
             for (int k = 0; k < dataLists.size(); k++) {
@@ -381,6 +376,7 @@ public class CustomLineView extends View {
 
         NinePatchDrawable popup =
                 (NinePatchDrawable) ContextCompat.getDrawable(getContext(), R.drawable.popup_white);
+        assert popup != null;
         popup.setColorFilter(new PorterDuffColorFilter(PopupColor, PorterDuff.Mode.MULTIPLY));
         popup.setBounds(r);
         popup.draw(canvas);

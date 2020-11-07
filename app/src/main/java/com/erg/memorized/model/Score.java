@@ -1,5 +1,7 @@
 package com.erg.memorized.model;
 
+import org.jetbrains.annotations.NotNull;
+
 public class Score {
 
     private int hitsCont;
@@ -48,6 +50,7 @@ public class Score {
         this.ops = ops;
     }
 
+    @NotNull
     @Override
     public String toString() {
         return "Score{" +

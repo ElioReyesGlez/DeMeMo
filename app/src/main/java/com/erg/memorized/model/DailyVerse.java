@@ -2,6 +2,8 @@ package com.erg.memorized.model;
 
 import com.erg.memorized.model.your_version_models.Verse;
 
+import org.jetbrains.annotations.NotNull;
+
 public class DailyVerse {
 
     private Verse verse;
@@ -15,6 +17,7 @@ public class DailyVerse {
         return day;
     }
 
+    @NotNull
     @Override
     public String toString() {
         return "DailyVerse{" +

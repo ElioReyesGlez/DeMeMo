@@ -1,5 +1,7 @@
 package com.erg.memorized.model.bible_api_models;
 
+import org.jetbrains.annotations.NotNull;
+
 public class BibleLanguage {
     private String id;
     private String name;
@@ -29,6 +31,7 @@ public class BibleLanguage {
         this.nameLocal = nameLocal;
     }
 
+    @NotNull
     @Override
     public String toString() {
         return "BibleLanguage{" +

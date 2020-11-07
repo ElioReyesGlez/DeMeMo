@@ -10,7 +10,6 @@ import com.squareup.picasso.Transformation;
 
 public class CircleTransform implements Transformation {
 
-    private static final String TAG = "CircleTransform";
     private static final String KEY = "profile_img_round";
     @Override
     public Bitmap transform(Bitmap source) {

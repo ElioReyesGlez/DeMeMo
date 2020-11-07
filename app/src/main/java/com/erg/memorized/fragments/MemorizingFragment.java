@@ -95,7 +95,7 @@ public class MemorizingFragment extends Fragment {
                 .getSystemService(AUDIO_SERVICE);
 
         spHelper = new SharedPreferencesHelper(requireActivity());
-        realmHelper = new RealmHelper(getContext());
+        realmHelper = new RealmHelper();
 
         if (!spHelper.getSectionViewStatus())
             userTextSize = spHelper.getUserTextSizePref(verse.getTitle());

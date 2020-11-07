@@ -18,6 +18,7 @@ import com.erg.memorized.util.Constants;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Objects;
 import java.util.TimeZone;
 
 public class CalendarHelper {
@@ -68,9 +69,10 @@ public class CalendarHelper {
         }
 
         Uri uri = cr.insert(CalendarContract.Events.CONTENT_URI, values);
+        assert uri != null;
         Log.i(TAG, "Uri returned => " + uri.toString());
         // get the event ID that is the last element in the Uri
-        long eventID = Long.parseLong(uri.getLastPathSegment());
+        long eventID = Long.parseLong(Objects.requireNonNull(uri.getLastPathSegment()));
 
         if (hasAlarm) {
             ContentValues reminders = new ContentValues();
@@ -80,6 +82,7 @@ public class CalendarHelper {
 
             Uri uri2 = cr.insert(CalendarContract.Reminders.CONTENT_URI, reminders);
 
+            assert uri2 != null;
             Log.i(TAG, "Uri returned => " + uri2.toString());
         }
     }
@@ -125,6 +128,7 @@ public class CalendarHelper {
             Cursor managedCursor = contentResolver.query(calendars, projection,
                     null, null, null);
 
+            assert managedCursor != null;
             if (managedCursor.moveToFirst()) {
                 String calName;
                 String calID;

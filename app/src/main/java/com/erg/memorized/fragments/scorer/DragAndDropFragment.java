@@ -26,7 +26,6 @@ import com.erg.memorized.adapters.AdapterScorerFragmentPager;
 import com.erg.memorized.fragments.ScorerFragment;
 import com.erg.memorized.helpers.ScoreHelper;
 import com.erg.memorized.helpers.TextHelper;
-import com.erg.memorized.interfaces.BoxTestListener;
 import com.erg.memorized.interfaces.ScorerListener;
 import com.erg.memorized.model.ItemVerse;
 import com.erg.memorized.model.Score;
@@ -51,26 +50,19 @@ public class DragAndDropFragment extends Fragment implements View.OnClickListene
     private ArrayList<String> textShuffled;
 
     private final ItemVerse verse;
-    private BoxTestListener boxTestListener;
     private final ScorerFragment scorerFragment;
 
     private LinearLayout boxesContainer;
     private ArrayList<TextView> textViews;
     private ScrollView scrollView;
 
-    public DragAndDropFragment(ItemVerse verse,
-                               BoxTestListener boxTestListener,
-                               ScorerFragment scorerFragment) {
-        this.boxTestListener = boxTestListener;
+    public DragAndDropFragment(ItemVerse verse, ScorerFragment scorerFragment) {
         this.scorerFragment = scorerFragment;
         this.verse = verse;
     }
 
-
-    public static DragAndDropFragment newInstance(ItemVerse verse,
-                                                  BoxTestListener boxTestListener,
-                                                  ScorerFragment scorerFragment) {
-        return new DragAndDropFragment(verse, boxTestListener, scorerFragment);
+    public static DragAndDropFragment newInstance(ItemVerse verse, ScorerFragment scorerFragment) {
+        return new DragAndDropFragment(verse, scorerFragment);
     }
 
     @Override
