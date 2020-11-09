@@ -21,21 +21,21 @@ public class Constants {
     public static final String VERSES_REALM_DB_NAME = "verses_realm_db";
     public static final String USERS_REALM_DB_NAME = "users_realm_db";
 
-    public static final String VERSES_REALM_CLASS = "ItemVerse";
+//    public static final String VERSES_REALM_CLASS = "ItemVerse";
 //    public static final String USERS_REALM_CLASS = "ItemUser";
 
     /*Verses Rows*/
-    public static final String VERSE_COLUMN_POS = "pos";
+//    public static final String VERSE_COLUMN_POS = "pos";
     public static final String VERSE_COLUMN_TITLE = "title";
     public static final String VERSE_COLUMN_VERSE = "verseText";
     public static final String VERSE_COLUMN_ID = "id";
     public static final String VERSE_COLUMN_DATE_ALARM = "dateAlarm";
     public static final String VERSE_COLUMN_UNTIL_DATE_ALARM = "untilAlarm";
     public static final String VERSE_COLUMN_REPEATING_STATUS = "repeatingAlarmStatus";
-    public static final String VERSE_COLUMN_CHECKED = "isChecked";
+//    public static final String VERSE_COLUMN_CHECKED = "isChecked";
     public static final String VERSE_COLUMN_MEMORIZING_STATUS = "isMemorized";
     public static final String VERSE_ALARM_STATUS = "isOnAlarm";
-    public static final String VERSE_COLUMN_DAYS_ON = "daysOn";
+//    public static final String VERSE_COLUMN_DAYS_ON = "daysOn";
     public static final String VERSE_COLUMN_SCORE = "verse_score";
 
     /*LeaderBoa Rows*/
@@ -44,8 +44,8 @@ public class Constants {
     public static final String LEADER_BOARD_COLUMN_NAME = "name";
     public static final String LEADER_BOARD_COLUMN_SCORE = "score";
 
-    public static final String ON_OFF = "isOnAlarm";
-    public static final String AT = "@";
+//    public static final String ON_OFF = "isOnAlarm";
+//    public static final String AT = "@";
     public static final CharSequence LOW_LINE = "_";
     public static final CharSequence LOW_LINE_2X = "__";
 
@@ -118,7 +118,7 @@ public class Constants {
     public static final int DECIMAL_PLACE = 1;
 
     public static final String SPACE = " ";
-    public static final String DOT = ".";
+//    public static final String DOT = ".";
     public static final String DOUBLE_DOT = ":";
     public static final char DOT_CHAR = '.';
     public static final char SEMICOLON_CHAR = ';';

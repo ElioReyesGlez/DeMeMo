@@ -65,10 +65,19 @@ public class AdMobFragment extends Fragment implements View.OnClickListener {
         Log.d(TAG, "onCreateView: starts");
         rootView = inflater.inflate(R.layout.fragment_ad_mob, container, false);
 
-        initAdAndBilling();
         setUpView();
-
         return rootView;
+    }
+
+    @Override
+    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+
+        mInterstitialAd = newInterstitialAd(requireActivity().getApplicationContext());
+        loadInterstitial();
+
+        billingHelper = new BillingHelper(requireActivity(), currentUser);
+        billingHelper.init();
     }
 
     private void setUpView() {
@@ -81,14 +90,6 @@ public class AdMobFragment extends Fragment implements View.OnClickListener {
         tvMission.setOnClickListener(this);
 
         Log.d(TAG, "setUpView: Done!");
-    }
-
-    private void initAdAndBilling() {
-        mInterstitialAd = newInterstitialAd(requireContext());
-        loadInterstitial();
-
-        billingHelper = new BillingHelper(requireActivity(), currentUser);
-        billingHelper.init();
     }
 
     @Override
