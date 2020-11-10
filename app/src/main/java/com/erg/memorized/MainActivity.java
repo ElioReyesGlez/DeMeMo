@@ -42,6 +42,7 @@ import com.erg.memorized.model.ItemUser;
 import com.erg.memorized.util.Constants;
 import com.erg.memorized.util.SuperUtil;
 import com.etebarian.meowbottomnavigation.MeowBottomNavigation;
+import com.google.android.gms.ads.MobileAds;
 
 import static com.erg.memorized.util.Constants.MENU_HOME;
 import static com.erg.memorized.util.Constants.MIN_DAYS_UNTIL_PROMPT;
@@ -97,8 +98,14 @@ public class MainActivity extends FragmentActivity {
             }
 
         }
-
         setUpAppLanguage();
+        initMobileAds();
+    }
+
+    private void initMobileAds() {
+        MobileAds.initialize(this, initializationStatus ->
+                Log.d(TAG, "onInitializationComplete: STATUS: "
+                + initializationStatus.toString()));
     }
 
     private void handleToShowRateDialog() {

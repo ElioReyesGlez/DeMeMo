@@ -73,12 +73,18 @@ public class AdMobFragment extends Fragment implements View.OnClickListener {
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
 
-        mInterstitialAd = newInterstitialAd(requireActivity().getApplicationContext());
+        mInterstitialAd = newInterstitialAd(requireActivity());
         loadInterstitial();
 
         billingHelper = new BillingHelper(requireActivity(), currentUser);
         billingHelper.init();
     }
+
+/*    private Context getAppContext() {
+        if (getActivity() == null || getActivity().getApplicationContext() == null)
+            return null;
+        return getActivity().getApplicationContext();
+    }*/
 
     private void setUpView() {
         Button btnGetPremium = rootView.findViewById(R.id.btn_get_premium);
@@ -91,6 +97,7 @@ public class AdMobFragment extends Fragment implements View.OnClickListener {
 
         Log.d(TAG, "setUpView: Done!");
     }
+
 
     @Override
     public void onClick(View v) {
