@@ -5,6 +5,7 @@ import android.app.Dialog;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -60,7 +61,6 @@ public class NewVerseFragment extends Fragment implements View.OnClickListener,
 
     private final boolean isEditingAction;
 
-    private long notifyDate = -1;
     private TextInputLayout tilTitle, tilVerse;
     private TextInputEditText tiEditTextTitle, tiEditTextVerse;
     private TextView tvDate;
@@ -77,7 +77,8 @@ public class NewVerseFragment extends Fragment implements View.OnClickListener,
     private boolean weekly = false;
     private boolean monthly = false;
     private boolean hasAlarmFlag = false;
-    private Date untilDate;
+    private Date endTime;
+    private long notifyDate = -1;
 
     private final ItemVerse currentItemVerse;
     private RealmHelper realmHelper;
@@ -105,7 +106,9 @@ public class NewVerseFragment extends Fragment implements View.OnClickListener,
 
         realmHelper = new RealmHelper();
         spHelper = new SharedPreferencesHelper(requireContext());
-        untilDate = new Date();
+        endTime = new Date();
+        calendar = Calendar.getInstance();
+        calendar.setTimeInMillis(System.currentTimeMillis());
 
         meoBottomBar = requireActivity().findViewById(R.id.meow_bottom_navigation);
     }
@@ -155,9 +158,9 @@ public class NewVerseFragment extends Fragment implements View.OnClickListener,
 
             }
 
-            endDatePicked = currentItemVerse.getUntilAlarm() != -1;
+            endDatePicked = currentItemVerse.getEndTimeAlarm() != -1;
             if (endDatePicked) {
-                untilDate.setTime(currentItemVerse.getUntilAlarm());
+                endTime.setTime(currentItemVerse.getEndTimeAlarm());
             }
         }
     }
@@ -175,9 +178,9 @@ public class NewVerseFragment extends Fragment implements View.OnClickListener,
                 break;
             case R.id.rl_show_pickers:
                 if (CalendarHelper.haveCalendarReadWritePermissions(requireActivity())) {
-                    if (!calendarName.isEmpty() && calendarID != -1)
-                        showPickerDateTimeDialog();
-                    else {
+                    if (!calendarName.isEmpty() && calendarID != -1) {
+                        handleShowPickerDateTimeDialog();
+                    } else {
                         showPickerCalendarsDialog();
                     }
                 } else {
@@ -187,6 +190,10 @@ public class NewVerseFragment extends Fragment implements View.OnClickListener,
                 }
                 break;
         }
+    }
+
+    private void handleShowPickerDateTimeDialog() {
+        new Handler().postDelayed(this::showPickerDateTimeDialog, 500);
     }
 
     private void showPickerDateTimeDialog() {
@@ -200,23 +207,20 @@ public class NewVerseFragment extends Fragment implements View.OnClickListener,
         FixedViewPager fixedViewPager = dialogView.findViewById(R.id.fixed_viewpager);
 
         String[] tabsTitles = getResources().getStringArray(R.array.tabs_titles);
-        calendar = Calendar.getInstance();
-        calendar.setTimeInMillis(System.currentTimeMillis());
-        AdapterPickersViewPager pickersAdapter = new AdapterPickersViewPager(requireActivity(), tabsTitles, calendar,
-                currentItemVerse, this);
+        AdapterPickersViewPager pickersAdapter =
+                new AdapterPickersViewPager(requireActivity(), tabsTitles, calendar,
+                        currentItemVerse, this);
         fixedViewPager.setAdapter(pickersAdapter);
         tabLayout.setupWithViewPager(fixedViewPager);
 
-        dialogView.setAnimation(animScaleUp);
-        dialog.setContentView(dialogView);
-
         Button btnSaveDateTime = dialogView.findViewById(R.id.save_date_time_button);
         btnSaveDateTime.setOnClickListener(v -> {
-            SuperUtil.vibrate(getContext());
+            if (isVisible())
+                SuperUtil.vibrate(requireActivity());
 
             if (daily || weekly || monthly) {
                 if (endDatePicked) {
-                    if (isUntilDateValid()) {
+                    if (isEndTimeValid()) {
                         notifyDate = calendar.getTimeInMillis();
                         tvDate.setText(TimeHelper.dateFormatterMedium(notifyDate));
                         tvDate.startAnimation(animScaleDown);
@@ -229,14 +233,14 @@ public class NewVerseFragment extends Fragment implements View.OnClickListener,
                     } else {
                         if (isVisible())
                             MessagesHelper.showInfoMessageWarningOnDialog(requireActivity(),
-                                    getString(R.string.invalid_until_date), dialogView);
+                                    getString(R.string.invalid_date), dialogView);
                     }
                 } else {
                     if (isVisible())
                         MessagesHelper.showInfoMessageWarningOnDialog(requireActivity(),
                                 getString(R.string.pick_until_date_first), dialogView);
                 }
-            } else {
+            } else if (isAlarmDateValid()) {
 
                 notifyDate = calendar.getTimeInMillis();
 
@@ -248,9 +252,16 @@ public class NewVerseFragment extends Fragment implements View.OnClickListener,
                 if (dialog.isShowing()) {
                     dialog.dismiss();
                 }
+            } else {
+                if (isVisible())
+                    MessagesHelper.showInfoMessageWarningOnDialog(requireActivity(),
+                            getString(R.string.invalid_date), dialogView);
             }
         });
+
+        dialog.setContentView(dialogView);
         dialog.show();
+        dialogView.startAnimation(animScaleUp);
     }
 
 
@@ -271,17 +282,9 @@ public class NewVerseFragment extends Fragment implements View.OnClickListener,
             }
 
             if (daily || weekly || monthly) {
-                if (untilDate != null) {
-                    if (endDatePicked) {
-                        if (isUntilDateValid()) {
-                            currentItemVerse.setUntilAlarm(untilDate.getTime());
-                        } else {
-                            if (isVisible())
-                                MessagesHelper.showInfoMessageWarning(requireActivity(),
-                                        getString(R.string.invalid_until_date));
-                            return;
-                        }
-                    }
+                if (endDatePicked) {
+                    currentItemVerse.setEndTime(endTime.getTime());
+
                     currentItemVerse.setRepeatingAlarmStatus(true);
                 }
             } else {
@@ -303,9 +306,12 @@ public class NewVerseFragment extends Fragment implements View.OnClickListener,
         }
     }
 
-    private boolean isUntilDateValid() {
-        Date currentTime = Calendar.getInstance().getTime();
-        return untilDate != null && untilDate.getTime() > currentTime.getTime();
+    private boolean isEndTimeValid() {
+        return endTime != null && endTime.getTime() > System.currentTimeMillis();
+    }
+
+    private boolean isAlarmDateValid() {
+        return notifyDate > System.currentTimeMillis();
     }
 
     @Override
@@ -327,12 +333,14 @@ public class NewVerseFragment extends Fragment implements View.OnClickListener,
         calendar.set(Calendar.YEAR, year);
         calendar.set(Calendar.MONTH, month);
         calendar.set(Calendar.DAY_OF_MONTH, dayOfMonth);
+        notifyDate = calendar.getTimeInMillis();
     }
 
     @Override
     public void OnTimeChangeListener(TimePicker timePicker, int hourOfDay, int minute) {
         calendar.set(Calendar.HOUR_OF_DAY, hourOfDay);
         calendar.set(Calendar.MINUTE, minute);
+        notifyDate = calendar.getTimeInMillis();
     }
 
     @Override
@@ -371,22 +379,23 @@ public class NewVerseFragment extends Fragment implements View.OnClickListener,
     }
 
     @Override
-    public void OnUntilViewListener(RelativeLayout untilView, TextView tvUntilDate) {
-        SuperUtil.vibrate(requireActivity());
-        showUntilDatePickerDialog(tvUntilDate);
+    public void OnEndTimeViewListener(RelativeLayout untilView, TextView tvUntilDate) {
+        if (isVisible())
+            SuperUtil.vibrate(requireActivity());
+        showEndTimePickerDialog(tvUntilDate);
     }
 
-    private void showUntilDatePickerDialog(TextView tvEndDate) {
+    private void showEndTimePickerDialog(TextView tvEndDate) {
         final Dialog dialog = new Dialog(Objects.requireNonNull(getContext()), R.style.alert_dialog);
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
         LayoutInflater inflater = getLayoutInflater();
         @SuppressLint("InflateParams") View dialogView = inflater.inflate(R.layout.until_date_picker_view, null, false);
         dialog.setContentView(dialogView);
 
-        DatePicker datePicker = dialogView.findViewById(R.id.until_date_picker);
+        DatePicker datePicker = dialogView.findViewById(R.id.end_date_picker);
 
         //default date
-        untilDate = calendar.getTime();
+        endTime = calendar.getTime();
         datePicker.init(calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH),
                 calendar.get(Calendar.DAY_OF_MONTH), (datePicker1, year, month, dayOfMonth) -> {
                     Calendar auxCal = Calendar.getInstance();
@@ -394,21 +403,22 @@ public class NewVerseFragment extends Fragment implements View.OnClickListener,
                     auxCal.set(Calendar.YEAR, year);
                     auxCal.set(Calendar.MONTH, month);
                     auxCal.set(Calendar.DAY_OF_MONTH, dayOfMonth);
-                    untilDate = auxCal.getTime();
+                    endTime = auxCal.getTime();
                 });
 
         Button btSaveEndDate = dialogView.findViewById(R.id.until_date_button);
         btSaveEndDate.setOnClickListener(v -> {
-            SuperUtil.vibrate(getContext());
-            if (isUntilDateValid()) {
-                tvEndDate.setText(TimeHelper.dateFormatterMedium(untilDate.getTime()));
+            if (isVisible())
+                SuperUtil.vibrate(requireActivity());
+            if (isEndTimeValid()) {
+                tvEndDate.setText(TimeHelper.dateFormatterMedium(endTime.getTime()));
                 endDatePicked = true;
                 if (dialog.isShowing())
                     dialog.dismiss();
             } else {
                 if (isVisible())
                     MessagesHelper.showInfoMessageWarningOnDialog(requireActivity(),
-                            getString(R.string.invalid_until_date), dialogView);
+                            getString(R.string.invalid_date), dialogView);
             }
         });
         dialog.show();
@@ -485,20 +495,20 @@ public class NewVerseFragment extends Fragment implements View.OnClickListener,
             String contentText = getString(R.string.ready_msg)
                     + SPACE + currentItemVerse.getTitle();
 
-            String formattedUntilDate = "";
+            String formattedEndDate = "";
             if (daily || weekly || monthly) {
-                if (untilDate != null) {
-                    formattedUntilDate = TimeHelper.getUntil(untilDate);
+                if (endTime != null) {
+                    formattedEndDate = TimeHelper.getUntil(endTime);
                     hasAlarmFlag = true;
                 }
-            } else if (currentItemVerse.getUntilAlarm() != -1) {
-                formattedUntilDate = TimeHelper.dateFormatterMedium(currentItemVerse.getUntilAlarm());
+            } else if (currentItemVerse.getEndTimeAlarm() != -1) {
+                formattedEndDate = TimeHelper.dateFormatterMedium(currentItemVerse.getEndTimeAlarm());
             }
 
             CalendarHelper.makeNewCalendarEntry(
                     requireActivity(), contentTitle, contentText, currentItemVerse.getDateAlarm(),
                     ONE_HOUR, false, hasAlarmFlag, daily, weekly, monthly,
-                    calendarID, formattedUntilDate, DEFAULT_SELECTED_REMAINDER
+                    calendarID, formattedEndDate, DEFAULT_SELECTED_REMAINDER
             );
         }
     }
@@ -528,7 +538,8 @@ public class NewVerseFragment extends Fragment implements View.OnClickListener,
         /*onClick on dialog cancel button*/
         Button cancelBtn = dialog.findViewById(R.id.cancel_dialog_button);
         cancelBtn.setOnClickListener(v -> {
-            SuperUtil.vibrate(Objects.requireNonNull(getContext()));
+            if (isVisible())
+                SuperUtil.vibrate(requireActivity());
             if (dialog.isShowing())
                 dialog.dismiss();
         });
@@ -536,7 +547,8 @@ public class NewVerseFragment extends Fragment implements View.OnClickListener,
         /*onClick on dialog override button*/
         Button editBtn = dialog.findViewById(R.id.edit_dialog_button);
         editBtn.setOnClickListener(v -> {
-
+            if (isVisible())
+                SuperUtil.vibrate(requireActivity());
             saveIntoDB();
             if (isVisible())
                 MessagesHelper.showInfoMessage(requireActivity(),
@@ -552,30 +564,32 @@ public class NewVerseFragment extends Fragment implements View.OnClickListener,
     }
 
     private void showPickerCalendarsDialog() {
-        Dialog dialog = new Dialog(Objects.requireNonNull(getContext()), R.style.alert_dialog);
+        Dialog dialog = new Dialog(requireContext(), R.style.alert_dialog);
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
         dialog.setCancelable(false);
         LayoutInflater inflater = getLayoutInflater();
-        @SuppressLint("InflateParams") View dialogView = inflater.inflate(R.layout.dialog_view_calendar_choice, null, false);
+        @SuppressLint("InflateParams") View dialogView =
+                inflater.inflate(R.layout.dialog_view_calendar_choice, null, false);
         ListView listView = dialogView.findViewById(R.id.list_view_calendars);
 
-        Animation anim = AnimationUtils.loadAnimation(getContext(), R.anim.scale_up);
+        Animation anim = AnimationUtils.loadAnimation(requireContext(), R.anim.scale_up);
         dialogView.setAnimation(anim);
         dialog.setContentView(dialogView);
 
-        listView.setAdapter(new ArrayAdapter<>(getContext(),
+        listView.setAdapter(new ArrayAdapter<>(requireContext(),
                 R.layout.item_list_calendar,
                 R.id.tv_calendar, getCalendarsNameArray()));
 
         listView.setOnItemClickListener((parent, view, position, id) -> {
-            SuperUtil.vibrate(getContext());
+            if (isVisible())
+                SuperUtil.vibrate(requireActivity());
             calendarName = getCalendarsNameArray()[position];
             calendarID = getCalendarsIdArray()[position];
 
             if (dialog.isShowing())
                 dialog.dismiss();
 
-            showPickerDateTimeDialog();
+            handleShowPickerDateTimeDialog();
             MessagesHelper.showInfoMessage(requireActivity(),
                     calendarName + SPACE + getString(R.string.selected));
         });

@@ -71,7 +71,7 @@ public class AdapterPickersViewPager extends PagerAdapter {
             SwitchCompat dailySwitch = container.findViewById(R.id.switch_daily);
             SwitchCompat weeklySwitch = container.findViewById(R.id.switch_weekly);
             SwitchCompat monthlySwitch = container.findViewById(R.id.switch_monthly);
-            RelativeLayout rlUntil = container.findViewById(R.id.rl_until);
+            RelativeLayout rlEndDate = container.findViewById(R.id.rl_until);
             TextView tvEndDate = container.findViewById(R.id.tv_end_date);
 
             if (itemVerse != null && itemVerse.getTitle() != null) {
@@ -83,23 +83,25 @@ public class AdapterPickersViewPager extends PagerAdapter {
                         + itemVerse.getTitle()));
 
                 if (dailySwitch.isChecked() || weeklySwitch.isChecked() || monthlySwitch.isChecked()) {
-                    SuperUtil.showView(null, rlUntil);
+                    SuperUtil.showView(null, rlEndDate);
                 }
             }
 
-            if (itemVerse != null && itemVerse.getUntilAlarm() != -1) {
-                tvEndDate.setText(TimeHelper.dateFormatterMedium(itemVerse.getUntilAlarm()));
+            if (itemVerse != null && itemVerse.getEndTimeAlarm() != -1) {
+                tvEndDate.setText(TimeHelper.dateFormatterMedium(itemVerse.getEndTimeAlarm()));
             }
 
             datePicker.init(calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH),
-                    calendar.get(Calendar.DAY_OF_MONTH), pickersListener::OnDateChangeListener);
+                    calendar.get(Calendar.DAY_OF_MONTH), (datePicker1, year, month, dayOfMonth) -> {
+                        pickersListener.OnDateChangeListener(datePicker1, year, month, dayOfMonth);
+                    });
 
             timePicker.setOnTimeChangedListener(pickersListener::OnTimeChangeListener);
 
             dailySwitch.setOnCheckedChangeListener((buttonView, isChecked) -> {
                 switchOff(isChecked, weeklySwitch, monthlySwitch);
                 pickersListener.OnDailySwitchListener(buttonView, isChecked,
-                        rlUntil);
+                        rlEndDate);
             });
 
             weeklySwitch.setOnCheckedChangeListener((buttonView, isChecked) -> {
@@ -107,7 +109,7 @@ public class AdapterPickersViewPager extends PagerAdapter {
                     dailySwitch.setChecked(false);
 
                 pickersListener.OnWeeklySwitchListener(buttonView, isChecked,
-                        rlUntil);
+                        rlEndDate);
             });
 
             monthlySwitch.setOnCheckedChangeListener((buttonView, isChecked) -> {
@@ -115,10 +117,10 @@ public class AdapterPickersViewPager extends PagerAdapter {
                     dailySwitch.setChecked(false);
 
                 pickersListener.OnMonthlySwitchListener(buttonView, isChecked,
-                        rlUntil);
+                        rlEndDate);
             });
 
-            rlUntil.setOnClickListener(v -> pickersListener.OnUntilViewListener(rlUntil, tvEndDate));
+            rlEndDate.setOnClickListener(v -> pickersListener.OnEndTimeViewListener(rlEndDate, tvEndDate));
 
         }
 

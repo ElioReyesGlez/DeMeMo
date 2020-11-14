@@ -25,6 +25,8 @@ import com.erg.memorized.R;
 import com.erg.memorized.fragments.MemorizingFragment;
 import com.erg.memorized.fragments.NewVerseFragment;
 import com.erg.memorized.fragments.ScorerFragment;
+import com.erg.memorized.fragments.SplitTextFragment;
+import com.erg.memorized.fragments.scorer.ResultFragment;
 import com.erg.memorized.model.ItemVerse;
 import com.erg.memorized.util.Constants;
 import com.erg.memorized.util.SuperUtil;
@@ -126,7 +128,8 @@ public class MessagesHelper {
                     msg, Snackbar.LENGTH_INDEFINITE);
             snackBar.setBackgroundTint(context.getColor(R.color.colorPrimary));
             snackBar.setAction(R.string.ok, v -> {
-                SuperUtil.vibrateMin(context);
+                if (!context.isFinishing())
+                    SuperUtil.vibrateMin(context);
                 if (snackBar.isShown()) {
                     snackBar.dismiss();
                     if (key != null) {
@@ -168,7 +171,8 @@ public class MessagesHelper {
         /*onClick on dialog cancel button*/
         Button cancelBtn = dialog.findViewById(R.id.btn_ok);
         cancelBtn.setOnClickListener(v -> {
-            SuperUtil.vibrate(context);
+            if (!context.isFinishing())
+                SuperUtil.vibrate(context);
             Log.d(tag, "showEvaluatorDialogInfoMessage: " +
                     tag + " Switch: " + btnSwitch.isChecked());
             if (btnSwitch.isChecked())
@@ -183,12 +187,11 @@ public class MessagesHelper {
 
     }
 
-    public static Dialog showTimeFinishedDialog(FragmentActivity context, ViewGroup container,
-                                                ScorerFragment scorerFragment) {
-        final Dialog dialog = new Dialog(context, R.style.alert_dialog);
+    public static Dialog showTimeFinishedDialog(ScorerFragment context, ViewGroup container) {
+        final Dialog dialog = new Dialog(context.requireActivity(), R.style.alert_dialog);
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
         dialog.setCancelable(false);
-        LayoutInflater inflater = context.getLayoutInflater();
+        LayoutInflater inflater = context.requireActivity().getLayoutInflater();
         View dialogView = inflater.inflate(R.layout.dialog_time_finished_view_lottie,
                 container, false);
         dialog.setContentView(dialogView);
@@ -196,14 +199,17 @@ public class MessagesHelper {
         /*onClick on dialog ok button*/
         Button btnOK = dialogView.findViewById(R.id.btn_dialog);
         btnOK.setOnClickListener(v -> {
-            SuperUtil.vibrate(context);
-            scorerFragment.showScorer();
+            if (context.isVisible())
+                SuperUtil.vibrate(context.requireActivity());
+
+            context.showScorer();
+
             if (dialog.isShowing())
                 dialog.dismiss();
         });
 
         dialog.show();
-        Animation animScaleUp = AnimationUtils.loadAnimation(context, R.anim.scale_up);
+        Animation animScaleUp = AnimationUtils.loadAnimation(context.requireActivity(), R.anim.scale_up);
         dialogView.startAnimation(animScaleUp);
         return dialog;
     }
@@ -226,7 +232,8 @@ public class MessagesHelper {
         /*onClick on later  button*/
         Button btnCancel = dialogView.findViewById(R.id.rate_dialog_remind_later);
         btnCancel.setOnClickListener(v -> {
-            SuperUtil.vibrate(context);
+            if (!context.isFinishing())
+                SuperUtil.vibrate(context);
 
             spHelper.resetRateDialogFlags();
 
@@ -237,7 +244,8 @@ public class MessagesHelper {
         /*onClick on negative button*/
         Button btnNegative = dialogView.findViewById(R.id.rate_dialog_no);
         btnNegative.setOnClickListener(v -> {
-            SuperUtil.vibrate(context);
+            if (!context.isFinishing())
+                SuperUtil.vibrate(context);
 
             spHelper.setAgreeToShowRateDialog(false);
             spHelper.resetRateDialogFlags();
@@ -249,7 +257,8 @@ public class MessagesHelper {
         /*onClick on dialog ok button*/
         Button btnOK = dialogView.findViewById(R.id.rate_dialog_ok);
         btnOK.setOnClickListener(v -> {
-            SuperUtil.vibrate(context);
+            if (!context.isFinishing())
+                SuperUtil.vibrate(context);
             spHelper.resetRateDialogFlags();
 
             try {
@@ -287,13 +296,13 @@ public class MessagesHelper {
         }
     }
 
-    public static void showTestDialog(FragmentActivity context, ViewGroup container,
+    public static void showTestDialog(SplitTextFragment context, ViewGroup container,
                                       Animation anim,
                                       ItemVerse verse) {
-        final Dialog dialog = new Dialog(context, R.style.alert_dialog);
+        final Dialog dialog = new Dialog(context.requireActivity(), R.style.alert_dialog);
         dialog.setCancelable(false);
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
-        LayoutInflater inflater = context.getLayoutInflater();
+        LayoutInflater inflater = context.requireActivity().getLayoutInflater();
         View dialogView = inflater.inflate(R.layout.dialog_do_test_view,
                 container, false);
 
@@ -303,7 +312,9 @@ public class MessagesHelper {
         /*onClick No button*/
         Button btnNo = dialogView.findViewById(R.id.do_test_dialog_no);
         btnNo.setOnClickListener(v -> {
-            SuperUtil.vibrate(context);
+            if (context.isVisible())
+                SuperUtil.vibrate(context.requireActivity());
+
             if (dialog.isShowing())
                 dialog.dismiss();
         });
@@ -311,8 +322,10 @@ public class MessagesHelper {
         /*onClick No button*/
         Button btnOk = dialogView.findViewById(R.id.do_test_dialog_ok);
         btnOk.setOnClickListener(v -> {
-            SuperUtil.vibrate(context);
-            SuperUtil.loadView(context, ScorerFragment.newInstance(verse),
+            if (context.isVisible())
+                SuperUtil.vibrate(context.requireActivity());
+
+            SuperUtil.loadView(context.requireActivity(), ScorerFragment.newInstance(verse),
                     ScorerFragment.TAG, true);
             if (dialog.isShowing())
                 dialog.dismiss();
@@ -330,19 +343,20 @@ public class MessagesHelper {
         }, 900);
     }
 
-    public static void showLivingAlertDialog(FragmentActivity context, ViewGroup container,
+    public static void showLivingAlertDialog(ResultFragment context, ViewGroup container,
                                              Animation anim) {
-        final Dialog dialog = new Dialog(context, R.style.alert_dialog);
+        final Dialog dialog = new Dialog(context.requireActivity(), R.style.alert_dialog);
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
         dialog.setCancelable(false);
-        LayoutInflater inflater = context.getLayoutInflater();
+        LayoutInflater inflater = context.requireActivity().getLayoutInflater();
         View dialogView = inflater.inflate(R.layout.dialog_leaving_alert_view,
                 container, false);
 
         /*onClick on dialog cancel button*/
         Button cancelBtn = dialogView.findViewById(R.id.cancel_dialog_button);
         cancelBtn.setOnClickListener(v -> {
-            SuperUtil.vibrate(context);
+            if (context.isVisible())
+                SuperUtil.vibrate(context.requireActivity());
 
             if (dialog.isShowing())
                 dialog.dismiss();
@@ -351,8 +365,10 @@ public class MessagesHelper {
         /*onClick on dialog leave button*/
         Button editBtn = dialogView.findViewById(R.id.leave_dialog_button);
         editBtn.setOnClickListener(v -> {
-            SuperUtil.vibrate(context);
-            context.onBackPressed();
+            if (context.isVisible())
+                SuperUtil.vibrate(context.requireActivity());
+
+            context.requireActivity().onBackPressed();
 
             if (dialog.isShowing())
                 dialog.dismiss();
@@ -363,20 +379,21 @@ public class MessagesHelper {
         dialogView.startAnimation(anim);
     }
 
-    public static void showDialogtDialogSplit(Activity context, ViewGroup container,
+    public static void showDialogtDialogSplit(MemorizingFragment context, ViewGroup container,
                                               Animation anim) {
-        Dialog dialog = new Dialog(context, R.style.alert_dialog);
+        Dialog dialog = new Dialog(context.requireActivity(), R.style.alert_dialog);
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
         dialog.setCancelable(false);
-        LayoutInflater inflater = context.getLayoutInflater();
+        LayoutInflater inflater = context.requireActivity().getLayoutInflater();
         View dialogView = inflater.inflate(R.layout.dialog_split_verse_info_lottie,
                 container, false);
 
-        SharedPreferencesHelper spHelper = new SharedPreferencesHelper(context);
+        SharedPreferencesHelper spHelper = new SharedPreferencesHelper(context.requireActivity());
         Button btn = dialogView.findViewById(R.id.btn_dialog);
         btn.setOnClickListener(v -> {
-            if (!context.isFinishing())
-                SuperUtil.vibrate(context);
+            if (context.isVisible())
+                SuperUtil.vibrate(context.requireActivity());
+
             spHelper.setDialogSplitInfoStatus(true);
             dialog.dismiss();
         });
@@ -391,7 +408,7 @@ public class MessagesHelper {
         Dialog dialog = new Dialog(context.requireActivity(), R.style.alert_dialog);
         dialog.setCancelable(false);
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
-        LayoutInflater inflater = context.getLayoutInflater();
+        LayoutInflater inflater = context.requireActivity().getLayoutInflater();
         View dialogView = inflater.inflate(R.layout.dialog_ask_to_do_test_view,
                 container, false);
         HorizontalScrollView horizontalScrollView = dialogView
@@ -401,7 +418,7 @@ public class MessagesHelper {
 
         Button btnOk = dialogView.findViewById(R.id.do_test_dialog_ok);
         btnOk.setOnClickListener(v -> {
-            if (!context.isVisible())
+            if (context.isVisible())
                 SuperUtil.vibrate(context.requireContext());
             spHelper.setDialogAskToDoTestStatus(true);
             if (dialog.isShowing())
@@ -424,7 +441,7 @@ public class MessagesHelper {
         final Dialog dialog = new Dialog(context.requireActivity(), R.style.alert_dialog);
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
         dialog.setCancelable(false);
-        LayoutInflater inflater = context.getLayoutInflater();
+        LayoutInflater inflater = context.requireActivity().getLayoutInflater();
         View dialogView = inflater.inflate(R.layout.dialog_save_verse_view,
                 container, false);
         TextView msg = dialogView.findViewById(R.id.text_dialog);
@@ -433,7 +450,7 @@ public class MessagesHelper {
         /*onClick on dialog cancel button*/
         Button cancelBtn = dialogView.findViewById(R.id.cancel_dialog_button);
         cancelBtn.setOnClickListener(v -> {
-            if (!context.isVisible())
+            if (context.isVisible())
                 SuperUtil.vibrate(context.requireContext());
             if (dialog.isShowing())
                 dialog.dismiss();
@@ -442,7 +459,7 @@ public class MessagesHelper {
         /*onClick on dialog delete button*/
         Button editBtn = dialogView.findViewById(R.id.edit_save_dialog_button);
         editBtn.setOnClickListener(v -> {
-            if (!context.isVisible())
+            if (context.isVisible())
                 SuperUtil.vibrate(context.requireContext());
             ItemVerse currentItemVerse = new ItemVerse(verse.getTitle(), verse.getVerseText());
             long idVerse = System.currentTimeMillis();
@@ -465,12 +482,12 @@ public class MessagesHelper {
         dialogView.startAnimation(anim);
     }
 
-    public static void showScoreCalcInfo(FragmentActivity context,
+    public static void showScoreCalcInfo(ResultFragment context,
                                          ViewGroup container, Animation anim) {
-        final Dialog dialog = new Dialog(context, R.style.alert_dialog);
+        final Dialog dialog = new Dialog(context.requireActivity(), R.style.alert_dialog);
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
         dialog.setCancelable(false);
-        LayoutInflater inflater = context.getLayoutInflater();
+        LayoutInflater inflater = context.requireActivity().getLayoutInflater();
         View dialogView = inflater.inflate(R.layout.dialog_info_calc_info_view,
                 container, false);
 
@@ -495,7 +512,8 @@ public class MessagesHelper {
         /*onClick on dialog cancel button*/
         Button btnOK = dialogView.findViewById(R.id.btn_ok);
         btnOK.setOnClickListener(v -> {
-            SuperUtil.vibrate(context);
+            if (context.isVisible())
+                SuperUtil.vibrate(context.requireActivity());
             if (dialog.isShowing())
                 dialog.dismiss();
         });

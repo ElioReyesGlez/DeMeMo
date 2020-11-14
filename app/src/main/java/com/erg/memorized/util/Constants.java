@@ -30,7 +30,7 @@ public class Constants {
     public static final String VERSE_COLUMN_VERSE = "verseText";
     public static final String VERSE_COLUMN_ID = "id";
     public static final String VERSE_COLUMN_DATE_ALARM = "dateAlarm";
-    public static final String VERSE_COLUMN_UNTIL_DATE_ALARM = "untilAlarm";
+    public static final String VERSE_COLUMN_END_DATE_ALARM = "untilAlarm";
     public static final String VERSE_COLUMN_REPEATING_STATUS = "repeatingAlarmStatus";
 //    public static final String VERSE_COLUMN_CHECKED = "isChecked";
     public static final String VERSE_COLUMN_MEMORIZING_STATUS = "isMemorized";

@@ -413,7 +413,7 @@ public class MemorizingFragment extends Fragment {
     private void handleShowDialogtDialogSplit() {
         new Handler().postDelayed(() -> {
             if (isVisible()) {
-                MessagesHelper.showDialogtDialogSplit(requireActivity(),
+                MessagesHelper.showDialogtDialogSplit(this,
                         container, animScaleUp);
             }
         }, 1000);

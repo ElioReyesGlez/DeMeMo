@@ -119,7 +119,7 @@
     <string name="language_not_supported">Desculpe, seu idioma atual não é compatível</string>
     <string name="copy">Copiar</string>
     <string name="text">texto</string>
-    <string name="invalid_until_date">A data de término é inválida!</string>
+    <string name="invalid_date">Data inválidaa!</string>
     <string name="verses">Versos</string>
     <string name="last_sync">Última sincro</string>
     <!--    <string name="memorized">Memorized</string>-->
@@ -191,7 +191,7 @@
     <string name="sorry_you_did_not_make_it">Desculpe! Não conseguiu</string>
     <string name="please_try_again">Por favor, tente novamente!</string>
     <string name="set_missing_word">Defina a palavra que falta!</string>
-    <string name="remove_cloud_backup">Apagar backup em nuvem também</string>
+    <string name="remove_cloud_backup">Apagar backup em nuvem</string>
     <string name="descriptionLocal">Descrição local</string>
     <string name="score">Pontuação</string>
     <string name="default_notification_channel_id">930601</string>

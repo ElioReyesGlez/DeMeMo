@@ -125,7 +125,7 @@ public class SplitTextFragment extends Fragment implements OnSectionListener {
     private void showTestDialog() {
         new Handler().postDelayed(() -> {
             if (isVisible())
-                MessagesHelper.showTestDialog(requireActivity(), container, animScaleUp, verse);
+                MessagesHelper.showTestDialog(this, container, animScaleUp, verse);
         }, 1000);
     }
 

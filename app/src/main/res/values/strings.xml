@@ -115,7 +115,7 @@
     <string name="language_not_supported">Sorry, your current language is not supported</string>
     <string name="copy">Copy</string>
     <string name="text">text</string>
-    <string name="invalid_until_date">The end date it is invalid!</string>
+    <string name="invalid_date">Invalid date!</string>
     <string name="verses">Verses</string>
     <string name="last_sync">Last sync</string>
     <string name="zero">0</string>
@@ -178,7 +178,7 @@
     <string name="see_score">OK, see score</string>
     <string name="sorry_you_did_not_make_it">Sorry! You did not make it</string>
     <string name="set_missing_word">Set missing word!</string>
-    <string name="remove_cloud_backup">Delete cloud backup to</string>
+    <string name="remove_cloud_backup">Delete cloud backup</string>
     <string name="descriptionLocal">Local description</string>
     <string name="score">Score</string>
     <string name="default_notification_channel_id">930601</string>

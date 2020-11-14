@@ -224,8 +224,8 @@ public class ScorerFragment extends Fragment implements BoxTestListener {
                     tvCountdown.setText("");
                     SuperUtil.hideView(animScaleDown, llCountdownContainer);
                     isOnTick = false;
-                    timeFinishDialog = MessagesHelper.showTimeFinishedDialog(requireActivity(),
-                            container,ScorerFragment.this);
+                    timeFinishDialog = MessagesHelper.showTimeFinishedDialog(ScorerFragment.this,
+                            container);
                 }
             }
         };

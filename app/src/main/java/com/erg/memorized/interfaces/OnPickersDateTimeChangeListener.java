@@ -15,5 +15,5 @@ public interface OnPickersDateTimeChangeListener {
                                 RelativeLayout untilView);
     void OnMonthlySwitchListener(CompoundButton buttonView, boolean isChecked,
                                  RelativeLayout untilView);
-    void OnUntilViewListener(RelativeLayout untilView, TextView tvUntilDate);
+    void OnEndTimeViewListener(RelativeLayout untilView, TextView tvUntilDate);
 }

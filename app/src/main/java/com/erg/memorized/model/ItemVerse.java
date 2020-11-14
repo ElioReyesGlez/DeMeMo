@@ -16,7 +16,7 @@ import static com.erg.memorized.util.Constants.VERSE_COLUMN_MEMORIZING_STATUS;
 import static com.erg.memorized.util.Constants.VERSE_COLUMN_REPEATING_STATUS;
 import static com.erg.memorized.util.Constants.VERSE_COLUMN_SCORE;
 import static com.erg.memorized.util.Constants.VERSE_COLUMN_TITLE;
-import static com.erg.memorized.util.Constants.VERSE_COLUMN_UNTIL_DATE_ALARM;
+import static com.erg.memorized.util.Constants.VERSE_COLUMN_END_DATE_ALARM;
 import static com.erg.memorized.util.Constants.VERSE_COLUMN_VERSE;
 
 @RealmModule(classes = {ItemVerse.class})
@@ -92,11 +92,11 @@ public class ItemVerse extends RealmObject {
         this.dateAlarm = dateAlarm;
     }
 
-    public long getUntilAlarm() {
+    public long getEndTimeAlarm() {
         return untilAlarm;
     }
 
-    public void setUntilAlarm(long untilAlarm) {
+    public void setEndTime(long untilAlarm) {
         this.untilAlarm = untilAlarm;
     }
 
@@ -132,7 +132,7 @@ public class ItemVerse extends RealmObject {
         verseHasMap.put(VERSE_COLUMN_MEMORIZING_STATUS, String.valueOf(isMemorized()));
         verseHasMap.put(VERSE_ALARM_STATUS, String.valueOf(isOnAlarm()));
         verseHasMap.put(VERSE_COLUMN_DATE_ALARM, String.valueOf(getDateAlarm()));
-        verseHasMap.put(VERSE_COLUMN_UNTIL_DATE_ALARM, String.valueOf(getUntilAlarm()));
+        verseHasMap.put(VERSE_COLUMN_END_DATE_ALARM, String.valueOf(getEndTimeAlarm()));
         verseHasMap.put(VERSE_COLUMN_REPEATING_STATUS, String.valueOf(getRepeatingAlarmStatus()));
         verseHasMap.put(VERSE_COLUMN_SCORE, String.valueOf(getVerseScore()));
 
@@ -147,8 +147,8 @@ public class ItemVerse extends RealmObject {
         itemVerse.setMemorized(Boolean.parseBoolean(verseHasMap.get(VERSE_COLUMN_MEMORIZING_STATUS)));
         itemVerse.setOnAlarm(Boolean.parseBoolean(verseHasMap.get(VERSE_ALARM_STATUS)));
         itemVerse.setDateAlarm(Long.parseLong(Objects.requireNonNull(verseHasMap.get(VERSE_COLUMN_DATE_ALARM))));
-        itemVerse.setUntilAlarm(Long.parseLong(Objects.requireNonNull(verseHasMap.get(VERSE_COLUMN_DATE_ALARM))));
-        itemVerse.setRepeatingAlarmStatus(Boolean.parseBoolean(verseHasMap.get(VERSE_COLUMN_DATE_ALARM)));
+        itemVerse.setEndTime(Long.parseLong(Objects.requireNonNull(verseHasMap.get(VERSE_COLUMN_END_DATE_ALARM))));
+        itemVerse.setRepeatingAlarmStatus(Boolean.parseBoolean(verseHasMap.get(VERSE_COLUMN_REPEATING_STATUS)));
         itemVerse.setVerseScore(Float.parseFloat(Objects.requireNonNull(verseHasMap.get(VERSE_COLUMN_SCORE))));
         return itemVerse;
     }
@@ -163,7 +163,7 @@ public class ItemVerse extends RealmObject {
                     && isMemorized() == comparable.isMemorized()
                     && isOnAlarm() == comparable.isOnAlarm()
                     && getDateAlarm() == comparable.getDateAlarm()
-                    && getUntilAlarm() == comparable.getUntilAlarm()
+                    && getEndTimeAlarm() == comparable.getEndTimeAlarm()
                     && getRepeatingAlarmStatus() == comparable.getRepeatingAlarmStatus()
                     && getVerseScore() == comparable.getVerseScore();
         } else {

@@ -182,11 +182,11 @@ public class ResultFragment extends Fragment implements View.OnClickListener {
                 if (isAlreadySaved) {
                     requireActivity().onBackPressed();
                 } else {
-                    MessagesHelper.showLivingAlertDialog(requireActivity(), container, animScaleUp);
+                    MessagesHelper.showLivingAlertDialog(this, container, animScaleUp);
                 }
                 break;
             case R.id.iv_score_calculation_info:
-                MessagesHelper.showScoreCalcInfo(requireActivity(), container, animScaleUp);
+                MessagesHelper.showScoreCalcInfo(this, container, animScaleUp);
                 break;
         }
     }

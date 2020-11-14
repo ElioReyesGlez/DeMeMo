@@ -7,7 +7,7 @@
     android:background="@drawable/background_gray">
 
     <DatePicker
-        android:id="@+id/until_date_picker"
+        android:id="@+id/end_date_picker"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
