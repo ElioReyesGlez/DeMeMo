@@ -10,8 +10,8 @@ android {
         applicationId "com.erg.memorized"
         minSdkVersion 23
         targetSdkVersion 29
-        versionCode 34
-        versionName "1.0.4"
+        versionCode 36
+        versionName "1.0.6"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -58,7 +58,7 @@ dependencies {
     //----------------------FireBase Messaging---------------------------------
     implementation 'com.google.firebase:firebase-messaging:21.0.0'
     //----------------------FireBaseAuth---------------------------------
-    implementation 'com.google.firebase:firebase-auth:20.0.0'
+    implementation 'com.google.firebase:firebase-auth:20.0.1'
     //----------------------FireBaseDatabase---------------------------------
     implementation 'com.google.firebase:firebase-database:19.5.1'
     //----------------------cropper---------------------------------

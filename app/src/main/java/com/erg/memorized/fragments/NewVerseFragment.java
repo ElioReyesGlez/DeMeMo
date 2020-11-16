@@ -461,17 +461,16 @@ public class NewVerseFragment extends Fragment implements View.OnClickListener,
                 progressDialog.dismiss();
 
             if (verseExistByTitle || verseExistByVerseText)
-                showDialogItemExit(verseExistByTitle, verseExistByVerseText);
+                showDialogItemExit(verseExistByTitle, verseExistByVerseText, srtTitle, srtVerse);
             else {
-                saveIntoDB();
+                saveIntoDB(currentItemVerse);
                 loadMemorizingView();
-
             }
         }
     }
 
-    private void saveIntoDB() {
-        realmHelper.addVerseToDB(currentItemVerse);
+    private void saveIntoDB(ItemVerse verse) {
+        realmHelper.addVerseToDB(verse);
         createCalendarEvent();
         saveSharedPref();
         MessagesHelper.showInfoMessage(requireActivity(),
@@ -513,7 +512,8 @@ public class NewVerseFragment extends Fragment implements View.OnClickListener,
         }
     }
 
-    private void showDialogItemExit(boolean existByTitle, boolean existByVerseText) {
+    private void showDialogItemExit(boolean existByTitle, boolean existByVerseText,
+                                    String srtTitle, String srtVerse) {
         final Dialog dialog = new Dialog(Objects.requireNonNull(getContext()), R.style.alert_dialog);
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
         dialog.setCancelable(false);
@@ -521,14 +521,23 @@ public class NewVerseFragment extends Fragment implements View.OnClickListener,
         @SuppressLint("InflateParams") View dialogView = inflater.inflate(R.layout.dialog_view_repited_item, null, false);
         TextView msg = dialogView.findViewById(R.id.text_dialog);
 
-        if (existByTitle)
+        ItemVerse auxVerse = null;
+        if (existByTitle) {
             msg.setText(R.string.title_exists);
-        else
+            auxVerse = realmHelper.findItemVerseByTitle(srtTitle);
+        } else if (existByVerseText) {
             msg.setText(R.string.verse_exists);
+            auxVerse = realmHelper.findItemVerseByText(srtVerse);
+        }
 
         if (existByTitle && existByVerseText) {
             msg.setText(getString(R.string.title_and_verse_exists));
             msg.setTextSize(14);
+            auxVerse = realmHelper.findItemVerseByTitle(srtTitle);
+        }
+
+        if (auxVerse != null) {
+            currentItemVerse.setId(auxVerse.getId());
         }
 
         Animation anim = AnimationUtils.loadAnimation(getContext(), R.anim.scale_up);
@@ -549,7 +558,9 @@ public class NewVerseFragment extends Fragment implements View.OnClickListener,
         editBtn.setOnClickListener(v -> {
             if (isVisible())
                 SuperUtil.vibrate(requireActivity());
-            saveIntoDB();
+
+            saveIntoDB(currentItemVerse);
+
             if (isVisible())
                 MessagesHelper.showInfoMessage(requireActivity(),
                         getString(R.string.saved));

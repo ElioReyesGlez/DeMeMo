@@ -123,7 +123,6 @@ public class ResultFragment extends Fragment implements View.OnClickListener {
         TableLayout writerEvaluatorTable = (TableLayout) getLayoutInflater()
                 .inflate(R.layout.table_score_view, container, false);
 
-
         String[] evaluatorNames = getResources().getStringArray(R.array.evaluator_names);
 
         TableLayout[] tableLayouts = new TableLayout[]{
@@ -191,7 +190,18 @@ public class ResultFragment extends Fragment implements View.OnClickListener {
         }
     }
 
+    private void checkIfAlreadyExits() {
+        ItemVerse auxVerse = realmHelper.findItemVerseByTitle(verse.getTitle());
+        if (auxVerse == null)
+            auxVerse = realmHelper.findItemVerseByText(verse.getVerseText());
+
+        if (auxVerse != null) {
+            verse.setId(auxVerse.getId());
+        }
+    }
+
     private void saveScoreOnLocalDB() {
+        checkIfAlreadyExits();
         verse.setVerseScore(totalScore);
         realmHelper.addVerseToDB(verse);
         currentUser.setScore(ScoreHelper.getUserScoreByVersesList(realmHelper.getSavedVerses()));
