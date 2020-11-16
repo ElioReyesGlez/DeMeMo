@@ -12,10 +12,10 @@
     <string name="cloud_successfully_deleted">Nuvem: removida com sucesso!</string>
     <string name="failed_removing">Erro!, o verso da nuvem não foi removido, verifique sua conexão de rede</string>
     <string name="account_successfully_deleted">Conta de usuário apagada!</string>
-    <string name="exit">Pressione BACK novamente para SAIR</string>
+    <string name="exit">Pressione novamente para SAIR</string>
 
-    <string name="failed_creating_user">Erro!, usuário não foi criado</string>
-    <string name="failed_saving_user">Erro!, o usuário não foi salvo</string>
+    <string name="failed_creating_user">Erro, usuário não foi criado</string>
+    <string name="failed_saving_user">Erro, o usuário não foi salvo</string>
     <string name="failed_loading_user_data">Erro, os dados do usuário não foram carregados!</string>
 
     <string name="fam_title">Controle de áudio</string>

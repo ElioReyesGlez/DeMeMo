@@ -12,7 +12,7 @@
     <string name="cloud_successfully_deleted">Cloud: successfully removed!</string>
     <string name="failed_removing">Something bad happened, cloud verse was not removed, check your network connection</string>
     <string name="account_successfully_deleted">User account deleted!</string>
-    <string name="exit">Please press BACK again to EXIT</string>
+    <string name="exit">Please press again to EXIT</string>
 
     <string name="failed_creating_user">Something bad happened, user not created</string>
     <string name="failed_saving_user">Error, user not saved</string>

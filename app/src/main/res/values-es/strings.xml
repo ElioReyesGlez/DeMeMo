@@ -12,7 +12,7 @@
     <string name="cloud_successfully_deleted">Nube: ¡eliminado con éxito!</string>
     <string name="failed_removing">Algo malo sucedió, no se eliminó el versículo de la nube, verifique su conexión de red</string>
     <string name="account_successfully_deleted">¡Cuenta de usuario eliminada</string>
-    <string name="exit">Please press BACK again to EXIT</string>
+    <string name="exit">Presione nuevamente para SALIR</string>
 
     <string name="failed_creating_user">Algo malo sucedió, el usuario no se ha creado</string>
     <string name="failed_saving_user">Algo malo sucedió, usuario no guardado</string>
