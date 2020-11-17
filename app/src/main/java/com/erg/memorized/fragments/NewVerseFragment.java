@@ -201,7 +201,8 @@ public class NewVerseFragment extends Fragment implements View.OnClickListener,
         final Dialog dialog = new Dialog(Objects.requireNonNull(getContext()), R.style.alert_dialog);
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
         LayoutInflater inflater = getLayoutInflater();
-        @SuppressLint("InflateParams") View dialogView = inflater.inflate(R.layout.dialog_date_time_picker_view, null, false);
+        @SuppressLint("InflateParams") View dialogView =
+                inflater.inflate(R.layout.dialog_date_time_picker_view, null, false);
 
         TabLayout tabLayout = dialogView.findViewById(R.id.tabLayout);
         FixedViewPager fixedViewPager = dialogView.findViewById(R.id.fixed_viewpager);

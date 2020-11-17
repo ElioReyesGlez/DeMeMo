@@ -62,7 +62,7 @@
             android:hint="@string/email"
             app:boxStrokeColor="@color/colorAccent"
             app:endIconMode="clear_text"
-            app:startIconContentDescription="@string/name"
+            app:startIconContentDescription="@string/email"
             app:startIconDrawable="@drawable/ic_email">
 
             <com.google.android.material.textfield.TextInputEditText
@@ -83,7 +83,7 @@
             android:hint="@string/mobile_number"
             app:boxStrokeColor="@color/colorAccent"
             app:endIconMode="clear_text"
-            app:startIconContentDescription="@string/name"
+            app:startIconContentDescription="@string/mobile_number"
             app:startIconDrawable="@drawable/ic_telephone">
 
             <com.google.android.material.textfield.TextInputEditText
@@ -127,7 +127,7 @@
             android:hint="@string/pass_again"
             app:boxStrokeColor="@color/colorAccent"
             app:endIconMode="password_toggle"
-            app:startIconContentDescription="@string/pass">
+            app:startIconContentDescription="@string/pass_again">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/input_re_password"

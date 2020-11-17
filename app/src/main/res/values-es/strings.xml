@@ -43,7 +43,6 @@
     <string name="ok">¡Vale!</string>
     <string name="agree">De acuerdo</string>
     <string name="title">Título</string>
-    <string name="description_menu_icon">Icono de menú</string>
     <string name="description_icon_right_arrow">Icono de flecha derecha</string>
     <string name="settings">Configuraciones</string>
     <string name="name">Nombre</string>
@@ -129,7 +128,7 @@
     <string name="failed_synchronizing">Error al sincronizar, inténtelo más tarde.</string>
     <string name="failed_deleting">Error al eliminar la cuenta, inténtalo más tarde.</string>
     <string name="refresh">Actualizar</string>
-    <string name="refresh_icon">" icono actualizar"</string>
+    <string name="refresh_icon">" Ícono actualizar"</string>
     <string name="general_settings">Configuración General</string>
     <string name="changes_to_be_sync">Alerta de sincronización: ¡Datos para sincronizar!</string>
     <string name="search">buscar…</string>
@@ -163,7 +162,6 @@
     <string name="undo">Deshacer</string>
     <string name="icon">Icono</string>
     <string name="finish_first">Prueba sin terminar!</string>
-    <string name="done">¡Hecho!</string>
     <string name="hits">Aciertos</string>
     <string name="almost_hit">Casi aciertos</string>
     <string name="fields">Campos</string>
@@ -333,4 +331,12 @@
     <string name="calculation_msg">La puntuación se calcula con la siguiente ecuación:</string>
     <string name="equation">Ecuación</string>
     <string name="options">Opciones</string>
+    <string name="top_menu">Acción de división del menú superior</string>
+    <string name="top_menu_test">Acción de evaluación del menú superior</string>
+    <string name="switch_daily_button">Botão de mudança diariamente</string>
+    <string name="switch_weekly_button">Botão de mudança semanalmente</string>
+    <string name="switch_monthly_button">Botão de mudança mensal</string>
+    <string name="user_activity_header_icon">Ícono  de encabezado de actividad del usuario</string>
+    <string name="language_icon">Ícono  de idioma</string>
+    <string name="verse_cont">Número de versículo</string>
 </resources>

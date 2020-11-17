@@ -205,7 +205,7 @@
                     android:layout_height="30dp"
                     android:layout_alignParentStart="true"
                     android:layout_centerVertical="true"
-                    android:contentDescription="@string/icon"
+                    android:contentDescription="@string/user_activity_header_icon"
                     android:src="@drawable/ic_user_activity_history" />
 
                 <TextView

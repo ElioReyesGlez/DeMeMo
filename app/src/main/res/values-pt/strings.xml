@@ -42,7 +42,6 @@
     <string name="ok">Está bem!</string>
     <string name="agree">Concordo</string>
     <string name="title">Título</string>
-    <string name="description_menu_icon">Ícone do menu</string>
     <string name="description_icon_right_arrow">Ícone de seta para a direita</string>
     <string name="settings">Definições</string>
     <string name="name">Nome</string>
@@ -162,7 +161,6 @@
     <string name="undo">Desfazer</string>
     <string name="icon">Ícone</string>
     <string name="finish_first">Teste inacabado!</string>
-    <string name="done">Feito!</string>
     <string name="hits">Acertos</string>
     <string name="almost_hit">Quase acertos</string>
     <string name="fields">Campos</string>
@@ -334,4 +332,12 @@
     <string name="calculation_msg">A pontuação é calculada com a seguinte equação:</string>
     <string name="equation">Equação</string>
     <string name="options">Opções</string>
+    <string name="top_menu">Ação de divisão do menu superior</string>
+    <string name="top_menu_test">Ação de avaliação do menu superior</string>
+    <string name="switch_daily_button">Botón de cambio diário</string>
+    <string name="switch_weekly_button">Botón de cambio semanal</string>
+    <string name="switch_monthly_button">Botón de cambio mensual</string>
+    <string name="user_activity_header_icon">Ícone de cabeçalho de atividade do utente</string>
+    <string name="language_icon">Ícone de linguagem</string>
+    <string name="verse_cont">Número de versos</string>
 </resources>

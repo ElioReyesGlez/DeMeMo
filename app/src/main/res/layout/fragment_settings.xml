@@ -162,6 +162,7 @@
                     android:ellipsize="end"
                     android:maxLines="1"
                     android:text="@string/zero"
+                    android:contentDescription="@string/verse_cont"
                     android:textColor="#919191"
                     android:textSize="14sp" />
 
@@ -363,7 +364,7 @@
         <RelativeLayout
             android:id="@+id/rl_leader_board"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="48dp"
             android:layout_marginTop="@dimen/settings_item_margin_dividing_section"
             android:background="@drawable/selector_gray_light"
             android:clickable="true"
@@ -404,7 +405,7 @@
         <RelativeLayout
             android:id="@+id/rl_about"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="48dp"
             android:layout_marginTop="@dimen/settings_item_margin_horizontal"
             android:background="@drawable/selector_gray_light"
             android:clickable="true"
@@ -445,7 +446,7 @@
         <RelativeLayout
             android:id="@+id/rl_general_settings"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="48dp"
             android:layout_marginTop="@dimen/settings_item_margin_horizontal"
             android:layout_marginBottom="@dimen/regular_window_margin"
             android:background="@drawable/selector_gray_light"

@@ -29,7 +29,7 @@
                 android:layout_height="30dp"
                 android:layout_margin="@dimen/regular_window_padding"
                 android:clickable="true"
-                android:contentDescription="@string/description_menu_icon"
+                android:contentDescription="@string/top_menu"
                 android:focusable="true"
                 android:src="@drawable/selector_sections" />
 
@@ -37,10 +37,10 @@
             <ImageView
                 android:id="@+id/iv_test_button"
                 android:layout_width="30dp"
-                android:layout_height="28dp"
+                android:layout_height="wrap_content"
                 android:layout_margin="@dimen/regular_window_padding"
                 android:clickable="true"
-                android:contentDescription="@string/description_menu_icon"
+                android:contentDescription="@string/top_menu_test"
                 android:focusable="true"
                 android:src="@drawable/selector_test" />
         </LinearLayout>
