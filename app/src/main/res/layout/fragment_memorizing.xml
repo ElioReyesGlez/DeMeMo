@@ -25,8 +25,8 @@
 
             <ImageView
                 android:id="@+id/iv_section_view"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
+                android:layout_width="33dp"
+                android:layout_height="33dp"
                 android:layout_margin="@dimen/regular_window_padding"
                 android:clickable="true"
                 android:contentDescription="@string/top_menu"
@@ -36,8 +36,8 @@
 
             <ImageView
                 android:id="@+id/iv_test_button"
-                android:layout_width="30dp"
-                android:layout_height="wrap_content"
+                android:layout_width="33dp"
+                android:layout_height="33dp"
                 android:layout_margin="@dimen/regular_window_padding"
                 android:clickable="true"
                 android:contentDescription="@string/top_menu_test"

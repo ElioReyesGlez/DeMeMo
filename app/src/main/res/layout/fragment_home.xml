@@ -67,8 +67,8 @@
 
                     <ImageButton
                         android:id="@+id/ib_refresh_daily_verse"
-                        android:layout_width="30dp"
-                        android:layout_height="30dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
                         android:layout_margin="3dp"
                         android:layout_centerInParent="true"
                         android:background="@drawable/selector_gray_2"
