@@ -71,8 +71,8 @@ public class NewVerseFragment extends Fragment implements View.OnClickListener,
     private Calendar calendar;
     private String calendarName = "";
     private int calendarID = -1;
-    private boolean datePicked = false;
-    private boolean endDatePicked = false;
+    private boolean isEndDatePicked = false;
+    private boolean isDateAndTimePicked = false;
     private boolean daily = false;
     private boolean weekly = false;
     private boolean monthly = false;
@@ -158,8 +158,8 @@ public class NewVerseFragment extends Fragment implements View.OnClickListener,
 
             }
 
-            endDatePicked = currentItemVerse.getEndTimeAlarm() != -1;
-            if (endDatePicked) {
+            isEndDatePicked = currentItemVerse.getEndTimeAlarm() != -1;
+            if (isEndDatePicked) {
                 endTime.setTime(currentItemVerse.getEndTimeAlarm());
             }
         }
@@ -239,7 +239,7 @@ public class NewVerseFragment extends Fragment implements View.OnClickListener,
                 isDateValid = true;
             }
 
-            if (repeatingFlag && !endDatePicked) {
+            if (repeatingFlag && !isEndDatePicked) {
                 if (isVisible())
                     MessagesHelper.showInfoMessageWarningOnDialog(requireActivity(),
                             getString(R.string.pick_until_date_first), dialogView);
@@ -247,7 +247,7 @@ public class NewVerseFragment extends Fragment implements View.OnClickListener,
                 notifyDate = calendar.getTimeInMillis();
                 tvDate.setText(TimeHelper.dateFormatterMedium(notifyDate));
                 tvDate.startAnimation(animScaleDown);
-                datePicked = true;
+                isDateAndTimePicked = true;
                 if (dialog.isShowing()) {
                     dialog.dismiss();
                 }
@@ -268,7 +268,7 @@ public class NewVerseFragment extends Fragment implements View.OnClickListener,
         daily = false;
         weekly = false;
         monthly = false;
-        endDatePicked = false;
+        isEndDatePicked = false;
     }
 
     private void savingProcess() {
@@ -283,17 +283,19 @@ public class NewVerseFragment extends Fragment implements View.OnClickListener,
             currentItemVerse.setTitle(srtTitle);
             currentItemVerse.setVerseText(srtVerse);
 
-            if (datePicked && isAlarmDateValid()) {
-                currentItemVerse.setDateAlarm(notifyDate);
-            } else {
-                if (isVisible())
-                    MessagesHelper.showInfoMessageWarning(requireActivity(),
-                            getString(R.string.invalid_date));
-                return;
+            if (isDateAndTimePicked) {
+                if (isAlarmDateValid()) {
+                    currentItemVerse.setDateAlarm(notifyDate);
+                } else {
+                    if (isVisible())
+                        MessagesHelper.showInfoMessageWarning(requireActivity(),
+                                getString(R.string.invalid_date));
+                    return;
+                }
             }
 
             if (daily || weekly || monthly) {
-                if (endDatePicked && isEndTimeValid()) {
+                if (isEndDatePicked && isEndTimeValid()) {
                     currentItemVerse.setEndTime(endTime.getTime());
                     currentItemVerse.setRepeatingAlarmStatus(true);
                 }
@@ -422,7 +424,7 @@ public class NewVerseFragment extends Fragment implements View.OnClickListener,
                 SuperUtil.vibrate(requireActivity());
             if (isEndTimeValid()) {
                 tvEndDate.setText(TimeHelper.dateFormatterMedium(endTime.getTime()));
-                endDatePicked = true;
+                isEndDatePicked = true;
                 if (dialog.isShowing())
                     dialog.dismiss();
             } else {
