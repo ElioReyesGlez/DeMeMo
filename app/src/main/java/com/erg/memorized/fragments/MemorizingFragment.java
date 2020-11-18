@@ -392,7 +392,9 @@ public class MemorizingFragment extends Fragment {
         if (checkIfStored) {
             boolean verseExistByTitle = realmHelper.findItemVerseByTitle(verse.getTitle()) != null;
             boolean verseExistByVerseText = realmHelper.findItemVerseByText(verse.getVerseText()) != null;
-            if (!verseExistByTitle && !verseExistByVerseText) {
+            if (!verseExistByTitle && !verseExistByVerseText
+                    && spHelper.getDialogSplitInfoStatus()
+                    && spHelper.getDialogAskToDoTestStatus()) {
                 new Handler().postDelayed(() -> {
                     if (isVisible()) {
                         MessagesHelper.showSaveVerseDialog(this, container,

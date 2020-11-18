@@ -197,7 +197,6 @@ public class NewVerseFragment extends Fragment implements View.OnClickListener,
     }
 
     private void showPickerDateTimeDialog() {
-
         final Dialog dialog = new Dialog(requireContext(), R.style.alert_dialog);
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
         dialog.setCancelable(false);
@@ -259,11 +258,18 @@ public class NewVerseFragment extends Fragment implements View.OnClickListener,
             }
         });
 
+        resetVariables();
         dialog.setContentView(dialogView);
         dialog.show();
         dialogView.startAnimation(animScaleUp);
     }
 
+    private void resetVariables() {
+        daily = false;
+        weekly = false;
+        monthly = false;
+        endDatePicked = false;
+    }
 
     private void savingProcess() {
         String srtTitle = Objects.requireNonNull(tiEditTextTitle.getText()).toString();
@@ -349,44 +355,44 @@ public class NewVerseFragment extends Fragment implements View.OnClickListener,
 
     @Override
     public void OnDailySwitchListener(CompoundButton buttonView, boolean isChecked,
-                                      RelativeLayout untilView) {
+                                      RelativeLayout rlEndDateView) {
         daily = isChecked;
         if (daily || weekly || monthly)
-            SuperUtil.showView(null, untilView);
+            SuperUtil.showView(null, rlEndDateView);
         else
-            SuperUtil.hideView(null, untilView);
+            SuperUtil.hideView(null, rlEndDateView);
 
     }
 
     @Override
     public void OnWeeklySwitchListener(CompoundButton buttonView, boolean isChecked,
-                                       RelativeLayout untilView) {
+                                       RelativeLayout rlEndDateView) {
         weekly = isChecked;
 
         if (daily || weekly || monthly)
-            SuperUtil.showView(null, untilView);
+            SuperUtil.showView(null, rlEndDateView);
         else
-            SuperUtil.hideView(null, untilView);
+            SuperUtil.hideView(null, rlEndDateView);
 
     }
 
     @Override
     public void OnMonthlySwitchListener(CompoundButton buttonView, boolean isChecked,
-                                        RelativeLayout untilView) {
+                                        RelativeLayout rlEndDateView) {
         monthly = isChecked;
 
         if (daily || weekly || monthly)
-            SuperUtil.showView(null, untilView);
+            SuperUtil.showView(null, rlEndDateView);
         else
-            SuperUtil.hideView(null, untilView);
+            SuperUtil.hideView(null, rlEndDateView);
 
     }
 
     @Override
-    public void OnEndTimeViewListener(RelativeLayout untilView, TextView tvUntilDate) {
+    public void OnEndTimeViewListener(RelativeLayout rlEndDateView, TextView tvEndDate) {
         if (isVisible())
             SuperUtil.vibrate(requireActivity());
-        showEndTimePickerDialog(tvUntilDate);
+        showEndTimePickerDialog(tvEndDate);
     }
 
     private void showEndTimePickerDialog(TextView tvEndDate) {
