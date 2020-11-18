@@ -103,11 +103,10 @@
     <Button
         android:id="@+id/btn_ok"
         style="@style/ok_button"
+        android:layout_width="match_parent"
         android:layout_marginTop="@dimen/margin_top"
         android:background="@drawable/selector_light_green"
         android:text="@string/ok"
         android:layout_centerHorizontal="true"
         android:layout_below="@+id/rl_equation_container"/>
-
-
 </RelativeLayout>

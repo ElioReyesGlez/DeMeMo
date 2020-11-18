@@ -198,8 +198,9 @@ public class NewVerseFragment extends Fragment implements View.OnClickListener,
 
     private void showPickerDateTimeDialog() {
 
-        final Dialog dialog = new Dialog(Objects.requireNonNull(getContext()), R.style.alert_dialog);
+        final Dialog dialog = new Dialog(requireContext(), R.style.alert_dialog);
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        dialog.setCancelable(false);
         LayoutInflater inflater = getLayoutInflater();
         @SuppressLint("InflateParams") View dialogView =
                 inflater.inflate(R.layout.dialog_date_time_picker_view, null, false);
@@ -214,42 +215,44 @@ public class NewVerseFragment extends Fragment implements View.OnClickListener,
         fixedViewPager.setAdapter(pickersAdapter);
         tabLayout.setupWithViewPager(fixedViewPager);
 
+        Button btnCancel = dialogView.findViewById(R.id.cancel_dialog_button);
+        btnCancel.setOnClickListener(v -> {
+            if (isVisible())
+                SuperUtil.vibrate(requireActivity());
+            if (dialog.isShowing()) {
+                dialog.dismiss();
+            }
+        });
+
         Button btnSaveDateTime = dialogView.findViewById(R.id.save_date_time_button);
         btnSaveDateTime.setOnClickListener(v -> {
             if (isVisible())
                 SuperUtil.vibrate(requireActivity());
 
+            boolean repeatingFlag = false;
+            boolean isDateValid = false;
+
             if (daily || weekly || monthly) {
                 if (endDatePicked) {
-                    if (isEndTimeValid()) {
-                        notifyDate = calendar.getTimeInMillis();
-                        tvDate.setText(TimeHelper.dateFormatterMedium(notifyDate));
-                        tvDate.startAnimation(animScaleDown);
-
-                        datePicked = true;
-
-                        if (dialog.isShowing()) {
-                            dialog.dismiss();
-                        }
-                    } else {
-                        if (isVisible())
-                            MessagesHelper.showInfoMessageWarningOnDialog(requireActivity(),
-                                    getString(R.string.invalid_date), dialogView);
-                    }
-                } else {
-                    if (isVisible())
-                        MessagesHelper.showInfoMessageWarningOnDialog(requireActivity(),
-                                getString(R.string.pick_until_date_first), dialogView);
+                    repeatingFlag = true;
                 }
-            } else if (isAlarmDateValid()) {
+            }
+
+            if (isAlarmDateValid()) {
+                isDateValid = true;
+            }
+
+            if (repeatingFlag) {
+                if (isVisible())
+                    MessagesHelper.showInfoMessageWarningOnDialog(requireActivity(),
+                            getString(R.string.pick_until_date_first), dialogView);
+            } else if (isDateValid) {
+
 
                 notifyDate = calendar.getTimeInMillis();
-
                 tvDate.setText(TimeHelper.dateFormatterMedium(notifyDate));
                 tvDate.startAnimation(animScaleDown);
-
                 datePicked = true;
-
                 if (dialog.isShowing()) {
                     dialog.dismiss();
                 }
@@ -278,14 +281,18 @@ public class NewVerseFragment extends Fragment implements View.OnClickListener,
             currentItemVerse.setTitle(srtTitle);
             currentItemVerse.setVerseText(srtVerse);
 
-            if (datePicked) {
+            if (datePicked && isAlarmDateValid()) {
                 currentItemVerse.setDateAlarm(notifyDate);
+            } else {
+                if (isVisible())
+                    MessagesHelper.showInfoMessageWarning(requireActivity(),
+                            getString(R.string.invalid_date));
+                return;
             }
 
             if (daily || weekly || monthly) {
-                if (endDatePicked) {
+                if (endDatePicked && isEndTimeValid()) {
                     currentItemVerse.setEndTime(endTime.getTime());
-
                     currentItemVerse.setRepeatingAlarmStatus(true);
                 }
             } else {
@@ -302,7 +309,7 @@ public class NewVerseFragment extends Fragment implements View.OnClickListener,
                 tilVerse.setError(getString(R.string.required_field));
 
             if (isVisible())
-                MessagesHelper.showInfoMessageError(requireActivity(),
+                MessagesHelper.showInfoMessageWarning(requireActivity(),
                         getString(R.string.failed_saving));
         }
     }

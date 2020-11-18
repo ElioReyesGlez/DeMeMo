@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
@@ -11,112 +10,99 @@
         android:id="@+id/lottie_anim"
         android:layout_width="100dp"
         android:layout_height="100dp"
-        android:layout_marginTop="2dp"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:scaleType="centerCrop"
+        android:layout_marginTop="2dp"
         android:adjustViewBounds="true"
-        android:cropToPadding="true"
         android:contentDescription="@string/animated_img"
+        android:cropToPadding="true"
+        android:scaleType="centerCrop"
         app:lottie_autoPlay="true"
-        app:lottie_loop="true"
-        app:lottie_fileName="exam.json"/>
+        app:lottie_fileName="exam.json"
+        app:lottie_loop="true" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/lottie_anim"
+        android:layout_margin="@dimen/regular_item_padding"
+        android:orientation="vertical"
+        android:padding="@dimen/regular_item_padding">
+
+        <TextView
+            android:id="@+id/tv_msg_dialog"
+            style="@style/default_textView_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_margin="@dimen/regular_item_padding"
+            android:padding="@dimen/regular_window_padding"
+            android:text="@string/dialog_msg_ask_to_do_test"
+            android:textAlignment="center"
+            android:textColor="@color/dark_gray_btn_bg_color" />
 
         <LinearLayout
-            android:layout_width="match_parent"
+            android:id="@+id/lineal_l_go_here_container"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/lottie_anim"
-            android:layout_margin="@dimen/regular_item_padding"
-            android:padding="@dimen/regular_item_padding"
-            android:orientation="vertical">
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="4dp"
+            android:orientation="vertical"
+            android:padding="@dimen/regular_window_padding">
 
             <TextView
-                style="@style/default_textView_title"
-                android:id="@+id/tv_msg_dialog"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_margin="@dimen/regular_item_padding"
-                android:padding="@dimen/regular_window_padding"
-                android:text="@string/dialog_msg_ask_to_do_test"
-                android:textAlignment="center"
-                android:layout_gravity="center_horizontal"
-                android:textColor="@color/dark_gray_btn_bg_color"/>
+                android:layout_gravity="center_vertical"
+                android:layout_marginStart="4dp"
+                android:layout_marginBottom="2dp"
+                android:ellipsize="end"
+                android:maxLines="2"
+                android:text="@string/go_here"
+                android:textColor="@color/dark_gray_btn_bg_color"
+                android:textSize="14sp" />
 
             <LinearLayout
-                android:id="@+id/lineal_l_go_here_container"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_gravity="center"
                 android:layout_marginTop="4dp"
-                android:padding="@dimen/regular_window_padding"
-                android:layout_gravity="center_horizontal"
-                android:orientation="vertical">
+                android:background="@drawable/background_white"
+                android:gravity="center"
+                android:orientation="horizontal"
+                android:padding="@dimen/regular_window_padding">
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="4dp"
-                    android:layout_marginBottom="2dp"
-                    android:text="@string/go_here"
-                    android:maxLines="2"
-                    android:ellipsize="end"
-                    android:textColor="@color/dark_gray_btn_bg_color"
-                    android:textSize="14sp"
-                    android:layout_gravity="center_vertical"/>
+                <ImageView
+                    android:layout_width="17dp"
+                    android:layout_height="17dp"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginStart="1dp"
+                    android:contentDescription="@string/right_arrow"
+                    android:src="@drawable/ic_arrow_right" />
 
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="4dp"
-                    android:gravity="center"
-                    android:layout_gravity="center"
-                    android:padding="@dimen/regular_window_padding"
-                    android:background="@drawable/background_white"
-                    android:orientation="horizontal">
-
-                    <ImageView
-                        android:layout_width="17dp"
-                        android:layout_height="17dp"
-                        android:layout_marginStart="1dp"
-                        android:src="@drawable/ic_arrow_right"
-                        android:layout_gravity="center_vertical"
-                        android:contentDescription="@string/right_arrow" />
-
-                    <ImageView
-                        android:layout_width="17dp"
-                        android:layout_height="17dp"
-                        android:layout_marginStart="1dp"
-                        android:layout_marginEnd="4dp"
-                        android:src="@drawable/ic_test_black"
-                        android:layout_gravity="center_vertical"
-                        android:contentDescription="@string/icon" />
-
-                </LinearLayout>
+                <ImageView
+                    android:layout_width="17dp"
+                    android:layout_height="17dp"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginStart="1dp"
+                    android:layout_marginEnd="4dp"
+                    android:contentDescription="@string/icon"
+                    android:src="@drawable/ic_test_black" />
 
             </LinearLayout>
 
-            <HorizontalScrollView
-                android:id="@+id/horizontal_scroll_btn_container"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                android:layout_margin="@dimen/regular_item_padding"
-                android:fillViewport="true"
-                android:scrollbars="horizontal">
-                <LinearLayout
-                    android:id="@+id/lineal_l_buttons_container"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal">
-                    <Button
-                        android:id="@+id/do_test_dialog_ok"
-                        style="@style/ok_button"
-                        android:layout_margin="@dimen/regular_item_padding"
-                        android:paddingStart="@dimen/regular_window_padding"
-                        android:paddingEnd="@dimen/regular_window_padding"
-                        android:background="@drawable/selector_light_green"
-                        android:text="@string/got_it" />
-
-                </LinearLayout>
-            </HorizontalScrollView>
         </LinearLayout>
+
+        <Button
+            android:id="@+id/do_test_dialog_ok"
+            android:layout_width="match_parent"
+            style="@style/ok_button"
+            android:layout_gravity="center_horizontal"
+            android:layout_margin="@dimen/regular_item_padding"
+            android:background="@drawable/selector_light_green"
+            android:paddingStart="@dimen/regular_window_padding"
+            android:paddingEnd="@dimen/regular_window_padding"
+            android:text="@string/got_it" />
+
+    </LinearLayout>
 </RelativeLayout>

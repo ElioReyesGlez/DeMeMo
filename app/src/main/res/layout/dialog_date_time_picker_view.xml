@@ -13,7 +13,7 @@
 
     <com.google.android.material.tabs.TabLayout
         android:layout_width="match_parent"
-        android:layout_height="48dp"
+        android:layout_height="wrap_content"
         android:id="@+id/tabLayout"
         app:tabTextColor="@color/text_default_dark_gray"
         app:tabIndicatorColor="@color/colorAccent"
@@ -26,12 +26,29 @@
         android:layout_height="wrap_content"
         android:layout_weight="1"/>
 
-    <Button
-        android:id="@+id/save_date_time_button"
-        style="@style/ok_button"
-        android:layout_gravity="center|bottom"
-        android:text="@string/save"
-        android:layout_margin="@dimen/regular_window_margin"
-        android:layout_weight="1"/>
 
+    <LinearLayout
+        android:id="@+id/lineal_l_buttons_container"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_gravity="center|bottom"
+        android:weightSum="2">
+
+        <Button
+            android:id="@+id/cancel_dialog_button"
+            style="@style/ok_button"
+            android:layout_margin="@dimen/regular_item_padding"
+            android:layout_weight="1"
+            android:background="@drawable/selector_gray"
+            android:text="@string/dialog_cancel" />
+
+        <Button
+            android:id="@+id/save_date_time_button"
+            android:layout_width="wrap_content"
+            style="@style/ok_button"
+            android:text="@string/save"
+            android:layout_margin="@dimen/regular_window_margin"
+            android:layout_weight="1"/>
+    </LinearLayout>
 </LinearLayout>
