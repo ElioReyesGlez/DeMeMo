@@ -13,7 +13,7 @@
 
     <com.google.android.material.tabs.TabLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="48dp"
         android:id="@+id/tabLayout"
         app:tabTextColor="@color/text_default_dark_gray"
         app:tabIndicatorColor="@color/colorAccent"
@@ -28,7 +28,6 @@
 
     <Button
         android:id="@+id/save_date_time_button"
-        android:layout_width="match_parent"
         style="@style/ok_button"
         android:layout_gravity="center|bottom"
         android:text="@string/save"
