@@ -411,8 +411,6 @@ public class MessagesHelper {
         LayoutInflater inflater = context.requireActivity().getLayoutInflater();
         View dialogView = inflater.inflate(R.layout.dialog_ask_to_do_test_view,
                 container, false);
-        HorizontalScrollView horizontalScrollView = dialogView
-                .findViewById(R.id.horizontal_scroll_btn_container);
 
         SharedPreferencesHelper spHelper = new SharedPreferencesHelper(context.requireActivity());
 
@@ -428,11 +426,6 @@ public class MessagesHelper {
         dialog.setContentView(dialogView);
         dialog.show();
         dialogView.startAnimation(anim);
-        new Handler().postDelayed(() -> {
-            if (dialog.isShowing()) {
-                horizontalScrollView.fullScroll(HorizontalScrollView.FOCUS_RIGHT);
-            }
-        }, 900);
     }
 
     public static void showSaveVerseDialog(MemorizingFragment context,

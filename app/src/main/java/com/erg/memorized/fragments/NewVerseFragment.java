@@ -233,22 +233,18 @@ public class NewVerseFragment extends Fragment implements View.OnClickListener,
             boolean isDateValid = false;
 
             if (daily || weekly || monthly) {
-                if (endDatePicked) {
-                    repeatingFlag = true;
-                }
+                repeatingFlag = true;
             }
 
             if (isAlarmDateValid()) {
                 isDateValid = true;
             }
 
-            if (repeatingFlag) {
+            if (repeatingFlag && !endDatePicked) {
                 if (isVisible())
                     MessagesHelper.showInfoMessageWarningOnDialog(requireActivity(),
                             getString(R.string.pick_until_date_first), dialogView);
             } else if (isDateValid) {
-
-
                 notifyDate = calendar.getTimeInMillis();
                 tvDate.setText(TimeHelper.dateFormatterMedium(notifyDate));
                 tvDate.startAnimation(animScaleDown);
