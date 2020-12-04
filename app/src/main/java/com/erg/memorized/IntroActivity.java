@@ -64,8 +64,8 @@ public class IntroActivity extends Activity {
                 R.drawable.ic_learning_launcher_2));
         screenItems.add(new ScreenItem(getString(R.string.reminder),
                 getString(R.string.reminder_intro_description), R.drawable.ic_calendar));
-        screenItems.add(new ScreenItem(getString(R.string.memory_evaluator),
-                getString(R.string.evaluator_intro_description), R.drawable.ic_exam_main_2));
+        screenItems.add(new ScreenItem(getString(R.string.memory_quiz),
+                getString(R.string.quiz_intro_description), R.drawable.ic_exam_main_2));
         screenItems.add(new ScreenItem(getString(R.string.cloud_backup),
                 getString(R.string.cloud_backup_intro_description), R.drawable.ic_cloud));
         screenItems.add(new ScreenItem(getString(R.string.leader_board),

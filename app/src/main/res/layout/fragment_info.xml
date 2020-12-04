@@ -24,7 +24,7 @@
         android:layout_height="wrap_content"
         android:textSize="16sp"
         android:textStyle="bold"
-        android:text="@string/memory_evaluator"
+        android:text="@string/memory_quiz"
         android:layout_below="@+id/iv_intro_logo"
         android:layout_centerHorizontal="true"
         android:layout_margin="@dimen/regular_window_margin"/>

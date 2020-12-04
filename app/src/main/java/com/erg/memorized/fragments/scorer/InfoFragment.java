@@ -66,8 +66,8 @@ public class InfoFragment extends Fragment implements ScorerListener {
         ListView listView = rootView.findViewById(R.id.list_view_evaluators);
         Button btnGetStarted = rootView.findViewById(R.id.btn_get_started);
 
-        String[] evaluatorsName = getResources().getStringArray(R.array.evaluator_names);
-        String[] evaluatorsInfo = getResources().getStringArray(R.array.evaluators_descriptions);
+        String[] evaluatorsName = getResources().getStringArray(R.array.quiz_names);
+        String[] evaluatorsInfo = getResources().getStringArray(R.array.quizs_descriptions);
         int[] images = new int[]{
                 R.drawable.ic_indent,
                 R.drawable.ic_swipe,

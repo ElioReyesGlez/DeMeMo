@@ -168,20 +168,20 @@
     <string name="score_total">Pontuação total:</string>
     <string name="blank">---</string>
     <string name="leave">Sim, sair</string>
-    <string name="fill_missing_evaluator">Preencher Ausente - Avaliador</string>
-    <string name="fill_missing_evaluator_info">Este avaliador faz com que faltem palavras aleatoriamente.
+    <string name="fill_missing_quiz">Preencher Ausente - Exame</string>
+    <string name="fill_missing_quiz_info">Este exame faz com que faltem palavras aleatoriamente.
         Deve preencher corretamente.</string>
-    <string name="drag_and_drop_evaluator">Arrastar e Soltar - Avaliador</string>
-    <string name="drag_and_drop_evaluator_info">Este avalidador muda a ordem do versículo original.
+    <string name="drag_and_drop_quiz">Arrastar e Soltar - Exame</string>
+    <string name="drag_and_drop_quiz_info">Este avalidador muda a ordem do versículo original.
         Deve trocar palavras até que estejam na ordem certa.</string>
-    <string name="writer_evaluator">Escritor - Avaliador</string>
-    <string name="writer_evaluator_info">Este avaliador remove algumas palavras aleatoriamente.
+    <string name="writer_quiz">Escritor - Exame</string>
+    <string name="writer_quiz_info">Este exame remove algumas palavras aleatoriamente.
         Tem que escrever as palavras que faltam. \n (A ortografia é importante)</string>
-    <string name="drag_and_drop_evaluator_message">Troque as palavras até que o texto esteja na ordem certa</string>
+    <string name="drag_and_drop_quiz_message">Troque as palavras até que o texto esteja na ordem certa</string>
     <string name="finish">Terminar!</string>
     <string name="amount">Montante</string>
-    <string name="memory_evaluator">Avaliador de Memória</string>
-    <string name="evaluator_name">Nome do avaliador</string>
+    <string name="memory_quiz">Exame de Memória</string>
+    <string name="quiz_name">Nome do exame</string>
     <string name="don_t_show_again">Não mostra de novo</string>
     <string name="writer_message">Escreva a palavra que falta!</string>
     <string name="ups_time_is_over">Ups, o tempo acabou!</string>
@@ -217,16 +217,16 @@
     <string name="forgot_password">Esqueceu a senha?</string>
     <string name="function_temporarily_disabled">Função temporariamente desativada</string>
 
-    <string-array name="evaluator_names">
-        <item>Preencher Ausente - Avaliador</item>
-        <item>Arrastar e Soltar - Avaliador</item>
-        <item>Escritor - Avaliador</item>
+    <string-array name="quiz_names">
+        <item>Preencher Ausente - Exame</item>
+        <item>Arrastar e Soltar - Exame</item>
+        <item>Escritor - Exame</item>
     </string-array>
 
-    <string-array name="evaluators_descriptions">
-        <item>@string/fill_missing_evaluator_info</item>
-        <item>@string/drag_and_drop_evaluator_info</item>
-        <item>@string/writer_evaluator_info</item>
+    <string-array name="quizs_descriptions">
+        <item>@string/fill_missing_quiz_info</item>
+        <item>@string/drag_and_drop_quiz_info</item>
+        <item>@string/writer_quiz_info</item>
     </string-array>
 
     <string-array name="tabs_titles">
@@ -307,7 +307,7 @@
     <string name="title_and_verse_exists">Este título e versículo já existem! Substituir?</string>
     <string name="dememo_intro_description">DeMeMo é a app que irá ajudá-lo/a memorizar
         as suas citações bíblicas de uma forma eficaz e interativa.</string>
-    <string name="evaluator_intro_description">Deixe DeMeMo testar a sua memória,
+    <string name="quiz_intro_description">Deixe DeMeMo testar a sua memória,
         então pode saber com certeza o quão bem dominou as suas citações da Bíblia.</string>
     <string name="leader_board_intro_description">Junte-se à tabela de classificação DeMeMo.
         Compare sua pontuação e compita de forma saudável para alcançar as melhores posições.</string>

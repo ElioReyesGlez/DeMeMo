@@ -123,7 +123,7 @@ public class ResultFragment extends Fragment implements View.OnClickListener {
         TableLayout writerEvaluatorTable = (TableLayout) getLayoutInflater()
                 .inflate(R.layout.table_score_view, container, false);
 
-        String[] evaluatorNames = getResources().getStringArray(R.array.evaluator_names);
+        String[] evaluatorNames = getResources().getStringArray(R.array.quiz_names);
 
         TableLayout[] tableLayouts = new TableLayout[]{
                 fillMissingEvaluatorTable,

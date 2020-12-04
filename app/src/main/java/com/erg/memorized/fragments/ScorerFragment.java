@@ -179,7 +179,7 @@ public class ScorerFragment extends Fragment implements BoxTestListener {
                     image = R.drawable.ic_indent;
                     break;
                 case DragAndDropFragment.TAG:
-                    msg = getString(R.string.drag_and_drop_evaluator_message);
+                    msg = getString(R.string.drag_and_drop_quiz_message);
                     image = R.drawable.ic_swipe;
                     break;
                 case WriterFragment.TAG:

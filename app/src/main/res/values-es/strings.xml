@@ -169,17 +169,17 @@
     <string name="score_total">Puntuación total:</string>
     <string name="blank">---</string>
     <string name="leave">Si, salir</string>
-    <string name="fill_missing_evaluator">Rellenar Faltante - Evaluador</string>
-    <string name="fill_missing_evaluator_info">Este evaluador remueve palabras al azar. Debe completarse correctamente.</string>
-    <string name="drag_and_drop_evaluator">Arrastrar y Soltar - Evaluador</string>
-    <string name="drag_and_drop_evaluator_info">Este evaluador cambia el orden correcto del versículo original. Debe intercambiar palabras hasta que el texto esté en el orden correcto.</string>
-    <string name="writer_evaluator">Escritor - Evaluador</string>
-    <string name="writer_evaluator_info">"Este evaluador elimina palabras al azar. Tiene que escribir las palabras que faltan.\n (La ortografía es importante)\n    "</string>
-    <string name="drag_and_drop_evaluator_message">Intercambie las palabras hasta que el texto esté en el orden correcto</string>
+    <string name="fill_missing_quiz">Rellenar Faltante - Examen</string>
+    <string name="fill_missing_quiz_info">Este examen remueve palabras al azar. Debe completarse correctamente.</string>
+    <string name="drag_and_drop_quiz">Arrastrar y Soltar - Examen</string>
+    <string name="drag_and_drop_quiz_info">Este examen cambia el orden correcto del versículo original. Debe intercambiar palabras hasta que el texto esté en el orden correcto.</string>
+    <string name="writer_quiz">Escritor - Examen</string>
+    <string name="writer_quiz_info">"Este examen elimina palabras al azar. Tiene que escribir las palabras que faltan.\n (La ortografía es importante)\n    "</string>
+    <string name="drag_and_drop_quiz_message">Intercambie las palabras hasta que el texto esté en el orden correcto</string>
     <string name="finish">¡Terminar!</string>
     <string name="amount">Cantidad</string>
-    <string name="memory_evaluator">Evaluador de Memoria</string>
-    <string name="evaluator_name">Nombre del evaluador</string>
+    <string name="memory_quiz">Examen de Memoria</string>
+    <string name="quiz_name">Nombre del examen</string>
     <string name="don_t_show_again">No volver a mostrar</string>
     <string name="writer_message">¡Escriba la palabra que falta!</string>
     <string name="ups_time_is_over">¡Ups, se acabó el tiempo!</string>
@@ -213,16 +213,16 @@
     <string name="forgot_password">¿Olvidó su contraseña?</string>
     <string name="function_temporarily_disabled">Función temporalmente deshabilitada</string>
 
-    <string-array name="evaluator_names">
-        <item>Rellenar Faltante - Evaluador</item>
-        <item>Arrastrar y Soltar - Evaluador</item>
-        <item>Escritor - Evaluador</item>
+    <string-array name="quiz_names">
+        <item>Rellenar Faltante - Examen</item>
+        <item>Arrastrar y Soltar - Examen</item>
+        <item>Escritor - Examen</item>
     </string-array>
 
-    <string-array name="evaluators_descriptions">
-        <item>@string/fill_missing_evaluator_info</item>
-        <item>@string/drag_and_drop_evaluator_info</item>
-        <item>@string/writer_evaluator_info</item>
+    <string-array name="quizs_descriptions">
+        <item>@string/fill_missing_quiz_info</item>
+        <item>@string/drag_and_drop_quiz_info</item>
+        <item>@string/writer_quiz_info</item>
     </string-array>
 
     <string-array name="tabs_titles">
@@ -306,7 +306,7 @@
     <string name="get_premium_ad_free">Hágase PREMIUM para obtener una DeMeMo SIN ANUNCIOS</string>
     <string name="dememo_intro_description"><u>DeMeMo</u> es la app que le ayudará a memorizar sus citas
         bíblicas de manera eficaz e interactiva.</string>
-    <string name="evaluator_intro_description">Deje que DeMeMo evalúe su memoria,
+    <string name="quiz_intro_description">Deje que DeMeMo evalúe su memoria,
         entonces podrá saber con seguridad cuanto domina sus citas bíblicas.</string>
     <string name="leader_board_intro_description">Participe en la tabla de clasificación de <u>DeMeMo</u>.
         Compare su puntuación y compita de manera saludable por llegar a las mejores posiciones.</string>

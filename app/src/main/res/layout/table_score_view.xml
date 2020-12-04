@@ -15,7 +15,7 @@
         android:layout_marginBottom="2dp"
         android:background="@drawable/background_red"
         android:padding="@dimen/regular_item_padding"
-        android:text="@string/writer_evaluator"
+        android:text="@string/writer_quiz"
         android:textAlignment="center"
         android:textSize="14sp"
         android:textStyle="bold" />

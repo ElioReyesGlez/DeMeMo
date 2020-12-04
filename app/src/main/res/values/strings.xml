@@ -159,17 +159,17 @@
     <string name="score_total">"Total Score: "</string>
     <string name="blank">---</string>
     <string name="leave">Yes, leave</string>
-    <string name="fill_missing_evaluator">Fill Missing - Evaluator</string>
-    <string name="fill_missing_evaluator_info">"This evaluator makes randomly words missing. You must fill correctly.     "</string>
-    <string name="drag_and_drop_evaluator">Drag and Drop - Evaluator</string>
-    <string name="drag_and_drop_evaluator_info">" This evaluator mess up the right order of the original verse. You must swap words until the text it is in the right order."</string>
-    <string name="writer_evaluator">Writer - Evaluator</string>
-    <string name="writer_evaluator_info">"This evaluator removes some randomly words. You have to write the missing words.          (Orthography is important)     "</string>
-    <string name="drag_and_drop_evaluator_message">"Swap the words until the text is in the right order "</string>
+    <string name="fill_missing_quiz">Fill Missing - Quiz</string>
+    <string name="fill_missing_quiz_info">"This quiz makes randomly words missing. You must fill correctly.     "</string>
+    <string name="drag_and_drop_quiz">Drag and Drop - Quiz</string>
+    <string name="drag_and_drop_quiz_info">" This quiz mess up the right order of the original verse. You must swap words until the text it is in the right order."</string>
+    <string name="writer_quiz">Writer - Quiz</string>
+    <string name="writer_quiz_info">"This quiz removes some randomly words. You have to write the missing words.          (Orthography is important)     "</string>
+    <string name="drag_and_drop_quiz_message">"Swap the words until the text is in the right order "</string>
     <string name="finish">Finish!</string>
     <string name="amount">Amount</string>
-    <string name="memory_evaluator">Memory Evaluator</string>
-    <string name="evaluator_name">Evaluator Name</string>
+    <string name="memory_quiz">Memory Quiz</string>
+    <string name="quiz_name">Quiz Name</string>
     <string name="don_t_show_again">Don\'t show again</string>
     <string name="writer_message">"Write missing word! "</string>
     <string name="ups_time_is_over">Ups, time is over!</string>
@@ -207,16 +207,16 @@
     <string name="forgot_password">Forgot password?</string>
     <string name="function_temporarily_disabled">Function temporarily disabled</string>
 
-    <string-array name="evaluator_names">
-        <item>Fill Missing - Evaluator</item>
-        <item>Drag and Drop - Evaluator</item>
-        <item>Writer - Evaluator</item>
+    <string-array name="quiz_names">
+        <item>Fill Missing - Quiz</item>
+        <item>Drag and Drop - Quiz</item>
+        <item>Writer - Quiz</item>
     </string-array>
 
-    <string-array name="evaluators_descriptions">
-        <item>@string/fill_missing_evaluator_info</item>
-        <item>@string/drag_and_drop_evaluator_info</item>
-        <item>@string/writer_evaluator_info</item>
+    <string-array name="quizs_descriptions">
+        <item>@string/fill_missing_quiz_info</item>
+        <item>@string/drag_and_drop_quiz_info</item>
+        <item>@string/writer_quiz_info</item>
     </string-array>
 
     <string-array name="tabs_titles">
@@ -310,7 +310,7 @@
     <string name="please_try_again">Please, try again!</string>
     <string name="dememo_intro_description">DeMeMo is the app that will help you memorize your
         biblical quotes in an effective and interactive way.</string>
-    <string name="evaluator_intro_description">
+    <string name="quiz_intro_description">
         Let DeMeMo test your memory, then you can know for sure how well you have mastered your
         Bible quotes.</string>
     <string name="leader_board_intro_description">Join the DeMeMo leaderboard.

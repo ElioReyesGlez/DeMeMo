@@ -30,7 +30,7 @@
             android:textAlignment="center"
             android:padding="@dimen/regular_window_padding"
             android:layout_margin="@dimen/regular_window_margin"
-            android:text="@string/evaluator_name"
+            android:text="@string/quiz_name"
             android:background="@drawable/background_red"/>
 
         <TextView

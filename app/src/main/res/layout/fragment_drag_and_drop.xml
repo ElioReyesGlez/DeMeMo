@@ -15,7 +15,7 @@
         android:layout_alignParentTop="true"
         android:padding="@dimen/regular_window_padding"
         android:layout_margin="@dimen/regular_window_margin"
-        android:text="@string/drag_and_drop_evaluator"
+        android:text="@string/drag_and_drop_quiz"
         android:background="@drawable/background_red"/>
 
     <TextView
