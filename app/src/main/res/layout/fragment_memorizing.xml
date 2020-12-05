@@ -39,7 +39,7 @@
             <ImageView
                 android:id="@+id/iv_test_button"
                 android:layout_width="33dp"
-                android:layout_height="33dp"
+                android:layout_height="31dp"
                 android:layout_margin="@dimen/regular_window_padding"
                 android:clickable="true"
                 android:contentDescription="@string/top_menu_test"
@@ -60,6 +60,30 @@
             android:textColor="#000"
             android:textSize="24sp"
             android:textStyle="bold|italic" />
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="center_horizontal"
+            android:padding="@dimen/regular_item_padding">
+
+            <TextView
+                android:id="@+id/tv_verse_text"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/background_white"
+                android:enabled="true"
+                android:focusable="true"
+                android:gravity="start"
+                android:hint="@string/verse"
+                android:longClickable="true"
+                android:padding="@dimen/margin_top"
+                android:textAlignment="textStart"
+                android:textColor="@color/text_default_dark_gray"
+                android:textIsSelectable="true"
+                android:textSize="18sp" />
+
+        </ScrollView>
 
     </LinearLayout>
 
@@ -131,29 +155,6 @@
                     fab:fab_colorPressed="@color/md_blue_grey_300"
                     fab:fab_label="@string/play"
                     fab:fab_size="mini" />
-
-                <ScrollView
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_gravity="center_horizontal">
-
-                    <TextView
-                        android:id="@+id/tv_verse_text"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:background="@drawable/background_white"
-                        android:enabled="true"
-                        android:focusable="true"
-                        android:gravity="start"
-                        android:hint="@string/verse"
-                        android:longClickable="true"
-                        android:padding="@dimen/margin_top"
-                        android:textAlignment="textStart"
-                        android:textColor="@color/text_default_dark_gray"
-                        android:textIsSelectable="true"
-                        android:textSize="18sp" />
-
-                </ScrollView>
 
             </com.github.clans.fab.FloatingActionMenu>
 
