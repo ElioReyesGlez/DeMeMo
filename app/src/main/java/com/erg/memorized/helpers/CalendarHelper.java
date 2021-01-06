@@ -127,9 +127,7 @@ public class CalendarHelper {
             ContentResolver contentResolver = context.getContentResolver();
             Cursor managedCursor = contentResolver.query(calendars, projection,
                     null, null, null);
-
-            assert managedCursor != null;
-            if (managedCursor.moveToFirst()) {
+            if (managedCursor != null && managedCursor.moveToFirst()) {
                 String calName;
                 String calID;
                 int cont = 0;

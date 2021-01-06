@@ -19,7 +19,6 @@ import java.util.Arrays;
 import java.util.Calendar;
 import java.util.HashMap;
 import java.util.Locale;
-import java.util.Map;
 
 import static com.erg.memorized.util.Constants.APP_LANGUAGE_POSITION_KEY;
 import static com.erg.memorized.util.Constants.AUDIO_MSG_KEY;
@@ -244,7 +243,7 @@ public class SharedPreferencesHelper {
     public void saveBibleVersion(Bible bible) {
         editor = sharedPref.edit();
         Gson gson = new Gson();
-        Map<String, String> hasBible = new HashMap<>();
+        HashMap<String, String> hasBible = new HashMap<>();
         hasBible.put(BIBLE_ID_KEY, bible.getId());
         hasBible.put(BIBLE_NAME_LOCAL_KEY, bible.getNameLocal());
         hasBible.put(BIBLE_ABBREVIATION_KEY, bible.getAbbreviationLocal());
@@ -263,8 +262,7 @@ public class SharedPreferencesHelper {
         if (json == null)
             return getDefaultBibleVersion();
 
-        Type type = new TypeToken<HashMap<String, String>>() {
-        }.getType();
+        Type type = new TypeToken<HashMap<String, String>> () {}.getType();
         HashMap<String, String> bibleHashMap = gson.fromJson(json, type);
         if (bibleHashMap != null) {
             Bible bible = new Bible();

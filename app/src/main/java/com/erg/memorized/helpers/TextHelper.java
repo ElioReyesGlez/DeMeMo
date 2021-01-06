@@ -82,50 +82,6 @@ public class TextHelper {
         return getTextIntoString(textWithLowLines);
     }
 
-
-/*    public static ArrayList<HashMap<String, Integer>> saveWord
-            (String word, int pos, ArrayList<HashMap<String, Integer>>
-            hashMapWordPos) {
-
-        for (int i = 0; i < hashMapWordPos.size(); i++) {
-            HashMap<String, Integer> hasMap = hashMapWordPos.get(i);
-            if (hasMap.get(word) != null) {
-                hasMap.put(word, pos);
-                hashMapWordPos.set(i, hasMap);
-                return hashMapWordPos;
-            }
-        }
-        return hashMapWordPos;
-    }*/
-
-/*    public static int getPosFromWord (String word, ArrayList<HashMap<String, Integer>>
-            hashMapWordPos) {
-
-        for (HashMap<String, Integer> hasMap : hashMapWordPos) {
-            if (hasMap.get(word) != null) {
-                return hasMap.get(word);
-            }
-        }
-        return -1;
-    }
-
-    private static boolean thereAreNoLinesBefore(ArrayList<String> textWithLowLines, int i) {
-        for (int j = i; j > 0; j--) {
-            if (textWithLowLines.get(j).contains(LOW_LINE_2X)) {
-                return false;
-            }
-        }
-        return true;
-    }
-
-    private static String[] removeElement(String[] array, int pos) {
-        List<String> list = new ArrayList<>();
-        Collections.addAll(list, array);
-        list.remove(pos);
-        array = list.toArray(new String[]{});
-        return array;
-    }*/
-
     public static ArrayList<Integer> getPosReplacementsWords(ArrayList<String> dividedText,
                                                              ArrayList<String> marks) {
         int wordsToReplace = (dividedText.size() / 2) / 2;
