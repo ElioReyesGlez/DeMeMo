@@ -599,50 +599,61 @@ public class NewVerseFragment extends Fragment implements View.OnClickListener,
         dialogView.setAnimation(anim);
         dialog.setContentView(dialogView);
 
-        listView.setAdapter(new ArrayAdapter<>(requireContext(),
-                R.layout.item_list_calendar,
-                R.id.tv_calendar, getCalendarsNameArray()));
+        String[] calendarNames = getCalendarsNameArray();
+        int[] calendarIds= getCalendarsIdArray();
 
-        listView.setOnItemClickListener((parent, view, position, id) -> {
+        if (calendarNames != null && calendarNames.length > 0) {
+            listView.setAdapter(new ArrayAdapter<>(requireContext(),
+                    R.layout.item_list_calendar,
+                    R.id.tv_calendar, calendarNames));
+
+            listView.setOnItemClickListener((parent, view, position, id) -> {
+
+                if (isVisible())
+                    SuperUtil.vibrate(requireActivity());
+
+                calendarName = calendarNames[position];
+                calendarID = calendarIds[position];
+
+                if (dialog.isShowing())
+                    dialog.dismiss();
+
+                handleShowPickerDateTimeDialog();
+                MessagesHelper.showInfoMessage(requireActivity(),
+                        calendarName + SPACE + getString(R.string.selected));
+            });
+
+            dialog.show();
             if (isVisible())
-                SuperUtil.vibrate(requireActivity());
-            calendarName = getCalendarsNameArray()[position];
-            calendarID = getCalendarsIdArray()[position];
-
-            if (dialog.isShowing())
-                dialog.dismiss();
-
-            handleShowPickerDateTimeDialog();
-            MessagesHelper.showInfoMessage(requireActivity(),
-                    calendarName + SPACE + getString(R.string.selected));
-        });
-        dialog.show();
-
-        if (isVisible())
-            MessagesHelper.showInfoMessageWarningOnDialog(requireActivity(),
-                    getString(R.string.pick_calendar_needed), dialogView);
+                MessagesHelper.showInfoMessageWarningOnDialog(requireActivity(),
+                        getString(R.string.pick_calendar_needed), dialogView);
+        }
     }
 
     private String[] getCalendarsNameArray() {
         HashMap<String, String> hashCalendars = CalendarHelper.getUserCalendars(requireActivity());
-        assert hashCalendars != null;
-        String[] array = new String[hashCalendars.size()];
-        int i = 0;
-        for (Map.Entry<String, String> entry : hashCalendars.entrySet()) {
-            array[i] = entry.getKey();
-            i++;
+        String[] array = new String[0];
+        if (hashCalendars != null) {
+            array = new String[hashCalendars.size()];
+            int i = 0;
+            for (Map.Entry<String, String> entry : hashCalendars.entrySet()) {
+                array[i] = entry.getKey();
+                i++;
+            }
         }
         return array;
     }
 
     private int[] getCalendarsIdArray() {
         HashMap<String, String> hashCalendars = CalendarHelper.getUserCalendars(requireActivity());
-        assert hashCalendars != null;
-        int[] array = new int[hashCalendars.size()];
-        int i = 0;
-        for (Map.Entry<String, String> entry : hashCalendars.entrySet()) {
-            array[i] = Integer.parseInt(entry.getValue());
-            i++;
+        int[] array = new int[0];
+        if (hashCalendars != null) {
+            array = new int[hashCalendars.size()];
+            int i = 0;
+            for (Map.Entry<String, String> entry : hashCalendars.entrySet()) {
+                array[i] = Integer.parseInt(entry.getValue());
+                i++;
+            }
         }
         return array;
     }
