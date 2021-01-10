@@ -10,8 +10,8 @@ android {
         applicationId "com.erg.memorized"
         minSdkVersion 23
         targetSdkVersion 29
-        versionCode 54
-        versionName "1.5.3"
+        versionCode 55
+        versionName "1.0.1"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
