@@ -282,11 +282,11 @@
 
     <!--    All strings used in about page Fragment*-->
     <string name="description_about_page">
-        DeMeMo is the result of the interest in developing systematic support in the process of
-         memorize biblical quotes, soon became a project where there is an interactive and
-         competitive way to promote, learn and memorize the Bible. DeMeMo is part of a project in
-         development that aims to position the word of God in a more current world where the new
-         technologies and the beatitudes of God go together transparently.</string>
+        DeMeMo is the result of the idea of developing a systematic support for the memorization
+        process of biblical quotes. DeMeMo became a project where an interactive and competitive
+        way coexists, to promote, learn and memorize the Bible. DeMeMo is part of a developing
+        project that aims to position the word of God in a more current world where new technologies
+        and God's beatitudes go together transparently.</string>
     <string name="email_about_page">dememoteam@gmail.com</string>
     <string name="app_version_about_page">Version: 1.0.0</string>
     <string name="play_store_about_page">Rate us on Play Store</string>
@@ -311,7 +311,7 @@
     <string name="dememo_intro_description">DeMeMo is the app that will help you memorize your
         biblical quotes in an effective and interactive way.</string>
     <string name="quiz_intro_description">
-        Let DeMeMo test your memory, then you can know for sure how well you have mastered your
+        Let DeMeMo test your memory, then you can know for sure how well you have learned your
         Bible quotes.</string>
     <string name="leader_board_intro_description">Join the DeMeMo leaderboard.
         Compare your score and compete in a healthy way to reach the best positions.</string>

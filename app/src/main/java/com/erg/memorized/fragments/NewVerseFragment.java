@@ -600,9 +600,9 @@ public class NewVerseFragment extends Fragment implements View.OnClickListener,
         dialog.setContentView(dialogView);
 
         String[] calendarNames = getCalendarsNameArray();
-        int[] calendarIds= getCalendarsIdArray();
+        int[] calendarIds = getCalendarsIdArray();
 
-        if (calendarNames != null && calendarNames.length > 0) {
+        if (calendarNames.length > 0 && calendarIds.length > 0) {
             listView.setAdapter(new ArrayAdapter<>(requireContext(),
                     R.layout.item_list_calendar,
                     R.id.tv_calendar, calendarNames));
@@ -627,6 +627,12 @@ public class NewVerseFragment extends Fragment implements View.OnClickListener,
             if (isVisible())
                 MessagesHelper.showInfoMessageWarningOnDialog(requireActivity(),
                         getString(R.string.pick_calendar_needed), dialogView);
+        } else {
+            if (dialog.isShowing())
+                dialog.dismiss();
+
+            calendarID = 1;
+            handleShowPickerDateTimeDialog();
         }
     }
 

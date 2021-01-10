@@ -275,18 +275,18 @@
     <string name="mission">DeMeMo\'s Mission</string>
     <string name="mission_description">DeMeMo is part of a project in
         development that aims to position the word of God in a more current world where new
-        technologies and the beatitudes of God go hand in hand transparently.</string>
+        technologies and God's beatitudes go together transparently.</string>
     <string name="ad_not_load">Ad did not load</string>
     <string name="you_are_premium_now">You are Premium Now!</string>
     <string name="seven">7</string>
 
     <!--    All strings used in about page Fragment*-->
     <string name="description_about_page">
-        DeMeMo is the result of the idea to develop a systematic support when it comes to
-        memorizing Biblical quotes. DeMeMo became in a project where an interactive and competitive
-        way coexists, to promote, learn and memorize the Bible. DeMeMo is part of a project in
-        development that aims to position the word of God in a more current world where new
-        technologies and the beatitudes of God go hand in hand transparently.</string>
+        DeMeMo is the result of the idea of developing a systematic support for the memorization
+        process of Biblical quotes. DeMeMo became a project where an interactive and competitive
+        way coexists, to promote, learn and memorize the Bible. DeMeMo is part of a developing
+        project that aims to position the word of God in a more current world where new technologies
+        and God's beatitudes go together transparently.</string>
     <string name="email_about_page">dememoteam@gmail.com</string>
     <string name="app_version_about_page">Version: 1.0.0</string>
     <string name="play_store_about_page">Rate us on Play Store</string>
@@ -310,7 +310,7 @@
     <string name="dememo_intro_description">DeMeMo is the app that will help you memorize your
         biblical quotes in an effective and interactive way.</string>
     <string name="quiz_intro_description">Let DeMeMo test your memory,
-        then you can know for sure how well you have mastered your Bible quotes.</string>
+        then you can know for sure how well you have learned your Bible quotes.</string>
     <string name="leader_board_intro_description">Join the DeMeMo leaderboard.
         Compare your score and compete in a healthy way to reach the best positions.</string>
     <string name="cloud_backup">Cloud Backup</string>

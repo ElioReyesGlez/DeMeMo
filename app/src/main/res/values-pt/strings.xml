@@ -278,17 +278,18 @@
     <string name="mission_description">Missão DeMeMo</string>
     <string name="ad_not_load">DeMeMo faz parte de um projeto
         em desenvolvimento que visa posicionar a palavra de Deus num mundo mais atual onde as
-        novas tecnologias e a bem-aventurança de Deus andem de mãos dadas de forma transparente.</string>
+        novas tecnologias e a bem-aventurança de Deus caminham juntas de forma transparente.</string>
     <string name="you_are_premium_now">Já é Premium!</string>
     <string name="seven">7</string>
 
     <!--    All strings used in about page Fragment*-->
     <string name="description_about_page">
-        DeMeMo é o resultado da ideia de desenvolver um suporte sistemático na hora de memorizar
-        citações bíblicas. DeMeMo tornou-se num projeto onde coexiste uma forma interativa e
-        competitiva de divulgar, aprender e memorizar a Bíblia. DeMeMo faz parte de um projeto
-        em desenvolvimento que visa posicionar a palavra de Deus num mundo mais atual onde as
-        novas tecnologias e a bem-aventurança de Deus andem de mãos dadas de forma transparente.</string>
+        DeMeMo é o resultado da ideia de desenvolver um suporte sistemático para o processo de
+        memorização de citações bíblicas. DeMeMo tornou-se num projeto onde coexiste uma forma
+        interativa e competitiva de divulgar, aprender e memorizar a Bíblia. DeMeMo faz parte de
+        um projeto em desenvolvimento que visa posicionar a palavra de Deus num mundo mais atual
+        onde as novas tecnologias e a bem-aventurança de Deus caminham juntas de forma transparente.
+    </string>
     <string name="email_about_page">dememoteam@gmail.com</string>
     <string name="app_version_about_page">Version: 1.0.0</string>
     <string name="play_store_about_page">Avalie-nos na Play Store</string>
