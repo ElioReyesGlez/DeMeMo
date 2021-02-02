@@ -52,6 +52,7 @@ import static com.erg.memorized.util.Constants.PREF_SHOW_DIALOG_FLAG_KEY;
 import static com.erg.memorized.util.Constants.SECTION_STATUS_KEY;
 import static com.erg.memorized.util.Constants.STATUS_BAR_MSG_KEY;
 import static com.erg.memorized.util.Constants.SYNC_ALERT_FLAG_KEY;
+import static com.erg.memorized.util.Constants.VIBRATION_STATUS_FLAG_KEY;
 
 public class SharedPreferencesHelper {
 
@@ -500,5 +501,15 @@ public class SharedPreferencesHelper {
 
     public boolean isSyncAlertShowedAlready() {
         return sharedPref.getBoolean(SYNC_ALERT_FLAG_KEY, false);
+    }
+
+    public void setVibrationStatus(boolean flag) {
+        editor = sharedPref.edit();
+        editor.putBoolean(VIBRATION_STATUS_FLAG_KEY, flag);
+        editor.apply();
+    }
+
+    public boolean getVibrationStatus() {
+        return sharedPref.getBoolean(VIBRATION_STATUS_FLAG_KEY, false);
     }
 }

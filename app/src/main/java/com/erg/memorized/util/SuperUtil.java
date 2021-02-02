@@ -55,34 +55,38 @@ public class SuperUtil {
     }
 
     public static void vibrate(Context context) {
+        SharedPreferencesHelper spHelper = new SharedPreferencesHelper(context);
+        if (spHelper.getVibrationStatus()) {
+            long VIBRATION_TIME = getRightVibrationTime(context, true);
+            Vibrator v = (Vibrator) context.getSystemService(Context.VIBRATOR_SERVICE);
 
-        long VIBRATION_TIME = getRightVibrationTime(context, true);
-        Vibrator v = (Vibrator) context.getSystemService(Context.VIBRATOR_SERVICE);
-
-        assert v != null;
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            v.vibrate(VibrationEffect.createOneShot(VIBRATION_TIME,
-                    VibrationEffect.DEFAULT_AMPLITUDE));
-            Log.d(TAG, "regular vibrate: VIBRATE_TIME VibrationEffect :" + VIBRATION_TIME);
-        } else {
-            v.vibrate(VIBRATION_TIME);
-            Log.d(TAG, "regular vibrate: VIBRATE_TIME :" + VIBRATION_TIME);
+            assert v != null;
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                v.vibrate(VibrationEffect.createOneShot(VIBRATION_TIME,
+                        VibrationEffect.DEFAULT_AMPLITUDE));
+                Log.d(TAG, "regular vibrate: VIBRATE_TIME VibrationEffect :" + VIBRATION_TIME);
+            } else {
+                v.vibrate(VIBRATION_TIME);
+                Log.d(TAG, "regular vibrate: VIBRATE_TIME :" + VIBRATION_TIME);
+            }
         }
     }
 
     public static void vibrateMin(Context context) {
+        SharedPreferencesHelper spHelper = new SharedPreferencesHelper(context);
+        if (spHelper.getVibrationStatus()) {
+            long VIBRATION_TIME = getRightVibrationTime(context, false);
+            Vibrator v = (Vibrator) context.getSystemService(Context.VIBRATOR_SERVICE);
 
-        long VIBRATION_TIME = getRightVibrationTime(context, false);
-        Vibrator v = (Vibrator) context.getSystemService(Context.VIBRATOR_SERVICE);
-
-        assert v != null;
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            v.vibrate(VibrationEffect.createOneShot(VIBRATION_TIME,
-                    VibrationEffect.DEFAULT_AMPLITUDE));
-            Log.d(TAG, "vibrateMin: MIN_VIBRATE_TIME VibrationEffect " + VIBRATION_TIME);
-        } else {
-            v.vibrate(VIBRATION_TIME);
-            Log.d(TAG, "vibrateMin: MIN_VIBRATE_TIME " + VIBRATION_TIME);
+            assert v != null;
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                v.vibrate(VibrationEffect.createOneShot(VIBRATION_TIME,
+                        VibrationEffect.DEFAULT_AMPLITUDE));
+                Log.d(TAG, "vibrateMin: MIN_VIBRATE_TIME VibrationEffect " + VIBRATION_TIME);
+            } else {
+                v.vibrate(VIBRATION_TIME);
+                Log.d(TAG, "vibrateMin: MIN_VIBRATE_TIME " + VIBRATION_TIME);
+            }
         }
     }
 
@@ -116,18 +120,6 @@ public class SuperUtil {
             transaction.addToBackStack(tag);
         transaction.commit();
     }
-
-/*    public static void refreshFragment(FragmentActivity context, String tag) {
-        FragmentManager manager = context.getSupportFragmentManager();
-        Fragment frg = manager.findFragmentByTag(tag);
-
-        if (frg != null) {
-            FragmentTransaction transaction = manager.beginTransaction();
-            transaction.detach(frg);
-            transaction.attach(frg);
-            transaction.commit();
-        }
-    }*/
 
     public static void removeViewByTag(FragmentActivity context, String tag, boolean popBackStack) {
         FragmentManager manager = context.getSupportFragmentManager();

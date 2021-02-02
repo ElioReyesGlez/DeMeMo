@@ -29,9 +29,9 @@ public class IntroActivity extends Activity {
     private ViewPager screenPager;
     private TabLayout tabIndicator;
     private Button btnNext;
-    private int position = 0 ;
+    private int position = 0;
     private Button btnGetStarted;
-    private Animation animScaleUp, animScaleDown ;
+    private Animation animScaleUp, animScaleDown;
     private TextView tvSkip;
     private SharedPreferencesHelper spHelper;
 
@@ -44,6 +44,7 @@ public class IntroActivity extends Activity {
         if (spHelper.isFirstLaunch()) {
             spHelper.setLastLaunchRateDialogDate();
             spHelper.setLastPremiumRateDialogDate();
+            spHelper.setVibrationStatus(true);
         }
 
         if (spHelper.getIntroStatus()) {
@@ -56,8 +57,8 @@ public class IntroActivity extends Activity {
         btnGetStarted = findViewById(R.id.btn_get_started);
         tabIndicator = findViewById(R.id.tab_indicator);
         tvSkip = findViewById(R.id.tv_skip);
-        animScaleUp = AnimationUtils.loadAnimation(getApplicationContext(),R.anim.less_scale_up);
-        animScaleDown = AnimationUtils.loadAnimation(getApplicationContext(),R.anim.scale_down);
+        animScaleUp = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.less_scale_up);
+        animScaleDown = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.scale_down);
 
         final List<ScreenItem> screenItems = new ArrayList<>();
         screenItems.add(new ScreenItem(getString(R.string.app_name), getString(R.string.dememo_intro_description),
@@ -72,7 +73,7 @@ public class IntroActivity extends Activity {
                 getString(R.string.leader_board_intro_description), R.drawable.ic_podium_2));
 
         // setup viewpager
-        screenPager =findViewById(R.id.screen_viewpager);
+        screenPager = findViewById(R.id.screen_viewpager);
         AdapterIntroViewPager adapterIntroViewPager = new AdapterIntroViewPager(this, screenItems);
         screenPager.setAdapter(adapterIntroViewPager);
 
@@ -87,7 +88,7 @@ public class IntroActivity extends Activity {
                 position++;
                 screenPager.setCurrentItem(position);
             }
-            if (position == screenItems.size()-1) {
+            if (position == screenItems.size() - 1) {
                 loadLastScreen();
             }
         });
@@ -96,12 +97,13 @@ public class IntroActivity extends Activity {
             @Override
             public void onTabSelected(TabLayout.Tab tab) {
 
-                if (tab.getPosition() == screenItems.size()-1) {
+                if (tab.getPosition() == screenItems.size() - 1) {
                     loadLastScreen();
                 } else {
                     loadIntermediateScreen();
                 }
             }
+
             @Override
             public void onTabUnselected(TabLayout.Tab tab) {
             }
@@ -133,8 +135,8 @@ public class IntroActivity extends Activity {
         }
     }
 
-    public void jumpToMainActivity(){
-        Intent mainActivity = new Intent(getApplicationContext(),MainActivity.class);
+    public void jumpToMainActivity() {
+        Intent mainActivity = new Intent(getApplicationContext(), MainActivity.class);
         startActivity(mainActivity);
         overridePendingTransition(R.anim.fab_slide_in_from_right, R.anim.fade_out);
         spHelper.setIntroActivityStatus(true);

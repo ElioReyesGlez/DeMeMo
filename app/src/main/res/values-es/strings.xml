@@ -339,4 +339,5 @@
     <string name="user_activity_header_icon">Ícono  de encabezado de actividad del usuario</string>
     <string name="language_icon">Ícono  de idioma</string>
     <string name="verse_cont">Número de versículo</string>
+    <string name="vibration">Vibración</string>
 </resources>

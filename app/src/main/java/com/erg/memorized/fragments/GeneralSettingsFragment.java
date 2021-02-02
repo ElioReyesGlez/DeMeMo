@@ -13,6 +13,7 @@ import android.view.animation.AnimationUtils;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.RadioButton;
+import android.widget.Switch;
 
 import androidx.appcompat.widget.SearchView;
 import androidx.fragment.app.Fragment;
@@ -69,6 +70,8 @@ public class GeneralSettingsFragment extends Fragment implements View.OnClickLis
     private ArrayList<Bible> bibles;
     private ArrayList<String> languages;
 
+    private Switch vibrationSwitch;
+
     public static GeneralSettingsFragment newInstance() {
         return new GeneralSettingsFragment();
     }
@@ -107,12 +110,22 @@ public class GeneralSettingsFragment extends Fragment implements View.OnClickLis
     private void setUpView() {
         linealLanguageContainer = rootView.findViewById(R.id.ll_language_container);
         linealBibleVersionContainer = rootView.findViewById(R.id.ll_bible_version_container);
+        vibrationSwitch = rootView.findViewById(R.id.switch_vibration);
 
         setSavedLanguage();
         setSavedBible();
+        setSwitchStateSaved();
 
         linealLanguageContainer.setOnClickListener(this);
         linealBibleVersionContainer.setOnClickListener(this);
+        vibrationSwitch.setOnCheckedChangeListener((buttonView, isChecked) -> {
+            buttonView.setChecked(isChecked);
+            spHelper.setVibrationStatus(isChecked);
+        });
+    }
+
+    private void setSwitchStateSaved() {
+        vibrationSwitch.setChecked(spHelper.getVibrationStatus());
     }
 
     private void setSavedLanguage() {
@@ -139,6 +152,7 @@ public class GeneralSettingsFragment extends Fragment implements View.OnClickLis
         Log.d(TAG, "setSavedBible: " + bible.toString());
     }
 
+    @SuppressLint("NonConstantResourceId")
     @Override
     public void onClick(View v) {
         SuperUtil.vibrate(requireContext());

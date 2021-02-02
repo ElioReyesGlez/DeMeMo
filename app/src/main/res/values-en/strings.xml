@@ -341,4 +341,5 @@
     <string name="user_activity_header_icon">User activity header icon</string>
     <string name="language_icon">Language icon</string>
     <string name="verse_cont">Number of verses</string>
+    <string name="vibration">Vibration</string>
 </resources>

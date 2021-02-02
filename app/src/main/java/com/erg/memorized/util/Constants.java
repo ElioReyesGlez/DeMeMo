@@ -188,6 +188,7 @@ public class Constants {
     public static final String URL_DEVELOPER_2 = "https://www.linkedin.com/in/josé-ernesto-cortes-7bb8671b6";
 
     public static final String SYNC_ALERT_FLAG_KEY = "sync_alert_flag";
+    public static final String VIBRATION_STATUS_FLAG_KEY = "vibration_status_flag";
 
     // DeMeMo adMob id
     public static final String interstitial_ad_unit_id = "ca-app-pub-5375894039512920/4596144610";
