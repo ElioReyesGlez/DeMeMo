@@ -86,6 +86,7 @@
             tools:ignore="UselessParent">
 
             <ImageView
+                android:id="@+id/ic_bible_version"
                 android:layout_width="30dp"
                 android:layout_height="30dp"
                 android:layout_alignParentStart="true"
@@ -132,13 +133,14 @@
 
             <ImageView
                 android:id="@+id/ic_vibration"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
                 android:layout_alignParentStart="true"
+                android:layout_centerVertical="true"
                 android:layout_marginStart="3dp"
                 android:contentDescription="@string/vibration"
                 android:src="@drawable/ic_vibrate"
-                android:visibility="invisible">
+                android:visibility="visible">
 
             </ImageView>
 
